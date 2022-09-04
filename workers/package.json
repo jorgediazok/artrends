@@ -1,0 +1,52 @@
+{
+  "name": "google-trends-worker",
+  "version": "1.0.0",
+  "description": "Scraper de Google Trends en Argentina",
+  "main": "index.ts",
+  "scripts": {
+    "dev": "NODE_ENV=development node-dev ./src/index.ts --respawn",
+    "start": "npm run build && node build/index.js",
+    "build": "tsc"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/leo10099/artrends.git"
+  },
+  "keywords": [
+    "google",
+    "trends",
+    "argentina"
+  ],
+  "author": "Leandro Hanc",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/leo10099/artrends/issues"
+  },
+  "engines": {
+    "node": ">=16"
+  },
+  "homepage": "https://github.com/leo10099/artrends#readme",
+  "dependencies": {
+    "date-fns": "^2.29.1",
+    "dotenv": "^16.0.1",
+    "lodash.zipwith": "^4.2.0",
+    "mongodb": "^4.8.1",
+    "node-cron": "^3.0.1",
+    "playwright": "1.25.1",
+    "typescript": "^4.7.4"
+  },
+  "devDependencies": {
+    "@swc/core-linux-arm64-gnu": "^1.2.246",
+    "@swc/core": "^1.2.246",
+    "@swc/helpers": "^0.4.11",
+    "@types/lodash.zipwith": "^4.2.7",
+    "@types/node": "^18.6.1",
+    "@types/node-cron": "^3.0.2",
+    "@typescript-eslint/eslint-plugin": "^5.31.0",
+    "@typescript-eslint/parser": "^5.31.0",
+    "eslint": "^8.20.0",
+    "node-dev": "^7.4.3",
+    "regenerator-runtime": "^0.13.9",
+    "ts-node": "^10.9.1"
+  }
+}
