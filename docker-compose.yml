@@ -1,0 +1,73 @@
+version: "2.6"
+
+name: artrends-workers
+services:
+  traefik:
+    image: traefik:v2.8
+    # Enables the Traefik Dashboard and tells Traefik to listen to docker
+    # enable --log.level=INFO so we can see what Traefik is doing in the log files
+    ports:
+      # Exposes port 80 and 433 for incomming web requests
+      - "80:80"
+      - "443:443"
+      # The Web UI port http://0.0.0.0:8080 (enabled by --api.insecure=true)
+      - "8080:8080"
+    volumes:
+      # So that Traefik can listen to the Docker events
+      - /var/run/docker.sock:/var/run/docker.sock
+      - ./traefik.yml:/etc/traefik/traefik.yml
+  scrapers:
+    container_name: scrapers
+    build:
+      context: .
+      dockerfile: ./workers/Dockerfile
+    restart: always
+    depends_on:
+      - mongodb
+    security_opt:
+      - seccomp:./workers/seccomp_profile.json
+    volumes:
+      - .:/workers
+    ipc: "host"
+
+  backend:
+    container_name: backend
+    ports:
+      - 3000
+    build:
+      context: .
+      dockerfile: ./backend/Dockerfile
+    restart: always
+    depends_on:
+      - mongodb
+    volumes:
+      - .:/backend
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.backend.rule=Host(`api.localhost`)"
+      - "traefik.http.routers.backend.entrypoints=web,websecure"
+  #    - "traefik.http.routers.backend.service=backend"
+  #      - "traefik.http.services.backend.loadbalancer.server.port=3000"
+
+  whoami:
+    image: traefik/whoami
+    container_name: simple-service
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.whoami.rule=Host(`whoami.localhost`)"
+      - "traefik.http.routers.whoami.entrypoints=web,websecure"
+
+  mongodb:
+    image: mongo:latest
+    restart: unless-stopped
+    ports:
+      - 27017
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: root
+      MONGO_INITDB_ROOT_PASSWORD: root
+    volumes:
+      - mongodb-data:/data/db
+
+volumes:
+  mongodb-data:
+    name: mongodb-data
