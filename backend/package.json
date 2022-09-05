@@ -22,8 +22,9 @@
   },
   "license": "MIT",
   "dependencies": {
-    "fastify": "^4.5.3",
-    "fastify-graceful-shutdown": "^3.2.0"
+    "@ladjs/graceful": "^3.0.2",
+    "dotenv": "^16.0.2",
+    "fastify": "^4.5.3"
   },
   "devDependencies": {
     "@swc/core": "^1.2.246",
