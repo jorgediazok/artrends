@@ -4,12 +4,39 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "dev": "NODE_ENV=development node-dev ./src/index.ts --respawn",
+    "start": "npm run build && node build/index.js",
+    "build": "tsc"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/leo10099/artrends.git"
+  },
+  "keywords": [
+    "google",
+    "trends",
+    "argentina"
+  ],
+  "engines": {
+    "node": ">=16"
+  },
+  "license": "MIT",
   "dependencies": {
     "fastify": "^4.5.3"
+  },
+  "devDependencies": {
+    "@types/node": "^18.7.14",
+    "@swc/core": "^1.2.246",
+    "@swc/helpers": "^0.4.11",
+    "eslint": "^8.20.0",
+    "typescript": "^4.8.2",
+    "@typescript-eslint/eslint-plugin": "^5.31.0",
+    "@typescript-eslint/parser": "^5.31.0",
+    "node-dev": "^7.4.3",
+    "regenerator-runtime": "^0.13.9",
+    "ts-node": "^10.9.1"
+  },
+  "optionalDependencies": {
+    "@swc/core-linux-arm64-gnu": "^1.2.246"
   }
 }
