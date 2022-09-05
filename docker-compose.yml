@@ -47,15 +47,7 @@ services:
       - "traefik.http.routers.backend.rule=Host(`api.localhost`)"
       - "traefik.http.routers.backend.entrypoints=web,websecure"
   #    - "traefik.http.routers.backend.service=backend"
-  #      - "traefik.http.services.backend.loadbalancer.server.port=3000"
-
-  whoami:
-    image: traefik/whoami
-    container_name: simple-service
-    labels:
-      - "traefik.enable=true"
-      - "traefik.http.routers.whoami.rule=Host(`whoami.localhost`)"
-      - "traefik.http.routers.whoami.entrypoints=web,websecure"
+  #    - "traefik.http.services.backend.loadbalancer.server.port=3000"
 
   mongodb:
     image: mongo:latest
