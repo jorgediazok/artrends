@@ -2,9 +2,6 @@ import fastify from "fastify";
 
 import { MongoClient } from "mongodb";
 
-// Utils
-import { logger } from "./utils/logger";
-
 /* Environment variables */
 import { DATABASE_CONNECTION_URI } from "./config";
 
@@ -37,6 +34,7 @@ app.get("/google-trends", async () => {
 	}
 });
 
+/* Start app */
 const start = async () => {
 	try {
 		await app.listen({ host: "0.0.0.0", port: 3000 });
