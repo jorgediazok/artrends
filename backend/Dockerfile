@@ -1,19 +1,16 @@
 FROM node:16.14.0-alpine
+
 ENV NODE_ENV=development
 ENV PATH /app/node_modules/.bin/:$PATH
-# ENV PATH /app/node_modules/node-dev/.bin:$PATH
+ENV PATH /app/node_modules/node-dev/.bin:$PATH
 
-WORKDIR /app
+WORKDIR /app/backend
 
-COPY ./backend/package.json .
-
-COPY ./backend/package-lock.json .
+COPY ./backend/package.json ./backend/package-lock.json .
 
 RUN npm install && npm cache clean --force
 
-copy . .
-
-WORKDIR /app/backend
+COPY ./backend ./
 
 EXPOSE 3000
 
