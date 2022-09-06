@@ -45,9 +45,9 @@ async function googleTrendsCleaner() {
 }
 
 /* Get trends cron - At 21hs every day */
-schedule("0 21 * * *", googleTrendsScraper);
+schedule("*/1 * * * *", googleTrendsScraper);
 
 /* Remove old trends - Every 59 minutes */
 schedule("*/59 * * * *", googleTrendsCleaner);
 
-console.log("App started succesfully, waiting for jobs...");
+console.log("App started succesfully!, waiting for jobs...");

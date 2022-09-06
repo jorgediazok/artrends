@@ -50,12 +50,12 @@ const start = async () => {
 };
 
 process.on("uncaughtException", error => {
-	logger.error("uncaughtException:", error);
+	app.log.error("uncaughtException:", error);
 	process.exit(1);
 });
 
 process.on("unhandledRejection", error => {
-	logger.error("unhandledRejection:", error);
+	app.log.error("unhandledRejection:", error);
 	process.exit(1);
 });
 
