@@ -22,9 +22,9 @@
   },
   "license": "MIT",
   "dependencies": {
-    "@ladjs/graceful": "^3.0.2",
     "dotenv": "^16.0.2",
-    "fastify": "^4.5.3"
+    "fastify": "^4.5.3",
+    "pino-pretty": "^9.1.0"
   },
   "devDependencies": {
     "@swc/wasm": "^1.2.246",

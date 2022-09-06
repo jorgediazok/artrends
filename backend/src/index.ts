@@ -1,12 +1,20 @@
 import fastify from "fastify";
-
 import { MongoClient } from "mongodb";
 
 /* Environment variables */
 import { DATABASE_CONNECTION_URI } from "./config";
 
 /* Init Fastify */
-const app = fastify({ logger: true });
+const app = fastify({
+	logger: {
+		transport: {
+			options: {
+				colorize: true,
+			},
+			target: "pino-pretty",
+		},
+	},
+});
 
 /* Routes */
 app.get("/google-trends", async () => {
