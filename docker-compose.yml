@@ -41,8 +41,6 @@ services:
       - "traefik.enable=true"
       - "traefik.http.routers.backend.rule=Host(`api.localhost`)"
       - "traefik.http.routers.backend.entrypoints=web,websecure"
-    # - "traefik.http.routers.backend.service=backend"
-    # - "traefik.http.services.backend.loadbalancer.server.port=3000"
 
   scrapers:
     container_name: workers

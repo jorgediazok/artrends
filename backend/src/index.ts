@@ -1,68 +1,70 @@
 import fastify from "fastify";
 import { MongoClient } from "mongodb";
 
+/* Plugins */
+import rateLimiter from "./plugins/rateLimiter";
+
 /* Environment variables */
 import { DATABASE_CONNECTION_URI } from "./config";
 
-/* Init Fastify */
-const app = fastify({
-	logger: {
-		transport: {
-			options: {
-				colorize: true,
+async function bootstrap() {
+	/* Init Fastify */
+	const app = fastify({
+		logger: {
+			transport: {
+				options: {
+					colorize: true,
+				},
+				target: "pino-pretty",
 			},
-			target: "pino-pretty",
 		},
-	},
-});
+	});
 
-/* Routes */
-app.get("/google-trends", async () => {
-	try {
-		const client = new MongoClient(DATABASE_CONNECTION_URI);
-		const trends = await client
-			.db("artrends")
-			.collection("google")
-			.find()
-			.limit(2)
-			.toArray();
+	/* Register Plugins */
+	await app.register(rateLimiter);
 
-		if (trends.length === 2) {
-			const [current, previous] = trends;
-			return {
-				current,
-				previous,
-			};
+	/* Register Routes */
+	app.get("/google-trends", async () => {
+		try {
+			const client = new MongoClient(DATABASE_CONNECTION_URI);
+			const trends = await client
+				.db("artrends")
+				.collection("google")
+				.find()
+				.limit(2)
+				.toArray();
+
+			if (trends.length === 2) {
+				const [current, previous] = trends;
+				return {
+					current,
+					previous,
+				};
+			}
+
+			return trends;
+		} catch (e) {
+			app.log.error(e);
+			return [];
 		}
+	});
 
-		return trends;
-	} catch (e) {
-		app.log.error(e);
-		return [];
-	}
-});
-
-/* Start app */
-const start = async () => {
-	try {
-		await app.listen({ host: "0.0.0.0", port: 3000 });
-
-		app.log.info("Backend started succesfully");
-	} catch (err) {
-		app.log.error(err);
-
+	process.on("uncaughtException", error => {
+		app.log.error("uncaughtException:", error);
 		process.exit(1);
-	}
-};
+	});
 
-process.on("uncaughtException", error => {
-	app.log.error("uncaughtException:", error);
-	process.exit(1);
-});
+	process.on("unhandledRejection", error => {
+		app.log.error("unhandledRejection:", error);
+		process.exit(1);
+	});
 
-process.on("unhandledRejection", error => {
-	app.log.error("unhandledRejection:", error);
-	process.exit(1);
-});
+	await app.listen({ host: "0.0.0.0", port: 3000 }).catch(err => {
+		app.log.error(err);
+		process.exit(1);
+	});
 
-start();
+	app.log.info("Backend started succesfully");
+}
+
+bootstrap();
