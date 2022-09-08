@@ -3,6 +3,7 @@ import { MongoClient } from "mongodb";
 
 /* Plugins */
 import rateLimiter from "./plugins/rateLimiter";
+import helmet from "./plugins/helmet";
 
 /* Environment variables */
 import { DATABASE_CONNECTION_URI } from "./config";
@@ -22,6 +23,7 @@ async function bootstrap() {
 
 	/* Register Plugins */
 	await app.register(rateLimiter);
+	await app.register(helmet);
 
 	/* Register Routes */
 	app.get("/google-trends", async () => {
