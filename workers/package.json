@@ -1,5 +1,5 @@
 {
-  "name": "google-trends-worker",
+  "name": "artrends-workers",
   "version": "1.0.0",
   "description": "Scraper de Google Trends en Argentina",
   "main": "index.ts",
@@ -14,6 +14,8 @@
   },
   "keywords": [
     "google",
+    "twitter",
+    "spotify",
     "trends",
     "argentina"
   ],
