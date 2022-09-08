@@ -1,6 +1,6 @@
 import zipWith from "lodash.zipwith";
 
-export default function mergeGoogleResults(
+export default function mergeTrendsResults(
 	trendsTitles: string[],
 	trendsLinks: string[],
 	searchCounts: string[]

@@ -3,12 +3,11 @@ import { MongoClient } from "mongodb";
 // Types
 import type { TrendsData, TrendsDataPayload } from "../typings";
 
-export default async function persistGoogleTrends(
+export default async function persistTwitterTrends(
 	dataToPersist: TrendsData[],
 	trendsDate: Date,
 	databaseUri: string
 ) {
-	console.log("trying to persist data...");
 	// Create a new MongoClient
 	const client = new MongoClient(databaseUri);
 
@@ -19,7 +18,7 @@ export default async function persistGoogleTrends(
 			.db("artrends")
 			.collection<{
 				[trend: string]: TrendsDataPayload;
-			}>("google")
+			}>("twitter")
 			.insertOne({
 				record: {
 					date: trendsDate,

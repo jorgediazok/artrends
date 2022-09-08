@@ -1,18 +1,18 @@
-export interface GoogleTrendsData {
+export interface TrendsData {
 	title: string;
 	link: string;
 	searchCount: string;
 }
 
-export interface GoogleTrendsDataPayload {
+export interface TrendsDataPayload {
 	date: Date;
-	trends: GoogleTrendsData[];
+	trends: TrendsData[];
 }
 
-export interface GoogleTrendsDataRecord {
+export interface TrendsDataRecord {
 	_id: string;
 	record: {
 		date: Date;
-		trends: GoogleTrendsData[];
+		trends: TrendsData[];
 	};
 }
