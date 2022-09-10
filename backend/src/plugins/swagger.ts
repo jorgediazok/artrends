@@ -1,11 +1,10 @@
 import fastifySwagger from "@fastify/swagger";
-import { FastifyInstance } from "fastify";
 import fastifyPlugin from "fastify-plugin";
 
 /* Environment variables */
 import { NODE_ENV } from "../config";
 
-async function swagger(app: FastifyInstance) {
+async function swagger(app: AppInstance) {
 	await app.register(fastifySwagger, {
 		swagger: {
 			info: {

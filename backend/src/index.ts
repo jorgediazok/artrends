@@ -1,4 +1,5 @@
 import fastify from "fastify";
+import { TypeBoxTypeProvider } from "@fastify/type-provider-typebox";
 
 /* Routes */
 import googleRoutes from "./routes";
@@ -20,7 +21,7 @@ async function bootstrap() {
 				target: "pino-pretty",
 			},
 		},
-	});
+	}).withTypeProvider<TypeBoxTypeProvider>();
 
 	/* Register Plugins */
 	await app.register(rateLimiter);
