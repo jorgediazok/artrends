@@ -2,10 +2,10 @@ FROM mcr.microsoft.com/playwright
 
 WORKDIR /app/workers
 
-COPY ./package.json ./package-lock.json .
+COPY ./workers/package.json ./workers/package-lock.json .
 
 RUN npm install && npm cache clean --force
 
-COPY . .
+COPY ./workers .
 
 CMD ["npm", "run", "dev"]
