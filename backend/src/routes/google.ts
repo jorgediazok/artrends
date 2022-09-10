@@ -5,7 +5,7 @@ import { MongoClient } from "mongodb";
 import { DATABASE_CONNECTION_URI } from "../config";
 
 export default function googleRoutes(app: FastifyInstance) {
-	return app.get("/google-trends", async () => {
+	return app.get("/api/google-trends", async () => {
 		try {
 			const client = new MongoClient(DATABASE_CONNECTION_URI);
 			const trends = await client

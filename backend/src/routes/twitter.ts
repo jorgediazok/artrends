@@ -5,7 +5,7 @@ import { MongoClient } from "mongodb";
 import { DATABASE_CONNECTION_URI } from "../config";
 
 export default function twitterRoutes(app: FastifyInstance) {
-	return app.get("/twitter-trends", async () => {
+	return app.get("/api/twitter-trends", async () => {
 		try {
 			const client = new MongoClient(DATABASE_CONNECTION_URI);
 			const trends = await client

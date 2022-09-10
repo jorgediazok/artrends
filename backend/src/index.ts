@@ -7,6 +7,7 @@ import twitterRoutes from "./routes/twitter";
 /* Plugins */
 import rateLimiter from "./plugins/rateLimiter";
 import helmet from "./plugins/helmet";
+import swagger from "./plugins/swagger";
 
 async function bootstrap() {
 	/* Init Fastify */
@@ -24,6 +25,7 @@ async function bootstrap() {
 	/* Register Plugins */
 	await app.register(rateLimiter);
 	await app.register(helmet);
+	await app.register(swagger);
 
 	/* Register Routes */
 	googleRoutes(app);
