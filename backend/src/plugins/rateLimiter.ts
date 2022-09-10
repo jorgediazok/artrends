@@ -1,8 +1,7 @@
 import fastifyPlugin from "fastify-plugin";
 import fastifyRateLimitPlugin from "@fastify/rate-limit";
-import { FastifyInstance } from "fastify";
 
-async function rateLimiter(app: FastifyInstance) {
+async function rateLimiter(app: AppInstance) {
 	await app.register(fastifyRateLimitPlugin, {
 		skipOnError: true,
 		timeWindow: "1 minute",

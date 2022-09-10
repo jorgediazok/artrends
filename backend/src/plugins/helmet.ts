@@ -1,8 +1,7 @@
 import fastifyPlugin from "fastify-plugin";
 import { fastifyHelmet } from "@fastify/helmet";
-import { FastifyInstance } from "fastify";
 
-async function helmet(app: FastifyInstance) {
+async function helmet(app: AppInstance) {
 	await app.register(fastifyHelmet, {
 		contentSecurityPolicy: {
 			directives: {

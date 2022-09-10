@@ -1,12 +1,14 @@
 import fastify from "fastify";
-import { MongoClient } from "mongodb";
+import { TypeBoxTypeProvider } from "@fastify/type-provider-typebox";
+
+/* Routes */
+import googleRoutes from "./routes";
+import twitterRoutes from "./routes/twitter";
 
 /* Plugins */
 import rateLimiter from "./plugins/rateLimiter";
 import helmet from "./plugins/helmet";
-
-/* Environment variables */
-import { DATABASE_CONNECTION_URI } from "./config";
+import swagger from "./plugins/swagger";
 
 async function bootstrap() {
 	/* Init Fastify */
@@ -19,37 +21,16 @@ async function bootstrap() {
 				target: "pino-pretty",
 			},
 		},
-	});
+	}).withTypeProvider<TypeBoxTypeProvider>();
 
 	/* Register Plugins */
 	await app.register(rateLimiter);
 	await app.register(helmet);
+	await app.register(swagger);
 
 	/* Register Routes */
-	app.get("/google-trends", async () => {
-		try {
-			const client = new MongoClient(DATABASE_CONNECTION_URI);
-			const trends = await client
-				.db("artrends")
-				.collection("google")
-				.find()
-				.limit(2)
-				.toArray();
-
-			if (trends.length === 2) {
-				const [current, previous] = trends;
-				return {
-					current,
-					previous,
-				};
-			}
-
-			return trends;
-		} catch (e) {
-			app.log.error(e);
-			return [];
-		}
-	});
+	googleRoutes(app);
+	twitterRoutes(app);
 
 	process.on("uncaughtException", error => {
 		app.log.error("uncaughtException:", error);
