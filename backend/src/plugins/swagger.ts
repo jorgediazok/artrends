@@ -4,7 +4,8 @@ import fastifyPlugin from "fastify-plugin";
 /* Environment variables */
 import { NODE_ENV } from "../config";
 
-async function swagger(app: AppInstance) {
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+async function swagger(app: any) {
 	await app.register(fastifySwagger, {
 		swagger: {
 			info: {
@@ -12,10 +13,10 @@ async function swagger(app: AppInstance) {
 				description: "Documentación de los endpoints de Artrends Backend",
 				version: "1.0",
 			},
-			schemes: ["http"],
+			schemes: ["http", "https"],
 			consumes: ["application/json"],
 			produces: ["application/json"],
-			tags: [],
+			tags: ["Google", "Twitter"],
 		},
 		routePrefix: "/docs",
 		mode: "dynamic",
