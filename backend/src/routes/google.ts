@@ -12,6 +12,7 @@ export default function googleRoutes(app: AppInstance) {
 		"/api/google-trends",
 		{
 			schema: {
+				tags: ["Google"],
 				response: {
 					default: TrendPayload,
 				},
