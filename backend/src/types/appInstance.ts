@@ -8,14 +8,10 @@ import {
 import { FastifyInstance } from "fastify/types/instance";
 import { Server } from "http";
 
-export {};
-
-declare global {
-	type AppInstance = FastifyInstance<
-		RawServerDefault,
-		RawRequestDefaultExpression<Server>,
-		RawReplyDefaultExpression<Server>,
-		FastifyBaseLogger,
-		TypeBoxTypeProvider
-	>;
-}
+export type AppInstance = FastifyInstance<
+	RawServerDefault,
+	RawRequestDefaultExpression<Server>,
+	RawReplyDefaultExpression<Server>,
+	FastifyBaseLogger,
+	TypeBoxTypeProvider
+>;

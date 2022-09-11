@@ -27,6 +27,15 @@ services:
     command: --quiet
     volumes:
       - mongodb-data:/data/db
+  redis:
+    container_name: redis
+    image: redis:7.0.4-alpine
+    restart: always
+    ports:
+      - "6379:6379"
+    command: redis-server --loglevel warning  --appendonly yes --requirepass "***REMOVED_REDIS_PASSWORD***"
+    volumes:
+      - cache:/data
   backend:
     container_name: backend
     build:
@@ -37,6 +46,8 @@ services:
       - 3000:3000
     volumes:
       - .:/app
+    depends_on:
+      - redis
     labels:
       - "traefik.enable=true"
       - "traefik.http.routers.backend.rule=Host(`api.localhost`)"
@@ -57,3 +68,5 @@ services:
 volumes:
   mongodb-data:
     name: mongodb-data
+  cache:
+    driver: local
