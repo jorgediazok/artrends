@@ -2,13 +2,14 @@ import fastify from "fastify";
 import { TypeBoxTypeProvider } from "@fastify/type-provider-typebox";
 
 /* Routes */
-import googleRoutes from "./routes";
-import twitterRoutes from "./routes/twitter";
+import googleRoutes from "./modules/google";
+import twitterRoutes from "./modules/twitter";
 
 /* Plugins */
 import rateLimiter from "./plugins/rateLimiter";
 import helmet from "./plugins/helmet";
 import swagger from "./plugins/swagger";
+import cache from "./plugins/cache";
 
 async function bootstrap() {
 	/* Init Fastify */
@@ -27,6 +28,7 @@ async function bootstrap() {
 	await app.register(rateLimiter);
 	await app.register(helmet);
 	await app.register(swagger);
+	await app.register(cache);
 
 	/* Register Routes */
 	googleRoutes(app);

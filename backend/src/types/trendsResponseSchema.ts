@@ -1,4 +1,4 @@
-import { Static, Type } from "@sinclair/typebox";
+import { Type } from "@sinclair/typebox";
 
 export const TrendPayload = Type.Object({
 	current: Type.Object({
@@ -27,6 +27,7 @@ export const TrendPayload = Type.Object({
 			),
 		}),
 	}),
+	fromCache: Type.Boolean(),
 });
 
 export interface TrendRecord {
