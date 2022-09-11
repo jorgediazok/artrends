@@ -5,3 +5,6 @@ dotenv.config();
 export const NODE_ENV = process.env.NODE_ENV || "";
 export const DATABASE_CONNECTION_URI =
 	process.env.DATABASE_CONNECTION_URI || "";
+export const REDIS_HOST = process.env.REDISHOST || "";
+export const REDIS_PASSWORD = process.env.REDISPASSWORD || "";
+export const REDIS_PORT = parseInt(process.env.REDISPORT || "6379", 10);
