@@ -14,6 +14,7 @@ export async function getGoogleTrends() {
 			.collection<TrendRecord>("google")
 			.find()
 			.limit(2)
+			.sort({ "record.date": -1 })
 			.toArray();
 
 		if (trends.length > 1) {

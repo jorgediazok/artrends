@@ -14,6 +14,7 @@ export async function getTwitterTrends() {
 			.collection<TrendRecord>("twitter")
 			.find()
 			.limit(2)
+			.sort({ "record.date": -1 })
 			.toArray();
 
 		if (trends.length > 1) {
