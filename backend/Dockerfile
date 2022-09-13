@@ -12,6 +12,6 @@ RUN npm install && npm cache clean --force
 
 COPY ./backend ./
 
-EXPOSE 3000
+EXPOSE 3500
 
 CMD ["npm", "run", "dev"]
