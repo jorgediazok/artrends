@@ -1,10 +1,11 @@
 import { MongoClient } from "mongodb";
 
 // Types
-import type { TrendsData, TrendsDataPayload } from "../typings";
+import type { TrendsDataPayload } from "../typings";
+import type { GoogleTrendsData } from "./types";
 
 export default async function persistGoogleTrends(
-	dataToPersist: TrendsData[],
+	dataToPersist: GoogleTrendsData[],
 	trendsDate: Date,
 	databaseUri: string
 ) {
@@ -18,7 +19,7 @@ export default async function persistGoogleTrends(
 		const res = await client
 			.db("artrends")
 			.collection<{
-				[trend: string]: TrendsDataPayload;
+				[trend: string]: TrendsDataPayload<GoogleTrendsData>;
 			}>("google")
 			.insertOne({
 				record: {
