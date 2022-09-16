@@ -13,7 +13,7 @@ import { getGoogleTrends } from "./google/scraper";
 import persistGoogleTrends from "./google/persist";
 
 /* Twitter */
-import { getTwitterTrendingTopics } from "./twitter/scraper";
+import { getTwitterTrendingTopics } from "./twitter/api";
 import persistTwitterTrends from "./twitter/persist";
 
 /* Utils */
@@ -53,20 +53,36 @@ async function googleTrendsCleaner() {
 }
 
 /* Twitter */
-async function twitterTrendingTopicsScraper() {
-	try {
-		const { trendsTitles, trendsLinks, searchCounts } =
-			await getTwitterTrendingTopics(TWITTER_TRENDS_URL, TRENDS_ITEM_LIMIT);
+// async function twitterTrendingTopicsScraper() {
+// 	try {
+// 		const { trendsTitles, trendsLinks, searchCounts } =
+// 			await getTwitterTrendingTopics(TWITTER_TRENDS_URL, TRENDS_ITEM_LIMIT);
 
-		const trendData = mergeTrendsResults(
-			trendsTitles,
-			trendsLinks,
-			searchCounts
+// 		const trendData = mergeTrendsResults(
+// 			trendsTitles,
+// 			trendsLinks,
+// 			searchCounts
+// 		);
+// 		const trendDate = new Date();
+
+// 		if (DATABASE_CONNECTION_URI) {
+// 			persistTwitterTrends(trendData, trendDate, DATABASE_CONNECTION_URI);
+// 		}
+// 	} catch (e) {
+// 		console.error(`[twitterTrendingTopicsScraper]: ${e}`);
+// 	}
+// }
+
+async function twitterTrendingTopics() {
+	try {
+		const twitterData = await getTwitterTrendingTopics(
+			TWITTER_TRENDS_URL,
+			TRENDS_ITEM_LIMIT
 		);
 		const trendDate = new Date();
 
 		if (DATABASE_CONNECTION_URI) {
-			persistTwitterTrends(trendData, trendDate, DATABASE_CONNECTION_URI);
+			persistTwitterTrends(twitterData, trendDate, DATABASE_CONNECTION_URI);
 		}
 	} catch (e) {
 		console.error(`[twitterTrendingTopicsScraper]: ${e}`);
@@ -84,10 +100,10 @@ async function twitterTrendsCleaner() {
 }
 
 /* Get Google trends cron - At 20 mins of every hour */
-schedule("20 * * * *", googleTrendsScraper);
+schedule("21 * * * *", googleTrendsScraper);
 
 /* Get Twitter trends cron - At 05 mins of every hour */
-schedule("05 * * * *", twitterTrendingTopicsScraper);
+schedule("13 * * * *", twitterTrendingTopics);
 
 /* Remove old Google trends - At 01:10 am */
 schedule("10 1 * * *", googleTrendsCleaner, {

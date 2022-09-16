@@ -1,10 +1,11 @@
 import { MongoClient } from "mongodb";
 
 // Types
-import type { TrendsData, TrendsDataPayload } from "../typings";
+import type { TrendsDataPayload } from "../typings";
+import type { TwitterTrendsData } from "./types";
 
 export default async function persistTwitterTrends(
-	dataToPersist: TrendsData[],
+	dataToPersist: TwitterTrendsData[],
 	trendsDate: Date,
 	databaseUri: string
 ) {
@@ -17,7 +18,7 @@ export default async function persistTwitterTrends(
 		const res = await client
 			.db("artrends")
 			.collection<{
-				[trend: string]: TrendsDataPayload;
+				[trend: string]: TrendsDataPayload<TwitterTrendsData>;
 			}>("twitter")
 			.insertOne({
 				record: {
@@ -28,7 +29,7 @@ export default async function persistTwitterTrends(
 
 		return res.acknowledged;
 	} catch (e) {
-		console.error(`[persistGoogleTrends]: ${e}`);
+		console.error(`[persistTwitterTrends]: ${e}`);
 		return false;
 	} finally {
 		// Ensures that the client will close when you finish/error
