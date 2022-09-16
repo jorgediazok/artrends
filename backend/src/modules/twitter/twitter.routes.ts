@@ -3,7 +3,7 @@ import { getTwitterTrends } from "./twitter.service";
 
 // Schema
 import { Type } from "@sinclair/typebox";
-import { TrendPayload } from "../../types/trendsResponseSchema";
+import { TwitterTrendPayload } from "../../types/trendsResponseSchema";
 
 // Types
 import { FastifyReply, FastifyRequest } from "fastify";
@@ -18,7 +18,7 @@ export default function googleRoutes(app: AppInstance) {
 				tags: ["Twitter"],
 				response: {
 					500: Type.Optional(Type.String()),
-					default: TrendPayload,
+					default: TwitterTrendPayload,
 				},
 			},
 		},
