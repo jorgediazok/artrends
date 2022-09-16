@@ -17,7 +17,7 @@ export default async function removeOldTrends(
 		const db = client.db(dbName);
 
 		const trendsCollection = db.collection<{
-			[trend: string]: TrendsDataPayload;
+			[trend: string]: TrendsDataPayload<unknown>;
 		}>(collectionName);
 
 		const twoDaysAgo = subDays(new Date(), 2);

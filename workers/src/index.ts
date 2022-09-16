@@ -42,15 +42,15 @@ async function googleTrendsScraper() {
 	}
 }
 
-async function googleTrendsCleaner() {
-	try {
-		if (DATABASE_CONNECTION_URI) {
-			await removeOldTrends(DATABASE_CONNECTION_URI, "google");
-		}
-	} catch (e) {
-		console.error(`[googleTrendsCleaner]: ${e}`);
-	}
-}
+// async function googleTrendsCleaner() {
+// 	try {
+// 		if (DATABASE_CONNECTION_URI) {
+// 			await removeOldTrends(DATABASE_CONNECTION_URI, "google");
+// 		}
+// 	} catch (e) {
+// 		console.error(`[googleTrendsCleaner]: ${e}`);
+// 	}
+// }
 
 /* Twitter */
 // async function twitterTrendingTopicsScraper() {
@@ -89,32 +89,20 @@ async function twitterTrendingTopics() {
 	}
 }
 
-async function twitterTrendsCleaner() {
-	try {
-		if (DATABASE_CONNECTION_URI) {
-			await removeOldTrends(DATABASE_CONNECTION_URI, "twitter");
-		}
-	} catch (e) {
-		console.error(`[twitterTrendsCleaner]: ${e}`);
-	}
-}
+// async function twitterTrendsCleaner() {
+// 	try {
+// 		if (DATABASE_CONNECTION_URI) {
+// 			await removeOldTrends(DATABASE_CONNECTION_URI, "twitter");
+// 		}
+// 	} catch (e) {
+// 		console.error(`[twitterTrendsCleaner]: ${e}`);
+// 	}
+// }
 
 /* Get Google trends cron - At 20 mins of every hour */
 schedule("21 * * * *", googleTrendsScraper);
 
 /* Get Twitter trends cron - At 05 mins of every hour */
 schedule("13 * * * *", twitterTrendingTopics);
-
-/* Remove old Google trends - At 01:10 am */
-schedule("10 1 * * *", googleTrendsCleaner, {
-	scheduled: true,
-	timezone: "America/Buenos_Aires",
-});
-
-/* Remove old Twitter trends - At 01:20 am */
-schedule("48 17 * * *", twitterTrendsCleaner, {
-	scheduled: true,
-	timezone: "America/Buenos_Aires",
-});
 
 console.log("Worker started succesfully, waiting for jobs...");
