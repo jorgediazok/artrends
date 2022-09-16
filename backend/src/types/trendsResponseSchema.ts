@@ -1,6 +1,6 @@
 import { Type } from "@sinclair/typebox";
 
-export const TrendPayload = Type.Object({
+export const GoogleTrendPayload = Type.Object({
 	current: Type.Object({
 		_id: Type.String(),
 		record: Type.Object({
@@ -30,9 +30,39 @@ export const TrendPayload = Type.Object({
 	fromCache: Type.Boolean(),
 });
 
-export interface TrendRecord {
+export const TwitterTrendPayload = Type.Object({
+	current: Type.Object({
+		_id: Type.String(),
+		record: Type.Object({
+			date: Type.String(),
+			trends: Type.Array(
+				Type.Object({
+					title: Type.String(),
+					link: Type.String(),
+					tweets: Type.String(),
+				})
+			),
+		}),
+	}),
+	previous: Type.Object({
+		_id: Type.String(),
+		record: Type.Object({
+			date: Type.String(),
+			trends: Type.Array(
+				Type.Object({
+					title: Type.String(),
+					link: Type.String(),
+					tweets: Type.String(),
+				})
+			),
+		}),
+	}),
+	fromCache: Type.Boolean(),
+});
+
+export interface TrendRecord<Trend> {
 	record: {
 		date: string;
 	};
-	trends: Array<{ title: string; link: string; searchCount: string }>;
+	trends: Array<Trend>;
 }
