@@ -22,9 +22,9 @@ export const getTwitterTrendingTopics = async (
 	/* Links */
 	const linkLocator = await page.locator(".trend-card .trend-card__list a");
 	const trendsLinks = await linkLocator.evaluateAll(
-		(list, { itemLimit, url }) => {
+		(list, { itemLimit }) => {
 			return list
-				.map(linkElement => `${url}${linkElement.getAttribute("href")}`)
+				.map(linkElement => `${linkElement.getAttribute("href")}`)
 				.slice(0, itemLimit);
 		},
 		{ url, itemLimit }
