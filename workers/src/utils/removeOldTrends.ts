@@ -2,7 +2,7 @@ import { MongoClient } from "mongodb";
 import subDays from "date-fns/subDays";
 
 // Types
-import type { TrendsDataPayload } from "typings";
+import type { TrendsData } from "../typings";
 
 export default async function removeOldTrends(
 	databaseUri: string,
@@ -17,7 +17,7 @@ export default async function removeOldTrends(
 		const db = client.db(dbName);
 
 		const trendsCollection = db.collection<{
-			[trend: string]: TrendsDataPayload<unknown>;
+			[trend: string]: TrendsData;
 		}>(collectionName);
 
 		const twoDaysAgo = subDays(new Date(), 2);
