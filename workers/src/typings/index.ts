@@ -1,4 +1,10 @@
-export interface TrendsDataPayload<TrendsData> {
+export interface TrendsData {
+	title: string;
+	link: string;
+	amount: string;
+}
+
+export interface TrendsDataPayload {
 	date: Date;
 	trends: TrendsData[];
 }

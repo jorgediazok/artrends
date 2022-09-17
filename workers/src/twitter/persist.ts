@@ -1,11 +1,10 @@
 import { MongoClient } from "mongodb";
 
 // Types
-import type { TrendsDataPayload } from "../typings";
-import type { TwitterTrendsData } from "./types";
+import type { TrendsDataPayload, TrendsData } from "../typings";
 
 export default async function persistTwitterTrends(
-	dataToPersist: TwitterTrendsData[],
+	dataToPersist: TrendsData[],
 	trendsDate: Date,
 	databaseUri: string
 ) {
@@ -18,7 +17,7 @@ export default async function persistTwitterTrends(
 		const res = await client
 			.db("artrends")
 			.collection<{
-				[trend: string]: TrendsDataPayload<TwitterTrendsData>;
+				[trend: string]: TrendsDataPayload;
 			}>("twitter")
 			.insertOne({
 				record: {

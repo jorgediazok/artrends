@@ -13,25 +13,20 @@ import { getGoogleTrends } from "./google/scraper";
 import persistGoogleTrends from "./google/persist";
 
 /* Twitter */
-import { getTwitterTrendingTopics } from "./twitter/api";
+import { getTwitterTrendingTopics } from "./twitter/scraper";
 import persistTwitterTrends from "./twitter/persist";
 
 /* Utils */
 import mergeTrendsResults from "./utils/mergeResults";
-import removeOldTrends from "./utils/removeOldTrends";
 
 /* Google */
 async function googleTrendsScraper() {
 	try {
-		const { trendsTitles, trendsLinks, searchCounts } = await getGoogleTrends(
+		const { trendsTitles, trendsLinks, amount } = await getGoogleTrends(
 			GOOGLE_TRENDS_BASE_URL,
 			TRENDS_ITEM_LIMIT
 		);
-		const trendData = mergeTrendsResults(
-			trendsTitles,
-			trendsLinks,
-			searchCounts
-		);
+		const trendData = mergeTrendsResults(trendsTitles, trendsLinks, amount);
 		const trendDate = new Date();
 
 		if (DATABASE_CONNECTION_URI) {
@@ -53,36 +48,16 @@ async function googleTrendsScraper() {
 // }
 
 /* Twitter */
-// async function twitterTrendingTopicsScraper() {
-// 	try {
-// 		const { trendsTitles, trendsLinks, searchCounts } =
-// 			await getTwitterTrendingTopics(TWITTER_TRENDS_URL, TRENDS_ITEM_LIMIT);
-
-// 		const trendData = mergeTrendsResults(
-// 			trendsTitles,
-// 			trendsLinks,
-// 			searchCounts
-// 		);
-// 		const trendDate = new Date();
-
-// 		if (DATABASE_CONNECTION_URI) {
-// 			persistTwitterTrends(trendData, trendDate, DATABASE_CONNECTION_URI);
-// 		}
-// 	} catch (e) {
-// 		console.error(`[twitterTrendingTopicsScraper]: ${e}`);
-// 	}
-// }
-
-async function twitterTrendingTopics() {
+async function twitterTrendingTopicsScraper() {
 	try {
-		const twitterData = await getTwitterTrendingTopics(
-			TWITTER_TRENDS_URL,
-			TRENDS_ITEM_LIMIT
-		);
+		const { trendsTitles, trendsLinks, tweets } =
+			await getTwitterTrendingTopics(TWITTER_TRENDS_URL, TRENDS_ITEM_LIMIT);
+
+		const trendData = mergeTrendsResults(trendsTitles, trendsLinks, tweets);
 		const trendDate = new Date();
 
 		if (DATABASE_CONNECTION_URI) {
-			persistTwitterTrends(twitterData, trendDate, DATABASE_CONNECTION_URI);
+			persistTwitterTrends(trendData, trendDate, DATABASE_CONNECTION_URI);
 		}
 	} catch (e) {
 		console.error(`[twitterTrendingTopicsScraper]: ${e}`);
@@ -100,9 +75,9 @@ async function twitterTrendingTopics() {
 // }
 
 /* Get Google trends cron - At 20 mins of every hour */
-schedule("21 * * * *", googleTrendsScraper);
+schedule("33 * * * *", googleTrendsScraper);
 
 /* Get Twitter trends cron - At 05 mins of every hour */
-schedule("13 * * * *", twitterTrendingTopics);
+schedule("44 * * * *", twitterTrendingTopicsScraper);
 
 console.log("Worker started succesfully, waiting for jobs...");
