@@ -31,7 +31,7 @@ export const getTwitterTrendingTopics = async (
 	);
 
 	/* Searches */
-	const searchCounts = await (
+	const tweets = await (
 		await page
 			.locator(".trend-card .trend-card__list .tweet-count")
 			.allInnerTexts()
@@ -39,5 +39,5 @@ export const getTwitterTrendingTopics = async (
 
 	await browser.close();
 
-	return { trendsTitles, trendsLinks, searchCounts };
+	return { trendsTitles, trendsLinks, tweets };
 };
