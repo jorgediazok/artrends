@@ -28,11 +28,11 @@ export const getGoogleTrends = async (baseUrl: string, itemLimit: number) => {
 	);
 
 	/* Searches */
-	const searchCounts = await (
+	const amount = await (
 		await page.locator(".search-count-title").allInnerTexts()
 	).slice(0, itemLimit);
 
 	await browser.close();
 
-	return { trendsTitles, trendsLinks, searchCounts };
+	return { trendsTitles, trendsLinks, amount };
 };
