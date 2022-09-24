@@ -1,8 +1,9 @@
-version: "2.6"
+version: "3.9"
 
 name: artrends
 services:
   traefik:
+    container_name: traefik
     image: traefik:v2.8
     # Enables the Traefik Dashboard and tells Traefik to listen to docker
     # enable --log.level=INFO so we can see what Traefik is doing in the log files
@@ -16,7 +17,9 @@ services:
       # So that Traefik can listen to the Docker events
       - /var/run/docker.sock:/var/run/docker.sock
       - ./config/traefik.yml:/etc/traefik/traefik.yml
+
   mongodb:
+    container_name: mongodb
     image: mongo:latest
     restart: unless-stopped
     ports:
@@ -42,15 +45,13 @@ services:
       context: .
       dockerfile: ./backend/Dockerfile
     restart: always
-    ports:
-      - 3500:3500
     volumes:
       - .:/app
     depends_on:
       - redis
     labels:
       - "traefik.enable=true"
-      - "traefik.http.routers.backend.rule=Host(`artrends-api.localhost`)"
+      - "traefik.http.routers.backend.rule=Host(`artrends-back.localhost`)"
       - "traefik.http.routers.backend.entrypoints=web,websecure"
 
   frontend:
@@ -59,8 +60,6 @@ services:
       context: .
       dockerfile: ./frontend/Dockerfile
     restart: always
-    ports:
-      - 3000:3000
     volumes:
       - .:/app
     depends_on:
