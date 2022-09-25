@@ -39,5 +39,5 @@ export const getTwitterTrendingTopics = async (
 
 	await browser.close();
 
-	return { trendsTitles, trendsLinks, tweets };
+	return { trendsTitles, trendsLinks, amount: tweets };
 };

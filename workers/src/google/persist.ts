@@ -18,7 +18,7 @@ export default async function persistGoogleTrends(
 		const res = await client
 			.db("artrends")
 			.collection<{
-				[trend: string]: TrendsDataPayload;
+				[trend: string]: TrendsDataPayload<TrendsData>;
 			}>("google")
 			.insertOne({
 				record: {
