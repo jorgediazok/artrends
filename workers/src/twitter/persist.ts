@@ -17,7 +17,7 @@ export default async function persistTwitterTrends(
 		const res = await client
 			.db("artrends")
 			.collection<{
-				[trend: string]: TrendsDataPayload;
+				[trend: string]: TrendsDataPayload<TrendsData>;
 			}>("twitter")
 			.insertOne({
 				record: {

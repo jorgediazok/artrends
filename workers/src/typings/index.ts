@@ -4,9 +4,9 @@ export interface TrendsData {
 	amount: string;
 }
 
-export interface TrendsDataPayload {
+export interface TrendsDataPayload<T> {
 	date: Date;
-	trends: TrendsData[];
+	trends: T[];
 }
 
 export interface TrendsDataRecord<TrendsData> {
@@ -15,4 +15,34 @@ export interface TrendsDataRecord<TrendsData> {
 		date: Date;
 		trends: TrendsData[];
 	};
+}
+
+export interface SpotifyArtistData {
+	name: string;
+	streak: string;
+	prevPosition: string;
+	link: string;
+}
+
+export interface SpotifySongData {
+	name: string;
+	author: string;
+	streak: string;
+	prevPosition: string;
+	link: string;
+	streams: string;
+}
+
+export interface SpotifyPodcastApiData {
+	showName: string;
+	showPublisher: string;
+	showImageUrl: string;
+	chartRankMove: "UNCHANGED" | "UP" | "DOWN";
+}
+
+export interface SpotifyPodcastData {
+	name: string;
+	publisher: string;
+	imageUrl: string;
+	chartMovement: "UNCHANGED" | "UP" | "DOWN";
 }

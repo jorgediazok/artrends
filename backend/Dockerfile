@@ -6,11 +6,11 @@ ENV PATH /app/node_modules/node-dev/.bin:$PATH
 
 WORKDIR /app/backend
 
-COPY ./package.json ./package-lock.json .
+COPY ./backend/package.json ./backend/package-lock.json .
 
 RUN npm install && npm cache clean --force
 
-COPY . .
+COPY ./backend ./
 
 EXPOSE 3500
 
