@@ -1,12 +1,12 @@
 import axios from "axios";
 
 // Types
-import { SpotifyPodcastApiData, PodcastTrend } from "../typings";
+import { SpotifyPodcastApiData, SpotifyPodcastData } from "../typings";
 
 export const getSpotifyTopPodcasts = async (
 	url: string,
 	itemLimit: number
-): Promise<PodcastTrend[]> => {
+): Promise<SpotifyPodcastData[]> => {
 	const { data } = await axios.get<SpotifyPodcastApiData[]>(url);
 	const topPodcasts = data.slice(0, itemLimit);
 
