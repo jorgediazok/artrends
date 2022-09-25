@@ -51,6 +51,18 @@ Y eso es todo, con _compose_ se instalan todas las dependencias y levantan todos
   npm run dev
   ```
 
+#### Documentación de la API (Swagger)
+
+```
+Podemos encontrar la documentación de los endpoints de la API agregando /docs en la ruta dónde corra el backend.
+```
+
+Ejemplo:
+
+`http://localhost:3500/docs`
+
+<br />
+
 - Por último, volvemos a la raíz, luego ingresamos a la carpeta del frontend, instalamos dependencias y lo corremos.
 
   ```
