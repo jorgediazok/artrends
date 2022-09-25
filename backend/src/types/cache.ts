@@ -6,6 +6,8 @@ export interface CacheResult<Data> {
 	stored: number;
 }
 
-export function isCacheResult(result: any): result is CacheResult<TrendRecord> {
+export function isCacheResult(
+	result: any
+): result is CacheResult<TrendRecord<any>> {
 	return result && "ttl" in result;
 }
