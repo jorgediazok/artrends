@@ -1,4 +1,5 @@
 import fastify from "fastify";
+
 import { TypeBoxTypeProvider } from "@fastify/type-provider-typebox";
 
 /* Routes */
