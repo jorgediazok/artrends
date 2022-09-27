@@ -1,6 +1,6 @@
 import { Type } from "@sinclair/typebox";
 
-export const GoogleTrendPayload = Type.Object({
+export const TrendPayload = Type.Object({
 	current: Type.Object({
 		_id: Type.String(),
 		record: Type.Object({
@@ -9,7 +9,7 @@ export const GoogleTrendPayload = Type.Object({
 				Type.Object({
 					title: Type.String(),
 					link: Type.String(),
-					searchCount: Type.String(),
+					amount: Type.String(),
 				})
 			),
 		}),
@@ -22,7 +22,7 @@ export const GoogleTrendPayload = Type.Object({
 				Type.Object({
 					title: Type.String(),
 					link: Type.String(),
-					searchCount: Type.String(),
+					amount: Type.String(),
 				})
 			),
 		}),
@@ -30,39 +30,9 @@ export const GoogleTrendPayload = Type.Object({
 	fromCache: Type.Boolean(),
 });
 
-export const TwitterTrendPayload = Type.Object({
-	current: Type.Object({
-		_id: Type.String(),
-		record: Type.Object({
-			date: Type.String(),
-			trends: Type.Array(
-				Type.Object({
-					title: Type.String(),
-					link: Type.String(),
-					tweets: Type.String(),
-				})
-			),
-		}),
-	}),
-	previous: Type.Object({
-		_id: Type.String(),
-		record: Type.Object({
-			date: Type.String(),
-			trends: Type.Array(
-				Type.Object({
-					title: Type.String(),
-					link: Type.String(),
-					tweets: Type.String(),
-				})
-			),
-		}),
-	}),
-	fromCache: Type.Boolean(),
-});
-
-export interface TrendRecord<Trend> {
+export interface TrendRecord<T> {
 	record: {
 		date: string;
 	};
-	trends: Array<Trend>;
+	trends: Array<T>;
 }

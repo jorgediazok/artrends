@@ -3,7 +3,7 @@ import { getGoogleTrends } from "./google.service";
 
 // Schema
 import { Type } from "@sinclair/typebox";
-import { GoogleTrendPayload } from "../../types/trendsResponseSchema";
+import { TrendPayload } from "../../types/trendsResponseSchema";
 
 // Types
 import { FastifyReply, FastifyRequest } from "fastify";
@@ -18,7 +18,7 @@ export default function googleRoutes(app: AppInstance) {
 				tags: ["Google"],
 				response: {
 					500: Type.Optional(Type.String()),
-					default: GoogleTrendPayload,
+					default: TrendPayload,
 				},
 			},
 		},
