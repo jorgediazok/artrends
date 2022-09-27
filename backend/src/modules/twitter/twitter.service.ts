@@ -6,12 +6,18 @@ import { TrendRecord } from "../../types/trendsResponseSchema";
 /* Environment variables */
 import { DATABASE_CONNECTION_URI } from "../../config";
 
+interface TwitterTrend {
+	title: string;
+	link: string;
+	amount: string;
+}
+
 export async function getTwitterTrends() {
 	try {
 		const client = new MongoClient(DATABASE_CONNECTION_URI);
 		const trends = await client
 			.db("artrends")
-			.collection<TrendRecord>("twitter")
+			.collection<TrendRecord<TwitterTrend>>("twitter")
 			.find()
 			.limit(2)
 			.sort({ "record.date": -1 })
