@@ -45,10 +45,12 @@ async function bootstrap() {
 		process.exit(1);
 	});
 
-	await app.listen({ host: "0.0.0.0", port: 3500 }).catch(err => {
-		app.log.error(err);
-		process.exit(1);
-	});
+	await app
+		.listen({ host: "0.0.0.0", port: parseInt(process.env.PORT || "3500") })
+		.catch(err => {
+			app.log.error(err);
+			process.exit(1);
+		});
 
 	app.log.info("Backend started succesfully");
 }
