@@ -46,7 +46,7 @@ services:
       dockerfile: ./backend/Dockerfile
     restart: always
     volumes:
-      - .:/app
+      - ./backend:/app
     depends_on:
       - redis
     labels:
@@ -61,7 +61,7 @@ services:
       dockerfile: ./frontend/Dockerfile
     restart: always
     volumes:
-      - .:/app
+      - ./frontend:/app
     depends_on:
       - backend
     labels:
@@ -78,7 +78,7 @@ services:
     security_opt:
       - seccomp:./workers/seccomp_profile.json
     volumes:
-      - .:/app
+      - ./workers:/app
     ipc: "host"
 
 volumes:
