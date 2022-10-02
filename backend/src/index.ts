@@ -11,6 +11,7 @@ import rateLimiter from "./plugins/rateLimiter";
 import helmet from "./plugins/helmet";
 import swagger from "./plugins/swagger";
 import cache from "./plugins/cache";
+import cors from "./plugins/cors";
 
 async function bootstrap() {
 	/* Init Fastify */
@@ -30,6 +31,7 @@ async function bootstrap() {
 	await app.register(helmet);
 	await app.register(swagger);
 	await app.register(cache);
+	await app.register(cors);
 
 	/* Register Routes */
 	googleRoutes(app);
