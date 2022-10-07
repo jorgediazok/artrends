@@ -36,6 +36,7 @@ export interface SpotifySongData {
 export interface SpotifyPodcastApiData {
 	showName: string;
 	showPublisher: string;
+	showUri: string;
 	showImageUrl: string;
 	chartRankMove: "UNCHANGED" | "UP" | "DOWN";
 }
