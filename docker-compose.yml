@@ -3,7 +3,7 @@ version: "3.9"
 name: artrends
 services:
   traefik:
-    container_name: traefik
+    container_name: artrends_traefik
     image: traefik:v2.8
     # Enables the Traefik Dashboard and tells Traefik to listen to docker
     # enable --log.level=INFO so we can see what Traefik is doing in the log files
@@ -40,7 +40,7 @@ services:
     volumes:
       - cache:/data
   backend:
-    container_name: backend
+    container_name: artrends_backend
     build:
       context: .
       dockerfile: ./backend/Dockerfile
@@ -55,7 +55,7 @@ services:
       - "traefik.http.routers.backend.entrypoints=web,websecure"
 
   frontend:
-    container_name: frontend
+    container_name: artrends_frontend
     build:
       context: .
       dockerfile: ./frontend/Dockerfile
@@ -70,7 +70,7 @@ services:
       - "traefik.http.routers.frontend.entrypoints=web,websecure"
 
   scrapers:
-    container_name: workers
+    container_name: artrends_workers
     build:
       context: .
       dockerfile: ./workers/Dockerfile

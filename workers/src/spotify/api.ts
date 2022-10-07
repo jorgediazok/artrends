@@ -15,5 +15,6 @@ export const getSpotifyTopPodcasts = async (
 		chartMovement: podcast.chartRankMove,
 		publisher: podcast.showPublisher,
 		imageUrl: podcast.showImageUrl,
+		link: podcast.showUri,
 	}));
 };
