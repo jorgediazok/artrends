@@ -8,6 +8,7 @@ import {
 	TWITTER_TRENDS_URL,
 	SPOTIFY_TRENDS_STARTING_URL,
 	SPOTIFY_TOP_PODCASTS_URL,
+	YOUTUBE_TRENDS_URL,
 } from "./config";
 
 /* Google */
@@ -27,11 +28,16 @@ import {
 	persistSongData,
 } from "./spotify/persist";
 
+/* Youtube */
+import { getYoutubeTrendingVideos } from "./youtube/scraper";
+import persistYoutubeTrends from "./youtube/persist";
+
 /* Utils */
 import {
 	mergeTrendsResults,
 	mergeSpotifyArtistResults,
 	mergeSpotifySongsResults,
+	mergeYoutubeVideosResults,
 } from "./utils/mergeResults";
 
 /* Google */
@@ -129,6 +135,30 @@ async function spotifyTopPodcasts() {
 	}
 }
 
+async function youtubeTopVideos() {
+	try {
+		const topVideos = await getYoutubeTrendingVideos(
+			YOUTUBE_TRENDS_URL,
+			TRENDS_ITEM_LIMIT
+		);
+
+		const topVideosData = mergeYoutubeVideosResults(
+			topVideos.trendsTitles,
+			topVideos.trendsLinks,
+			topVideos.channels,
+			topVideos.channelsLinks,
+			topVideos.amount
+		);
+
+		if (DATABASE_CONNECTION_URI) {
+			const date = new Date();
+			await persistYoutubeTrends(topVideosData, date, DATABASE_CONNECTION_URI);
+		}
+	} catch (e) {
+		console.error(`[youtubeTopVideos]: ${e}`);
+	}
+}
+
 // async function twitterTrendsCleaner() {
 // 	try {
 // 		if (DATABASE_CONNECTION_URI) {
@@ -144,6 +174,9 @@ schedule("11 * * * *", googleTrendsScraper);
 
 /* Get Twitter trends cron - At 22 mins of every hour */
 schedule("22 * * * *", twitterTrendingTopicsScraper);
+
+/* Get Youtube trends cron - At 33 mins of every hour */
+schedule("03 * * * *", youtubeTopVideos);
 
 /* Get Spotify top songs and artists cron - At 3:30 every tuesday */
 schedule("30 3 * * Tue", spotifyTopSongsAndArtistsScraper);

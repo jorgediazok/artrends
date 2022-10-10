@@ -4,6 +4,7 @@ import type {
 	SpotifySongData,
 	SpotifyArtistData,
 	TrendsData,
+	YoutubeVideosData,
 } from "../typings";
 
 /* Normalized schema for Twitter and Google */
@@ -68,6 +69,32 @@ export function mergeSpotifySongsResults(
 				prevPosition,
 				link,
 				streams,
+			};
+		}
+	);
+}
+
+/* Normalized schema for Youtube Videos */
+export function mergeYoutubeVideosResults(
+	trendsTitles: string[],
+	trendsLinks: string[],
+	channels: string[],
+	channelsLinks: string[],
+	amount: string[]
+): YoutubeVideosData[] {
+	return zipWith(
+		trendsTitles,
+		trendsLinks,
+		channels,
+		channelsLinks,
+		amount,
+		(title, link, channel, channelLink, amount) => {
+			return {
+				title,
+				link,
+				channel,
+				channelLink,
+				amount,
 			};
 		}
 	);

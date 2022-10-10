@@ -13,3 +13,4 @@ export const SPOTIFY_USER_EMAIL = process.env.SPOTIFY_USER_EMAIL || "";
 export const SPOTIFY_USER_PASSWORD = process.env.SPOTIFY_USER_PASSWORD || "";
 export const SPOTIFY_TOP_PODCASTS_URL =
 	process.env.SPOTIFY_TOP_PODCASTS_URL || "";
+export const YOUTUBE_TRENDS_URL = process.env.YOUTUBE_TRENDS_URL || "";
