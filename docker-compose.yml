@@ -4,7 +4,7 @@ name: artrends
 services:
   traefik:
     container_name: artrends_traefik
-    image: traefik:v2.8
+    image: traefik
     # Enables the Traefik Dashboard and tells Traefik to listen to docker
     # enable --log.level=INFO so we can see what Traefik is doing in the log files
     ports:
