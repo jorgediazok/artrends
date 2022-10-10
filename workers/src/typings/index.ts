@@ -47,3 +47,11 @@ export interface SpotifyPodcastData {
 	imageUrl: string;
 	chartMovement: "UNCHANGED" | "UP" | "DOWN";
 }
+
+export interface YoutubeVideosData {
+	title: string;
+	link: string;
+	channel: string;
+	channelLink: string;
+	amount: string;
+}
