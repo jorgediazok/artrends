@@ -46,7 +46,7 @@ services:
       dockerfile: ./backend/Dockerfile
     restart: always
     volumes:
-      - ./backend:/app
+      - ./:/app
     depends_on:
       - redis
     labels:
@@ -61,7 +61,7 @@ services:
       dockerfile: ./frontend/Dockerfile
     restart: always
     volumes:
-      - ./frontend:/app
+      - ./:/app
     depends_on:
       - backend
     labels:
@@ -69,7 +69,7 @@ services:
       - "traefik.http.routers.frontend.rule=Host(`artrends-front.localhost`)"
       - "traefik.http.routers.frontend.entrypoints=web,websecure"
 
-  scrapers:
+  workers:
     container_name: artrends_workers
     build:
       context: .
@@ -78,7 +78,7 @@ services:
     security_opt:
       - seccomp:./workers/seccomp_profile.json
     volumes:
-      - ./workers:/app
+      - ./:/app
     ipc: "host"
 
 volumes:
