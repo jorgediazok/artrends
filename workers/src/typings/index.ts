@@ -55,3 +55,16 @@ export interface YoutubeVideosData {
 	channelLink: string;
 	amount: string;
 }
+
+export interface PortalData {
+	articles: string[];
+	links: string[];
+}
+
+export interface PortalsData {
+	elDestape: PortalData;
+	clarin: PortalData;
+	laNacion: PortalData;
+	telam: PortalData;
+	infobae: PortalData;
+}
