@@ -5,6 +5,7 @@ import type {
 	SpotifyArtistData,
 	TrendsData,
 	YoutubeVideosData,
+	PortalData,
 } from "../typings";
 
 /* Normalized schema for Twitter and Google */
@@ -98,4 +99,14 @@ export function mergeYoutubeVideosResults(
 			};
 		}
 	);
+}
+
+/* Merged results for top articles */
+export function mergeTopArticleData(topArticles: PortalData) {
+	return zipWith(topArticles.articles, topArticles.links, (articles, links) => {
+		return {
+			articles,
+			links,
+		};
+	});
 }

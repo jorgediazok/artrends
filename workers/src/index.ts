@@ -32,6 +32,10 @@ import {
 import { getYoutubeTrendingVideos } from "./youtube/scraper";
 import persistYoutubeTrends from "./youtube/persist";
 
+/* Portales */
+import { getPortalsMostRead } from "./portales/scraper";
+import { persistPortalsData } from "./portales/persist";
+
 /* Utils */
 import {
 	mergeTrendsResults,
@@ -57,16 +61,6 @@ async function googleTrendsScraper() {
 		console.error(`[googleTrendsScraper]: ${e}`);
 	}
 }
-
-// async function googleTrendsCleaner() {
-// 	try {
-// 		if (DATABASE_CONNECTION_URI) {
-// 			await removeOldTrends(DATABASE_CONNECTION_URI, "google");
-// 		}
-// 	} catch (e) {
-// 		console.error(`[googleTrendsCleaner]: ${e}`);
-// 	}
-// }
 
 /* Twitter */
 async function twitterTrendingTopicsScraper() {
@@ -159,15 +153,18 @@ async function youtubeTopVideos() {
 	}
 }
 
-// async function twitterTrendsCleaner() {
-// 	try {
-// 		if (DATABASE_CONNECTION_URI) {
-// 			await removeOldTrends(DATABASE_CONNECTION_URI, "twitter");
-// 		}
-// 	} catch (e) {
-// 		console.error(`[twitterTrendsCleaner]: ${e}`);
-// 	}
-// }
+async function portalsMostReadArticles() {
+	try {
+		const topArticles = await getPortalsMostRead(4);
+
+		if (DATABASE_CONNECTION_URI) {
+			const date = new Date();
+			await persistPortalsData(topArticles, date, DATABASE_CONNECTION_URI);
+		}
+	} catch (error) {
+		console.error(`[portalsMostReadArticles]: ${error}`);
+	}
+}
 
 /* Get Google trends cron - At 11 mins of every hour */
 schedule("11 * * * *", googleTrendsScraper);
@@ -177,6 +174,9 @@ schedule("22 * * * *", twitterTrendingTopicsScraper);
 
 /* Get Youtube trends cron - At 33 mins of every hour */
 schedule("03 * * * *", youtubeTopVideos);
+
+/* Get portals top articles cron - At 44 every hour */
+schedule("44 * * * *", portalsMostReadArticles);
 
 /* Get Spotify top songs and artists cron - At 3:30 every tuesday */
 schedule("30 3 * * Tue", spotifyTopSongsAndArtistsScraper);
