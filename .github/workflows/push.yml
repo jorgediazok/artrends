@@ -38,7 +38,7 @@ jobs:
           PORTAL_TELAM_URL: ${{ secrets.PORTAL_TELAM_URL }}
           PORTAL_INFOBAE_URL: ${{ secrets.PORTAL_INFOBAE_URL }}
           PORTAL_CLARIN_URL: ${{ secrets.PORTAL_CLARIN_URL }}
-          PORTAL_LA_NACION_URL: ${{ secrets.PORTAL_LA_NACION_URL }}
+          PORTAL_LA_NACION_URL: ${{ secrets.PORTAL_LA_NACION_URL }}    
       - name: Build
         if: success()
         run: | 
@@ -48,4 +48,5 @@ jobs:
         uses: actions-hub/docker@master
         with:
           args: push greatpop/artrends-workers:latest
+
           
