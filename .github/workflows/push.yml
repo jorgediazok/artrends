@@ -1,0 +1,52 @@
+name: Deploy
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest  # windows-latest | macos-latest
+    name: Check changed files
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+
+      - name: Look for changes in workers
+        id: changed-files-in-workers
+        uses: tj-actions/changed-files@v34
+        with:
+          files: workers/**
+
+      - name: Build and push new image
+        if: steps.changed-files-in-workers.outputs.any_changed == 'true'
+        uses: actions-hub/docker/login@master
+        with:
+          DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
+          DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
+          DATABASE_CONNECTION_URI: ${{ secrets.DATABASE_CONNECTION_URI }}
+          TRENDS_ITEM_LIMIT: ${{ secrets.TRENDS_ITEM_LIMIT}}
+          GOOGLE_TRENDS_BASE_UR: ${{ secrets.GOOGLE_TRENDS_BASE_URL }}
+          TWITTER_TRENDS_URL: ${{ secrets.TWITTER_TRENDS_URL }}
+          SPOTIFY_TRENDS_STARTING_URL: ${{ secrets.SPOTIFY_TRENDS_STARTING_URL }}
+          SPOTIFY_USER_EMAIL: ${{ secrets.SPOTIFY_USER_EMAIL }}
+          SPOTIFY_USER_PASSWORD: ${{ secrets.SPOTIFY_USER_PASSWORD }}
+          SPOTIFY_TOP_PODCASTS_URL: ${{ secrets.SPOTIFY_TOP_PODCASTS_URL }}
+          YOUTUBE_TRENDS_URL: ${{ secrets.YOUTUBE_TRENDS_URL }}
+          PORTAL_EL_DESTAPE_URL: ${{ secrets.PORTAL_EL_DESTAPE_URL }}
+          PORTAL_TELAM_URL: ${{ secrets.PORTAL_TELAM_URL }}
+          PORTAL_INFOBAE_URL: ${{ secrets.PORTAL_INFOBAE_URL }}
+          PORTAL_CLARIN_URL: ${{ secrets.PORTAL_CLARIN_URL }}
+          PORTAL_LA_NACION_URL: ${{ secrets.PORTAL_LA_NACION_URL }}
+      - name: Build
+        if: success()
+        run: | 
+          docker build -f ./workers/Dockerfile -t greatpop/artrends-workers:latest ./workers --build-arg DATABASE_CONNECTION_URI="$DATABASE_CONNECTION_URI" --build-arg TRENDS_ITEM_LIMIT="$TRENDS_ITEM_LIMIT" --build-arg GOOGLE_TRENDS_BASE_UR="$GOOGLE_TRENDS_BASE_UR" --build-arg TWITTER_TRENDS_URL="$TWITTER_TRENDS_URL" --build-arg SPOTIFY_TRENDS_STARTING_URL="$SPOTIFY_TRENDS_STARTING_URL" --build-arg=SPOTIFY_USER_EMAIL="$SPOTIFY_USER_EMAIL" --build-arg=SPOTIFY_USER_PASSWORD="$SPOTIFY_USER_PASSWORD" --build-arg DATABASE_CONNECTION_URI="$DATABASE_CONNECTION_URI" --build-arg TRENDS_ITEM_LIMIT="$TRENDS_ITEM_LIMIT" --build-arg GOOGLE_TRENDS_BASE_UR="$GOOGLE_TRENDS_BASE_UR" --build-arg TWITTER_TRENDS_URL="$TWITTER_TRENDS_URL" --build-arg SPOTIFY_TRENDS_STARTING_URL="$SPOTIFY_TRENDS_STARTING_URL" --build-arg=SPOTIFY_USER_EMAIL="$SPOTIFY_USER_EMAIL" --build-arg=SPOTIFY_TOP_PODCASTS_URL="$SPOTIFY_TOP_PODCASTS_URL" --build-arg=YOUTUBE_TRENDS_URL="$YOUTUBE_TRENDS_URL" --build-arg=PORTAL_EL_DESTAPE_URL="$PORTAL_EL_DESTAPE_URL" --build-arg=PORTAL_TELAM_URL="$PORTAL_TELAM_URL" --build-arg=PORTAL_INFOBAE_URL="$PORTAL_INFOBAE_URL" --build-arg=PORTAL_CLARIN_URL="$PORTAL_CLARIN_URL" --build-arg=PORTAL_LA_NACION_URL="$PORTAL_LA_NACION_URL"
+      - name: Push to docker hub
+        if: success()
+        uses: actions-hub/docker@master
+        with:
+          args: push greatpop/artrends-workers:latest
+          
