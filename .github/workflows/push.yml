@@ -7,13 +7,12 @@ on:
 
 jobs:
   build:
-    runs-on: ubuntu-latest  # windows-latest | macos-latest
+    runs-on: ubuntu-latest
     name: Check changed files
     steps:
       - uses: actions/checkout@v3
         with:
           fetch-depth: 0
-
       - name: Look for changes in workers
         id: changed-files-in-workers
         uses: tj-actions/changed-files@v34
