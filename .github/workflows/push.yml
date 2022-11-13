@@ -1,0 +1,29 @@
+name: Deploy
+
+on:
+  push:
+    branches:
+      - develop
+
+jobs:
+  build:
+    runs-on: ubuntu-latest  # windows-latest | macos-latest
+    name: Check changed files
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+
+      # Example 2
+      - name: Look for changes in workers
+        id: changed-files-in-workers
+        uses: tj-actions/changed-files@v34
+        with:
+          files: |
+            workers/**
+
+      - name: Run step if any file(s) in the docs folder change
+        if: steps.changed-files-in-workers.outputs.any_changed == 'true'
+        run: |
+          echo "One or more files in the docs folder has changed."
+          echo "List all the files that have changed: ${{ steps.changed-files-in-workers.outputs.all_changed_files }}"
