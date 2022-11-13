@@ -23,7 +23,7 @@ jobs:
       - name: Build and push new image
         if: steps.changed-files-in-workers.outputs.any_changed == 'true'
         uses: actions-hub/docker/login@master
-        with:
+        env:
           DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
           DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
           DATABASE_CONNECTION_URI: ${{ secrets.DATABASE_CONNECTION_URI }}
