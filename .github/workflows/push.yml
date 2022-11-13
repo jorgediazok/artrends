@@ -10,7 +10,7 @@ jobs:
     runs-on: ubuntu-latest
     name: Check changed files
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v2
         with:
           fetch-depth: 0
       - name: Look for changes in workers
@@ -40,11 +40,11 @@ jobs:
           PORTAL_CLARIN_URL: ${{ secrets.PORTAL_CLARIN_URL }}
           PORTAL_LA_NACION_URL: ${{ secrets.PORTAL_LA_NACION_URL }}    
       - name: Build
-        if: success()
+        if: success() && steps.changed-files-in-workers.outputs.any_changed == 'true'
         run: | 
           docker build -f ./workers/Dockerfile -t greatpop/artrends-workers:latest ./workers --build-arg DATABASE_CONNECTION_URI="$DATABASE_CONNECTION_URI" --build-arg TRENDS_ITEM_LIMIT="$TRENDS_ITEM_LIMIT" --build-arg GOOGLE_TRENDS_BASE_UR="$GOOGLE_TRENDS_BASE_UR" --build-arg TWITTER_TRENDS_URL="$TWITTER_TRENDS_URL" --build-arg SPOTIFY_TRENDS_STARTING_URL="$SPOTIFY_TRENDS_STARTING_URL" --build-arg=SPOTIFY_USER_EMAIL="$SPOTIFY_USER_EMAIL" --build-arg=SPOTIFY_USER_PASSWORD="$SPOTIFY_USER_PASSWORD" --build-arg DATABASE_CONNECTION_URI="$DATABASE_CONNECTION_URI" --build-arg TRENDS_ITEM_LIMIT="$TRENDS_ITEM_LIMIT" --build-arg GOOGLE_TRENDS_BASE_UR="$GOOGLE_TRENDS_BASE_UR" --build-arg TWITTER_TRENDS_URL="$TWITTER_TRENDS_URL" --build-arg SPOTIFY_TRENDS_STARTING_URL="$SPOTIFY_TRENDS_STARTING_URL" --build-arg=SPOTIFY_USER_EMAIL="$SPOTIFY_USER_EMAIL" --build-arg=SPOTIFY_TOP_PODCASTS_URL="$SPOTIFY_TOP_PODCASTS_URL" --build-arg=YOUTUBE_TRENDS_URL="$YOUTUBE_TRENDS_URL" --build-arg=PORTAL_EL_DESTAPE_URL="$PORTAL_EL_DESTAPE_URL" --build-arg=PORTAL_TELAM_URL="$PORTAL_TELAM_URL" --build-arg=PORTAL_INFOBAE_URL="$PORTAL_INFOBAE_URL" --build-arg=PORTAL_CLARIN_URL="$PORTAL_CLARIN_URL" --build-arg=PORTAL_LA_NACION_URL="$PORTAL_LA_NACION_URL"
       - name: Push to docker hub
-        if: success()
+        if: success() && steps.changed-files-in-workers.outputs.any_changed == 'true'
         uses: actions-hub/docker@master
         with:
           args: push greatpop/artrends-workers:latest
