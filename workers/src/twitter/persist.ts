@@ -8,6 +8,8 @@ export default async function persistTwitterTrends(
 	trendsDate: Date,
 	databaseUri: string
 ) {
+	console.log("trying to persist Twitter data...");
+
 	// Create a new MongoClient
 	const client = new MongoClient(databaseUri);
 

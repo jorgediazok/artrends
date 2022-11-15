@@ -65,5 +65,6 @@ jobs:
             cd /artrends/workers
             echo ${{ secrets.PROD_ENV }} > .env
             docker login -u ${{ secrets.DOCKER_USERNAME }} -p ${{ secrets.DOCKER_PASSWORD }}
+            cd..
             docker pull greatpop/artrends-workers:latest
             docker compose up -d
