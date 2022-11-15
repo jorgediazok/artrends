@@ -56,15 +56,16 @@ jobs:
           DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
           FRONTEND_URL: ${{ secrets.FRONTEND_URL }}
           WORDPRESS_URL: ${{ secrets.WORDPRESS_URL }}
+          PROD_ENV: ${{ secrets.PROD_ENV }}
         with:
           host: ${{ secrets.PROD_HOST }}
           username: ${{ secrets.PROD_USERNAME }}
           password: ${{ secrets.PROD_PASSWORD }}
           port: ${{ secrets.PROD_PORT }}
           script: |
-            cd /artrends/workers
+            cd /home/${{ screts.PROD_USERNAME}}/artrends/workers
             echo ${{ secrets.PROD_ENV }} > .env
             docker login -u ${{ secrets.DOCKER_USERNAME }} -p ${{ secrets.DOCKER_PASSWORD }}
-            cd..
+            cd /artrends
             docker pull greatpop/artrends-workers:latest
             docker compose up -d

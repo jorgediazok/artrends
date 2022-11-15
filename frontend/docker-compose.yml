@@ -1,0 +1,18 @@
+version: "3.9"
+
+name: artrends
+services:
+  frontend:
+    container_name: artrends_frontend
+    build:
+      context: .
+      dockerfile: ./frontend/Dockerfile
+    restart: always
+    volumes:
+      - ./:/app
+    depends_on:
+      - backend
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.frontend.rule=Host(`artrends-front.localhost`)"
+      - "traefik.http.routers.frontend.entrypoints=web,websecure"
