@@ -57,10 +57,10 @@ jobs:
           FRONTEND_URL: ${{ secrets.FRONTEND_URL }}
           WORDPRESS_URL: ${{ secrets.WORDPRESS_URL }}
         with:
-          host: ${{ secrets.HOST }}
-          username: ${{ secrets.USERNAME }}
-          password: ${{ secrets.PASSWORD }}
-          port: ${{ secrets.PORT }}
+          host: ${{ secrets.PROD_HOST }}
+          username: ${{ secrets.PROD_USERNAME }}
+          password: ${{ secrets.PROD_PASSWORD }}
+          port: ${{ secrets.PROD_PORT }}
           PROD_ENV: ${{ secrets.PROD_ENV }}
           script: |
             cd /artrends/workers
