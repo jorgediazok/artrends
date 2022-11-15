@@ -8,7 +8,7 @@ on:
 jobs:
   build-workers:
     runs-on: ubuntu-latest
-    name: Check changed files
+    name: Deploy workers if needed
     steps:
       - uses: actions/checkout@v2
         with:
@@ -61,7 +61,6 @@ jobs:
           username: ${{ secrets.PROD_USERNAME }}
           password: ${{ secrets.PROD_PASSWORD }}
           port: ${{ secrets.PROD_PORT }}
-          PROD_ENV: ${{ secrets.PROD_ENV }}
           script: |
             cd /artrends/workers
             echo ${{ secrets.PROD_ENV }} > .env
