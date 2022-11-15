@@ -6,7 +6,7 @@ on:
       - main
 
 jobs:
-  build:
+  build-workers:
     runs-on: ubuntu-latest
     name: Check changed files
     steps:
@@ -38,7 +38,7 @@ jobs:
           PORTAL_TELAM_URL: ${{ secrets.PORTAL_TELAM_URL }}
           PORTAL_INFOBAE_URL: ${{ secrets.PORTAL_INFOBAE_URL }}
           PORTAL_CLARIN_URL: ${{ secrets.PORTAL_CLARIN_URL }}
-          PORTAL_LA_NACION_URL: ${{ secrets.PORTAL_LA_NACION_URL }}    
+          PORTAL_LA_NACION_URL: ${{ secrets.PORTAL_LA_NACION_URL }}
       - name: Build
         if: success() && steps.changed-files-in-workers.outputs.any_changed == 'true'
         run: | 
@@ -48,5 +48,22 @@ jobs:
         uses: actions-hub/docker@master
         with:
           args: push greatpop/artrends-workers:latest
-
-          
+      - name: Pull image and re-start container in cloud server
+        if: success() && steps.changed-files-in-workers.outputs.any_changed == 'true'
+        env:
+          DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
+          DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
+          FRONTEND_URL: ${{ secrets.FRONTEND_URL }}
+          WORDPRESS_URL: ${{ secrets.WORDPRESS_URL }}
+        with:
+          host: ${{ secrets.HOST }}
+          username: ${{ secrets.USERNAME }}
+          password: ${{ secrets.PASSWORD }}
+          port: ${{ secrets.PORT }}
+          PROD_ENV: ${{ secrets.PROD_ENV }}
+          script: |
+            cd /artrends/workers
+            echo ${{ secrets.PROD_ENV }} > .env
+            docker login -u ${{ secrets.DOCKER_USERNAME }} -p ${{ secrets.DOCKER_PASSWORD }}
+            docker pull greatpop/artrends-workers:latest
+            docker compose up -d
