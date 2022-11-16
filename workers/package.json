@@ -17,7 +17,8 @@
     "twitter",
     "spotify",
     "trends",
-    "argentina"
+    "trending",
+    "argentina",
   ],
   "license": "MIT",
   "bugs": {
