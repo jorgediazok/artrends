@@ -67,3 +67,52 @@ jobs:
             docker login -u ${{ secrets.DOCKER_USERNAME }} -p ${{ secrets.DOCKER_PASSWORD }}
             docker pull greatpop/artrends-workers:latest
             docker compose up -d
+  build-backend:
+    runs-on: ubuntu-latest
+    name: Deploy backend if needed
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
+      - name: Look for changes in backens
+        id: changed-files-in-backend
+        uses: tj-actions/changed-files@v34
+        with:
+          files: backend/**
+
+      - name: Build and push new image
+        if: steps.changed-files-in-backend.outputs.any_changed == 'true'
+        uses: actions-hub/docker/login@master
+        env:
+          DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
+          DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
+          DATABASE_CONNECTION_URI: ${{ secrets.DATABASE_CONNECTION_URI }}
+          NODE_ENV: "production"
+          REDISHOST: "host.docker.internal"
+          REDISPASSWORD: ***REMOVED_REDIS_PASSWORD***
+          REDISPORT: 6379
+      - name: Build
+        if: success() && steps.changed-files-in-backend.outputs.any_changed == 'true'
+        run: | 
+          docker build -f ./backend/Dockerfile -t greatpop/artrends-backend:latest ./backend --build-arg DATABASE_CONNECTION_URI="$DATABASE_CONNECTION_URI"  --build-arg NODE_ENV="$NODE_ENV" --build-arg REDISHOST="$REDISHOST" --build-arg REDISPASSWORD="$REDISPASSWORD" --build-arg REDISPORT="$REDISPORT"   
+      - name: Push to docker hub
+        if: success() && steps.changed-files-in-backend.outputs.any_changed == 'true'
+        uses: actions-hub/docker@master
+        with:
+          args: push greatpop/artrends-backend:latest
+      - name: Pull image and re-start container in cloud server
+        if: success() && steps.changed-files-in-backend.outputs.any_changed == 'true'
+        uses: appleboy/ssh-action@master
+        env:
+          DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
+          DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
+        with:
+          host: ${{ secrets.PROD_HOST }}
+          username: ${{ secrets.PROD_USERNAME }}
+          password: ${{ secrets.PROD_PASSWORD }}
+          port: ${{ secrets.PROD_PORT }}
+          script: |
+            cd /home/ACHER/artrends/backend
+            docker login -u ${{ secrets.DOCKER_USERNAME }} -p ${{ secrets.DOCKER_PASSWORD }}
+            docker pull greatpop/artrends-backend:latest
+            docker compose up -d

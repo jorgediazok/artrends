@@ -19,7 +19,7 @@ services:
     image: redis:7.0.4-alpine
     restart: always
     ports:
-      - "6379:6379"
+      - 6379:6379
     command: redis-server --loglevel warning  --appendonly yes --requirepass "***REMOVED_REDIS_PASSWORD***"
     volumes:
       - cache:/data
