@@ -4,9 +4,6 @@ name: artrends
 services:
   frontend:
     container_name: artrends_frontend
-    build:
-      context: .
-      dockerfile: ./frontend/Dockerfile
     restart: always
     volumes:
       - ./:/app

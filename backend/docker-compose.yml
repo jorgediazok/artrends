@@ -25,9 +25,6 @@ services:
       - cache:/data
   backend:
     container_name: artrends_backend
-    build:
-      context: .
-      dockerfile: ./backend/Dockerfile
     restart: always
     volumes:
       - ./:/app
