@@ -1,6 +1,6 @@
 FROM mcr.microsoft.com/playwright
 
-WORKDIR /app/workers
+WORKDIR /app
 
 COPY ./package.json ./package-lock.json ./
 

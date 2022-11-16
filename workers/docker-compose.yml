@@ -7,6 +7,6 @@ services:
     restart: always
     security_opt:
       - seccomp:./workers/seccomp_profile.json
-    volumes:
-      - ./:/app
+    # volumes:
+    #   - ./:/app
     ipc: "host"
