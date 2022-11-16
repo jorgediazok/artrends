@@ -24,6 +24,7 @@ services:
     volumes:
       - cache:/data
   backend:
+    image: greatpop/artrends-workers:latest
     container_name: artrends_backend
     restart: always
     volumes:
