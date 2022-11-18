@@ -5,7 +5,7 @@ services:
   workers:
     container_name: artrends_workers
     image: greatpop/artrends-workers:latest
-    restart: always
+    # restart: always
     security_opt:
       - seccomp:./seccomp_profile.json
     # volumes:
