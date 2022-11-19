@@ -43,7 +43,7 @@ jobs:
           file: "./workers/Dockerfile"
           push: true
           tags: ${{secrets.WORKERS_DOCKER_IMAGE_TAG}}
-          build_args: |
+          build-args: |
             DATABASE_CONNECTION_URI=mongodb://root:root@host.docker.internal:27017
             TRENDS_ITEM_LIMIT=10
             GOOGLE_TRENDS_BASE_URL=https://trends.google.com
