@@ -36,8 +36,8 @@ jobs:
         if: steps.changed-files-in-workers.outputs.any_changed == 'true'
         uses: docker/build-push-action@v3
         with:
-          context: ../../workers
-          file: "../../workers/Dockerfile"
+          context: ./workers
+          file: "./workers/Dockerfile"
           push: true
           tags: ${{secrets.WORKERS_DOCKER_IMAGE_TAG}}
           build_args: |
