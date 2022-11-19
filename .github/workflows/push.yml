@@ -32,7 +32,7 @@ jobs:
         if: success() && steps.changed-files-in-workers.outputs.any_changed == 'true'
         uses: actions-hub/docker@master
         with:
-          args: push greatpop/artrends-workers:latest
+          args: push ${{secrets.WORKERS_DOCKER_IMAGE_TAG}}
       - name: Pull image and re-start container in cloud server
         if: success() && steps.changed-files-in-workers.outputs.any_changed == 'true'
         uses: appleboy/ssh-action@master
