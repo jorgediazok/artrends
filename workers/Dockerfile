@@ -23,6 +23,6 @@ RUN npm run build
 
 RUN pwd
 
-COPY app/build ./
+COPY /app/build ./
 
 CMD ["node", "index.js"]
