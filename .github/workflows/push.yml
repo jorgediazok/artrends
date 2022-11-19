@@ -80,10 +80,9 @@ jobs:
           username: ${{ secrets.PROD_USERNAME }}
           password: ${{ secrets.PROD_PASSWORD }}
           port: ${{ secrets.PROD_PORT }}
-          shell: bash
           script: |
             cd /home/ACHER/artrends/workers
-            'echo "$WORKERS_PROD_ENV" > .env'
+            echo -e ${{secrets.WORKERS_PROD_ENV}} > .env
             docker login -u ${{ secrets.DOCKER_USERNAME }} -p ${{ secrets.DOCKER_PASSWORD }}
             docker pull greatpop/artrends-workers:latest
             docker compose up -d
