@@ -185,3 +185,4 @@ schedule("30 3 * * Tue", spotifyTopSongsAndArtistsScraper);
 schedule("30 3 * * Wed", spotifyTopPodcasts);
 
 console.log("Worker started succesfully, waiting for jobs...");
+twitterTrendingTopicsScraper();

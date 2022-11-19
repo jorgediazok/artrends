@@ -19,20 +19,49 @@ jobs:
         with:
           files: workers/**
 
-      - name: Build and push new image
+      - name: Set up QEMU
+        if: steps.changed-files-in-workers.outputs.any_changed == 'true'
+        uses: docker/setup-qemu-action@v2
+      - name: Set up Docker Buildx
+        if: steps.changed-files-in-workers.outputs.any_changed == 'true'
+        uses: docker/setup-buildx-action@v2
+      - name: Build and push new workers image
         if: steps.changed-files-in-workers.outputs.any_changed == 'true'
         uses: actions-hub/docker/login@master
         env:
           DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
           DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
-      - name: Build
-        if: success() && steps.changed-files-in-workers.outputs.any_changed == 'true'
-        run: docker build --file ./workers/Dockerfile --tag "${{secrets.WORKERS_DOCKER_IMAGE_TAG}}" ./workers
-      - name: Push to docker hub
-        if: success() && steps.changed-files-in-workers.outputs.any_changed == 'true'
-        uses: actions-hub/docker@master
+      -
+        name: Build and push
+        if: steps.changed-files-in-workers.outputs.any_changed == 'true'
+        uses: docker/build-push-action@v3
         with:
-          args: push ${{secrets.WORKERS_DOCKER_IMAGE_TAG}}
+          context: .
+          push: true
+          tags: ${{secrets.WORKERS_DOCKER_IMAGE_TAG}}
+          build_args: |
+            DATABASE_CONNECTION_URI=mongodb://root:root@host.docker.internal:27017
+            TRENDS_ITEM_LIMIT=10
+            GOOGLE_TRENDS_BASE_URL=https://trends.google.com
+            TWITTER_TRENDS_URL=https://trends24.in/argentina
+            SPOTIFY_TRENDS_STARTING_URL=https://charts.spotify.com/home
+            SPOTIFY_USER_EMAIL=greatpop.org@gmail.com
+            SPOTIFY_USER_PASSWORD=https://apps4all.io/
+            SPOTIFY_TOP_PODCASTS_URL=https://podcastcharts.byspotify.com/api/charts/top?region=ar
+            YOUTUBE_TRENDS_URL=https://www.youtube.com/feed/trending?gl=ar
+            PORTAL_EL_DESTAPE_URL=https://www.eldestapeweb.com
+            PORTAL_TELAM_URL=https://www.telam.com.ar
+            PORTAL_INFOBAE_URL=https://www.infobae.com/tendencias
+            PORTAL_CLARIN_URL=https://www.clarin.com
+            PORTAL_LA_NACION_URL=https://www.lanacion.com.ar
+      # - name: Build
+      #   if: success() && steps.changed-files-in-workers.outputs.any_changed == 'true'
+      #   run: docker build --file ./workers/Dockerfile --tag "${{secrets.WORKERS_DOCKER_IMAGE_TAG}}" ./workers
+      # - name: Push to docker hub
+      #   if: success() && steps.changed-files-in-workers.outputs.any_changed == 'true'
+      #   uses: actions-hub/docker@master
+      #   with:
+      #     args: push ${{secrets.WORKERS_DOCKER_IMAGE_TAG}}
       - name: Pull image and re-start container in cloud server
         if: success() && steps.changed-files-in-workers.outputs.any_changed == 'true'
         uses: appleboy/ssh-action@master
