@@ -47,6 +47,7 @@ jobs:
           username: ${{ secrets.PROD_USERNAME }}
           password: ${{ secrets.PROD_PASSWORD }}
           port: ${{ secrets.PROD_PORT }}
+          WORKERS_PROD_ENV: ${{secrets.WORKERS_PROD_ENV}}
           script: |
             cd /home/ACHER/artrends/workers
             echo ${{ secrets.WORKERS_PROD_ENV }} > .env
