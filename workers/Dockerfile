@@ -21,6 +21,6 @@ RUN npm install && npm cache clean --force
 
 RUN npm run build
 
-COPY /app/build ./
+COPY ./build ./
 
 CMD ["node", "index.js"]
