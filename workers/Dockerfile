@@ -1,7 +1,5 @@
 FROM mcr.microsoft.com/playwright
 
-WORKDIR /app
-
 ARG DATABASE_CONNECTION_URI
 ARG GOOGLE_TRENDS_BASE_URL
 ARG TWITTER_TRENDS_URL
@@ -16,6 +14,7 @@ ARG PORTAL_INFOBAE_URL
 ARG PORTAL_CLARIN_URL
 ARG PORTAL_LA_NACION_URL
 
+WORKDIR /app
 COPY ./package.json ./package-lock.json ./
 
 RUN npm install && npm cache clean --force
