@@ -46,8 +46,6 @@ export const getPortalsMostRead = async (
 		{ PORTAL_EL_DESTAPE_URL, itemLimit }
 	);
 
-	await elDestape.close();
-
 	/* Telam */
 
 	const telam = await browser.newPage();
@@ -165,6 +163,7 @@ export const getPortalsMostRead = async (
 	);
 
 	await laNacion.close();
+	await browser.close();
 
 	return {
 		elDestape: {
