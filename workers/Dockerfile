@@ -16,6 +16,7 @@ ARG PORTAL_LA_NACION_URL
 
 WORKDIR /app
 COPY ./package.json ./package-lock.json ./
+COPY ./tsconfig.json ./
 
 RUN npm install && npm cache clean --force
 
