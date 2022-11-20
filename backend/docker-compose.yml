@@ -27,14 +27,14 @@ services:
     image: greatpop/artrends-workers:latest
     container_name: artrends_backend
     restart: always
-    volumes:
-      - ./:/app
+    # volumes:
+    #   - ./:/app
     depends_on:
       - redis
-    labels:
-      - "traefik.enable=true"
-      - "traefik.http.routers.backend.rule=Host(`artrends-back.localhost`)"
-      - "traefik.http.routers.backend.entrypoints=web,websecure"
+    # labels:
+    #   - "traefik.enable=true"
+    #   - "traefik.http.routers.backend.rule=Host(`artrends-back.localhost`)"
+    #   - "traefik.http.routers.backend.entrypoints=web,websecure"
 volumes:
   mongodb-data:
     name: mongodb-data
