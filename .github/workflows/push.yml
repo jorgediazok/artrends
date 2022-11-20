@@ -58,7 +58,7 @@ jobs:
           password: ${{ secrets.PROD_PASSWORD }}
           port: ${{ secrets.PROD_PORT }}
           script: |
-            cd /home/{{ secrets.PROD_HOST }}/artrends/workers
+            cd /home/ACHER/artrends/workers
             echo -e "${{secrets.WORKERS_PROD_ENV}}" > .env
             docker login -u ${{ secrets.DOCKER_USERNAME }} -p ${{ secrets.DOCKER_PASSWORD }}
             docker pull ${{secrets.WORKERS_DOCKER_IMAGE_TAG}}
