@@ -70,45 +70,51 @@ jobs:
       - uses: actions/checkout@v2
         with:
           fetch-depth: 0
-      - name: Look for changes in backens
+      - name: Look for changes in backend
         id: changed-files-in-backend
         uses: tj-actions/changed-files@v34
         with:
           files: backend/**
 
-      - name: Build and push new image
+      - name: Set up QEMU
         if: steps.changed-files-in-backend.outputs.any_changed == 'true'
-        uses: actions-hub/docker/login@master
+        uses: docker/setup-qemu-action@v2
+      - name: Set up Docker Buildx
+        if: steps.changed-files-in-backend.outputs.any_changed == 'true'
+        uses: docker/setup-buildx-action@v2
+      - name: Docker Hub login
+        if: steps.changed-files-in-backend.outputs.any_changed == 'true'
+        uses: docker/login-action@v2
         env:
           DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
           DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
-          DATABASE_CONNECTION_URI: ${{ secrets.DATABASE_CONNECTION_URI }}
-          NODE_ENV: "production"
-          REDISHOST: "host.docker.internal"
-          REDISPASSWORD: ***REMOVED_REDIS_PASSWORD***
-          REDISPORT: 6379
-      - name: Build
-        if: success() && steps.changed-files-in-backend.outputs.any_changed == 'true'
-        run: | 
-          docker build -f ./backend/Dockerfile -t greatpop/artrends-backend:latest ./backend --build-arg DATABASE_CONNECTION_URI="$DATABASE_CONNECTION_URI"  --build-arg NODE_ENV="$NODE_ENV" --build-arg REDISHOST="$REDISHOST" --build-arg REDISPASSWORD="$REDISPASSWORD" --build-arg REDISPORT="$REDISPORT"   
-      - name: Push to docker hub
-        if: success() && steps.changed-files-in-backend.outputs.any_changed == 'true'
-        uses: actions-hub/docker@master
         with:
-          args: push greatpop/artrends-backend:latest
+          username: ${{ secrets.DOCKER_USERNAME }}
+          password: ${{ secrets.DOCKER_PASSWORD }}
+      -
+        name: Build and push
+        if: steps.changed-files-in-backend.outputs.any_changed == 'true'
+        uses: docker/build-push-action@v3
+        with:
+          context: ./backend
+          file: "./backend/Dockerfile"
+          push: true
+          tags: ${{secrets.BACKEND_DOCKER_IMAGE_TAG}}
       - name: Pull image and re-start container in cloud server
         if: success() && steps.changed-files-in-backend.outputs.any_changed == 'true'
         uses: appleboy/ssh-action@master
         env:
           DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
           DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
+          BACKEND_PROD_ENV: ${{secrets.BACKEND_PROD_ENV}}
         with:
           host: ${{ secrets.PROD_HOST }}
           username: ${{ secrets.PROD_USERNAME }}
           password: ${{ secrets.PROD_PASSWORD }}
           port: ${{ secrets.PROD_PORT }}
           script: |
-            cd /home/ACHER/artrends/backend
+            cd /home/ACHER/backend/workers
+            echo -e "${{secrets.BACKEND_PROD_ENV}}" > .env
             docker login -u ${{ secrets.DOCKER_USERNAME }} -p ${{ secrets.DOCKER_PASSWORD }}
-            docker pull greatpop/artrends-backend:latest
+            docker pull ${{secrets.BACKEND_DOCKER_IMAGE_TAG}}
             docker compose up -d
