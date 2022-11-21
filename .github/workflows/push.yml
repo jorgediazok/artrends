@@ -113,7 +113,7 @@ jobs:
           password: ${{ secrets.PROD_PASSWORD }}
           port: ${{ secrets.PROD_PORT }}
           script: |
-            cd /home/ACHER/backend/workers
+            cd /home/ACHER/artrends/backend
             echo -e "${{secrets.BACKEND_PROD_ENV}}" > .env
             docker login -u ${{ secrets.DOCKER_USERNAME }} -p ${{ secrets.DOCKER_PASSWORD }}
             docker pull ${{secrets.BACKEND_DOCKER_IMAGE_TAG}}
