@@ -176,7 +176,7 @@ schedule("22 * * * *", twitterTrendingTopicsScraper);
 schedule("03 * * * *", youtubeTopVideos);
 
 /* Get portals top articles cron - At 44 every hour */
-schedule("44 * * * *", portalsMostReadArticles);
+// schedule("44 * * * *", portalsMostReadArticles);
 
 /* Get Spotify top songs and artists cron - At 3:30 every tuesday */
 schedule("30 3 * * Tue", spotifyTopSongsAndArtistsScraper);
