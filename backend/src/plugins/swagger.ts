@@ -20,7 +20,7 @@ async function swagger(app: any) {
 		},
 		routePrefix: "/docs",
 		mode: "dynamic",
-		exposeRoute: NODE_ENV !== "production",
+		exposeRoute: true,
 	});
 }
 
