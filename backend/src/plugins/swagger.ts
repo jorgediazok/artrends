@@ -2,7 +2,7 @@ import fastifySwagger from "@fastify/swagger";
 import fastifyPlugin from "fastify-plugin";
 
 /* Environment variables */
-import { NODE_ENV } from "../config";
+// import { NODE_ENV } from "../config";
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 async function swagger(app: any) {
