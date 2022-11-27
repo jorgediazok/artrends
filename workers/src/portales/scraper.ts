@@ -17,7 +17,7 @@ export const getPortalsMostRead = async (
 ): Promise<PortalsData | undefined> => {
 	/* Scraping start */
 	const browser = await chromium.launch({
-		headless: true,
+		headless: false,
 		chromiumSandbox: false,
 	});
 
@@ -46,6 +46,8 @@ export const getPortalsMostRead = async (
 			},
 			{ PORTAL_EL_DESTAPE_URL, itemLimit }
 		);
+
+		await elDestape.close();
 
 		/* Telam */
 		const telam = await browser.newPage();
@@ -186,7 +188,7 @@ export const getPortalsMostRead = async (
 			},
 		};
 	} catch (e) {
-		console.log(e);
+		console.log({ "[getPortalsMostRead]": e });
 	} finally {
 		await browser.close();
 	}
