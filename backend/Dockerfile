@@ -8,4 +8,6 @@ RUN npm install && npm cache clean --force
 
 COPY . ./
 
+EXPOSE 3500
+
 CMD ["npm", "run", "start"]
