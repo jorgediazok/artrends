@@ -17,7 +17,7 @@ export const getPortalsMostRead = async (
 ): Promise<PortalsData | undefined> => {
 	/* Scraping start */
 	const browser = await chromium.launch({
-		headless: false,
+		headless: true,
 		chromiumSandbox: false,
 	});
 
