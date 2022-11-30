@@ -164,7 +164,7 @@ export const YoutubeTrendPayload = Type.Object({
 						link: Type.String(),
 						amount: Type.String(),
 						channel: Type.String(),
-						channelName: Type.String(),
+						channelLink: Type.String(),
 					})
 				),
 			}),
@@ -181,7 +181,7 @@ export const YoutubeTrendPayload = Type.Object({
 						link: Type.String(),
 						amount: Type.String(),
 						channel: Type.String(),
-						channelName: Type.String(),
+						channelLink: Type.String(),
 					})
 				),
 			}),
