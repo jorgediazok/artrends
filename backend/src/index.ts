@@ -6,6 +6,7 @@ import { TypeBoxTypeProvider } from "@fastify/type-provider-typebox";
 import googleRoutes from "./modules/google";
 import twitterRoutes from "./modules/twitter";
 import spotifyRoutes from "./modules/spotify";
+import youtubeRoutes from "./modules/youtube";
 
 /* Plugins */
 import rateLimiter from "./plugins/rateLimiter";
@@ -39,6 +40,7 @@ async function bootstrap() {
 	googleRoutes(app);
 	twitterRoutes(app);
 	spotifyRoutes(app);
+	youtubeRoutes(app);
 
 	process.on("uncaughtException", error => {
 		app.log.error("uncaughtException:", error);
