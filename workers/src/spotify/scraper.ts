@@ -9,7 +9,7 @@ export const getSpotifyTrends = async (
 ) => {
 	/* Scraping start */
 	const browser = await chromium.launch({
-		headless: true,
+		headless: false,
 		chromiumSandbox: false,
 	});
 	const page = await browser.newPage();
@@ -137,6 +137,8 @@ export const getSpotifyTrends = async (
 		},
 		{ itemLimit }
 	);
+
+	await page.close();
 
 	return {
 		topSongs: {
