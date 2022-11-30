@@ -3,7 +3,7 @@ import { getYoutubeTrends } from "./youtube.service";
 
 // Schema
 import { Type } from "@sinclair/typebox";
-import { TrendPayload } from "../../types/trendsResponseSchema";
+import { YoutubeTrendPayload } from "../../types/trendsResponseSchema";
 
 // Types
 import { FastifyReply, FastifyRequest } from "fastify";
@@ -18,7 +18,7 @@ export default function youtubeRoutes(app: AppInstance) {
 				tags: ["Youtube"],
 				response: {
 					500: Type.Optional(Type.String()),
-					default: TrendPayload,
+					default: YoutubeTrendPayload,
 				},
 			},
 		},
