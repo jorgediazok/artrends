@@ -16,7 +16,7 @@ async function swagger(app: any) {
 			schemes: ["http", "https"],
 			consumes: ["application/json"],
 			produces: ["application/json"],
-			tags: ["Google", "Twitter"],
+			tags: ["Google", "Twitter", "Youtube"],
 		},
 		routePrefix: "/docs",
 		mode: "dynamic",
