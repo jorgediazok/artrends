@@ -12,13 +12,16 @@ export async function persistPortalsData(
 	databaseUri: string
 ) {
 	console.log("trying to persist News Portals article data...");
+	const client = new MongoClient(databaseUri);
+	await client.connect();
 
 	try {
-		Object.entries(portalsData).forEach(async ([portalName, portalData]) => {
-			const client = new MongoClient(databaseUri);
-			await client.connect();
+		const portalsDataEntries = Object.entries(portalsData);
 
-			client
+		for (const portalDataEntry of portalsDataEntries) {
+			const [portalName, portalData] = portalDataEntry;
+
+			await client
 				.db("artrends")
 				.collection(`portal.${portalName}`)
 				.insertOne({
@@ -27,12 +30,13 @@ export async function persistPortalsData(
 						trends: mergeTopArticleData(portalData),
 					},
 				});
-			await client.close();
-		});
+		}
 
 		return true;
 	} catch (error) {
 		console.error(`[persistPortalsData]: ${error}`);
 		return false;
+	} finally {
+		client.close();
 	}
 }

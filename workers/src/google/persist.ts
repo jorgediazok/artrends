@@ -8,7 +8,7 @@ export default async function persistGoogleTrends(
 	trendsDate: Date,
 	databaseUri: string
 ) {
-	console.log("trying to persist data...");
+	console.log("trying to persistGoogleTrends data...");
 	// Create a new MongoClient
 	const client = new MongoClient(databaseUri);
 

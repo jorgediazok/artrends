@@ -1,0 +1,11 @@
+version: "3.9"
+
+name: artrends
+services:
+  workers:
+    container_name: artrends_workers
+    env_file: ".env"
+    image: greatpop/artrends-workers:latest
+    security_opt:
+      - seccomp:./seccomp_profile.json
+    ipc: "host"

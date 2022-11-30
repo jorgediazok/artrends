@@ -1,0 +1,40 @@
+version: "3.9"
+
+name: artrends
+services:
+  mongodb:
+    container_name: mongodb
+    image: mongo:latest
+    restart: unless-stopped
+    ports:
+      - 27017:27017
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: root
+      MONGO_INITDB_ROOT_PASSWORD: root
+    command: --quiet
+    volumes:
+      - mongodb-data:/data/db
+  redis:
+    container_name: redis
+    image: redis:7.0.4-alpine
+    restart: always
+    ports:
+      - 6379:6379
+    command: redis-server --loglevel warning  --appendonly yes --requirepass "***REMOVED_REDIS_PASSWORD***"
+    volumes:
+      - cache:/data
+  backend:
+    image: greatpop/artrends-backend:latest
+    container_name: artrends_backend
+    restart: always
+    depends_on:
+      - redis
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.backend.rule=Host(`artrends-back.localhost`)"
+      - "traefik.http.routers.backend.entrypoints=web,websecure"
+volumes:
+  mongodb-data:
+    name: mongodb-data
+  cache:
+    driver: local

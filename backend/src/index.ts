@@ -25,6 +25,7 @@ async function bootstrap() {
 				target: "pino-pretty",
 			},
 		},
+		pluginTimeout: 5000,
 	}).withTypeProvider<TypeBoxTypeProvider>();
 
 	/* Register Plugins */

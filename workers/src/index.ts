@@ -157,7 +157,7 @@ async function portalsMostReadArticles() {
 	try {
 		const topArticles = await getPortalsMostRead(4);
 
-		if (DATABASE_CONNECTION_URI) {
+		if (DATABASE_CONNECTION_URI && topArticles) {
 			const date = new Date();
 			await persistPortalsData(topArticles, date, DATABASE_CONNECTION_URI);
 		}

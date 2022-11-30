@@ -138,6 +138,8 @@ export const getSpotifyTrends = async (
 		{ itemLimit }
 	);
 
+	await page.close();
+
 	return {
 		topSongs: {
 			songNames,

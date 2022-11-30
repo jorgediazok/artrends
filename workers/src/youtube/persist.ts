@@ -8,6 +8,7 @@ export default async function persistYoutubeTrends(
 	trendsDate: Date,
 	databaseUri: string
 ) {
+	console.log("Trying to perist youtube data...");
 	// Create a new MongoClient
 	const client = new MongoClient(databaseUri);
 
