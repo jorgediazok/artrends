@@ -1,23 +1,18 @@
 {
-	"name": "frontend",
-	"version": "0.1.0",
-	"private": true,
-	"scripts": {
-		"dev": "next dev",
-		"build": "next build",
-		"start": "next start",
-		"lint": "next lint",
-		"format": "npx prettier . --write"
-	},
-	"dependencies": {
-		"eslint-config-prettier": "^8.5.0",
-		"next": "12.3.0",
-		"prettier": "^2.7.1",
-		"react": "18.2.0",
-		"react-dom": "18.2.0"
-	},
-	"devDependencies": {
-		"eslint": "8.23.1",
-		"eslint-config-next": "12.3.0"
-	}
+  "name": "artrends-frontend",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint"
+  },
+  "dependencies": {
+    "eslint": "8.29.0",
+    "eslint-config-next": "13.0.6",
+    "next": "13.0.6",
+    "react": "18.2.0",
+    "react-dom": "18.2.0"
+  }
 }
