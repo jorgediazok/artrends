@@ -8,3 +8,18 @@ services:
     image: greatpop/artrends-frontend:latest
     ports:
       - 3000
+    labels:
+      - "traefik.enable=true"
+      # HTTP
+      - "traefik.http.routers.frontend.rule=Host(`artrends.ar`)"
+      - "traefik.http.routers.frontend.entrypoints=web"
+      - "traefik.http.routers.frontend.middlewares=test-redirectscheme"
+      # HTTPS
+      - "traefik.http.routers.frontend-secure.entrypoints=websecure"
+      - "traefik.http.routers.frontend-secure.rule=Host(`artrends.ar`)"
+      - "traefik.http.routers.frontend-secure.tls.certresolver=myresolver"
+      - "traefik.http.middlewares.test-redirectscheme.redirectscheme.scheme=https"
+      - "traefik.http.middlewares.test-redirectscheme.redirectscheme.permanent=true"
+      - "traefik.port=3000"
+    networks:
+      - proxy
