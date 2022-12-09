@@ -103,10 +103,10 @@ export function mergeYoutubeVideosResults(
 
 /* Merged results for top articles */
 export function mergeTopArticleData(topArticles: PortalData) {
-	return zipWith(topArticles.articles, topArticles.links, (articles, links) => {
+	return zipWith(topArticles.articles, topArticles.links, (article, link) => {
 		return {
-			articles,
-			links,
+			article,
+			link,
 		};
 	});
 }
