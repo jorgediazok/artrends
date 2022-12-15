@@ -1,14 +1,6 @@
 import { extendTheme } from "@chakra-ui/react";
-import "@fontsource/inter";
 
-// import { Inter } from "@next/font/google";
-
-// const fontFamily = Inter({
-//   subsets: ["latin"],
-//   weight: ["400", "700"],
-// });
-
-export const theme = extendTheme({
+const theme = extendTheme({
   //Global Styles
   styles: {
     global: {
@@ -113,7 +105,9 @@ export const theme = extendTheme({
   },
 
   fonts: {
-    heading: "Inter, sans-serif",
-    body: "Inter, sans-serif",
+    heading: `"Inter", sans-serif`,
+    body: `"Inter", sans-serif`,
   },
 });
+
+export default theme;

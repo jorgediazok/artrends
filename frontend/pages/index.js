@@ -1,8 +1,9 @@
 import Head from "next/head";
-//import Image from "next/image";
-import theme from "../styles/theme";
-
 import { Heading } from "@chakra-ui/react";
+
+// import theme from "../styles/theme";
+
+import Background from "../components/ui/Background/Background";
 
 export default function Home() {
   return (
@@ -14,7 +15,8 @@ export default function Home() {
       </Head>
 
       <main>
-        <Heading as="h1" size="4xl">
+        <Background />
+        <Heading as="h1" size="4xl" color="cyan.200">
           Bienvenidos a Artrends
         </Heading>
       </main>
