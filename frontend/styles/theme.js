@@ -20,9 +20,9 @@ const theme = extendTheme({
 
   //Customize Theme
   mediaQueries: {
-    minTablet: `@media screen and (min-width: 0px)`,
-    minLaptop: `@media screen and (min-width: 550px)`,
-    minDesktop: `@media screen and (min-width: 1500px)`,
+    minTablet: `@media screen and (min-width: 550px)`,
+    minLaptop: `@media screen and (min-width: 1000px)`,
+    minDesktop: `@media screen and (min-width: 1300px)`,
   },
 
   colors: {
