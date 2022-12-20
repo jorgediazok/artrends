@@ -15,9 +15,6 @@ const theme = extendTheme({
         height: "100%",
         // fontSize: "62.5%",
       },
-      // body: {
-      //   fontFamily: "Inter",
-      // },
     },
   },
 
