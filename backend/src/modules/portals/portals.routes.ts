@@ -44,11 +44,6 @@ export default function portalRoutes(app: AppInstance) {
 				if (!cacheHit) {
 					const result = await getPortalTrends();
 
-					if (result?.e) {
-						app.log.error(result.e);
-						return reply.status(500);
-					}
-
 					app.cache.set("portal-trends", result, 360000, err => {
 						if (err) {
 							console.log({ err });
