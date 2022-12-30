@@ -10,17 +10,17 @@ services:
       - 3000
     labels:
       - "traefik.enable=true"
+      - "traefik.port=3000"
       # HTTP
-      - "traefik.http.routers.frontend.rule=Host(`artrends.ar`)"
-      - "traefik.http.routers.frontend.entrypoints=web"
-      - "traefik.http.routers.frontend.middlewares=test-redirectscheme"
+      - "traefik.http.routers.artrends-frontend.rule=Host(`artrends.ar`)"
+      - "traefik.http.routers.artrends-frontend.entrypoints=web"
+      - "traefik.http.routers.artrends-frontend.middlewares=test-redirectscheme"
       # HTTPS
-      - "traefik.http.routers.frontend-secure.entrypoints=websecure"
-      - "traefik.http.routers.frontend-secure.rule=Host(`artrends.ar`)"
-      - "traefik.http.routers.frontend-secure.tls.certresolver=myresolver"
+      - "traefik.http.routers.artrends-frontend-secure.entrypoints=websecure"
+      - "traefik.http.routers.artrends-frontend-secure.rule=Host(`artrends.ar`)"
+      - "traefik.http.routers.artrends-frontend-secure.tls.certresolver=artrends"
       - "traefik.http.middlewares.test-redirectscheme.redirectscheme.scheme=https"
       - "traefik.http.middlewares.test-redirectscheme.redirectscheme.permanent=true"
-      - "traefik.port=3000"
 networks:
   proxy:
     external: true
