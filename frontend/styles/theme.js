@@ -1,30 +1,19 @@
 import { extendTheme } from "@chakra-ui/react";
 
+export const breakpoints = {
+  mobile: 0, // 0 a 550px
+  tablet: 550, // 550px a 1100px
+  laptop: 1100, // 1100px a 1500px
+  desktop: 1500, // desde 1500px
+};
+
+export const mediaQueries = {
+  minTablet: `@media screen and (min-width: ${breakpoints.tablet}px)`,
+  minLaptop: `@media screen and (min-width: ${breakpoints.laptop}px)`,
+  minDesktop: `@media screen and (min-width: ${breakpoints.desktop}px)`,
+};
+
 const theme = extendTheme({
-  //Global Styles
-  styles: {
-    global: {
-      "*, *::before, *::after": {
-        boxSizing: "border-box",
-      },
-      "*": {
-        margin: 0,
-        padding: 0,
-      },
-      "html, body": {
-        height: "100%",
-        // fontSize: "62.5%",
-      },
-    },
-  },
-
-  //Customize Theme
-  mediaQueries: {
-    minTablet: `@media screen and (min-width: 550px)`,
-    minLaptop: `@media screen and (min-width: 1000px)`,
-    minDesktop: `@media screen and (min-width: 1300px)`,
-  },
-
   colors: {
     white: {
       500: "hsl(0, 0%, 100%)",
@@ -55,37 +44,6 @@ const theme = extendTheme({
       "grad-purp-90": `linear-gradient(180deg, hsl(257, 32%, 56%) 0%, hsl(257, 66%, 20%) 100%)`,
       "grad-purp-new": `linear-gradient(133.42deg, hsl(239, 52%, 59%) 0%, hsl(257, 39%, 39%) 97.4%)`,
     },
-  },
-
-  spacing: {
-    1: "4px",
-    2: "8px",
-    3: "12px",
-    4: "16px",
-    5: "20px",
-    6: "24px",
-    7: "28px",
-    8: "32px",
-    9: "36px",
-    10: "40px",
-    12: "48px",
-    14: "56px",
-    16: "64px",
-    20: "80px",
-    24: "96px",
-    28: "112px",
-    32: "128px",
-    36: "144px",
-    40: "160px",
-    44: "176px",
-    48: "192px",
-    52: "208px",
-    56: "224px",
-    60: "240px",
-    64: "256px",
-    72: "288px",
-    80: "320px",
-    96: "384px",
   },
 
   shadows: {
