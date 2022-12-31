@@ -1,17 +1,22 @@
+import { useState } from "react";
 import {
   QueryClient,
   QueryClientProvider,
   Hydrate,
 } from "@tanstack/react-query";
-import { useState } from "react";
-import { ChakraProvider, extendTheme } from "@chakra-ui/react";
-import { colors } from "../styles/theme";
+import { ChakraProvider } from "@chakra-ui/react";
+
+// Theme
+import theme, { colors } from "../styles/theme";
+
+// Assets
+import "@fontsource/inter";
+
+// Styles
 import "../styles/globals.css";
 
-function MyApp({ Component, pageProps }) {
+function ArtrendsApp({ Component, pageProps }) {
   const [queryClient] = useState(() => new QueryClient());
-
-  const theme = extendTheme({ colors });
 
   return (
     <QueryClientProvider client={queryClient}>
@@ -24,4 +29,4 @@ function MyApp({ Component, pageProps }) {
   );
 }
 
-export default MyApp;
+export default ArtrendsApp;
