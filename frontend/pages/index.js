@@ -74,9 +74,11 @@ export default function Home(props) {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <Navbar />
-      <Heading as="h1" size="4xl" color="white">
-        Bienvenidos a Artrends
-      </Heading>
+      <main>
+        <Heading as="h1" size="4xl" color="white">
+          Bienvenidos a Artrends
+        </Heading>
+      </main>
     </>
   );
 }
