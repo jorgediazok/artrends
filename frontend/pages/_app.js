@@ -16,8 +16,6 @@ import theme from "../styles/theme";
 function ArtrendsApp({ Component, pageProps }) {
   const [queryClient] = useState(() => new QueryClient());
 
-  console.log(theme);
-
   return (
     <QueryClientProvider client={queryClient}>
       <Hydrate state={pageProps.dehydratedState}>

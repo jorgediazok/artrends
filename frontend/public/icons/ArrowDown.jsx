@@ -1,6 +1,4 @@
-import React from "react";
-
-const ArrowDown = () => {
+const ArrowDown = ({ width, height }) => {
   return (
     <svg
       width="24"

@@ -49,12 +49,13 @@ export default function Home(props) {
     queryFn: getYoutubeTrends,
   });
 
-  console.log("Google: ", google?.current?.record?.trends);
+  // console.log("Google: ", google?.current?.record?.trends);
   console.log("Twitter: ", twitter?.current?.record?.trends);
-  console.log("Spotify Artist: ", spotifyArtist?.current?.record?.trends);
-  console.log("Spotify Song: ", spotifySong?.current?.record?.trends);
-  console.log("Spotify Podcast: ", spotifyPodcast?.current?.record?.trends);
-  console.log("Youtube: ", youtube?.current?.record?.trends);
+  console.log("Twitter full", twitter);
+  // console.log("Spotify Artist: ", spotifyArtist?.current?.record?.trends);
+  // console.log("Spotify Song: ", spotifySong?.current?.record?.trends);
+  // console.log("Spotify Podcast: ", spotifyPodcast?.current?.record?.trends);
+  // console.log("Youtube: ", youtube?.current?.record?.trends);
 
   if (
     !google ||
@@ -80,7 +81,15 @@ export default function Home(props) {
           Bienvenidos a Artrends
         </Heading>
         <Container maxW="container.md" bg="transparent" color="white" mt={50}>
-          <TrendCard />
+          {twitter?.current?.record?.trends.map((trend, index) => (
+            <TrendCard
+              key={trend.title}
+              position={index + 1}
+              title={trend.title}
+              amount={trend.amount}
+              link={trend.link}
+            />
+          ))}
         </Container>
       </main>
     </>
