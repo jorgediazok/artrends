@@ -6,17 +6,17 @@ import {
 } from "@tanstack/react-query";
 import { ChakraProvider } from "@chakra-ui/react";
 
-// Theme
-import theme, { colors } from "../styles/theme";
-
 // Assets
 import "@fontsource/inter";
 
 // Styles
 import "../styles/globals.css";
+import theme from "../styles/theme";
 
 function ArtrendsApp({ Component, pageProps }) {
   const [queryClient] = useState(() => new QueryClient());
+
+  console.log(theme);
 
   return (
     <QueryClientProvider client={queryClient}>

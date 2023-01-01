@@ -2,7 +2,7 @@ import Head from "next/head";
 import { useQuery, QueryClient, dehydrate } from "@tanstack/react-query";
 
 // Charka UI
-import { Heading } from "@chakra-ui/react";
+import { Container, Heading } from "@chakra-ui/react";
 
 // API
 import {
@@ -16,6 +16,7 @@ import {
 
 // Components
 import Navbar from "../components/layout/Navbar";
+import TrendCard from "../components/ui/TrendCard/TrendCard";
 
 export default function Home(props) {
   const { data: google } = useQuery({
@@ -78,6 +79,9 @@ export default function Home(props) {
         <Heading as="h1" size="4xl" color="white">
           Bienvenidos a Artrends
         </Heading>
+        <Container maxW="container.md" bg="transparent" color="white" mt={50}>
+          <TrendCard />
+        </Container>
       </main>
     </>
   );
