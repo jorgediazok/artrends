@@ -139,6 +139,7 @@ export const getSpotifyTrends = async (
 	);
 
 	await page.close();
+	await browser.close();
 
 	return {
 		topSongs: {
