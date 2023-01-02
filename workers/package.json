@@ -5,8 +5,8 @@
   "main": "index.ts",
   "scripts": {
     "dev": "NODE_ENV=development node-dev ./src/index.ts --respawn --notify=false",
-    "start": "npx playwright install-deps && npm run build",
-    "build": "tsc"
+    "build": "npx playwright install-deps && tsc",
+    "start": "node build/index.js"
   },
   "repository": {
     "type": "git",

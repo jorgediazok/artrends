@@ -9,4 +9,6 @@ COPY . ./
 
 RUN npm i -g pm2
 
+RUN npm run build
+
 CMD ["pm2", "start", "build/index.js"]
