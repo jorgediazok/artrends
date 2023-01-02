@@ -9,4 +9,4 @@ COPY . ./
 
 RUN npm i -g pm2
 
-CMD ["npm", "run", "start"]
+CMD ["pm2", "start", "build/index.js", "--max-memory-restart 200M"]
