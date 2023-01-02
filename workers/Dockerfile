@@ -7,4 +7,6 @@ RUN npm install && npm cache clean --force
 
 COPY . ./
 
+RUN npm i -g pm2
+
 CMD ["npm", "run", "start"]
