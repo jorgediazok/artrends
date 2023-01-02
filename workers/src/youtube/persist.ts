@@ -1,4 +1,4 @@
-import { MongoClient } from "mongodb";
+import { Db } from "mongodb";
 
 // Types
 import type { YoutubeVideosData, TrendsDataPayload } from "../typings";
@@ -6,17 +6,10 @@ import type { YoutubeVideosData, TrendsDataPayload } from "../typings";
 export default async function persistYoutubeTrends(
 	dataToPersist: YoutubeVideosData[],
 	trendsDate: Date,
-	databaseUri: string
+	db: Db
 ) {
-	console.log("Trying to perist youtube data...");
-	// Create a new MongoClient
-	const client = new MongoClient(databaseUri);
-
 	try {
-		// Specifying a schema is optional, but it enables type hints on finds and inserts
-		await client.connect();
-		const res = await client
-			.db("artrends")
+		const res = await db
 			.collection<{
 				[trend: string]: TrendsDataPayload<YoutubeVideosData>;
 			}>("youtube")
@@ -31,8 +24,5 @@ export default async function persistYoutubeTrends(
 	} catch (e) {
 		console.error(`[persistYoutubeTrends]: ${e}`);
 		return false;
-	} finally {
-		// Ensures that the client will close when you finish/error
-		await client.close();
 	}
 }

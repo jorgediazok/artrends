@@ -11,6 +11,12 @@ import {
 	YOUTUBE_TRENDS_URL,
 } from "./config";
 
+/* DB Connection */
+import { connection } from "./db/connection";
+
+/* Types*/
+import { Db } from "mongodb";
+
 /* Google */
 import { getGoogleTrends } from "./google/scraper";
 import persistGoogleTrends from "./google/persist";
@@ -45,7 +51,7 @@ import {
 } from "./utils/mergeResults";
 
 /* Google */
-async function googleTrendsScraper() {
+async function googleTrendsScraper(db: Db) {
 	try {
 		const { trendsTitles, trendsLinks, amount } = await getGoogleTrends(
 			GOOGLE_TRENDS_BASE_URL,
@@ -55,7 +61,7 @@ async function googleTrendsScraper() {
 		const trendDate = new Date();
 
 		if (DATABASE_CONNECTION_URI) {
-			persistGoogleTrends(trendData, trendDate, DATABASE_CONNECTION_URI);
+			persistGoogleTrends(trendData, trendDate, db);
 		}
 	} catch (e) {
 		console.error(`[googleTrendsScraper]: ${e}`);
@@ -63,7 +69,7 @@ async function googleTrendsScraper() {
 }
 
 /* Twitter */
-async function twitterTrendingTopicsScraper() {
+async function twitterTrendingTopicsScraper(db: Db) {
 	try {
 		const { trendsTitles, trendsLinks, amount } =
 			await getTwitterTrendingTopics(TWITTER_TRENDS_URL, TRENDS_ITEM_LIMIT);
@@ -72,7 +78,7 @@ async function twitterTrendingTopicsScraper() {
 		const trendDate = new Date();
 
 		if (DATABASE_CONNECTION_URI) {
-			persistTwitterTrends(trendData, trendDate, DATABASE_CONNECTION_URI);
+			persistTwitterTrends(trendData, trendDate, db);
 		}
 	} catch (e) {
 		console.error(`[twitterTrendingTopicsScraper]: ${e}`);
@@ -80,7 +86,7 @@ async function twitterTrendingTopicsScraper() {
 }
 
 /* Spotify */
-async function spotifyTopSongsAndArtistsScraper() {
+async function spotifyTopSongsAndArtistsScraper(db: Db) {
 	try {
 		const { topArtists, topSongs } = await getSpotifyTrends(
 			SPOTIFY_TRENDS_STARTING_URL,
@@ -105,15 +111,15 @@ async function spotifyTopSongsAndArtistsScraper() {
 
 		if (DATABASE_CONNECTION_URI) {
 			const date = new Date();
-			await persistArtistData(topArtistData, date, DATABASE_CONNECTION_URI);
-			await persistSongData(topSongsData, date, DATABASE_CONNECTION_URI);
+			await persistArtistData(topArtistData, date, db);
+			await persistSongData(topSongsData, date, db);
 		}
 	} catch (e) {
 		console.error(`[spotifyTopSongsAndArtistsScraper]: ${e}`);
 	}
 }
 
-async function spotifyTopPodcasts() {
+async function spotifyTopPodcasts(db: Db) {
 	try {
 		const topPodcasts = await getSpotifyTopPodcasts(
 			SPOTIFY_TOP_PODCASTS_URL,
@@ -122,14 +128,14 @@ async function spotifyTopPodcasts() {
 
 		if (DATABASE_CONNECTION_URI) {
 			const date = new Date();
-			await persistPodcastData(topPodcasts, date, DATABASE_CONNECTION_URI);
+			await persistPodcastData(topPodcasts, date, db);
 		}
 	} catch (e) {
 		console.error(`[spotifyTopPodcasts]: ${e}`);
 	}
 }
 
-async function youtubeTopVideos() {
+async function youtubeTopVideos(db: Db) {
 	try {
 		const topVideos = await getYoutubeTrendingVideos(
 			YOUTUBE_TRENDS_URL,
@@ -146,42 +152,48 @@ async function youtubeTopVideos() {
 
 		if (DATABASE_CONNECTION_URI) {
 			const date = new Date();
-			await persistYoutubeTrends(topVideosData, date, DATABASE_CONNECTION_URI);
+			await persistYoutubeTrends(topVideosData, date, db);
 		}
 	} catch (e) {
 		console.error(`[youtubeTopVideos]: ${e}`);
 	}
 }
 
-async function portalsMostReadArticles() {
+async function portalsMostReadArticles(db: Db) {
 	try {
 		const topArticles = await getPortalsMostRead(4);
 
 		if (DATABASE_CONNECTION_URI && topArticles) {
 			const date = new Date();
-			await persistPortalsData(topArticles, date, DATABASE_CONNECTION_URI);
+			await persistPortalsData(topArticles, date, db);
 		}
 	} catch (error) {
 		console.error(`[portalsMostReadArticles]: ${error}`);
 	}
 }
 
-/* Get Google trends cron - At 11 mins of every hour */
-schedule("11 * * * *", googleTrendsScraper);
+async function bootstrap() {
+	const db = await connection();
 
-/* Get Twitter trends cron - At 22 mins of every hour */
-schedule("22 * * * *", twitterTrendingTopicsScraper);
+	/* Get Google trends cron - At 11 mins of every hour */
+	schedule("11 * * * *", () => googleTrendsScraper(db));
 
-/* Get Youtube trends cron - At 33 mins of every hour */
-schedule("03 * * * *", youtubeTopVideos);
+	/* Get Twitter trends cron - At 22 mins of every hour */
+	schedule("22 * * * *", () => twitterTrendingTopicsScraper(db));
 
-/* Get portals top articles cron - At 44 every hour */
-schedule("44 * * * *", portalsMostReadArticles);
+	/* Get Youtube trends cron - At 33 mins of every hour */
+	schedule("03 * * * *", () => youtubeTopVideos(db));
 
-/* Get Spotify top songs and artists cron - At 3:30 every tuesday */
-schedule("30 3 * * Tue", spotifyTopSongsAndArtistsScraper);
+	/* Get portals top articles cron - At 44 every hour */
+	schedule("44 * * * *", () => portalsMostReadArticles(db));
 
-/* Get Spotify top pocasts cron - At 3:30 every wednesday */
-schedule("30 3 * * Wed", spotifyTopPodcasts);
+	/* Get Spotify top songs and artists cron - At 3:30 every tuesday */
+	schedule("30 3 * * Tue", () => spotifyTopSongsAndArtistsScraper(db));
 
-console.log("Worker started succesfully, waiting for jobs...");
+	/* Get Spotify top pocasts cron - At 3:30 every wednesday */
+	schedule("30 3 * * Wed", () => spotifyTopPodcasts(db));
+
+	console.log("Worker started succesfully, waiting for jobs...");
+}
+
+bootstrap();
