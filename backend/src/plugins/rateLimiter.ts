@@ -5,7 +5,7 @@ async function rateLimiter(app: any) {
 	await app.register(fastifyRateLimitPlugin, {
 		skipOnError: true,
 		timeWindow: "1 minute",
-		max: 50,
+		max: 100,
 	});
 }
 
