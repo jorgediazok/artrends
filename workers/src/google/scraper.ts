@@ -32,6 +32,7 @@ export const getGoogleTrends = async (baseUrl: string, itemLimit: number) => {
 		await page.locator(".search-count-title").allInnerTexts()
 	).slice(0, itemLimit);
 
+	await page.close();
 	await browser.close();
 
 	return { trendsTitles, trendsLinks, amount };

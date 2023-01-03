@@ -190,7 +190,6 @@ export const getPortalsMostRead = async (
 	} catch (e) {
 		console.log(`[getPortalsMostRead][${new Date().toLocaleTimeString()}]:`, e);
 	} finally {
-		console.log("Shutting down getPortalsMostRead browser");
 		await browser.close();
 	}
 };

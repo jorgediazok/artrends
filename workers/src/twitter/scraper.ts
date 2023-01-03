@@ -37,6 +37,7 @@ export const getTwitterTrendingTopics = async (
 			.allInnerTexts()
 	).slice(0, itemLimit);
 
+	await page.close();
 	await browser.close();
 
 	return { trendsTitles, trendsLinks, amount: tweets };

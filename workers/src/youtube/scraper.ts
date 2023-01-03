@@ -72,6 +72,7 @@ export const getYoutubeTrendingVideos = async (
 		{ url, itemLimit }
 	);
 
+	await page.close();
 	await browser.close();
 
 	return {

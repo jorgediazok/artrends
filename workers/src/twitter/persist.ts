@@ -1,23 +1,16 @@
-import { MongoClient } from "mongodb";
-
 // Types
+import { Db } from "mongodb";
 import type { TrendsDataPayload, TrendsData } from "../typings";
 
 export default async function persistTwitterTrends(
 	dataToPersist: TrendsData[],
 	trendsDate: Date,
-	databaseUri: string
+	db: Db
 ) {
-	console.log("Trying to persist Twitter data...");
-
-	// Create a new MongoClient
-	const client = new MongoClient(databaseUri);
-
 	try {
-		// Specifying a schema is optional, but it enables type hints on finds and inserts
-		await client.connect();
-		const res = await client
-			.db("artrends")
+		console.log("Trying to persist Twitter data...");
+
+		const res = await db
 			.collection<{
 				[trend: string]: TrendsDataPayload<TrendsData>;
 			}>("twitter")
@@ -32,8 +25,5 @@ export default async function persistTwitterTrends(
 	} catch (e) {
 		console.error(`[persistTwitterTrends]: ${e}`);
 		return false;
-	} finally {
-		// Ensures that the client will close when you finish/error
-		await client.close();
 	}
 }

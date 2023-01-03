@@ -1,6 +1,5 @@
-import { MongoClient } from "mongodb";
-
 // Types
+import { Db } from "mongodb";
 import type {
 	SpotifyArtistData,
 	SpotifyPodcastData,
@@ -11,17 +10,11 @@ import type {
 export async function persistSongData(
 	spotifySongData: SpotifySongData[],
 	trendsDate: Date,
-	databaseUri: string
+	db: Db
 ) {
-	console.log("trying to persist Spotify song data...");
-	// Create a new MongoClient
-	const client = new MongoClient(databaseUri);
-
 	try {
-		// Specifying a schema is optional, but it enables type hints on finds and inserts
-		await client.connect();
-		const res = await client
-			.db("artrends")
+		console.log("trying to persist Spotify song data...");
+		const res = await db
 			.collection<{
 				[trend: string]: TrendsDataPayload<SpotifySongData>;
 			}>("spotify.songs")
@@ -36,26 +29,18 @@ export async function persistSongData(
 	} catch (e) {
 		console.error(`[persistSongData]: ${e}`);
 		return false;
-	} finally {
-		// Ensures that the client will close when you finish/error
-		await client.close();
 	}
 }
 
 export async function persistArtistData(
 	spotifyArtistData: SpotifyArtistData[],
 	trendsDate: Date,
-	databaseUri: string
+	db: Db
 ) {
-	console.log("trying to persist Spotify artist data...");
-	// Create a new MongoClient
-	const client = new MongoClient(databaseUri);
-
 	try {
+		console.log("trying to persist Spotify artist data...");
 		// Specifying a schema is optional, but it enables type hints on finds and inserts
-		await client.connect();
-		const res = await client
-			.db("artrends")
+		const res = await db
 			.collection<{
 				[trend: string]: TrendsDataPayload<SpotifyArtistData>;
 			}>("spotify.artists")
@@ -70,26 +55,18 @@ export async function persistArtistData(
 	} catch (e) {
 		console.error(`[persistArtistData]: ${e}`);
 		return false;
-	} finally {
-		// Ensures that the client will close when you finish/error
-		await client.close();
 	}
 }
 
 export async function persistPodcastData(
 	spotifyPodcastsData: SpotifyPodcastData[],
 	trendsDate: Date,
-	databaseUri: string
+	db: Db
 ) {
-	console.log("trying to persist Spotify podcast data...");
-	// Create a new MongoClient
-	const client = new MongoClient(databaseUri);
-
 	try {
-		// Specifying a schema is optional, but it enables type hints on finds and inserts
-		await client.connect();
-		const res = await client
-			.db("artrends")
+		console.log("trying to persist Spotify podcast data...");
+
+		const res = await db
 			.collection<{
 				[trend: string]: TrendsDataPayload<SpotifyPodcastData>;
 			}>("spotify.podcasts")
@@ -104,8 +81,5 @@ export async function persistPodcastData(
 	} catch (e) {
 		console.error(`[persistPodcastData]: ${e}`);
 		return false;
-	} finally {
-		// Ensures that the client will close when you finish/error
-		await client.close();
 	}
 }
