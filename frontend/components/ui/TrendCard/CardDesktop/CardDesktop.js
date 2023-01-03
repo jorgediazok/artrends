@@ -1,11 +1,12 @@
 import { Box, Text } from "@chakra-ui/react";
-import Link from "next/link";
 import ArrowDown from "../../../../public/icons/ArrowDown";
+import ArrowUp from "../../../../public/icons/ArrowUp";
+import Circle from "../../../../public/icons/Circle";
 import Open from "../../../../public/icons/Open";
 import Share from "../../../../public/icons/Share";
 import theme from "../../../../styles/theme";
 
-const CardDesktop = ({ title, link, amount, position }) => {
+const CardDesktop = ({ title, link, amount, position, direction, streak }) => {
   return (
     <Box
       color={theme.colors.white[500]}
@@ -19,20 +20,25 @@ const CardDesktop = ({ title, link, amount, position }) => {
     >
       <Box display="flex" justifyContent="space-between" alignItems="center">
         <Box display="flex" gap={6}>
-          <Box display="flex" alignItems="center" gap={4}>
+          <Box display="flex" alignItems="center" f gap={4}>
             <Text fontSize="2xl">{position}</Text>
-            <ArrowDown />
+            {direction === "down" && <ArrowDown />}
+            {direction === "up" && <ArrowUp />}
+            {direction === "same" && <Circle />}
           </Box>
-          <Box>
+          <Box display="flex" gap={3} flexDirection="column">
             <Text>{title}</Text>
-            <Text>{amount} tweets</Text>
+            <Text>
+              {amount && amount + " Tweets"}
+              {streak && streak + " Semanas seguidas"}
+            </Text>
           </Box>
         </Box>
         <Box display="flex" gap={8} alignItems="center">
+          <Share />
           <a href={link} target="_blank" rel="noreferrer">
-            <Share />
+            <Open />
           </a>
-          <Open />
         </Box>
       </Box>
     </Box>

@@ -17,6 +17,9 @@ import {
 // Components
 import Navbar from "../components/layout/Navbar";
 import TrendCard from "../components/ui/TrendCard/TrendCard";
+import { getPosition } from "../utils/position";
+import CardTitle from "../components/ui/TrendCard/CardTitle/CardTitle";
+import CardDesktop from "../components/ui/TrendCard/CardDesktop/CardDesktop";
 
 export default function Home(props) {
   const { data: google } = useQuery({
@@ -52,7 +55,7 @@ export default function Home(props) {
   // console.log("Google: ", google?.current?.record?.trends);
   console.log("Twitter: ", twitter?.current?.record?.trends);
   console.log("Twitter full", twitter);
-  // console.log("Spotify Artist: ", spotifyArtist?.current?.record?.trends);
+  console.log("Spotify Artist: ", spotifyArtist?.current?.record?.trends);
   // console.log("Spotify Song: ", spotifySong?.current?.record?.trends);
   // console.log("Spotify Podcast: ", spotifyPodcast?.current?.record?.trends);
   // console.log("Youtube: ", youtube?.current?.record?.trends);
@@ -77,19 +80,61 @@ export default function Home(props) {
       </Head>
       <Navbar />
       <main>
-        <Heading as="h1" size="4xl" color="white">
-          Bienvenidos a Artrends
-        </Heading>
+        {/* TWITTER */}
         <Container maxW="container.md" bg="transparent" color="white" mt={50}>
-          {twitter?.current?.record?.trends.map((trend, index) => (
-            <TrendCard
-              key={trend.title}
-              position={index + 1}
-              title={trend.title}
-              amount={trend.amount}
-              link={trend.link}
-            />
-          ))}
+          <CardTitle title="Lo más discutido en twitter" />
+
+          {twitter?.current?.record?.trends?.map((trend, currentIndex) => {
+            const elementInPrevious = twitter?.previous?.record?.trends?.find(
+              element => element.title === trend.title
+            );
+            const prevIndex = twitter?.previous?.record?.trends?.findIndex(
+              element => element.title === elementInPrevious?.title
+            );
+            return (
+              <TrendCard
+                key={trend.title}
+                position={currentIndex + 1}
+                title={trend.title}
+                direction={getPosition(currentIndex, prevIndex)}
+                amount={trend.amount}
+                link={trend.link}
+              />
+            );
+          })}
+        </Container>
+
+        {/* SPOTIFY */}
+        <Container maxW="container.md" bg="transparent" color="white" mt={50}>
+          <CardTitle title="Lo más escuchado en Spotify" />
+          {spotifyArtist?.current?.record?.trends?.map(
+            (trend, currentIndex) => {
+              const elementInPrevious =
+                spotifyArtist?.previous?.record?.trends?.find(
+                  element => element.name === trend.name
+                );
+              const prevIndex =
+                spotifyArtist?.previous?.record?.trends?.findIndex(
+                  element => element.name === elementInPrevious?.name
+                );
+              return (
+                <TrendCard
+                  key={trend.title}
+                  position={currentIndex + 1}
+                  title={trend.name}
+                  direction={getPosition(currentIndex, prevIndex)}
+                  amount={trend.amount}
+                  streak={trend.streak}
+                  link={trend.link}
+                />
+              );
+            }
+          )}
+        </Container>
+
+        {/* YOUTUBE */}
+        <Container maxW="container.md" bg="transparent" color="white" mt={50}>
+          <CardTitle title="Lo más visto en Youtube" />
         </Container>
       </main>
     </>
