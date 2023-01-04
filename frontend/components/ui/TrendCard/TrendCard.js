@@ -1,7 +1,15 @@
 import CardDesktop from "./CardDesktop/CardDesktop";
 import CardMobile from "./CardMobile/CardMobile";
 
-const TrendCard = ({ title, link, amount, position, direction, streak }) => {
+const TrendCard = ({
+  title,
+  link,
+  amount,
+  position,
+  direction,
+  streak,
+  referencia,
+}) => {
   return (
     <CardDesktop
       title={title}
@@ -10,6 +18,7 @@ const TrendCard = ({ title, link, amount, position, direction, streak }) => {
       position={position}
       direction={direction}
       streak={streak}
+      referencia={referencia}
     />
   );
 };

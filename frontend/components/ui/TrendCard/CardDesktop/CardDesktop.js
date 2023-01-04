@@ -1,12 +1,20 @@
 import { Box, Text } from "@chakra-ui/react";
 import ArrowDown from "../../../../public/icons/ArrowDown";
 import ArrowUp from "../../../../public/icons/ArrowUp";
-import Circle from "../../../../public/icons/Circle";
 import Open from "../../../../public/icons/Open";
+import Same from "../../../../public/icons/Same";
 import Share from "../../../../public/icons/Share";
 import theme from "../../../../styles/theme";
 
-const CardDesktop = ({ title, link, amount, position, direction, streak }) => {
+const CardDesktop = ({
+  title,
+  link,
+  amount,
+  position,
+  direction,
+  streak,
+  referencia,
+}) => {
   return (
     <Box
       color={theme.colors.white[500]}
@@ -20,17 +28,23 @@ const CardDesktop = ({ title, link, amount, position, direction, streak }) => {
     >
       <Box display="flex" justifyContent="space-between" alignItems="center">
         <Box display="flex" gap={6}>
-          <Box display="flex" alignItems="center" f gap={4}>
+          <Box display="flex" alignItems="center" gap={5}>
             <Text fontSize="2xl">{position}</Text>
             {direction === "down" && <ArrowDown />}
             {direction === "up" && <ArrowUp />}
-            {direction === "same" && <Circle />}
+            {direction === "same" && (
+              <Box marginLeft={2}>
+                <Same />
+              </Box>
+            )}
           </Box>
           <Box display="flex" gap={3} flexDirection="column">
             <Text>{title}</Text>
             <Text>
-              {amount && amount + " Tweets"}
-              {streak && streak + " Semanas seguidas"}
+              {referencia === "twitter" && amount + " Tweets"}
+              {referencia === "escuchado" && streak + " Semanas seguidas"}
+              {referencia === "visto" && amount + " reproducciones"}
+              {referencia === "google" && "Más de " + amount + " búsquedas"}
             </Text>
           </Box>
         </Box>
