@@ -25,6 +25,7 @@ const CardDesktop = ({
       paddingX={12}
       paddingY={5}
       marginTop={5}
+      width="920px"
     >
       <Box display="flex" justifyContent="space-between" alignItems="center">
         <Box display="flex" gap={6}>
@@ -38,7 +39,7 @@ const CardDesktop = ({
               </Box>
             )}
           </Box>
-          <Box display="flex" gap={3} flexDirection="column">
+          <Box display="flex" gap={3} flexDirection="column" maxW="600px">
             <Text>{title}</Text>
             <Text>
               {referencia === "twitter" && amount + " Tweets"}

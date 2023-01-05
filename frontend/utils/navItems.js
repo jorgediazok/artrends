@@ -1,26 +1,34 @@
+import Question from "../public/icons/Question";
+
 export const navItems = [
   {
-    label: "Inicio",
-    href: "/",
-  },
-  {
-    label: "Discutido",
+    id: 1,
+    label: "+ Discutido",
     href: "/discutido",
   },
   {
-    label: "Escuchado",
+    id: 2,
+    label: "+ Escuchado",
     href: "/escuchado",
   },
   {
-    label: "Visto",
+    id: 3,
+    label: "+ Visto",
     href: "/visto",
   },
   {
-    label: "Buscado",
+    id: 4,
+    label: "+ Buscado",
     href: "/buscado",
   },
   {
-    label: "Leído",
+    id: 5,
+    label: "+ Leído",
     href: "/leido",
+  },
+  {
+    id: 6,
+    label: <Question />,
+    href: "/ayuda",
   },
 ];
