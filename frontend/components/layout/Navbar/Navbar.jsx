@@ -21,6 +21,7 @@ const Navbar = () => {
       justify="space-between"
       height="100px"
       bg={theme.colors.gradients["grad-purple-2"]}
+      shadow="md"
     >
       <Box display="flex" alignItems="center">
         <Text
@@ -35,8 +36,9 @@ const Navbar = () => {
       </Box>
       <Box display="flex" alignItems="center" gap="60px">
         {navItems.map(item => (
-          <Box key={item.id} d="flex" alignItems="center">
+          <Box key={item.id} d="flex" alignItems="center" as="ul">
             <Text
+              as="li"
               color="white.500"
               fontSize="18px"
               lineHeight="28px"
