@@ -30,7 +30,7 @@ const CardDesktop = ({
       <Box display="flex" justifyContent="space-between" alignItems="center">
         <Box display="flex" gap={6}>
           <Box display="flex" alignItems="center" gap={5}>
-            <Text fontSize="2xl">{position}</Text>
+            <Text fontSize="3xl">{position}</Text>
             {direction === "down" && <ArrowDown />}
             {direction === "up" && <ArrowUp />}
             {direction === "same" && (

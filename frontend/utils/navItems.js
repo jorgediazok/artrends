@@ -26,9 +26,4 @@ export const navItems = [
     label: "+ Leído",
     href: "/leido",
   },
-  {
-    id: 6,
-    label: <Question />,
-    href: "/ayuda",
-  },
 ];

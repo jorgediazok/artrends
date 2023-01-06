@@ -1,4 +1,4 @@
-import { Box, Text } from "@chakra-ui/react";
+import { Badge, Box, Text } from "@chakra-ui/react";
 import Chat from "../../../../public/icons/Chat";
 import Escuchado from "../../../../public/icons/Escuchado";
 import Search from "../../../../public/icons/Search";
@@ -14,7 +14,7 @@ const CardTitle = ({ title }) => {
       alignItems="center"
       justifyContent="space-between"
       width="92%"
-      marginTop="42px"
+      marginTop="72px"
       marginBottom="22px"
     >
       <Box display="flex" gap={3} alignItems="center">
@@ -23,16 +23,19 @@ const CardTitle = ({ title }) => {
         <Box>{title === "Lo más escuchado en Spotify" && <Escuchado />}</Box>
         <Box>{title === "Lo más visto en Youtube" && <Visto />}</Box>
         <Box>{title === "Lo más buscado en Google" && <Search />}</Box>
+        <Box>
+          {title === "Lo más leído en portales de noticias" && <Escuchado />}
+        </Box>
       </Box>
 
-      <Box backgroundColor={theme.colors.purple[500]} marginLeft="26.5%">
-        <Text color="white">
-          {title === "Lo más discutido en twitter" && "Actualizado cada hora"}
-          {title === "Lo más escuchado en Spotify" && "Actualizado cada semana"}
-          {title === "Lo más visto en Youtube" && "Actualizado cada hora"}
-          {title === "Lo más buscado en Google" && "Actualizado cada hora"}
-        </Text>
-      </Box>
+      <Badge colorScheme="purple" variant="solid" marginTop="15px">
+        {title === "Lo más discutido en Twitter" && "Actualizado cada hora"}
+        {title === "Lo más escuchado en Spotify" && "Actualizado cada semana"}
+        {title === "Lo más visto en Youtube" && "Actualizado cada hora"}
+        {title === "Lo más buscado en Google" && "Actualizado cada hora"}
+        {title === "Lo más leído en portales de noticias" &&
+          "Actualizado cada hora"}
+      </Badge>
     </Box>
   );
 };

@@ -31,3 +31,8 @@ export const getYoutubeTrends = async () => {
   const result = await fetch("http://api.artrends.ar/api/youtube-trends");
   return result.json();
 };
+
+export const getPortals = async () => {
+  const result = await fetch("http://api.artrends.ar/api/portals");
+  return result.json();
+};
