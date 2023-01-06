@@ -17,13 +17,12 @@ const Navbar = () => {
       as="nav"
       maxWidth="100vw"
       align="center"
-      px="26px"
       justify="space-between"
       height="100px"
       bg={theme.colors.gradients["grad-purple-2"]}
       shadow="md"
     >
-      <Box display="flex" alignItems="center">
+      <Box display="flex" alignItems="center" width="25%">
         <Text
           as="h5"
           fontSize="30px"
@@ -34,11 +33,18 @@ const Navbar = () => {
           ARTRENDS
         </Text>
       </Box>
-      <Box display="flex" alignItems="center" gap="60px">
+      <Box
+        display="flex"
+        as="ul"
+        justifyContent="center"
+        flex="1"
+        mr="auto"
+        ml="auto"
+        gap={12}
+      >
         {navItems.map(item => (
-          <Box key={item.id} d="flex" alignItems="center" as="ul">
+          <Box key={item.id} display="flex" as="li">
             <Text
-              as="li"
               color="white.500"
               fontSize="18px"
               lineHeight="28px"
@@ -50,7 +56,14 @@ const Navbar = () => {
           </Box>
         ))}
       </Box>
-      <Box display="flex" alignItems="center" gap={5}>
+      <Box
+        display="flex"
+        alignItems="center"
+        justifyContent="flex-end"
+        gap={5}
+        flex="0 1 25%"
+        width="25%"
+      >
         <IconButton
           icon={<Search onClick={handleSearch} />}
           colorScheme={theme.colors.gradients["grad-white"]}
