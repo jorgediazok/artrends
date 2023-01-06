@@ -4,7 +4,7 @@ export const getGoogleTrends = async (baseUrl: string, itemLimit: number) => {
 	/* Scraping start */
 	const browser = await chromium.launch({
 		headless: true,
-		chromiumSandbox: false,
+		chromiumSandbox: true,
 	});
 	const page = await browser.newPage();
 	await page.goto(`${baseUrl}/trends/trendingsearches/daily?geo=AR`);

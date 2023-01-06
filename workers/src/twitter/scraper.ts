@@ -7,7 +7,7 @@ export const getTwitterTrendingTopics = async (
 	/* Scraping start */
 	const browser = await chromium.launch({
 		headless: true,
-		chromiumSandbox: false,
+		chromiumSandbox: true,
 	});
 	const page = await browser.newPage();
 	await page.goto(url);

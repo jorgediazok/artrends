@@ -7,7 +7,7 @@ export const getYoutubeTrendingVideos = async (
 	/* Scraping start */
 	const browser = await chromium.launch({
 		headless: true,
-		chromiumSandbox: false,
+		chromiumSandbox: true,
 	});
 	const page = await browser.newPage({ locale: "es-AR" });
 	await page.goto(url);
