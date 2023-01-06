@@ -24,11 +24,15 @@ services:
     volumes:
       - cache:/data
   backend:
-    image: greatpop/artrends-backend:latest
-    container_name: artrends_backend
-    restart: always
+    build:
+      context: .
+      dockerfile: Dockerfile.local
     env_file:
       - ".env"
+    container_name: artrends_backend
+    restart: always
+    volumes:
+      - ".:/app"
     networks:
       proxy:
     ports:
@@ -39,16 +43,8 @@ services:
       - "traefik.port=3500"
       - "traefik.enable=true"
       - "traefik.docker.network=proxy"
-      # HTTP
-      - "traefik.http.routers.artrends-backend.rule=Host(`api.artrends.ar`)"
-      - "traefik.http.routers.artrends-backend.entrypoints=web"
-      - "traefik.http.routers.artrends-backend.middlewares=test-redirectscheme"
-      # HTTPS
-      - "traefik.http.routers.artrends-backend-secure.entrypoints=websecure"
-      - "traefik.http.routers.artrends-backend-secure.rule=Host(`api.artrends.ar`)"
-      - "traefik.http.routers.artrends-backend-secure.tls.certresolver=artrends"
-      - "traefik.http.middlewares.test-redirectscheme.redirectscheme.scheme=https"
-      - "traefik.http.middlewares.test-redirectscheme.redirectscheme.permanent=true"
+      - "traefik.http.routers.backend.rule=Host(`artrends-back.localhost`)"
+      - "traefik.http.routers.backend.entrypoints=web,websecure"
 volumes:
   mongodb-data:
     name: mongodb-data

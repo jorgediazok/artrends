@@ -5,8 +5,11 @@ services:
   workers:
     container_name: artrends_workers
     env_file: ".env"
-    restart: always
-    image: greatpop/artrends-workers:latest
+    build:
+      context: .
+      dockerfile: Dockerfile.local
     user: "pwuser"
     security_opt:
       - seccomp:./seccomp_profile.json
+    volumes:
+      - ".:/app"
