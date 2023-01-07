@@ -13,7 +13,7 @@ const CardTitle = ({ title }) => {
       fontWeight="bold"
       alignItems="center"
       justifyContent="space-between"
-      width="92%"
+      width="100%"
       marginTop="72px"
       marginBottom="22px"
     >

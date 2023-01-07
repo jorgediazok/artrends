@@ -96,13 +96,10 @@ export default function Home(props) {
             justifyContent="center"
             alignItems="center"
             flexDirection="column"
-            gap="8px"
             color="white"
-            marginLeft="auto"
-            marginRight="auto"
           >
             {/* TWITTER */}
-            <Box id="twitter" display="flex" width="100%" marginLeft="80px">
+            <Box id="twitter" display="flex" width="100%">
               <CardTitle title="Lo más discutido en Twitter" />
             </Box>
             {twitter?.current?.record?.trends?.map((trend, currentIndex) => {
@@ -121,22 +118,22 @@ export default function Home(props) {
                   amount={trend.amount}
                   link={trend.link}
                   height="100px"
-                  referencia="twitter"
+                  type="twitter"
                 />
               );
             })}
 
             {/* SPOTIFY */}
-            <Box id="spotify" display="flex" width="100%" marginLeft="80px">
+            <Box id="spotify" display="flex" width="100%">
               <CardTitle title="Lo más escuchado en Spotify" />
             </Box>
-            <Tabs variant="soft-rounded" colorScheme="green">
-              <TabList
-                gap={1}
-                marginLeft="15px"
-                marginTop="5px"
-                marginBottom="-5px"
-              >
+            <Tabs
+              variant="soft-rounded"
+              colorScheme="green"
+              w="100%"
+              className="no-padding"
+            >
+              <TabList mb={5}>
                 <Tab color="white">Artista</Tab>
                 <Tab color="white">Canción</Tab>
                 <Tab color="white">Podcast</Tab>
@@ -163,7 +160,7 @@ export default function Home(props) {
                           amount={trend.amount}
                           streak={trend.streak}
                           link={trend.link}
-                          referencia="escuchado"
+                          type="escuchado"
                         />
                       );
                     }
@@ -191,7 +188,7 @@ export default function Home(props) {
                           streak={trend.streak}
                           author={trend.author}
                           link={trend.link}
-                          referencia="escuchado"
+                          type="escuchado"
                         />
                       );
                     }
@@ -218,7 +215,7 @@ export default function Home(props) {
                           amount={trend.amount}
                           link={trend.link}
                           publisher={trend.publisher}
-                          referencia="podcast"
+                          type="podcast"
                         />
                       );
                     }
@@ -228,7 +225,7 @@ export default function Home(props) {
             </Tabs>
 
             {/* YOUTUBE */}
-            <Box id="youtube" display="flex" width="100%" marginLeft="80px">
+            <Box id="youtube" display="flex" width="100%">
               <CardTitle title="Lo más visto en Youtube" />
             </Box>
             {youtube?.current?.record?.trends?.map((trend, currentIndex) => {
@@ -249,13 +246,13 @@ export default function Home(props) {
                   link={trend.link}
                   channel={trend.channel}
                   channelLink={trend.channelLink}
-                  referencia="visto"
+                  type="visto"
                 />
               );
             })}
 
             {/* GOOGLE */}
-            <Box id="google" display="flex" width="100%" marginLeft="80px">
+            <Box id="google" display="flex" width="100%">
               <CardTitle title="Lo más buscado en Google" />
             </Box>
             {google?.current?.record?.trends?.map((trend, currentIndex) => {
@@ -275,22 +272,22 @@ export default function Home(props) {
                   amount={trend.amount}
                   streak={trend.streak}
                   link={trend.link}
-                  referencia="google"
+                  type="google"
                 />
               );
             })}
 
             {/* PORTALS */}
-            <Box id="portals" display="flex" width="100%" marginLeft="80px">
+            <Box id="portals" display="flex" width="100%">
               <CardTitle title="Lo más leído en portales de noticias" />
             </Box>
-            <Tabs variant="soft-rounded" colorScheme="green">
-              <TabList
-                gap={1}
-                marginLeft="15px"
-                marginTop="5px"
-                marginBottom="-5px"
-              >
+            <Tabs
+              variant="soft-rounded"
+              colorScheme="green"
+              w="100%"
+              className="no-padding"
+            >
+              <TabList mb={5}>
                 <Tab color="white">La Nación</Tab>
                 <Tab color="white">El Destape</Tab>
                 <Tab color="white">Clarín</Tab>
