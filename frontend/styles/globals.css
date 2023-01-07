@@ -92,3 +92,10 @@ h6 {
 ul {
   list-style: none;
 }
+
+/*
+  10. Remove unwanted Chakra default
+*/
+.chakra-tabs__tab-panels > * {
+  padding: 0 !important;
+}

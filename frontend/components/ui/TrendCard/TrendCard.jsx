@@ -8,7 +8,7 @@ const TrendCard = ({
   position,
   direction,
   streak,
-  referencia,
+  type,
   channel,
   channelLink,
   publisher,
@@ -28,7 +28,7 @@ const TrendCard = ({
       author={author}
       publisher={publisher}
       height={height}
-      referencia={referencia}
+      type={type}
     />
   );
 };
