@@ -62,12 +62,12 @@ export default function Home(props) {
   // console.log("Google full: ", google);
   // console.log("Twitter: ", twitter?.current?.record?.trends);
   // console.log("Twitter full", twitter);
-  console.log("Spotify Artist: ", spotifyArtist?.current?.record?.trends);
-  console.log("Spotify Song: ", spotifySong?.current?.record?.trends);
-  console.log("Spotify Podcast: ", spotifyPodcast?.current?.record?.trends);
+  // console.log("Spotify Artist: ", spotifyArtist?.current?.record?.trends);
+  // console.log("Spotify Song: ", spotifySong?.current?.record?.trends);
+  // console.log("Spotify Podcast: ", spotifyPodcast?.current?.record?.trends);
   // console.log("Spotify Podcast full: ", spotifyPodcast);
   // console.log("Youtube: ", youtube?.current?.record?.trends);
-  // console.log("Youtube full: ", youtube);
+  console.log("Youtube full: ", youtube);
   // console.log("Portals: ", portals);
 
   if (

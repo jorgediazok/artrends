@@ -1,0 +1,16 @@
+.animate {
+  animation: 1s ease-in-out slide;
+}
+
+@keyframes slide {
+  0% {
+    transform: translateX(100%);
+  }
+  100% {
+    transform: translateX(0%);
+  }
+}
+
+.focusInput:focus {
+  width: 100%;
+}
