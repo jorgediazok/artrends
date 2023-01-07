@@ -14,6 +14,10 @@ const CardDesktop = ({
   direction,
   streak,
   referencia,
+  publisher,
+  channel,
+  height,
+  author,
 }) => {
   return (
     <Box
@@ -26,6 +30,7 @@ const CardDesktop = ({
       paddingY={5}
       marginTop={5}
       width="920px"
+      maxHeight={height}
     >
       <Box display="flex" justifyContent="space-between" alignItems="center">
         <Box display="flex" gap={6}>
@@ -41,6 +46,9 @@ const CardDesktop = ({
           </Box>
           <Box display="flex" gap={3} flexDirection="column" maxW="600px">
             <Text>{title}</Text>
+            {referencia === "visto" && <Text>{channel}</Text>}
+            {referencia === "podcast" && <Text>{publisher}</Text>}
+            {referencia === "escuchado" && <Text>{author}</Text>}
             <Text>
               {referencia === "twitter" && amount + " Tweets"}
               {referencia === "escuchado" && streak + " Semanas seguidas"}
