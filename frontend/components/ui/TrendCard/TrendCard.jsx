@@ -8,7 +8,12 @@ const TrendCard = ({
   position,
   direction,
   streak,
-  referencia,
+  type,
+  channel,
+  channelLink,
+  publisher,
+  height,
+  author,
 }) => {
   return (
     <CardDesktop
@@ -18,7 +23,12 @@ const TrendCard = ({
       position={position}
       direction={direction}
       streak={streak}
-      referencia={referencia}
+      channel={channel}
+      channelLink={channelLink}
+      author={author}
+      publisher={publisher}
+      height={height}
+      type={type}
     />
   );
 };

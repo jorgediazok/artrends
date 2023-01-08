@@ -1,10 +1,18 @@
+// Chakra
 import { Box, Text } from "@chakra-ui/react";
+
+// Icons
 import ArrowDown from "../../../../public/icons/ArrowDown";
 import ArrowUp from "../../../../public/icons/ArrowUp";
 import Open from "../../../../public/icons/Open";
 import Same from "../../../../public/icons/Same";
 import Share from "../../../../public/icons/Share";
+
+// Theme
 import theme from "../../../../styles/theme";
+
+// Styles
+import styles from "./CardDesktop.module.css";
 
 const CardDesktop = ({
   title,
@@ -13,39 +21,57 @@ const CardDesktop = ({
   position,
   direction,
   streak,
-  referencia,
+  type,
+  publisher,
+  channel,
+  height,
+  author,
 }) => {
   return (
     <Box
+      as="article"
       color={theme.colors.white[500]}
       bg={theme.colors.indigo[800]}
       border="1px"
       borderColor={theme.colors.cyan[150]}
       borderRadius={theme.radius.xl}
-      paddingX={12}
-      paddingY={5}
-      marginTop={5}
-      width="920px"
+      paddingX="48px"
+      paddingY="12px"
+      width="100%"
+      maxHeight={height}
+      mb={2}
     >
       <Box display="flex" justifyContent="space-between" alignItems="center">
-        <Box display="flex" gap={6}>
-          <Box display="flex" alignItems="center" gap={5}>
+        <Box display="flex" gap={6} alignItems="center">
+          <Box
+            display="flex"
+            justifyContent="space-between"
+            alignItems="center"
+            width="80px"
+          >
             <Text fontSize="3xl">{position}</Text>
             {direction === "down" && <ArrowDown />}
             {direction === "up" && <ArrowUp />}
-            {direction === "same" && (
-              <Box marginLeft={2}>
-                <Same />
-              </Box>
-            )}
+            {direction === "same" && <Same className={styles.same} />}
           </Box>
-          <Box display="flex" gap={3} flexDirection="column" maxW="600px">
-            <Text>{title}</Text>
+          <Box
+            display="flex"
+            gap={2}
+            flexDirection="column"
+            maxW="600px"
+            ml={2}
+          >
+            <Text fontWeight={600} fontSize="2xl">
+              {title}
+            </Text>
+            {type === "visto" && <Text fontSize="xl">{channel}</Text>}
+            {type === "podcast" && <Text fontSize="xl">{publisher}</Text>}
+            {type === "escuchado" && <Text fontSize="xl">{author}</Text>}
             <Text>
-              {referencia === "twitter" && amount + " Tweets"}
-              {referencia === "escuchado" && streak + " Semanas seguidas"}
-              {referencia === "visto" && amount + " reproducciones"}
-              {referencia === "google" && "Más de " + amount + " búsquedas"}
+              {type === "twitter" && amount + " Tweets"}
+              {type === "escuchado" && streak + " Semanas seguidas"}
+              {type === "visto" && amount + " reproducciones"}
+              {type === "google" && "Más de " + amount + " búsquedas"}
             </Text>
           </Box>
         </Box>
