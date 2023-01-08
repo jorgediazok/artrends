@@ -1,36 +1,35 @@
 import { useState, useEffect } from "react";
 import NextLink from "next/link";
 import { Link as ChakraLink } from "@chakra-ui/react";
-import {
-  Box,
-  Collapse,
-  Flex,
-  IconButton,
-  Input,
-  Text,
-  useDisclosure,
-} from "@chakra-ui/react";
+
+// Chakra
+import { Box, Collapse, Flex, IconButton, Input, Text } from "@chakra-ui/react";
+
+// Utils
 import { AnimatePresence, AnimateSharedLayout } from "framer-motion";
-import { animateScroll as scroll, Link } from "react-scroll";
+import { Link } from "react-scroll";
 import { navItems } from "../../../utils/navItems";
+
+// Theme
 import theme from "../../../styles/theme";
+
+// Icons
 import Search from "../../../public/icons/Search";
 import Question from "../../../public/icons/Question";
+
+// Styles
+import styles from "./Navbar.module.css";
 
 const Navbar = () => {
   const [showInput, setShowInput] = useState(false);
   const [scrollNav, setScrollNav] = useState(false);
-  const { isOpen, onToggle, onClose } = useDisclosure();
 
-  useEffect(() => {
-    window.addEventListener("scroll", changeNav);
-  }, []);
+  // const handleSearch = () => {
+  //   setOpenSearch(!openSearch);
+  // };
 
-  const handleSearch = () => {
-    setOpenSearch(!openSearch);
-  };
-
-  //PARA EL SMOOTH SCROLLING
+  // Handlers
+  // Smooth scrolling
   const changeNav = () => {
     if (window.scrollY >= 80) {
       setScrollNav(true);
@@ -45,16 +44,19 @@ const Navbar = () => {
     }, 300);
   };
 
+  // Effects
+  useEffect(() => {
+    window.addEventListener("scroll", changeNav);
+  }, []);
+
   return (
     <AnimatePresence>
       <AnimateSharedLayout>
         <Flex
           as="nav"
-          maxWidth="100vw"
+          className={styles.navbar}
           align="center"
-          justify="space-between"
           height="100px"
-          paddingX="26px"
           bg={theme.colors.gradients["grad-purple-2"]}
           shadow="md"
           scrollnav={scrollNav.toString()}
@@ -104,9 +106,9 @@ const Navbar = () => {
               <>
                 <Collapse in={showInput} animateOpacity>
                   <IconButton
-                    onClick={() => setShowInput(!showInput)}
+                    onClick={() => setShowInput(true)}
                     name="close"
-                    icon={<Search onClick={() => setShowInput(!showInput)} />}
+                    icon={<Search onClick={() => setShowInput(true)} />}
                     colorScheme={theme.colors.gradients["grad-ind-purple"]}
                     position="absolute"
                     width="20px"

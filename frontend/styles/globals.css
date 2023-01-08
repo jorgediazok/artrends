@@ -94,8 +94,21 @@ ul {
 }
 
 /*
-  10. Remove unwanted Chakra default
+10. Remove unwanted Chakra default
 */
 .chakra-tabs__tab-panels > * {
   padding: 0 !important;
+}
+
+/*
+  11. Overwrite styles for Chakra givent that this values get ignored
+  when extending the theme
+*/
+:host,
+:root,
+[data-theme] {
+  --chakra-sizes-container-sm: 100% !important;
+  --chakra-sizes-container-md: 920px !important;
+  --chakra-sizes-container-lg: 920px !important;
+  --chakra-sizes-container-xl: 920px !important;
 }

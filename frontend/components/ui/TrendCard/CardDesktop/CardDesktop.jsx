@@ -29,19 +29,20 @@ const CardDesktop = ({
 }) => {
   return (
     <Box
+      as="article"
       color={theme.colors.white[500]}
       bg={theme.colors.indigo[800]}
       border="1px"
       borderColor={theme.colors.cyan[150]}
       borderRadius={theme.radius.xl}
-      paddingX={12}
-      paddingY={5}
+      paddingX="48px"
+      paddingY="12px"
       width="100%"
       maxHeight={height}
       mb={2}
     >
       <Box display="flex" justifyContent="space-between" alignItems="center">
-        <Box display="flex" gap={6}>
+        <Box display="flex" gap={6} alignItems="center">
           <Box
             display="flex"
             justifyContent="space-between"
@@ -60,10 +61,12 @@ const CardDesktop = ({
             maxW="600px"
             ml={2}
           >
-            <Text fontWeight="bold">{title}</Text>
-            {type === "visto" && <Text>{channel}</Text>}
-            {type === "podcast" && <Text>{publisher}</Text>}
-            {type === "escuchado" && <Text>{author}</Text>}
+            <Text fontWeight={600} fontSize="2xl">
+              {title}
+            </Text>
+            {type === "visto" && <Text fontSize="xl">{channel}</Text>}
+            {type === "podcast" && <Text fontSize="xl">{publisher}</Text>}
+            {type === "escuchado" && <Text fontSize="xl">{author}</Text>}
             <Text>
               {type === "twitter" && amount + " Tweets"}
               {type === "escuchado" && streak + " Semanas seguidas"}

@@ -1,0 +1,13 @@
+.navbar {
+  padding: 0px 16px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 100px;
+}
+
+@media screen and (min-width: 1100px) {
+  .navbar {
+    padding: 0px 32px;
+  }
+}
