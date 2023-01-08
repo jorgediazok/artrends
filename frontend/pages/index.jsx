@@ -21,9 +21,8 @@ import TrendCard from "../components/ui/TrendCard/TrendCard";
 import { getPosition } from "../utils/position";
 import CardTitle from "../components/ui/TrendCard/CardTitle/CardTitle";
 import Layout from "../components/layout/Layout";
-import theme from "../styles/theme";
 
-export default function Home(props) {
+export default function Home() {
   const { data: google } = useQuery({
     queryKey: ["google"],
     queryFn: getGoogleTrends,
