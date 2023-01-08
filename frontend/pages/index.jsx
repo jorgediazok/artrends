@@ -324,7 +324,7 @@ export default function Home() {
                       );
                     return (
                       <TrendCard
-                        key={trend._id}
+                        key={trend.article}
                         position={currentIndex + 1}
                         title={trend.article}
                         direction={getPosition(currentIndex, prevIndex)}
@@ -348,7 +348,7 @@ export default function Home() {
                       );
                     return (
                       <TrendCard
-                        key={trend._id}
+                        key={trend.article}
                         position={currentIndex + 1}
                         title={trend.article}
                         direction={getPosition(currentIndex, prevIndex)}
@@ -372,7 +372,7 @@ export default function Home() {
                       );
                     return (
                       <TrendCard
-                        key={trend._id}
+                        key={trend.article}
                         position={currentIndex + 1}
                         title={trend.article}
                         direction={getPosition(currentIndex, prevIndex)}
@@ -396,7 +396,7 @@ export default function Home() {
                       );
                     return (
                       <TrendCard
-                        key={trend._id}
+                        key={trend.article}
                         position={currentIndex + 1}
                         title={trend.article}
                         direction={getPosition(currentIndex, prevIndex)}
@@ -421,7 +421,7 @@ export default function Home() {
                       );
                     return (
                       <TrendCard
-                        key={trend._id}
+                        key={trend.article}
                         position={currentIndex + 1}
                         title={trend.article}
                         direction={getPosition(currentIndex, prevIndex)}
