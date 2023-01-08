@@ -11,7 +11,6 @@ import {
 import { AnimatePresence, AnimateSharedLayout } from "framer-motion";
 import { animateScroll as scroll, Link } from "react-scroll";
 import { navItems } from "../../../utils/navItems";
-import styles from "./Navbar.module.css";
 import theme from "../../../styles/theme";
 import Search from "../../../public/icons/Search";
 import Question from "../../../public/icons/Question";
@@ -19,7 +18,7 @@ import Question from "../../../public/icons/Question";
 const Navbar = () => {
   const [showInput, setShowInput] = useState(false);
   const [scrollNav, setScrollNav] = useState(false);
-  const { isOpen, onToggle } = useDisclosure();
+  const { isOpen, onToggle, onClose } = useDisclosure();
 
   useEffect(() => {
     window.addEventListener("scroll", changeNav);
@@ -90,11 +89,11 @@ const Navbar = () => {
           >
             {showInput ? (
               <>
-                <Collapse in={showInput} animateOpacity animate>
+                <Collapse in={showInput} animateOpacity>
                   <IconButton
                     onClick={() => setShowInput(!showInput)}
                     name="close"
-                    icon={<Search />}
+                    icon={<Search onClick={() => setShowInput(!showInput)} />}
                     colorScheme={theme.colors.gradients["grad-ind-purple"]}
                     position="absolute"
                     width="20px"
@@ -102,12 +101,14 @@ const Navbar = () => {
                   />
                   <Input
                     focusBorderColor={theme.colors["cyan-500"]}
-                    transition="width 3s ease-in-out"
-                    maxWidth="288px"
+                    transition="width 0.5s ease-in-out"
+                    _focus={{
+                      width: "288px",
+                    }}
+                    width="0px"
                     height="40px"
                     color="white"
                     rounded="md"
-                    opacity={showInput ? 1 : 0}
                     autoFocus
                     background={theme.colors.gradients["grad-ind-purple"]}
                     position="relative"
@@ -116,16 +117,14 @@ const Navbar = () => {
                 </Collapse>
               </>
             ) : (
-              ""
-            )}
-            {showInput ? (
-              ""
-            ) : (
               <IconButton
                 onClick={() => setShowInput(!showInput)}
                 name="close"
                 icon={<Search />}
                 colorScheme={theme.colors.gradients["grad-white"]}
+                _hover={{
+                  background: theme.colors.gradients["grad-purp-transp"],
+                }}
               />
             )}
 
