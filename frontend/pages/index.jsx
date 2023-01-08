@@ -101,6 +101,7 @@ export default function Home() {
         alignItems="center"
         width="100%"
         as="main"
+        className="main-background-home"
       >
         <Container
           maxW="container.lg"

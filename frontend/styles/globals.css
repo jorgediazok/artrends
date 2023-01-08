@@ -32,13 +32,6 @@ body {
   -webkit-font-smoothing: antialiased;
   font-family: "Comfortaa", cursive;
   font-family: "Nunito", sans-serif;
-  background-image: url("/images/pattern3.jpg") !important;
-  background-size: 75%;
-  background-repeat: repeat;
-  @media (max-width: 768px) {
-    background-image: url("/images/pattern3.jpg") !important;
-    background-size: 25%;
-  }
 }
 /*
   7. Improve media defaults
@@ -111,4 +104,14 @@ ul {
   --chakra-sizes-container-md: 920px !important;
   --chakra-sizes-container-lg: 920px !important;
   --chakra-sizes-container-xl: 920px !important;
+}
+
+.main-background-home {
+  background-image: url("/images/pattern3.jpg") !important;
+  background-size: "100%";
+  background-repeat: repeat;
+  @media (max-width: 768px) {
+    background-image: url("/images/pattern3.jpg") !important;
+    background-size: 25%;
+  }
 }

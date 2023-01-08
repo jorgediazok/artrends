@@ -13,9 +13,10 @@ const SobreLasTendencias = () => {
   return (
     <>
       <Navbar />
-      <Box paddingX="260px" marginTop="32px">
+      <Box paddingX="260px" background="#241154">
         <Box display="flex" alignItems="center" justifyContent="flex-start">
           <Breadcrumb
+            marginTop="32px"
             fontSize="text-sm"
             color="#FFFFFF"
             spacing="16px"
@@ -135,26 +136,3 @@ const SobreLasTendencias = () => {
 };
 
 export default SobreLasTendencias;
-
-// Cada plataforma determina sus tendencias mediante el uso de algoritmos los cuales son modificados según el cambio de políticas o modelo de negocio que consideren necesario. Si bien éstas empresas  no brindan mucha información sobre los criterios que emplean para establecer qué es y que no es una tendencia, existen distintos factores que influyen en su disposición.
-
-// Twitter
-// Las Tendencias por ubicación son los temas populares entre las personas usuarias ubicadas en una zona geográfica específica (en nuestro caso Argentina) son varios los elementos que se toman en cuenta, algunos de ellos son:
-
-// Novedad: jerarquiza  la etiqueta o palabras  que “emergen” en popularidad en un tiempo reciente o que no hayan aparecido en interacciones anteriores.
-// Cantidad de personas usuarias: que utilizan determinada palabra clave o etiqueta. Si existen tendencias o hastag que se relacionan con un mismo tema el algoritmo las detecta y agrupa.
-// Nivel de influencia: las cuentas con más llegada y cantidad de seguidores son más relevantes a la hora de establecer tendencias.
-// Interacciones: volúmen de conversaciones creadas a partir de las palabras claves o hastags.
-
-// Spotify
-// Se sabe poco de su cálculo de popularidad pero en sus métricas de interacción se valoran  la cantidad de escuchas, repeticiones de escuchas, seguidores por oyente, guardado de canciones  para reproducir más tarde, canciones añadidas a playlists e incluso, apariciones en la prensa musical y redes sociales. En el caso de los podcast es similar.
-
-// Youtube
-// Considera factores como las vistas, la velocidad en que se alcanzan esas vistas, la antigüedad del video, nivel de rendimiento en comparación con los videos subidos recientemente del mismo canal, etc.
-// Otro dato a tomar en cuenta es que los rankings de tendencias en youtube tienen como fin ser listas representativas de lo que se puede encontrar en la plataforma, por consiguiente analizan el tipo de contenido valorando lo novedoso, lo atrayente que puede resultar para una amplia variedad de personas usuarias y jerarquiza el contenido original, entre otros puntos.
-
-// Google
-// Las tendencias que se muestran en Artrends son las del tipo búsqueda diarias en google, las cuales son las consultas con más aumento de tráfico en un periodo de 24 horas.
-
-// Portales de Noticias
-//  Se muestran los artículos más leidos segun informan cada uno de los portales. La selección de estas cinco es a razon de considerarlas más representativas y populares.

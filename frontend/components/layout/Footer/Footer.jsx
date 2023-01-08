@@ -10,7 +10,6 @@ const Footer = () => {
       width="100%"
       bg={theme.colors.gradients["grad-footer"]}
       height="315px"
-      mt="80px"
       as="footer"
       display="flex"
       justifyContent="center"
@@ -22,7 +21,7 @@ const Footer = () => {
         justifyContent="center"
         alignItems="center"
       >
-        <Text fontSize="md" fontWeight="bold" color="#FFFFFF">
+        <Text fontSize="md" fontWeight="bold" color="#FFFFFF" marginTop="30px">
           ARTRENDS
         </Text>
         <Box

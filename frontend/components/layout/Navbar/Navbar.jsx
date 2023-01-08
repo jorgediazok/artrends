@@ -61,20 +61,23 @@ const Navbar = () => {
           shadow="md"
           scrollnav={scrollNav.toString()}
         >
-          <Box display="flex" alignItems="center" width="25%">
+          <Box
+            display="flex"
+            alignItems="center"
+            width="25%"
+            textDecoration="none"
+          >
             <NextLink href="/" passHref>
-              <ChakraLink>
-                <Text
-                  as="h5"
-                  cursor="pointer"
-                  fontSize="30px"
-                  lineHeight="120%"
-                  fontWeight={700}
-                  color="#ffffff"
-                >
-                  ARTRENDS
-                </Text>
-              </ChakraLink>
+              <Text
+                as="h5"
+                cursor="pointer"
+                fontSize="30px"
+                lineHeight="120%"
+                fontWeight={700}
+                color="#ffffff"
+              >
+                ARTRENDS
+              </Text>
             </NextLink>
           </Box>
           <Box display="flex" as="ul" justifyContent="center" flex="1" gap={12}>
