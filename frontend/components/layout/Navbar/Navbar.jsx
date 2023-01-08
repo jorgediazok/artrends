@@ -1,9 +1,20 @@
+import { useState } from "react";
+
+// Chakra
 import { Box, Flex, IconButton, Text } from "@chakra-ui/react";
+
+// Utils
 import { navItems } from "../../../utils/navItems";
+
+// Theme
 import theme from "../../../styles/theme";
+
+// Icons
 import Search from "../../../public/icons/Search";
 import Question from "../../../public/icons/Question";
-import { useState } from "react";
+
+// Styles
+import styles from "./Navbar.module.css";
 
 const Navbar = () => {
   const [openSearch, setOpenSearch] = useState(false);
@@ -15,10 +26,7 @@ const Navbar = () => {
   return (
     <Flex
       as="nav"
-      maxWidth="100vw"
-      align="center"
-      justify="space-between"
-      height="100px"
+      className={styles.navbar}
       bg={theme.colors.gradients["grad-purple-2"]}
       shadow="md"
     >

@@ -1,4 +1,7 @@
+// Chakra
 import { Badge, Box, Text } from "@chakra-ui/react";
+
+// Icons
 import Chat from "../../../../public/icons/Chat";
 import Escuchado from "../../../../public/icons/Escuchado";
 import Search from "../../../../public/icons/Search";
@@ -12,7 +15,7 @@ const CardTitle = ({ title }) => {
       fontWeight="bold"
       alignItems="center"
       justifyContent="space-between"
-      width="92%"
+      width="100%"
       marginTop="72px"
       marginBottom="22px"
     >

@@ -1,5 +1,3 @@
-import Question from "../public/icons/Question";
-
 export const navItems = [
   {
     id: 1,
