@@ -271,11 +271,12 @@ export default function Home() {
           </Box>
           {google?.current?.record?.trends?.map((trend, currentIndex) => {
             const elementInPrevious = google?.previous?.record?.trends?.find(
-              element => element.name === trend.name
+              element => element.title === trend.title
             );
             const prevIndex = google?.previous?.record?.trends?.findIndex(
-              element => element.name === elementInPrevious?.name
+              element => element.title === elementInPrevious?.title
             );
+
             return (
               <TrendCard
                 key={trend.title}
@@ -323,7 +324,7 @@ export default function Home() {
                       );
                     return (
                       <TrendCard
-                        key={trend._id}
+                        key={trend.article}
                         position={currentIndex + 1}
                         title={trend.article}
                         direction={getPosition(currentIndex, prevIndex)}
@@ -347,7 +348,7 @@ export default function Home() {
                       );
                     return (
                       <TrendCard
-                        key={trend._id}
+                        key={trend.article}
                         position={currentIndex + 1}
                         title={trend.article}
                         direction={getPosition(currentIndex, prevIndex)}
@@ -371,7 +372,7 @@ export default function Home() {
                       );
                     return (
                       <TrendCard
-                        key={trend._id}
+                        key={trend.article}
                         position={currentIndex + 1}
                         title={trend.article}
                         direction={getPosition(currentIndex, prevIndex)}
@@ -395,7 +396,7 @@ export default function Home() {
                       );
                     return (
                       <TrendCard
-                        key={trend._id}
+                        key={trend.article}
                         position={currentIndex + 1}
                         title={trend.article}
                         direction={getPosition(currentIndex, prevIndex)}
@@ -420,7 +421,7 @@ export default function Home() {
                       );
                     return (
                       <TrendCard
-                        key={trend._id}
+                        key={trend.article}
                         position={currentIndex + 1}
                         title={trend.article}
                         direction={getPosition(currentIndex, prevIndex)}
