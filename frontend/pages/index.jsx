@@ -329,6 +329,7 @@ export default function Home() {
                         title={trend.article}
                         direction={getPosition(currentIndex, prevIndex)}
                         link={trend.link}
+                        type="leido"
                       />
                     );
                   }
@@ -353,6 +354,7 @@ export default function Home() {
                         title={trend.article}
                         direction={getPosition(currentIndex, prevIndex)}
                         link={trend.link}
+                        type="leido"
                       />
                     );
                   }
@@ -377,6 +379,7 @@ export default function Home() {
                         title={trend.article}
                         direction={getPosition(currentIndex, prevIndex)}
                         link={trend.link}
+                        type="leido"
                       />
                     );
                   }
@@ -402,6 +405,7 @@ export default function Home() {
                         direction={getPosition(currentIndex, prevIndex)}
                         link={trend.link}
                         height="157px"
+                        type="leido"
                       />
                     );
                   }
@@ -426,6 +430,7 @@ export default function Home() {
                         title={trend.article}
                         direction={getPosition(currentIndex, prevIndex)}
                         link={trend.link}
+                        type="leido"
                       />
                     );
                   }
