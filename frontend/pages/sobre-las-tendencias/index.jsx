@@ -1,10 +1,4 @@
-import {
-  Box,
-  Breadcrumb,
-  BreadcrumbItem,
-  BreadcrumbLink,
-  Text,
-} from "@chakra-ui/react";
+import { Box, Breadcrumb, BreadcrumbItem, Text } from "@chakra-ui/react";
 import Footer from "../../components/layout/Footer";
 import Navbar from "../../components/layout/Navbar";
 import ArrowRight from "../../public/icons/ArrowRight";
@@ -23,11 +17,11 @@ const SobreLasTendencias = () => {
             separator={<ArrowRight color="#FFFFFF" />}
           >
             <BreadcrumbItem>
-              <BreadcrumbLink fontSize="text-sm">Home</BreadcrumbLink>
+              <Text fontSize="text-sm">Home</Text>
             </BreadcrumbItem>
 
             <BreadcrumbItem>
-              <BreadcrumbLink>Sobre las tendencias</BreadcrumbLink>
+              <Text>Sobre las tendencias</Text>
             </BreadcrumbItem>
           </Breadcrumb>
         </Box>
