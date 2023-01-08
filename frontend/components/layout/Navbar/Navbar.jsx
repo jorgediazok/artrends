@@ -1,4 +1,6 @@
 import { useState, useEffect } from "react";
+import NextLink from "next/link";
+import { Link as ChakraLink } from "@chakra-ui/react";
 import {
   Box,
   Collapse,
@@ -58,15 +60,20 @@ const Navbar = () => {
           scrollnav={scrollNav.toString()}
         >
           <Box display="flex" alignItems="center" width="25%">
-            <Text
-              as="h5"
-              fontSize="30px"
-              lineHeight="120%"
-              fontWeight={700}
-              color="#ffffff"
-            >
-              ARTRENDS
-            </Text>
+            <NextLink href="/" passHref>
+              <ChakraLink>
+                <Text
+                  as="h5"
+                  cursor="pointer"
+                  fontSize="30px"
+                  lineHeight="120%"
+                  fontWeight={700}
+                  color="#ffffff"
+                >
+                  ARTRENDS
+                </Text>
+              </ChakraLink>
+            </NextLink>
           </Box>
           <Box display="flex" as="ul" justifyContent="center" flex="1" gap={12}>
             {navItems.map(item => (
@@ -135,7 +142,11 @@ const Navbar = () => {
               />
             )}
 
-            <Question />
+            <NextLink href="/sobre-las-tendencias" passHref>
+              <ChakraLink>
+                <Question />
+              </ChakraLink>
+            </NextLink>
           </Box>
         </Flex>
       </AnimateSharedLayout>
