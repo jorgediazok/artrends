@@ -37,6 +37,12 @@ const Navbar = () => {
     }
   };
 
+  const handleInputClose = () => {
+    setTimeout(() => {
+      setShowInput(false);
+    }, 300);
+  };
+
   return (
     <AnimatePresence>
       <AnimateSharedLayout>
@@ -113,12 +119,13 @@ const Navbar = () => {
                     background={theme.colors.gradients["grad-ind-purple"]}
                     position="relative"
                     paddingLeft="40px"
+                    onBlur={handleInputClose}
                   />
                 </Collapse>
               </>
             ) : (
               <IconButton
-                onClick={() => setShowInput(!showInput)}
+                onClick={() => setShowInput(true)}
                 name="close"
                 icon={<Search />}
                 colorScheme={theme.colors.gradients["grad-white"]}
