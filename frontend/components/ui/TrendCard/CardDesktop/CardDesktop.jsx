@@ -61,7 +61,7 @@ const CardDesktop = ({
             maxW="600px"
             ml={2}
           >
-            <Text fontWeight={600} fontSize="2xl">
+            <Text fontWeight={type === "leido" ? 500 : 600} fontSize="2xl">
               {title}
             </Text>
             {type === "visto" && <Text fontSize="xl">{channel}</Text>}
