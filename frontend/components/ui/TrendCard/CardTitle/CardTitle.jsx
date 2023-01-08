@@ -1,9 +1,11 @@
+// Chakra
 import { Badge, Box, Text } from "@chakra-ui/react";
+
+// Icons
 import Chat from "../../../../public/icons/Chat";
 import Escuchado from "../../../../public/icons/Escuchado";
 import Search from "../../../../public/icons/Search";
 import Visto from "../../../../public/icons/Visto";
-import theme from "../../../../styles/theme";
 
 const CardTitle = ({ title }) => {
   return (
