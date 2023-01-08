@@ -42,9 +42,11 @@ const theme = extendTheme({
       "grad-purp-45": `linear-gradient(135deg, hsl(257, 32%, 56%) 0%, hsl(257, 66%, 20%) 100%)`,
       "grad-ind-purple": `linear-gradient(91.11deg, hsl(242, 78%, 14%) 0%, hsl(257, 39%, 39%) 100%)`,
       "grad-purp-transparent": `linear-gradient(135deg, hsla(257, 66%, 20%, 0) 0%, hsl(257, 66%, 20%) 100%)`,
+      "grad-purp-transp": `linear-gradient(135deg, rgba(36, 17, 84, 0) 0%, #241154 100%);`,
       "grad-purp-90": `linear-gradient(180deg, hsl(257, 32%, 56%) 0%, hsl(257, 66%, 20%) 100%)`,
       "grad-purp-new": `linear-gradient(133.42deg, hsl(239, 52%, 59%) 0%, hsl(257, 39%, 39%) 97.4%)`,
       "grad-white": `linear-gradient(135deg, rgba(255, 255, 255, 0.4) 0%, rgba(255, 255, 255, 0) 100%);`,
+      "grad-footer": `linear-gradient(180deg, #241154 0%, #7F6BB3 100%);`,
     },
   },
 

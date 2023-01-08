@@ -21,7 +21,6 @@ import TrendCard from "../components/ui/TrendCard/TrendCard";
 import { getPosition } from "../utils/position";
 import CardTitle from "../components/ui/TrendCard/CardTitle/CardTitle";
 import Layout from "../components/layout/Layout";
-import theme from "../styles/theme";
 
 export default function Home(props) {
   const { data: google } = useQuery({
@@ -60,13 +59,16 @@ export default function Home(props) {
   });
 
   // console.log("Google: ", google?.current?.record?.trends);
+  // console.log("Google full: ", google);
   // console.log("Twitter: ", twitter?.current?.record?.trends);
   // console.log("Twitter full", twitter);
   // console.log("Spotify Artist: ", spotifyArtist?.current?.record?.trends);
   // console.log("Spotify Song: ", spotifySong?.current?.record?.trends);
   // console.log("Spotify Podcast: ", spotifyPodcast?.current?.record?.trends);
+  // console.log("Spotify Podcast full: ", spotifyPodcast);
   // console.log("Youtube: ", youtube?.current?.record?.trends);
-  console.log("Portals: ", portals);
+  console.log("Youtube full: ", youtube);
+  // console.log("Portals: ", portals);
 
   if (
     !google ||
@@ -95,11 +97,11 @@ export default function Home(props) {
             alignItems="center"
             flexDirection="column"
             color="white"
-            marginLeft="auto"
-            marginRight="auto"
           >
             {/* TWITTER */}
-            <CardTitle title="Lo más discutido en Twitter" display="flex" />
+            <Box id="twitter" display="flex" width="100%">
+              <CardTitle title="Lo más discutido en Twitter" />
+            </Box>
             {twitter?.current?.record?.trends?.map((trend, currentIndex) => {
               const elementInPrevious = twitter?.previous?.record?.trends?.find(
                 element => element.title === trend.title
@@ -115,20 +117,23 @@ export default function Home(props) {
                   direction={getPosition(currentIndex, prevIndex)}
                   amount={trend.amount}
                   link={trend.link}
-                  referencia="twitter"
+                  height="100px"
+                  type="twitter"
                 />
               );
             })}
 
             {/* SPOTIFY */}
-            <CardTitle title="Lo más escuchado en Spotify" />
-            <Tabs variant="soft-rounded" colorScheme="green">
-              <TabList
-                gap={1}
-                marginLeft="15px"
-                marginTop="5px"
-                marginBottom="-5px"
-              >
+            <Box id="spotify" display="flex" width="100%">
+              <CardTitle title="Lo más escuchado en Spotify" />
+            </Box>
+            <Tabs
+              variant="soft-rounded"
+              colorScheme="green"
+              w="100%"
+              className="no-padding"
+            >
+              <TabList mb={5}>
                 <Tab color="white">Artista</Tab>
                 <Tab color="white">Canción</Tab>
                 <Tab color="white">Podcast</Tab>
@@ -147,14 +152,15 @@ export default function Home(props) {
                         );
                       return (
                         <TrendCard
-                          key={trend.title}
+                          key={trend.name}
                           position={currentIndex + 1}
+                          height="171px"
                           title={trend.name}
                           direction={getPosition(currentIndex, prevIndex)}
                           amount={trend.amount}
                           streak={trend.streak}
                           link={trend.link}
-                          referencia="escuchado"
+                          type="escuchado"
                         />
                       );
                     }
@@ -173,14 +179,16 @@ export default function Home(props) {
                         );
                       return (
                         <TrendCard
-                          key={trend.title}
+                          key={trend.name}
                           position={currentIndex + 1}
+                          height="171px"
                           title={trend.name}
                           direction={getPosition(currentIndex, prevIndex)}
                           amount={trend.amount}
                           streak={trend.streak}
+                          author={trend.author}
                           link={trend.link}
-                          referencia="escuchado"
+                          type="escuchado"
                         />
                       );
                     }
@@ -199,14 +207,15 @@ export default function Home(props) {
                         );
                       return (
                         <TrendCard
-                          key={trend.title}
+                          key={trend.name}
                           position={currentIndex + 1}
+                          height="171px"
                           title={trend.name}
                           direction={getPosition(currentIndex, prevIndex)}
                           amount={trend.amount}
-                          streak={trend.streak}
                           link={trend.link}
-                          referencia="escuchado"
+                          publisher={trend.publisher}
+                          type="podcast"
                         />
                       );
                     }
@@ -216,13 +225,15 @@ export default function Home(props) {
             </Tabs>
 
             {/* YOUTUBE */}
-            <CardTitle title="Lo más visto en Youtube" />
+            <Box id="youtube" display="flex" width="100%">
+              <CardTitle title="Lo más visto en Youtube" />
+            </Box>
             {youtube?.current?.record?.trends?.map((trend, currentIndex) => {
               const elementInPrevious = youtube?.previous?.record?.trends?.find(
-                element => element.name === trend.name
+                element => element.title === trend.title
               );
               const prevIndex = youtube?.previous?.record?.trends?.findIndex(
-                element => element.name === elementInPrevious?.name
+                element => element.title === elementInPrevious?.title
               );
               return (
                 <TrendCard
@@ -231,15 +242,19 @@ export default function Home(props) {
                   title={trend.title}
                   direction={getPosition(currentIndex, prevIndex)}
                   amount={trend.amount}
-                  streak={trend.streak}
+                  height="171px"
                   link={trend.link}
-                  referencia="visto"
+                  channel={trend.channel}
+                  channelLink={trend.channelLink}
+                  type="visto"
                 />
               );
             })}
 
             {/* GOOGLE */}
-            <CardTitle title="Lo más buscado en Google" />
+            <Box id="google" display="flex" width="100%">
+              <CardTitle title="Lo más buscado en Google" />
+            </Box>
             {google?.current?.record?.trends?.map((trend, currentIndex) => {
               const elementInPrevious = google?.previous?.record?.trends?.find(
                 element => element.name === trend.name
@@ -251,25 +266,28 @@ export default function Home(props) {
                 <TrendCard
                   key={trend.title}
                   position={currentIndex + 1}
+                  height="100px"
                   title={trend.title}
                   direction={getPosition(currentIndex, prevIndex)}
                   amount={trend.amount}
                   streak={trend.streak}
                   link={trend.link}
-                  referencia="google"
+                  type="google"
                 />
               );
             })}
 
             {/* PORTALS */}
-            <CardTitle title="Lo más leído en portales de noticias" />
-            <Tabs variant="soft-rounded" colorScheme="green">
-              <TabList
-                gap={1}
-                marginLeft="15px"
-                marginTop="5px"
-                marginBottom="-5px"
-              >
+            <Box id="portals" display="flex" width="100%">
+              <CardTitle title="Lo más leído en portales de noticias" />
+            </Box>
+            <Tabs
+              variant="soft-rounded"
+              colorScheme="green"
+              w="100%"
+              className="no-padding"
+            >
+              <TabList mb={5}>
                 <Tab color="white">La Nación</Tab>
                 <Tab color="white">El Destape</Tab>
                 <Tab color="white">Clarín</Tab>
@@ -291,7 +309,7 @@ export default function Home(props) {
                         );
                       return (
                         <TrendCard
-                          key={trend.title}
+                          key={trend._id}
                           position={currentIndex + 1}
                           title={trend.article}
                           direction={getPosition(currentIndex, prevIndex)}
@@ -315,7 +333,7 @@ export default function Home(props) {
                         );
                       return (
                         <TrendCard
-                          key={trend.title}
+                          key={trend._id}
                           position={currentIndex + 1}
                           title={trend.article}
                           direction={getPosition(currentIndex, prevIndex)}
@@ -339,7 +357,7 @@ export default function Home(props) {
                         );
                       return (
                         <TrendCard
-                          key={trend.title}
+                          key={trend._id}
                           position={currentIndex + 1}
                           title={trend.article}
                           direction={getPosition(currentIndex, prevIndex)}
@@ -363,11 +381,12 @@ export default function Home(props) {
                         );
                       return (
                         <TrendCard
-                          key={trend.title}
+                          key={trend._id}
                           position={currentIndex + 1}
                           title={trend.article}
                           direction={getPosition(currentIndex, prevIndex)}
                           link={trend.link}
+                          height="157px"
                         />
                       );
                     }
@@ -387,7 +406,7 @@ export default function Home(props) {
                         );
                       return (
                         <TrendCard
-                          key={trend.title}
+                          key={trend._id}
                           position={currentIndex + 1}
                           title={trend.article}
                           direction={getPosition(currentIndex, prevIndex)}
