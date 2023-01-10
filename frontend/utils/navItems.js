@@ -1,26 +1,32 @@
 export const navItems = [
   {
-    label: "Inicio",
-    href: "/",
-  },
-  {
-    label: "Discutido",
+    id: 1,
+    label: "+ Discutido",
     href: "/discutido",
+    to: "twitter",
   },
   {
-    label: "Escuchado",
+    id: 2,
+    label: "+ Escuchado",
     href: "/escuchado",
+    to: "spotify",
   },
   {
-    label: "Visto",
+    id: 3,
+    label: "+ Visto",
     href: "/visto",
+    to: "youtube",
   },
   {
-    label: "Buscado",
+    id: 4,
+    label: "+ Buscado",
     href: "/buscado",
+    to: "google",
   },
   {
-    label: "Leído",
+    id: 5,
+    label: "+ Leído",
     href: "/leido",
+    to: "portals",
   },
 ];
