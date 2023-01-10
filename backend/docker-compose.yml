@@ -2,18 +2,6 @@ version: "3.9"
 
 name: artrends
 services:
-  mongodb:
-    container_name: mongodb
-    image: mongo:latest
-    restart: unless-stopped
-    ports:
-      - 27017:27017
-    environment:
-      MONGO_INITDB_ROOT_USERNAME: root
-      MONGO_INITDB_ROOT_PASSWORD: root
-    command: --quiet
-    volumes:
-      - mongodb-data:/data/db
   redis:
     container_name: redis
     image: redis:7.0.4-alpine
@@ -50,8 +38,6 @@ services:
       - "traefik.http.middlewares.test-redirectscheme.redirectscheme.scheme=https"
       - "traefik.http.middlewares.test-redirectscheme.redirectscheme.permanent=true"
 volumes:
-  mongodb-data:
-    name: mongodb-data
   cache:
     driver: local
 networks:
