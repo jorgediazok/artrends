@@ -456,6 +456,7 @@ export async function getServerSideProps() {
   await queryClient.prefetchQuery(["spotifySong"], getSpotifySongTrends);
   await queryClient.prefetchQuery(["spotifyPodcast"], getSpotifyPodcastTrends);
   await queryClient.prefetchQuery(["youtube"], getYoutubeTrends);
+  await queryClient.prefetchQuery(["portals"], getPortals);
 
   return {
     props: {
