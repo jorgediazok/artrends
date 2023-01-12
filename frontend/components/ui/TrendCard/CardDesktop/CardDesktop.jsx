@@ -38,10 +38,17 @@ const CardDesktop = ({
       paddingX="48px"
       paddingY="12px"
       width="100%"
-      maxHeight={height}
+      height={height}
       mb={2}
+      display="flex"
+      alignItems="center"
     >
-      <Box display="flex" justifyContent="space-between" alignItems="center">
+      <Box
+        display="flex"
+        justifyContent="space-between"
+        alignItems="center"
+        w="100%"
+      >
         <Box display="flex" gap={6} alignItems="center">
           <Box
             display="flex"

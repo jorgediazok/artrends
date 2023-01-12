@@ -330,6 +330,7 @@ export default function Home() {
                         direction={getPosition(currentIndex, prevIndex)}
                         link={trend.link}
                         type="leido"
+                        height="157px"
                       />
                     );
                   }
@@ -355,6 +356,7 @@ export default function Home() {
                         direction={getPosition(currentIndex, prevIndex)}
                         link={trend.link}
                         type="leido"
+                        height="157px"
                       />
                     );
                   }
@@ -380,6 +382,7 @@ export default function Home() {
                         direction={getPosition(currentIndex, prevIndex)}
                         link={trend.link}
                         type="leido"
+                        height="157px"
                       />
                     );
                   }
@@ -431,6 +434,7 @@ export default function Home() {
                         direction={getPosition(currentIndex, prevIndex)}
                         link={trend.link}
                         type="leido"
+                        height="157px"
                       />
                     );
                   }
