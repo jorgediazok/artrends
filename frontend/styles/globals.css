@@ -112,3 +112,22 @@ ul {
   --chakra-sizes-container-lg: 920px !important;
   --chakra-sizes-container-xl: 920px !important;
 }
+
+/* HELPER CLASSES */
+.two-max-lines {
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-height: calc(36px * 2);
+}
+
+.three-max-lines {
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-height: calc(36px * 3);
+}
