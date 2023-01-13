@@ -1,6 +1,5 @@
-import { Db } from "mongodb";
-
 // Types
+import { Db } from "mongodb";
 import { TrendRecord } from "../../types/trendsResponseSchema";
 
 interface YoutubeTrend {
