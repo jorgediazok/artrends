@@ -16,7 +16,7 @@ import cache from "./plugins/cache";
 import cors from "./plugins/cors";
 
 /* MongoDB connection */
-import { connection } from "db/connection";
+import { connection } from "./db/connection";
 
 async function bootstrap() {
 	/* Init Fastify */
