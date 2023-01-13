@@ -1,5 +1,4 @@
 import fastify from "fastify";
-
 import { TypeBoxTypeProvider } from "@fastify/type-provider-typebox";
 
 /* Routes */
@@ -15,6 +14,9 @@ import helmet from "./plugins/helmet";
 import swagger from "./plugins/swagger";
 import cache from "./plugins/cache";
 import cors from "./plugins/cors";
+
+/* MongoDB connection */
+import { connection } from "db/connection";
 
 async function bootstrap() {
 	/* Init Fastify */
@@ -37,13 +39,17 @@ async function bootstrap() {
 	await app.register(cache);
 	await app.register(cors);
 
-	/* Register Routes */
-	googleRoutes(app);
-	twitterRoutes(app);
-	spotifyRoutes(app);
-	youtubeRoutes(app);
-	portalRoutes(app);
+	/* Start DB connection */
+	const db = await connection();
 
+	/* Register Routes */
+	googleRoutes(app, db);
+	twitterRoutes(app, db);
+	spotifyRoutes(app, db);
+	youtubeRoutes(app, db);
+	portalRoutes(app, db);
+
+	/* Handle errors */
 	process.on("uncaughtException", error => {
 		app.log.error("uncaughtException:", error);
 		process.exit(1);

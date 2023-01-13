@@ -1,10 +1,6 @@
-import { MongoClient } from "mongodb";
-
 // Types
+import { Db } from "mongodb";
 import { TrendRecord } from "../../types/trendsResponseSchema";
-
-/* Environment variables */
-import { DATABASE_CONNECTION_URI } from "../../config";
 
 interface SpotifyArtistTrends {
 	name: string;
@@ -22,11 +18,9 @@ interface SpotifySongTrends {
 	streams: string;
 }
 
-export async function getArtistTrends() {
+export async function getArtistTrends(db: Db) {
 	try {
-		const client = new MongoClient(DATABASE_CONNECTION_URI);
-		const trends = await client
-			.db("artrends")
+		const trends = await db
 			.collection<TrendRecord<SpotifyArtistTrends>>("spotify.artists")
 			.find()
 			.limit(2)
@@ -51,11 +45,9 @@ export async function getArtistTrends() {
 	}
 }
 
-export async function getSongsTrends() {
+export async function getSongsTrends(db: Db) {
 	try {
-		const client = new MongoClient(DATABASE_CONNECTION_URI);
-		const trends = await client
-			.db("artrends")
+		const trends = await db
 			.collection<TrendRecord<SpotifySongTrends>>("spotify.songs")
 			.find()
 			.limit(2)
@@ -80,11 +72,9 @@ export async function getSongsTrends() {
 	}
 }
 
-export async function getPodcastsTrends() {
+export async function getPodcastsTrends(db: Db) {
 	try {
-		const client = new MongoClient(DATABASE_CONNECTION_URI);
-		const trends = await client
-			.db("artrends")
+		const trends = await db
 			.collection<TrendRecord<SpotifySongTrends>>("spotify.podcasts")
 			.find()
 			.limit(2)

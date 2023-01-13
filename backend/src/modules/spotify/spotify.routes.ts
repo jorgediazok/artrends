@@ -14,11 +14,12 @@ import {
 } from "../../types/trendsResponseSchema";
 
 // Types
+import { Db } from "mongodb";
 import { FastifyReply, FastifyRequest } from "fastify";
 import { AppInstance } from "../../types/appInstance";
 import { isCacheResult } from "../../types/cache";
 
-export default function spotifyRoutes(app: AppInstance) {
+export default function spotifyRoutes(app: AppInstance, db: Db) {
 	/* Artists trends */
 	app.get(
 		"/api/spotify/artist-trends",
@@ -52,7 +53,7 @@ export default function spotifyRoutes(app: AppInstance) {
 				}
 
 				if (!cacheHit) {
-					const result = await getArtistTrends();
+					const result = await getArtistTrends(db);
 
 					if (result?.e) {
 						app.log.error(result.e);
@@ -112,7 +113,7 @@ export default function spotifyRoutes(app: AppInstance) {
 				}
 
 				if (!cacheHit) {
-					const result = await getSongsTrends();
+					const result = await getSongsTrends(db);
 
 					if (result?.e) {
 						app.log.error(result.e);
@@ -172,7 +173,7 @@ export default function spotifyRoutes(app: AppInstance) {
 				}
 
 				if (!cacheHit) {
-					const result = await getPodcastsTrends();
+					const result = await getPodcastsTrends(db);
 
 					if (result?.e) {
 						app.log.error(result.e);

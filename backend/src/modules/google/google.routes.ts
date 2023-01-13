@@ -7,10 +7,11 @@ import { TrendPayload } from "../../types/trendsResponseSchema";
 
 // Types
 import { FastifyReply, FastifyRequest } from "fastify";
+import { Db } from "mongodb";
 import { AppInstance } from "../../types/appInstance";
 import { isCacheResult } from "../../types/cache";
 
-export default function googleRoutes(app: AppInstance) {
+export default function googleRoutes(app: AppInstance, db: Db) {
 	return app.get(
 		"/api/google-trends",
 		{
@@ -37,7 +38,7 @@ export default function googleRoutes(app: AppInstance) {
 				}
 
 				if (!cacheHit) {
-					const result = await getGoogleTrends();
+					const result = await getGoogleTrends(db);
 
 					if (result.e) {
 						app.log.error(result.e);
