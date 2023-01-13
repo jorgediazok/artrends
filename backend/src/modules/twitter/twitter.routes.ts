@@ -6,11 +6,12 @@ import { Type } from "@sinclair/typebox";
 import { TrendPayload } from "../../types/trendsResponseSchema";
 
 // Types
+import { Db } from "mongodb";
 import { FastifyReply, FastifyRequest } from "fastify";
 import { AppInstance } from "../../types/appInstance";
 import { isCacheResult } from "../../types/cache";
 
-export default function twitterRoutes(app: AppInstance) {
+export default function twitterRoutes(app: AppInstance, db: Db) {
 	return app.get(
 		"/api/twitter-trends",
 		{
@@ -37,7 +38,7 @@ export default function twitterRoutes(app: AppInstance) {
 				}
 
 				if (!cacheHit) {
-					const result = await getTwitterTrends();
+					const result = await getTwitterTrends(db);
 
 					if (result.e) {
 						app.log.error(result.e);
