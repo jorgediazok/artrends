@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import Image from "next/image";
 
 // Chakra
 import { Box, Collapse, Flex, IconButton, Input, Text } from "@chakra-ui/react";
@@ -60,15 +61,13 @@ const Navbar = () => {
           scrollnav={scrollNav.toString()}
         >
           <Box display="flex" alignItems="center" width="25%">
-            <Text
-              as="h5"
-              fontSize="30px"
-              lineHeight="120%"
-              fontWeight={700}
-              color="#ffffff"
-            >
-              ARTRENDS
-            </Text>
+            <Image
+              src="/images/logo.png"
+              alt="Artrends"
+              height={40}
+              width={174}
+              quality={100}
+            />
           </Box>
           <Box display="flex" as="ul" justifyContent="center" flex="1" gap={12}>
             {navItems.map(item => (

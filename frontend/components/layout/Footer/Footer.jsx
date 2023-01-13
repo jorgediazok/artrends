@@ -1,8 +1,14 @@
+import Image from "next/image";
+
+// Chakra
 import { Box, Text } from "@chakra-ui/react";
+
+// Icons
 import Email from "../../../public/icons/Email";
 import Twitter from "../../../public/icons/Twitter";
+
+// Theme
 import theme from "../../../styles/theme";
-import styles from "./Footer.module.css";
 
 const Footer = () => {
   return (
@@ -22,9 +28,13 @@ const Footer = () => {
         justifyContent="center"
         alignItems="center"
       >
-        <Text fontSize="md" fontWeight="bold" color="#FFFFFF">
-          ARTRENDS
-        </Text>
+        <Image
+          src="/images/logo.png"
+          alt="Artrends"
+          height={40}
+          width={174}
+          quality={100}
+        />
         <Box
           marginTop="31px"
           gap="26px"
