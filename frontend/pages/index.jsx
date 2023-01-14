@@ -69,7 +69,7 @@ export default function Home() {
   // console.log("Spotify Song: ", spotifySong?.current?.record?.trends);
   // console.log("Spotify Podcast: ", spotifyPodcast?.current?.record?.trends);
   // console.log("Spotify Podcast full: ", spotifyPodcast);
-  // console.log("Youtube: ", youtube?.current?.record?.trends);
+  console.log("Youtube: ", youtube?.current?.record?.trends);
   // console.log("Youtube full: ", youtube);
   // console.log("Portals: ", portals);
 

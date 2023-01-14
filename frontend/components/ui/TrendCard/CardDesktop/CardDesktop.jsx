@@ -4,7 +4,6 @@ import { Box, Text } from "@chakra-ui/react";
 // Icons
 import ArrowDown from "../../../../public/icons/ArrowDown";
 import ArrowUp from "../../../../public/icons/ArrowUp";
-import Open from "../../../../public/icons/Open";
 import Same from "../../../../public/icons/Same";
 import Share from "../../../../public/icons/Share";
 
@@ -25,6 +24,7 @@ const CardDesktop = ({
   type,
   publisher,
   channel,
+  channelLink,
   height,
   author,
 }) => {
@@ -69,14 +69,20 @@ const CardDesktop = ({
             maxW="600px"
             ml={2}
           >
-            <Text
-              fontWeight={type === "leido" ? 500 : 600}
-              fontSize="xl"
-              className={calculateLines(type)}
-            >
-              {title}
-            </Text>
-            {type === "visto" && <Text fontSize="xl">{channel}</Text>}
+            <a href={link} target="_blank" rel="noopener noreferrer">
+              <Text
+                fontWeight={type === "leido" ? 500 : 600}
+                fontSize="xl"
+                className={calculateLines(type)}
+              >
+                {title}
+              </Text>
+            </a>
+            {type === "visto" && (
+              <a href={channelLink} target="_blank" rel="noopener noreferrer">
+                <Text fontSize="xl">{channel}</Text>
+              </a>
+            )}
             {type === "podcast" && <Text fontSize="xl">{publisher}</Text>}
             {type === "escuchado" && <Text fontSize="xl">{author}</Text>}
             <Text className="one-max-line">
