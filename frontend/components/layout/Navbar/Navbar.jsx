@@ -60,7 +60,7 @@ const Navbar = () => {
           shadow="md"
           scrollnav={scrollNav.toString()}
         >
-          <Box display="flex" alignItems="center" width="25%">
+          <Box display="flex" alignItems="center" width="20%">
             <Image
               src="/images/logo.png"
               alt="Artrends"
@@ -91,8 +91,8 @@ const Navbar = () => {
             alignItems="center"
             justifyContent="flex-end"
             gap={5}
-            flex="0 1 25%"
-            width="25%"
+            flex="0 1 20%"
+            width="20%"
           >
             {showInput ? (
               <>

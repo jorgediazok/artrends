@@ -40,7 +40,7 @@ const CardDesktop = ({
       width="100%"
       height={height}
       mb={2}
-      display="flex"
+      display={{ base: "none", lg: "flex" }}
       alignItems="center"
     >
       <Box
