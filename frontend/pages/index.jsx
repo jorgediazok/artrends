@@ -111,6 +111,7 @@ export default function Home() {
           color="white"
           width="100%"
           p={0}
+          pt={10}
         >
           {/* TWITTER */}
           <Box id="twitter" display="flex" width="100%">

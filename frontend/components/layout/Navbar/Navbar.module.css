@@ -1,13 +1,39 @@
-.navbar {
+.nav-bar {
   padding: 0px 16px;
   display: flex;
   justify-content: space-between;
   align-items: center;
   height: 100px;
+  transition: all ease-in-out 300ms;
+
+  position: fixed;
+  position: 0;
+  width: 100%;
 }
 
 @media screen and (min-width: 1100px) {
-  .navbar {
+  .nav-bar {
     padding: 0px 32px;
   }
+}
+
+.nav-down {
+  background: linear-gradient(0deg, 0deg, 0deg);
+  padding: 0px 16px;
+  border-radius: 6px;
+  transition: all 400ms;
+  transform: translateY(-100%);
+  width: 100%;
+  position: fixed;
+}
+
+.nav-item {
+  background: linear-gradient(0deg, 0deg, 0deg);
+  padding: 0.4rem 1rem;
+  margin: -0.5rem -1rem;
+  border-radius: 6px;
+}
+
+.nav-item:hover {
+  background: #3a2471;
 }

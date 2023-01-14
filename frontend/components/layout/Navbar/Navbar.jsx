@@ -14,14 +14,19 @@ import theme from "../../../styles/theme";
 
 // Icons
 import Search from "../../../public/icons/Search";
-import Question from "../../../public/icons/Question";
 
 // Styles
 import styles from "./Navbar.module.css";
 
+// Hooks
+import { useScrollDirection } from "../../../utils/hooks";
+
 const Navbar = () => {
   const [showInput, setShowInput] = useState(false);
   const [scrollNav, setScrollNav] = useState(false);
+
+  // Hooks
+  const scrollDirection = useScrollDirection();
 
   // const handleSearch = () => {
   //   setOpenSearch(!openSearch);
@@ -48,15 +53,19 @@ const Navbar = () => {
     window.addEventListener("scroll", changeNav);
   }, []);
 
+  // Constans
+  const navBarStyles =
+    scrollDirection === "up" ? styles["nav-bar"] : styles["nav-down"];
+
   return (
     <AnimatePresence>
       <AnimateSharedLayout>
         <Flex
           as="nav"
-          className={styles.navbar}
+          className={navBarStyles}
           align="center"
           height="100px"
-          bg={theme.colors.gradients["grad-purple-2"]}
+          bg="purple.600"
           shadow="md"
           scrollnav={scrollNav.toString()}
         >
@@ -71,7 +80,12 @@ const Navbar = () => {
           </Box>
           <Box display="flex" as="ul" justifyContent="center" flex="1" gap={12}>
             {navItems.map(item => (
-              <Box key={item.id} display="flex" as="li">
+              <Box
+                key={item.id}
+                display="flex"
+                as="li"
+                className={styles["nav-item"]}
+              >
                 <Link to={item.to} smooth="true" duration={300} exact="true">
                   <Text
                     color="white.500"
@@ -135,8 +149,6 @@ const Navbar = () => {
                 }}
               />
             )}
-
-            <Question />
           </Box>
         </Flex>
       </AnimateSharedLayout>
