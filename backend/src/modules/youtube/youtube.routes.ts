@@ -6,11 +6,12 @@ import { Type } from "@sinclair/typebox";
 import { YoutubeTrendPayload } from "../../types/trendsResponseSchema";
 
 // Types
+import { Db } from "mongodb";
 import { FastifyReply, FastifyRequest } from "fastify";
 import { AppInstance } from "../../types/appInstance";
 import { isCacheResult } from "../../types/cache";
 
-export default function youtubeRoutes(app: AppInstance) {
+export default function youtubeRoutes(app: AppInstance, db: Db) {
 	return app.get(
 		"/api/youtube-trends",
 		{
@@ -37,7 +38,7 @@ export default function youtubeRoutes(app: AppInstance) {
 				}
 
 				if (!cacheHit) {
-					const result = await getYoutubeTrends();
+					const result = await getYoutubeTrends(db);
 
 					if (result.e) {
 						app.log.error(result.e);

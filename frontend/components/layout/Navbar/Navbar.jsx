@@ -1,6 +1,5 @@
 import { useState, useEffect } from "react";
-import NextLink from "next/link";
-import { Link as ChakraLink } from "@chakra-ui/react";
+import Image from "next/image";
 
 // Chakra
 import { Box, Collapse, Flex, IconButton, Input, Text } from "@chakra-ui/react";
@@ -8,6 +7,7 @@ import { Box, Collapse, Flex, IconButton, Input, Text } from "@chakra-ui/react";
 // Utils
 import { AnimatePresence, AnimateSharedLayout } from "framer-motion";
 import { Link } from "react-scroll";
+import NextLink from "next/link";
 import { navItems } from "../../../utils/navItems";
 
 // Theme
@@ -15,14 +15,19 @@ import theme from "../../../styles/theme";
 
 // Icons
 import Search from "../../../public/icons/Search";
-import Question from "../../../public/icons/Question";
 
 // Styles
 import styles from "./Navbar.module.css";
 
+// Hooks
+import { useScrollDirection } from "../../../utils/hooks";
+
 const Navbar = () => {
   const [showInput, setShowInput] = useState(false);
   const [scrollNav, setScrollNav] = useState(false);
+
+  // Hooks
+  const scrollDirection = useScrollDirection();
 
   // const handleSearch = () => {
   //   setOpenSearch(!openSearch);
@@ -49,40 +54,48 @@ const Navbar = () => {
     window.addEventListener("scroll", changeNav);
   }, []);
 
+  // Constans
+  const navBarStyles =
+    scrollDirection === "up" ? styles["nav-bar"] : styles["nav-hidden"];
+
   return (
     <AnimatePresence>
       <AnimateSharedLayout>
         <Flex
           as="nav"
-          className={styles.navbar}
+          className={navBarStyles}
           align="center"
           height="100px"
-          bg={theme.colors.gradients["grad-purple-2"]}
+          bg="purple.600"
           shadow="md"
           scrollnav={scrollNav.toString()}
+          justifyContent="center"
         >
-          <Box
-            display="flex"
-            alignItems="center"
-            width="25%"
-            textDecoration="none"
-          >
+          <Box display="flex" alignItems="center" width="20%">
             <NextLink href="/" passHref>
-              <Text
-                as="h5"
-                cursor="pointer"
-                fontSize="30px"
-                lineHeight="120%"
-                fontWeight={700}
-                color="#ffffff"
-              >
-                ARTRENDS
-              </Text>
+              <Image
+                src="/images/logo.png"
+                alt="Artrends"
+                height={40}
+                width={174}
+                quality={100}
+              />
             </NextLink>
           </Box>
-          <Box display="flex" as="ul" justifyContent="center" flex="1" gap={12}>
+          <Box
+            as="ul"
+            justifyContent="center"
+            flex="1"
+            gap={12}
+            display={{ base: "none", lg: "flex" }}
+          >
             {navItems.map(item => (
-              <Box key={item.id} display="flex" as="li">
+              <Box
+                key={item.id}
+                display="flex"
+                as="li"
+                className={styles["nav-item"]}
+              >
                 <Link to={item.to} smooth="true" duration={300} exact="true">
                   <Text
                     color="white.500"
@@ -98,12 +111,12 @@ const Navbar = () => {
             ))}
           </Box>
           <Box
-            display="flex"
             alignItems="center"
             justifyContent="flex-end"
             gap={5}
-            flex="0 1 25%"
-            width="25%"
+            flex="0 1 20%"
+            width="20%"
+            display={{ base: "none", lg: "flex" }}
           >
             {showInput ? (
               <>
@@ -146,12 +159,6 @@ const Navbar = () => {
                 }}
               />
             )}
-
-            <NextLink href="/sobre-las-tendencias" passHref>
-              <ChakraLink>
-                <Question />
-              </ChakraLink>
-            </NextLink>
           </Box>
         </Flex>
       </AnimateSharedLayout>

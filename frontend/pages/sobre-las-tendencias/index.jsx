@@ -10,7 +10,7 @@ const SobreLasTendencias = () => {
       <Box paddingX="260px" background="#241154">
         <Box display="flex" alignItems="center" justifyContent="flex-start">
           <Breadcrumb
-            marginTop="32px"
+            marginTop="152px"
             fontSize="text-sm"
             color="#FFFFFF"
             spacing="16px"
@@ -33,7 +33,7 @@ const SobreLasTendencias = () => {
           marginTop="32px"
           marginBottom="40px"
         >
-          Sobre las tendencias
+          ¿Cómo se determinan las tendencias?
         </Text>
 
         <Box fontSize="20px" color="#FFFFFF" textAlign="left">

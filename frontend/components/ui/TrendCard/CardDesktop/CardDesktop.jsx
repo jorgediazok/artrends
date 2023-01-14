@@ -10,6 +10,7 @@ import Share from "../../../../public/icons/Share";
 
 // Theme
 import theme from "../../../../styles/theme";
+import { calculateLines } from "../../../../utils/calculateLines";
 
 // Styles
 import styles from "./CardDesktop.module.css";
@@ -35,13 +36,20 @@ const CardDesktop = ({
       border="1px"
       borderColor={theme.colors.cyan[150]}
       borderRadius={theme.radius.xl}
-      paddingX="48px"
+      paddingX={type === "discutido" || type === "buscado" ? "20px" : "48px"}
       paddingY="12px"
-      width="100%"
-      maxHeight={height}
+      width={type === "discutido" || type === "buscado" ? "440px" : "100%"}
+      height={height}
       mb={2}
+      display="flex"
+      alignItems="center"
     >
-      <Box display="flex" justifyContent="space-between" alignItems="center">
+      <Box
+        display="flex"
+        justifyContent="space-between"
+        alignItems="center"
+        w="100%"
+      >
         <Box display="flex" gap={6} alignItems="center">
           <Box
             display="flex"
@@ -61,25 +69,26 @@ const CardDesktop = ({
             maxW="600px"
             ml={2}
           >
-            <Text fontWeight={type === "leido" ? 500 : 600} fontSize="2xl">
+            <Text
+              fontWeight={type === "leido" ? 500 : 600}
+              fontSize="xl"
+              className={calculateLines(type)}
+            >
               {title}
             </Text>
             {type === "visto" && <Text fontSize="xl">{channel}</Text>}
             {type === "podcast" && <Text fontSize="xl">{publisher}</Text>}
             {type === "escuchado" && <Text fontSize="xl">{author}</Text>}
-            <Text>
-              {type === "twitter" && amount + " Tweets"}
+            <Text className="one-max-line">
+              {type === "discutido" && amount + " Tweets"}
               {type === "escuchado" && streak + " Semanas seguidas"}
               {type === "visto" && amount + " reproducciones"}
-              {type === "google" && "Más de " + amount + " búsquedas"}
+              {type === "buscado" && "Más de " + amount + " búsquedas"}
             </Text>
           </Box>
         </Box>
         <Box display="flex" gap={8} alignItems="center">
           <Share />
-          <a href={link} target="_blank" rel="noreferrer">
-            <Open />
-          </a>
         </Box>
       </Box>
     </Box>

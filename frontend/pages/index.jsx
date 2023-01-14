@@ -2,7 +2,7 @@ import Head from "next/head";
 import { useQuery, QueryClient, dehydrate } from "@tanstack/react-query";
 
 // Charka UI
-import { Box, Container } from "@chakra-ui/react";
+import { Box, Container, Flex } from "@chakra-ui/react";
 import { Tabs, TabList, TabPanels, Tab, TabPanel } from "@chakra-ui/react";
 
 // API
@@ -112,31 +112,41 @@ export default function Home() {
           color="white"
           width="100%"
           p={0}
+          pt={10}
         >
           {/* TWITTER */}
           <Box id="twitter" display="flex" width="100%">
             <CardTitle title="Lo más discutido en Twitter" />
           </Box>
-          {twitter?.current?.record?.trends?.map((trend, currentIndex) => {
-            const elementInPrevious = twitter?.previous?.record?.trends?.find(
-              element => element.title === trend.title
-            );
-            const prevIndex = twitter?.previous?.record?.trends?.findIndex(
-              element => element.title === elementInPrevious?.title
-            );
-            return (
-              <TrendCard
-                key={trend.title}
-                position={currentIndex + 1}
-                title={trend.title}
-                direction={getPosition(currentIndex, prevIndex)}
-                amount={trend.amount}
-                link={trend.link}
-                height="100px"
-                type="twitter"
-              />
-            );
-          })}
+          <Flex
+            width="100%"
+            flexWrap="wrap"
+            flexDirection="column"
+            alignContent="space-between"
+            maxHeight="540px"
+            alignItems="center"
+          >
+            {twitter?.current?.record?.trends?.map((trend, currentIndex) => {
+              const elementInPrevious = twitter?.previous?.record?.trends?.find(
+                element => element.title === trend.title
+              );
+              const prevIndex = twitter?.previous?.record?.trends?.findIndex(
+                element => element.title === elementInPrevious?.title
+              );
+              return (
+                <TrendCard
+                  key={trend.title}
+                  position={currentIndex + 1}
+                  title={trend.title}
+                  direction={getPosition(currentIndex, prevIndex)}
+                  amount={trend.amount}
+                  link={trend.link}
+                  height="100px"
+                  type="discutido"
+                />
+              );
+            })}
+          </Flex>
 
           {/* SPOTIFY */}
           <Box id="spotify" display="flex" width="100%">
@@ -270,28 +280,37 @@ export default function Home() {
           <Box id="google" display="flex" width="100%">
             <CardTitle title="Lo más buscado en Google" />
           </Box>
-          {google?.current?.record?.trends?.map((trend, currentIndex) => {
-            const elementInPrevious = google?.previous?.record?.trends?.find(
-              element => element.title === trend.title
-            );
-            const prevIndex = google?.previous?.record?.trends?.findIndex(
-              element => element.title === elementInPrevious?.title
-            );
+          <Flex
+            width="100%"
+            flexWrap="wrap"
+            flexDirection="column"
+            alignContent="space-between"
+            maxHeight="540px"
+            alignItems="center"
+          >
+            {google?.current?.record?.trends?.map((trend, currentIndex) => {
+              const elementInPrevious = google?.previous?.record?.trends?.find(
+                element => element.title === trend.title
+              );
+              const prevIndex = google?.previous?.record?.trends?.findIndex(
+                element => element.title === elementInPrevious?.title
+              );
 
-            return (
-              <TrendCard
-                key={trend.title}
-                position={currentIndex + 1}
-                height="100px"
-                title={trend.title}
-                direction={getPosition(currentIndex, prevIndex)}
-                amount={trend.amount}
-                streak={trend.streak}
-                link={trend.link}
-                type="google"
-              />
-            );
-          })}
+              return (
+                <TrendCard
+                  key={trend.title}
+                  position={currentIndex + 1}
+                  height="100px"
+                  title={trend.title}
+                  direction={getPosition(currentIndex, prevIndex)}
+                  amount={trend.amount}
+                  streak={trend.streak}
+                  link={trend.link}
+                  type="buscado"
+                />
+              );
+            })}
+          </Flex>
 
           {/* PORTALS */}
           <Box id="portals" display="flex" width="100%">
@@ -331,6 +350,7 @@ export default function Home() {
                         direction={getPosition(currentIndex, prevIndex)}
                         link={trend.link}
                         type="leido"
+                        height="157px"
                       />
                     );
                   }
@@ -356,6 +376,7 @@ export default function Home() {
                         direction={getPosition(currentIndex, prevIndex)}
                         link={trend.link}
                         type="leido"
+                        height="157px"
                       />
                     );
                   }
@@ -381,6 +402,7 @@ export default function Home() {
                         direction={getPosition(currentIndex, prevIndex)}
                         link={trend.link}
                         type="leido"
+                        height="157px"
                       />
                     );
                   }
@@ -432,6 +454,7 @@ export default function Home() {
                         direction={getPosition(currentIndex, prevIndex)}
                         link={trend.link}
                         type="leido"
+                        height="157px"
                       />
                     );
                   }
@@ -457,6 +480,7 @@ export async function getServerSideProps() {
   await queryClient.prefetchQuery(["spotifySong"], getSpotifySongTrends);
   await queryClient.prefetchQuery(["spotifyPodcast"], getSpotifyPodcastTrends);
   await queryClient.prefetchQuery(["youtube"], getYoutubeTrends);
+  await queryClient.prefetchQuery(["portals"], getPortals);
 
   return {
     props: {

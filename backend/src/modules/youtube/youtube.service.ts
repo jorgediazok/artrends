@@ -1,10 +1,6 @@
-import { MongoClient } from "mongodb";
-
 // Types
+import { Db } from "mongodb";
 import { TrendRecord } from "../../types/trendsResponseSchema";
-
-/* Environment variables */
-import { DATABASE_CONNECTION_URI } from "../../config";
 
 interface YoutubeTrend {
 	title: string;
@@ -14,11 +10,9 @@ interface YoutubeTrend {
 	channelLink: string;
 }
 
-export async function getYoutubeTrends() {
+export async function getYoutubeTrends(db: Db) {
 	try {
-		const client = new MongoClient(DATABASE_CONNECTION_URI);
-		const trends = await client
-			.db("artrends")
+		const trends = await db
 			.collection<TrendRecord<YoutubeTrend>>("youtube")
 			.find()
 			.limit(2)

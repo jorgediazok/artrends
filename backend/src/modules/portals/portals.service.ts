@@ -1,19 +1,15 @@
-import { MongoClient, WithId } from "mongodb";
+import { Db, WithId } from "mongodb";
 
 // Types
 import { TrendRecord } from "../../types/trendsResponseSchema";
-
-/* Environment variables */
-import { DATABASE_CONNECTION_URI } from "../../config";
 
 interface PortalTrends {
 	link: string;
 	title: string;
 }
 
-export async function getPortalTrends() {
+export async function getPortalTrends(db: Db) {
 	try {
-		const client = new MongoClient(DATABASE_CONNECTION_URI);
 		const trends: {
 			current: Record<string, WithId<TrendRecord<PortalTrends>>>;
 			previous: Record<string, WithId<TrendRecord<PortalTrends>>>;
@@ -22,8 +18,7 @@ export async function getPortalTrends() {
 			previous: {},
 		};
 
-		const elDestapeTrends = await client
-			.db("artrends")
+		const elDestapeTrends = await db
 			.collection<TrendRecord<PortalTrends>>("portal.elDestape")
 			.find()
 			.limit(2)
@@ -40,8 +35,7 @@ export async function getPortalTrends() {
 			}
 		}
 
-		const clarinTrends = await client
-			.db("artrends")
+		const clarinTrends = await db
 			.collection<TrendRecord<PortalTrends>>("portal.clarin")
 			.find()
 			.limit(2)
@@ -58,8 +52,7 @@ export async function getPortalTrends() {
 			}
 		}
 
-		const infobaeTrends = await client
-			.db("artrends")
+		const infobaeTrends = await db
 			.collection<TrendRecord<PortalTrends>>("portal.infobae")
 			.find()
 			.limit(2)
@@ -76,8 +69,7 @@ export async function getPortalTrends() {
 			}
 		}
 
-		const telamTrends = await client
-			.db("artrends")
+		const telamTrends = await db
 			.collection<TrendRecord<PortalTrends>>("portal.telam")
 			.find()
 			.limit(2)
@@ -94,8 +86,7 @@ export async function getPortalTrends() {
 			}
 		}
 
-		const laNacionTrends = await client
-			.db("artrends")
+		const laNacionTrends = await db
 			.collection<TrendRecord<PortalTrends>>("portal.laNacion")
 			.find()
 			.limit(2)

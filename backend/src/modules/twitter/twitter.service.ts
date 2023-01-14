@@ -1,10 +1,6 @@
-import { MongoClient } from "mongodb";
-
 // Types
+import { Db } from "mongodb";
 import { TrendRecord } from "../../types/trendsResponseSchema";
-
-/* Environment variables */
-import { DATABASE_CONNECTION_URI } from "../../config";
 
 interface TwitterTrend {
 	title: string;
@@ -12,11 +8,9 @@ interface TwitterTrend {
 	amount: string;
 }
 
-export async function getTwitterTrends() {
+export async function getTwitterTrends(db: Db) {
 	try {
-		const client = new MongoClient(DATABASE_CONNECTION_URI);
-		const trends = await client
-			.db("artrends")
+		const trends = await db
 			.collection<TrendRecord<TwitterTrend>>("twitter")
 			.find()
 			.limit(2)

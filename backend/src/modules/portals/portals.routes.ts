@@ -5,11 +5,12 @@ import { getPortalTrends } from "./portals.service";
 import { Type } from "@sinclair/typebox";
 
 // Types
+import { Db } from "mongodb";
 import { FastifyReply, FastifyRequest } from "fastify";
 import { AppInstance } from "../../types/appInstance";
 import { isCacheResult } from "../../types/cache";
 
-export default function portalRoutes(app: AppInstance) {
+export default function portalRoutes(app: AppInstance, db: Db) {
 	app.get(
 		"/api/portals",
 		{
@@ -42,7 +43,7 @@ export default function portalRoutes(app: AppInstance) {
 				}
 
 				if (!cacheHit) {
-					const result = await getPortalTrends();
+					const result = await getPortalTrends(db);
 
 					app.cache.set("portal-trends", result, 360000, err => {
 						if (err) {
