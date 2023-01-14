@@ -55,7 +55,7 @@ const Navbar = () => {
 
   // Constans
   const navBarStyles =
-    scrollDirection === "up" ? styles["nav-bar"] : styles["nav-down"];
+    scrollDirection === "up" ? styles["nav-bar"] : styles["nav-hidden"];
 
   return (
     <AnimatePresence>
@@ -68,8 +68,9 @@ const Navbar = () => {
           bg="purple.600"
           shadow="md"
           scrollnav={scrollNav.toString()}
+          justifyContent="center"
         >
-          <Box display="flex" alignItems="center" width="25%">
+          <Box display="flex" alignItems="center" width="20%">
             <Image
               src="/images/logo.png"
               alt="Artrends"
@@ -78,7 +79,13 @@ const Navbar = () => {
               quality={100}
             />
           </Box>
-          <Box display="flex" as="ul" justifyContent="center" flex="1" gap={12}>
+          <Box
+            as="ul"
+            justifyContent="center"
+            flex="1"
+            gap={12}
+            display={{ base: "none", lg: "flex" }}
+          >
             {navItems.map(item => (
               <Box
                 key={item.id}
@@ -101,12 +108,12 @@ const Navbar = () => {
             ))}
           </Box>
           <Box
-            display="flex"
             alignItems="center"
             justifyContent="flex-end"
             gap={5}
-            flex="0 1 25%"
-            width="25%"
+            flex="0 1 20%"
+            width="20%"
+            display={{ base: "none", lg: "flex" }}
           >
             {showInput ? (
               <>

@@ -5,10 +5,10 @@
   align-items: center;
   height: 100px;
   transition: all ease-in-out 300ms;
-
   position: fixed;
   position: 0;
   width: 100%;
+  z-index: 100;
 }
 
 @media screen and (min-width: 1100px) {
@@ -17,7 +17,7 @@
   }
 }
 
-.nav-down {
+.nav-hidden {
   background: linear-gradient(0deg, 0deg, 0deg);
   padding: 0px 16px;
   border-radius: 6px;

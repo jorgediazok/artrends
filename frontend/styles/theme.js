@@ -1,19 +1,26 @@
 import { extendTheme } from "@chakra-ui/react";
 
-export const breakpoints = {
-  mobile: 0, // 0 a 550px
-  tablet: 550, // 550px a 1100px
-  laptop: 1100, // 1100px a 1500px
-  desktop: 1500, // desde 1500px
-};
+// export const breakpoints = {
+//   mobile: 0, // 0 a 550px
+//   tablet: 550, // 550px a 1100px
+//   laptop: 1100, // 1100px a 1500px
+//   desktop: 1500, // desde 1500px
+// };
 
-export const mediaQueries = {
-  minTablet: `@media screen and (min-width: ${breakpoints.tablet}px)`,
-  minLaptop: `@media screen and (min-width: ${breakpoints.laptop}px)`,
-  minDesktop: `@media screen and (min-width: ${breakpoints.desktop}px)`,
-};
+// export const mediaQueries = {
+//   minTablet: `@media screen and (min-width: ${breakpoints.tablet}px)`,
+//   minLaptop: `@media screen and (min-width: ${breakpoints.laptop}px)`,
+//   minDesktop: `@media screen and (min-width: ${breakpoints.desktop}px)`,
+// };
 
 const theme = extendTheme({
+  breakpoints: {
+    sm: "320px",
+    md: "768px",
+    lg: "1100px",
+    xl: "1500px",
+    "2xl": "1920",
+  },
   colors: {
     white: {
       500: "hsl(0, 0%, 100%)",
