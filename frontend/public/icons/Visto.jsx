@@ -1,6 +1,7 @@
 const Visto = () => {
   return (
     <svg
+      className={{ base: "display:none", lg: "block" }}
       width="36"
       height="19"
       viewBox="0 0 36 19"

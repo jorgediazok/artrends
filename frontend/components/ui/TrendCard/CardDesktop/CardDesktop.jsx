@@ -41,7 +41,7 @@ const CardDesktop = ({
       width={type === "discutido" || type === "buscado" ? "440px" : "100%"}
       height={height}
       mb={2}
-      display="flex"
+      display={{ base: "none", lg: "flex" }}
       alignItems="center"
     >
       <Box

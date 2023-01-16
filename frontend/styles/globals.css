@@ -143,3 +143,26 @@ ul {
   text-overflow: ellipsis;
   max-height: calc(36px * 3);
 }
+
+/* MOBILE SVG */
+
+.arrow-down {
+  width: 24px;
+  height: 24px;
+}
+
+.arrow-up {
+  width: 24px;
+  height: 24px;
+}
+
+@media screen and (max-width: 1100px) {
+  .arrow-down {
+    width: 19px;
+    height: 19px;
+  }
+  .arrow-up {
+    width: 19px;
+    height: 19px;
+  }
+}
