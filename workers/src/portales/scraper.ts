@@ -64,12 +64,9 @@ export const getPortalsMostRead = async (
 		const telamLinkLocator = await telam.locator(".moreread h5 a");
 
 		const telamArticleLinks = await telamLinkLocator.evaluateAll(
-			(list, { itemLimit, PORTAL_TELAM_URL }) => {
+			(list, { itemLimit }) => {
 				return list
-					.map(
-						linkElement =>
-							`${PORTAL_TELAM_URL}${linkElement.getAttribute("href")}`
-					)
+					.map(linkElement => linkElement.getAttribute("href"))
 					.slice(0, itemLimit);
 			},
 			{ PORTAL_TELAM_URL, itemLimit }
@@ -98,7 +95,10 @@ export const getPortalsMostRead = async (
 				return list
 					.map(
 						linkElement =>
-							`${PORTAL_INFOBAE_URL}${linkElement.getAttribute("href")}`
+							`${PORTAL_INFOBAE_URL.replace(
+								"/tendencias",
+								""
+							)}${linkElement.getAttribute("href")}`
 					)
 					.slice(0, itemLimit);
 			},
