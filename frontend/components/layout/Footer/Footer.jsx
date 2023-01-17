@@ -46,7 +46,7 @@ const Footer = () => {
           color="#FFFFFF"
           fontSize="sm"
         >
-          <NextLink href="/sobre-las-tendencias" passHref>
+          <NextLink href="/sobre-las-tendencias">
             <Text as="button">Sobre las tendencias</Text>
           </NextLink>
 
