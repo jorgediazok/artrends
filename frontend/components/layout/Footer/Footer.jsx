@@ -2,7 +2,7 @@ import Image from "next/image";
 import NextLink from "next/link";
 
 // Chakra
-import { Box, Link, Text } from "@chakra-ui/react";
+import { Box, Text } from "@chakra-ui/react";
 
 // Icons
 import Email from "../../../public/icons/Email";
