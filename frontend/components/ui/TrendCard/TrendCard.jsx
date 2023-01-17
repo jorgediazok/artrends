@@ -16,20 +16,36 @@ const TrendCard = ({
   author,
 }) => {
   return (
-    <CardDesktop
-      title={title}
-      link={link}
-      amount={amount}
-      position={position}
-      direction={direction}
-      streak={streak}
-      channel={channel}
-      channelLink={channelLink}
-      author={author}
-      publisher={publisher}
-      height={height}
-      type={type}
-    />
+    <>
+      <CardDesktop
+        title={title}
+        link={link}
+        amount={amount}
+        position={position}
+        direction={direction}
+        streak={streak}
+        channel={channel}
+        channelLink={channelLink}
+        author={author}
+        publisher={publisher}
+        height={height}
+        type={type}
+      />
+      <CardMobile
+        title={title}
+        link={link}
+        amount={amount}
+        position={position}
+        direction={direction}
+        streak={streak}
+        channel={channel}
+        channelLink={channelLink}
+        author={author}
+        publisher={publisher}
+        height={height}
+        type={type}
+      />
+    </>
   );
 };
 

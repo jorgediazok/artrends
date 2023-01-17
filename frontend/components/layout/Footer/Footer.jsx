@@ -1,7 +1,8 @@
 import Image from "next/image";
+import NextLink from "next/link";
 
 // Chakra
-import { Box, Text } from "@chakra-ui/react";
+import { Box, Link, Text } from "@chakra-ui/react";
 
 // Icons
 import Email from "../../../public/icons/Email";
@@ -16,7 +17,6 @@ const Footer = () => {
       width="100%"
       bg={theme.colors.gradients["grad-footer"]}
       height="315px"
-      mt="80px"
       as="footer"
       display="flex"
       justifyContent="center"
@@ -46,7 +46,10 @@ const Footer = () => {
           color="#FFFFFF"
           fontSize="sm"
         >
-          <Text>Sobre las tendencias</Text>
+          <NextLink href="/sobre-las-tendencias" passHref>
+            <Text as="button">Sobre las tendencias</Text>
+          </NextLink>
+
           <Text>Contacto</Text>
           <Text>Políticas de privacidad</Text>
         </Box>
