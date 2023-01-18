@@ -5,8 +5,8 @@ import NextLink from "next/link";
 import { Box, Text } from "@chakra-ui/react";
 
 // Icons
-import Email from "../../../public/icons/Email";
-import Twitter from "../../../public/icons/Twitter";
+import Email from "../../ui/icons/Email";
+import Twitter from "../../ui/icons/Twitter";
 
 // Theme
 import theme from "../../../styles/theme";

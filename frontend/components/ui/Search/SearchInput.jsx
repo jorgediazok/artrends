@@ -1,6 +1,12 @@
-import { Input, IconButton, Box, Collapse } from "@chakra-ui/react";
 import { useState } from "react";
-import Search from "../../../public/icons/Search";
+
+// Chakra
+import { Input, IconButton, Box, Collapse } from "@chakra-ui/react";
+
+// Icons
+import Search from "../../ui/icons/Search";
+
+// Theme
 import theme from "../../../styles/theme";
 
 const SearchInput = () => {

@@ -13,7 +13,7 @@ import { navItems } from "../../../utils/navItems";
 import theme from "../../../styles/theme";
 
 // Icons
-import Search from "../../../public/icons/Search";
+import Search from "../../ui/icons/Search";
 
 // Styles
 import styles from "./Navbar.module.css";
@@ -105,6 +105,7 @@ const Navbar = () => {
           </Box>
         ))}
       </Box>
+      {/* Desktop Search Icon */}
       <Box
         alignItems="center"
         justifyContent="flex-end"

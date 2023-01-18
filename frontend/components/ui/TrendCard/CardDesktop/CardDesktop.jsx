@@ -2,10 +2,10 @@
 import { Box, Text } from "@chakra-ui/react";
 
 // Icons
-import ArrowDown from "../../../../public/icons/ArrowDown";
-import ArrowUp from "../../../../public/icons/ArrowUp";
-import Same from "../../../../public/icons/Same";
-import Share from "../../../../public/icons/Share";
+import ArrowDown from "../../icons/ArrowDown";
+import ArrowUp from "../../icons/ArrowUp";
+import Same from "../../icons/Same";
+import Share from "../../icons/Share";
 
 // Theme
 import theme from "../../../../styles/theme";

@@ -2,13 +2,15 @@
 import { Box, Text } from "@chakra-ui/react";
 
 // Icons
-import ArrowDown from "../../../../public/icons/ArrowDown";
-import ArrowUp from "../../../../public/icons/ArrowUp";
-import Same from "../../../../public/icons/Same";
-import ThreeDots from "../../../../public/icons/ThreeDots";
+import ArrowDown from "../../icons/ArrowDown";
+import ArrowUp from "../../icons/ArrowUp";
+import Same from "../../icons/Same";
+import ThreeDots from "../../icons/ThreeDots";
 
 // Theme
 import theme from "../../../../styles/theme";
+
+// Utils
 import { calculateLines } from "../../../../utils/calculateLines";
 
 // Styles
