@@ -1,5 +1,204 @@
 import { Type } from "@sinclair/typebox";
 
+export const AllTrendsPayload = Type.Object({
+	google: Type.Object({
+		current: Type.Object({
+			_id: Type.String(),
+			record: Type.Object({
+				date: Type.String(),
+				trends: Type.Array(
+					Type.Object({
+						title: Type.String(),
+						link: Type.String(),
+						amount: Type.String(),
+					})
+				),
+			}),
+		}),
+		previous: Type.Object({
+			_id: Type.String(),
+			record: Type.Object({
+				date: Type.String(),
+				trends: Type.Array(
+					Type.Object({
+						title: Type.String(),
+						link: Type.String(),
+						amount: Type.String(),
+					})
+				),
+			}),
+		}),
+	}),
+	twitter: Type.Object({
+		current: Type.Object({
+			_id: Type.String(),
+			record: Type.Object({
+				date: Type.String(),
+				trends: Type.Array(
+					Type.Object({
+						title: Type.String(),
+						link: Type.String(),
+						amount: Type.String(),
+					})
+				),
+			}),
+		}),
+		previous: Type.Object({
+			_id: Type.String(),
+			record: Type.Object({
+				date: Type.String(),
+				trends: Type.Array(
+					Type.Object({
+						title: Type.String(),
+						link: Type.String(),
+						amount: Type.String(),
+					})
+				),
+			}),
+		}),
+	}),
+	youtube: Type.Object({
+		current: Type.Object({
+			_id: Type.String(),
+			record: Type.Object({
+				date: Type.String(),
+				trends: Type.Array(
+					Type.Object({
+						title: Type.String(),
+						link: Type.String(),
+						amount: Type.String(),
+					})
+				),
+			}),
+		}),
+		previous: Type.Object({
+			_id: Type.String(),
+			record: Type.Object({
+				date: Type.String(),
+				trends: Type.Array(
+					Type.Object({
+						title: Type.String(),
+						link: Type.String(),
+						amount: Type.String(),
+					})
+				),
+			}),
+		}),
+	}),
+	portals: Type.Object({
+		current: Type.Object({
+			_id: Type.String(),
+			record: Type.Object({
+				date: Type.String(),
+				trends: Type.Array(
+					Type.Object({
+						title: Type.String(),
+						link: Type.String(),
+						amount: Type.String(),
+					})
+				),
+			}),
+		}),
+		previous: Type.Object({
+			_id: Type.String(),
+			record: Type.Object({
+				date: Type.String(),
+				trends: Type.Array(
+					Type.Object({
+						title: Type.String(),
+						link: Type.String(),
+						amount: Type.String(),
+					})
+				),
+			}),
+		}),
+	}),
+	spotifyArtists: Type.Object({
+		current: Type.Object({
+			_id: Type.String(),
+			record: Type.Object({
+				date: Type.String(),
+				trends: Type.Array(
+					Type.Object({
+						title: Type.String(),
+						link: Type.String(),
+						amount: Type.String(),
+					})
+				),
+			}),
+		}),
+		previous: Type.Object({
+			_id: Type.String(),
+			record: Type.Object({
+				date: Type.String(),
+				trends: Type.Array(
+					Type.Object({
+						title: Type.String(),
+						link: Type.String(),
+						amount: Type.String(),
+					})
+				),
+			}),
+		}),
+	}),
+	spotifySongs: Type.Object({
+		current: Type.Object({
+			_id: Type.String(),
+			record: Type.Object({
+				date: Type.String(),
+				trends: Type.Array(
+					Type.Object({
+						title: Type.String(),
+						link: Type.String(),
+						amount: Type.String(),
+					})
+				),
+			}),
+		}),
+		previous: Type.Object({
+			_id: Type.String(),
+			record: Type.Object({
+				date: Type.String(),
+				trends: Type.Array(
+					Type.Object({
+						title: Type.String(),
+						link: Type.String(),
+						amount: Type.String(),
+					})
+				),
+			}),
+		}),
+	}),
+	spotifyPodcasts: Type.Object({
+		current: Type.Object({
+			_id: Type.String(),
+			record: Type.Object({
+				date: Type.String(),
+				trends: Type.Array(
+					Type.Object({
+						title: Type.String(),
+						link: Type.String(),
+						amount: Type.String(),
+					})
+				),
+			}),
+		}),
+		previous: Type.Object({
+			_id: Type.String(),
+			record: Type.Object({
+				date: Type.String(),
+				trends: Type.Array(
+					Type.Object({
+						title: Type.String(),
+						link: Type.String(),
+						amount: Type.String(),
+					})
+				),
+			}),
+		}),
+	}),
+});
+
 export const TrendPayload = Type.Object({
 	current: Type.Object({
 		_id: Type.String(),

@@ -7,6 +7,7 @@ import twitterRoutes from "./modules/twitter";
 import spotifyRoutes from "./modules/spotify";
 import youtubeRoutes from "./modules/youtube";
 import portalRoutes from "./modules/portals";
+import trendsRoutes from "./modules/trends";
 
 /* Plugins */
 import rateLimiter from "./plugins/rateLimiter";
@@ -48,6 +49,7 @@ async function bootstrap() {
 	spotifyRoutes(app, db);
 	youtubeRoutes(app, db);
 	portalRoutes(app, db);
+	trendsRoutes(app, db);
 
 	/* Handle errors */
 	process.on("uncaughtException", error => {
