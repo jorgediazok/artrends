@@ -181,16 +181,16 @@ async function bootstrap() {
 	/* Get Twitter trends cron - At 22 mins of every hour */
 	schedule("22 * * * *", () => twitterTrendingTopicsScraper(db));
 
-	/* Get Youtube trends cron - At 03 mins of every hour */
-	schedule("03 * * * *", () => youtubeTopVideos(db));
+	/* Get Youtube trends cron - At 33 mins every two hours */
+	schedule("0 33 */2 * * *", () => youtubeTopVideos(db));
 
 	/* Get portals top articles cron - At 44 every hour */
 	schedule("44 * * * *", () => portalsMostReadArticles(db));
 
-	/* Get Spotify top songs and artists cron - At 3:30 every tuesday */
+	/* Get Spotify top songs and artists cron - At 3:30 every sunday */
 	schedule("30 3 * * Sun", () => spotifyTopSongsAndArtistsScraper(db));
 
-	/* Get Spotify top pocasts cron - At 3:30 every wednesday */
+	/* Get Spotify top pocasts cron - At 3:50 every sunday */
 	schedule("50 3 * * Sun", () => spotifyTopPodcasts(db));
 
 	console.log("Worker started succesfully, waiting for jobs...");
