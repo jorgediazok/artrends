@@ -37,25 +37,29 @@ const items = [
   },
 ];
 
-export default function MobileCarousel() {
-  const [activeIndex, setActiveIndex] = useState(0);
-
+export default function MobileCarousel({ activeSectionIndex }) {
   return (
     <Box
       as="nav"
       display={{ base: "flex", lg: "none" }}
-      pt={40}
+      position="fixed"
+      top="0"
+      pt={2}
       maxWidth="100%"
     >
       <ul className={styles.container}>
-        {items.map(({ nombre, Icon }) => {
+        {items.map(({ nombre, Icon }, index) => {
           return (
             <Box
               as="li"
               key={nombre}
               shadow="sm"
               flexDir="column"
-              background={theme.colors.gradients["grad-purp-45"]}
+              background={
+                index === activeSectionIndex
+                  ? "indigo.800"
+                  : theme.colors.gradients["grad-purp-45"]
+              }
               height="86px"
               minW="86px"
               display="flex"

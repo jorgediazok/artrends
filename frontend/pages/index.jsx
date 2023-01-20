@@ -1,6 +1,7 @@
-import { useRef } from "react";
+import { useEffect, useState } from "react";
 import Head from "next/head";
 import { useQuery, QueryClient, dehydrate } from "@tanstack/react-query";
+import { useInView } from "react-intersection-observer";
 
 // Charka UI
 import { Box, Container, Flex, Text } from "@chakra-ui/react";
@@ -29,6 +30,16 @@ import { getPosition } from "../utils/position";
 import SearchInput from "../components/ui/Search/SearchInput";
 
 export default function Home() {
+  const [activeSectionIndex, setActiveSectionIndex] = useState();
+
+  // Hooks
+  const { ref: twitterSectionRef, inView: twitterIsInView } = useInView();
+  const { ref: spotifySectionRef, inView: spotifyIsInView } = useInView();
+  const { ref: googleSectionRef, inView: googleIsInView } = useInView();
+  const { ref: youtubeSectionRef, inView: youtubeIsInView } = useInView();
+  const { ref: portalSectionRef, inView: portalsIsInView } = useInView();
+
+  // Queries
   const { data: google } = useQuery({
     queryKey: ["google"],
     queryFn: getGoogleTrends,
@@ -76,6 +87,37 @@ export default function Home() {
   // console.log("Youtube full: ", youtube);
   // console.log("Portals: ", portals);
 
+  // Effects
+  useEffect(() => {
+    console.log(portalsIsInView);
+    if (twitterIsInView) {
+      setActiveSectionIndex(0);
+      return;
+    }
+    if (spotifyIsInView) {
+      setActiveSectionIndex(1);
+      return;
+    }
+    if (youtubeIsInView) {
+      setActiveSectionIndex(2);
+      return;
+    }
+    if (googleIsInView) {
+      setActiveSectionIndex(3);
+      return;
+    }
+    if (portalsIsInView) {
+      setActiveSectionIndex(4);
+      return;
+    }
+  }, [
+    googleIsInView,
+    portalsIsInView,
+    spotifyIsInView,
+    twitterIsInView,
+    youtubeIsInView,
+  ]);
+
   if (
     !google ||
     !twitter ||
@@ -100,7 +142,7 @@ export default function Home() {
 
       <Box as="main" className="main-background-home">
         {/* MOBILE CAROUSEL */}
-        <MobileCarousel />
+        <MobileCarousel activeSectionIndex={activeSectionIndex} />
 
         <Container
           maxW="container.lg"
@@ -130,6 +172,7 @@ export default function Home() {
             display="flex"
             width="100%"
             mt={{ base: "24px", lg: "128px" }}
+            ref={twitterSectionRef}
           >
             <CardTitle title="Lo más discutido en Twitter" />
           </Box>
@@ -171,6 +214,7 @@ export default function Home() {
             display="flex"
             width="100%"
             mt={{ base: "24px", lg: "72px" }}
+            ref={spotifySectionRef}
           >
             <CardTitle title="Lo más escuchado en Spotify" />
           </Box>
@@ -323,6 +367,7 @@ export default function Home() {
             display="flex"
             width="100%"
             mt={{ base: "24px", lg: "72px" }}
+            ref={youtubeSectionRef}
           >
             <CardTitle title="Lo más visto en Youtube" />
           </Box>
@@ -360,7 +405,13 @@ export default function Home() {
           </Box>
 
           {/* GOOGLE */}
-          <Box id="google" display="flex" width="100%" mt="24px">
+          <Box
+            id="google"
+            display="flex"
+            width="100%"
+            mt="24px"
+            ref={googleSectionRef}
+          >
             <CardTitle title="Lo más buscado en Google" />
           </Box>
           <Flex
@@ -403,6 +454,7 @@ export default function Home() {
             display="flex"
             width="100%"
             mt={{ base: "24px", lg: "72px" }}
+            ref={portalSectionRef}
           >
             <CardTitle title="Lo más leído en portales de noticias" />
           </Box>

@@ -62,7 +62,7 @@ const Navbar = () => {
       as="nav"
       className={navBarStyles}
       align="center"
-      height="100px"
+      height={{ base: "48px", lg: "100px" }}
       bg="purple.600"
       shadow="md"
       scrollnav={scrollNav.toString()}
