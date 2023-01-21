@@ -29,7 +29,7 @@ const Footer = () => {
         alignItems="center"
       >
         <Image
-          src="/images/logo.png"
+          src="/images/logo-desktop.png"
           alt="Artrends"
           height={40}
           width={174}

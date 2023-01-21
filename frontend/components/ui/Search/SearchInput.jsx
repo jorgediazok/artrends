@@ -19,7 +19,12 @@ const SearchInput = () => {
   };
 
   return (
-    <Box alignItems="center" justifyContent="flex-end" gap={5} width="20%">
+    <Box
+      alignItems="center"
+      justifyContent="flex-end"
+      gap={5}
+      width={{ base: "100%", lg: "20%" }}
+    >
       {showInput ? (
         <>
           <Collapse in={showInput} animateOpacity>

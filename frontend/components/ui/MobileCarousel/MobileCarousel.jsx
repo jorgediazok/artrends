@@ -1,5 +1,3 @@
-import { useState } from "react";
-
 // Icons
 import Discutido from "../icons/Chat";
 import Escuchado from "../icons/Escuchado";
@@ -12,6 +10,8 @@ import { Box, Text } from "@chakra-ui/react";
 
 // Styles
 import styles from "./MobileCarousel.module.css";
+
+// Theme
 import theme from "../../../styles/theme";
 
 const items = [
@@ -42,9 +42,9 @@ export default function MobileCarousel({ activeSectionIndex }) {
     <Box
       as="nav"
       display={{ base: "flex", lg: "none" }}
-      position="fixed"
-      top="0"
-      pt={2}
+      position="relative"
+      top="16px"
+      pt="16px"
       maxWidth="100%"
     >
       <ul className={styles.container}>

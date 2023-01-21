@@ -89,7 +89,6 @@ export default function Home() {
 
   // Effects
   useEffect(() => {
-    console.log(portalsIsInView);
     if (twitterIsInView) {
       setActiveSectionIndex(0);
       return;
@@ -138,12 +137,9 @@ export default function Home() {
       </Head>
 
       {/* NAV */}
-      <Navbar />
+      <Navbar activeSectionIndex={activeSectionIndex} />
 
       <Box as="main" className="main-background-home">
-        {/* MOBILE CAROUSEL */}
-        <MobileCarousel activeSectionIndex={activeSectionIndex} />
-
         <Container
           maxW="container.lg"
           display="flex"
@@ -154,18 +150,6 @@ export default function Home() {
           width="100%"
           p={0}
         >
-          {/* MOBILE SEARCH INPUT */}
-          <Box
-            display={{ base: "block", lg: "none" }}
-            alignItems="center"
-            width="100%"
-            justifyContent="center"
-            marginTop="24px"
-            padding="0 16px"
-          >
-            <SearchInput />
-          </Box>
-
           {/* TWITTER */}
           <Box
             id="twitter"
