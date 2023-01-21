@@ -23,21 +23,29 @@ import Navbar from "../components/layout/Navbar";
 import Footer from "../components/layout/Footer";
 import TrendCard from "../components/ui/TrendCard/TrendCard";
 import CardTitle from "../components/ui/TrendCard/CardTitle/CardTitle";
-import MobileCarousel from "../components/ui/MobileCarousel/MobileCarousel";
 
 // Utils
 import { getPosition } from "../utils/position";
-import SearchInput from "../components/ui/Search/SearchInput";
 
 export default function Home() {
   const [activeSectionIndex, setActiveSectionIndex] = useState();
 
   // Hooks
-  const { ref: twitterSectionRef, inView: twitterIsInView } = useInView();
-  const { ref: spotifySectionRef, inView: spotifyIsInView } = useInView();
-  const { ref: googleSectionRef, inView: googleIsInView } = useInView();
-  const { ref: youtubeSectionRef, inView: youtubeIsInView } = useInView();
-  const { ref: portalSectionRef, inView: portalsIsInView } = useInView();
+  const { ref: twitterSectionRef, inView: twitterIsInView } = useInView({
+    delay: 1000,
+  });
+  const { ref: spotifySectionRef, inView: spotifyIsInView } = useInView({
+    delay: 1000,
+  });
+  const { ref: googleSectionRef, inView: googleIsInView } = useInView({
+    delay: 1000,
+  });
+  const { ref: youtubeSectionRef, inView: youtubeIsInView } = useInView({
+    delay: 1000,
+  });
+  const { ref: portalSectionRef, inView: portalsIsInView } = useInView({
+    delay: 1000,
+  });
 
   // Queries
   const { data: google } = useQuery({
