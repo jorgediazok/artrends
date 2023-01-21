@@ -5,8 +5,8 @@ import NextLink from "next/link";
 import { Box, Text } from "@chakra-ui/react";
 
 // Icons
-import Email from "../../../public/icons/Email";
-import Twitter from "../../../public/icons/Twitter";
+import Email from "../../ui/icons/Email";
+import Twitter from "../../ui/icons/Twitter";
 
 // Theme
 import theme from "../../../styles/theme";
@@ -29,7 +29,7 @@ const Footer = () => {
         alignItems="center"
       >
         <Image
-          src="/images/logo.png"
+          src="/images/logo-desktop.png"
           alt="Artrends"
           height={40}
           width={174}

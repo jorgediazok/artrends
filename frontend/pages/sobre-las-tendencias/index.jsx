@@ -1,7 +1,12 @@
+// Chakra
 import { Box, Breadcrumb, BreadcrumbItem, Text } from "@chakra-ui/react";
+
+// Components
 import Footer from "../../components/layout/Footer";
 import Navbar from "../../components/layout/Navbar";
-import ArrowRight from "../../public/icons/ArrowRight";
+
+// Icons
+import ArrowRight from "../../icons/ArrowRight";
 
 const SobreLasTendencias = () => {
   return (

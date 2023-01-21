@@ -1,0 +1,12 @@
+.container {
+  display: flex;
+  overflow: auto;
+  gap: 10px;
+  padding: 16px;
+}
+
+.container svg {
+  width: 36px;
+  height: 36px !important;
+  height: auto;
+}

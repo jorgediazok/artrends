@@ -2,10 +2,10 @@
 import { Badge, Box, Text } from "@chakra-ui/react";
 
 // Icons
-import Chat from "../../../../public/icons/Chat";
-import Escuchado from "../../../../public/icons/Escuchado";
-import Search from "../../../../public/icons/Search";
-import Visto from "../../../../public/icons/Visto";
+import Chat from "../../icons/Chat";
+import Escuchado from "../../icons/Escuchado";
+import Search from "../../icons/Search";
+import Visto from "../../icons/Visto";
 
 const CardTitle = ({ title }) => {
   return (
@@ -18,8 +18,6 @@ const CardTitle = ({ title }) => {
       justifyContent={{ base: "flex-start", lg: "space-between" }}
       width="100%"
       flexDirection={{ base: "column", lg: "row" }}
-      marginTop="72px"
-      marginBottom="22px"
     >
       <Box display="flex" gap={3} alignItems="center">
         <Text fontSize={{ base: "md", lg: "2xl" }}>{title}</Text>

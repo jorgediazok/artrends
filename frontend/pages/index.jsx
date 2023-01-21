@@ -1,5 +1,7 @@
+import { useEffect, useState } from "react";
 import Head from "next/head";
 import { useQuery, QueryClient, dehydrate } from "@tanstack/react-query";
+import { useInView } from "react-intersection-observer";
 
 // Charka UI
 import { Box, Container, Flex, Text } from "@chakra-ui/react";
@@ -21,12 +23,23 @@ import Navbar from "../components/layout/Navbar";
 import Footer from "../components/layout/Footer";
 import TrendCard from "../components/ui/TrendCard/TrendCard";
 import CardTitle from "../components/ui/TrendCard/CardTitle/CardTitle";
+import MobileCarousel from "../components/ui/MobileCarousel/MobileCarousel";
 
 // Utils
 import { getPosition } from "../utils/position";
 import SearchInput from "../components/ui/Search/SearchInput";
 
 export default function Home() {
+  const [activeSectionIndex, setActiveSectionIndex] = useState();
+
+  // Hooks
+  const { ref: twitterSectionRef, inView: twitterIsInView } = useInView();
+  const { ref: spotifySectionRef, inView: spotifyIsInView } = useInView();
+  const { ref: googleSectionRef, inView: googleIsInView } = useInView();
+  const { ref: youtubeSectionRef, inView: youtubeIsInView } = useInView();
+  const { ref: portalSectionRef, inView: portalsIsInView } = useInView();
+
+  // Queries
   const { data: google } = useQuery({
     queryKey: ["google"],
     queryFn: getGoogleTrends,
@@ -74,6 +87,36 @@ export default function Home() {
   // console.log("Youtube full: ", youtube);
   // console.log("Portals: ", portals);
 
+  // Effects
+  useEffect(() => {
+    if (twitterIsInView) {
+      setActiveSectionIndex(0);
+      return;
+    }
+    if (spotifyIsInView) {
+      setActiveSectionIndex(1);
+      return;
+    }
+    if (youtubeIsInView) {
+      setActiveSectionIndex(2);
+      return;
+    }
+    if (googleIsInView) {
+      setActiveSectionIndex(3);
+      return;
+    }
+    if (portalsIsInView) {
+      setActiveSectionIndex(4);
+      return;
+    }
+  }, [
+    googleIsInView,
+    portalsIsInView,
+    spotifyIsInView,
+    twitterIsInView,
+    youtubeIsInView,
+  ]);
+
   if (
     !google ||
     !twitter ||
@@ -94,16 +137,9 @@ export default function Home() {
       </Head>
 
       {/* NAV */}
-      <Navbar />
+      <Navbar activeSectionIndex={activeSectionIndex} />
 
-      <Box
-        display="flex"
-        justifyContent="center"
-        alignItems="center"
-        width="100%"
-        as="main"
-        className="main-background-home"
-      >
+      <Box as="main" className="main-background-home">
         <Container
           maxW="container.lg"
           display="flex"
@@ -113,21 +149,15 @@ export default function Home() {
           color="white"
           width="100%"
           p={0}
-          pt={10}
         >
-          <Box
-            display={{ base: "block", lg: "none" }}
-            alignItems="center"
-            width="100%"
-            justifyContent="center"
-            marginTop="80px"
-            marginBottom="-20px"
-            padding="0 16px"
-          >
-            <SearchInput />
-          </Box>
           {/* TWITTER */}
-          <Box id="twitter" display="flex" width="100%">
+          <Box
+            id="twitter"
+            display="flex"
+            width="100%"
+            mt={{ base: "24px", lg: "128px" }}
+            ref={twitterSectionRef}
+          >
             <CardTitle title="Lo más discutido en Twitter" />
           </Box>
           <Flex
@@ -136,6 +166,7 @@ export default function Home() {
             flexDirection="column"
             alignContent="space-between"
             paddingX={{ base: "16px", lg: "0" }}
+            mt="24px"
             maxHeight={{ base: "none", lg: "540px" }}
             alignItems="center"
           >
@@ -162,7 +193,13 @@ export default function Home() {
           </Flex>
 
           {/* SPOTIFY */}
-          <Box id="spotify" display="flex" width="100%">
+          <Box
+            id="spotify"
+            display="flex"
+            width="100%"
+            mt={{ base: "24px", lg: "72px" }}
+            ref={spotifySectionRef}
+          >
             <CardTitle title="Lo más escuchado en Spotify" />
           </Box>
           <Tabs
@@ -171,7 +208,7 @@ export default function Home() {
             w="100%"
             className="no-padding"
           >
-            <TabList mb={5} ml={{ base: "16px", lg: "0" }}>
+            <TabList mb="24px" ml={{ base: "16px", lg: 0 }} mt="24px">
               <Tab
                 color="white"
                 paddingX={{ base: "12px", lg: "16px" }}
@@ -205,6 +242,7 @@ export default function Home() {
                   alignContent="space-between"
                   paddingX={{ base: "16px", lg: "0" }}
                   alignItems="center"
+                  overflow="auto"
                 >
                   {spotifyArtist?.current?.record?.trends?.map(
                     (trend, currentIndex) => {
@@ -308,7 +346,13 @@ export default function Home() {
           </Tabs>
 
           {/* YOUTUBE */}
-          <Box id="youtube" display="flex" width="100%">
+          <Box
+            id="youtube"
+            display="flex"
+            width="100%"
+            mt={{ base: "24px", lg: "72px" }}
+            ref={youtubeSectionRef}
+          >
             <CardTitle title="Lo más visto en Youtube" />
           </Box>
 
@@ -318,6 +362,7 @@ export default function Home() {
             alignContent="space-between"
             paddingX={{ base: "16px", lg: "0" }}
             alignItems="center"
+            mt="24px"
           >
             {youtube?.current?.record?.trends?.map((trend, currentIndex) => {
               const elementInPrevious = youtube?.previous?.record?.trends?.find(
@@ -344,7 +389,13 @@ export default function Home() {
           </Box>
 
           {/* GOOGLE */}
-          <Box id="google" display="flex" width="100%">
+          <Box
+            id="google"
+            display="flex"
+            width="100%"
+            mt="24px"
+            ref={googleSectionRef}
+          >
             <CardTitle title="Lo más buscado en Google" />
           </Box>
           <Flex
@@ -355,6 +406,7 @@ export default function Home() {
             alignContent="space-between"
             maxHeight={{ base: "none", lg: "540px" }}
             alignItems="center"
+            mt="24px"
           >
             {google?.current?.record?.trends?.map((trend, currentIndex) => {
               const elementInPrevious = google?.previous?.record?.trends?.find(
@@ -381,16 +433,24 @@ export default function Home() {
           </Flex>
 
           {/* PORTALS */}
-          <Box id="portals" display="flex" width="100%">
+          <Box
+            id="portals"
+            display="flex"
+            width="100%"
+            mt={{ base: "24px", lg: "72px" }}
+            ref={portalSectionRef}
+          >
             <CardTitle title="Lo más leído en portales de noticias" />
           </Box>
           <Tabs
             variant="soft-rounded"
             colorScheme="green"
-            w="100%"
+            width="100%"
+            overflow="auto"
             className="no-padding"
+            mt="24px"
           >
-            <TabList mb={5} ml={{ base: "16px", lg: "0px" }}>
+            <TabList mb="24px" ml={{ base: "16px", lg: "0px" }}>
               <Tab
                 color="white"
                 paddingX={{ base: "12px", lg: "16px" }}

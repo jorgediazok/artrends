@@ -1,6 +1,12 @@
-import { Input, IconButton, Box, Collapse } from "@chakra-ui/react";
 import { useState } from "react";
-import Search from "../../../public/icons/Search";
+
+// Chakra
+import { Input, IconButton, Box, Collapse } from "@chakra-ui/react";
+
+// Icons
+import Search from "../../ui/icons/Search";
+
+// Theme
 import theme from "../../../styles/theme";
 
 const SearchInput = () => {
@@ -13,7 +19,12 @@ const SearchInput = () => {
   };
 
   return (
-    <Box alignItems="center" justifyContent="flex-end" gap={5} width="20%">
+    <Box
+      alignItems="center"
+      justifyContent="flex-end"
+      gap={5}
+      width={{ base: "100%", lg: "20%" }}
+    >
       {showInput ? (
         <>
           <Collapse in={showInput} animateOpacity>

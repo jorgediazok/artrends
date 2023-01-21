@@ -108,12 +108,8 @@ ul {
 
 .main-background-home {
   background-image: url("/images/pattern3.jpg") !important;
-  background-size: "100%";
+  background-size: 75%;
   background-repeat: repeat;
-  @media (max-width: 768px) {
-    background-image: url("/images/pattern3.jpg") !important;
-    background-size: 25%;
-  }
 }
 
 /* HELPER CLASSES */
