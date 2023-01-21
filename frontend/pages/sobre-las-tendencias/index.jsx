@@ -6,7 +6,7 @@ import Footer from "../../components/layout/Footer";
 import Navbar from "../../components/layout/Navbar";
 
 // Icons
-import ArrowRight from "../../icons/ArrowRight";
+import ArrowRight from "../../components/ui/icons/ArrowRight";
 
 const SobreLasTendencias = () => {
   return (
