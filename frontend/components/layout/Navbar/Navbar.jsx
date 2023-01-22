@@ -5,7 +5,9 @@ import Image from "next/image";
 import { Box, Collapse, Flex, IconButton, Input, Text } from "@chakra-ui/react";
 
 // Utils
+
 import { Link } from "react-scroll";
+import NextLink from "next/link";
 import { navItems } from "../../../utils/navItems";
 
 // Theme
@@ -23,8 +25,9 @@ import { useScrollDirection } from "../../../utils/hooks";
 // Components
 import MobileCarousel from "../../ui/MobileCarousel/MobileCarousel";
 import SearchInput from "../../ui/Search/SearchInput";
+import Question from "../../ui/icons/Question";
 
-const Navbar = ({ activeSectionIndex }) => {
+const Navbar = ({ activeSectionIndex, hasCarrousel, hasSearch }) => {
   const [showInput, setShowInput] = useState(false);
   const [scrollNav, setScrollNav] = useState(false);
 
@@ -75,27 +78,41 @@ const Navbar = ({ activeSectionIndex }) => {
         py="12px"
         w="100%"
       >
-        <Image
-          src="/images/logo-mobile.png"
-          alt="Artrends"
-          height={27}
-          width={120}
-          quality={100}
-        />
+        <NextLink href="/">
+          <a>
+            <Image
+              src="/images/logo-mobile.png"
+              alt="Artrends"
+              height={27}
+              width={120}
+              quality={100}
+            />
+          </a>
+        </NextLink>
 
-        <MobileCarousel activeSectionIndex={activeSectionIndex} />
+        {hasCarrousel === true && (
+          <MobileCarousel activeSectionIndex={activeSectionIndex} />
+        )}
 
         {/* SEARCH INPUT */}
-        <Box
-          display={{ base: "block", lg: "none" }}
-          alignItems="center"
-          width="100%"
-          justifyContent="center"
-          marginTop="24px"
-          padding="0 16px"
-        >
-          <SearchInput />
-        </Box>
+        {hasSearch && (
+          <Box
+            display={{ base: "flex", lg: "none" }}
+            alignItems="center"
+            width="100%"
+            justifyContent="center"
+            marginTop="24px"
+            padding="0 16px"
+          >
+            <SearchInput />
+
+            <NextLink href="/sobre-las-tendencias">
+              <a>
+                <Question />
+              </a>
+            </NextLink>
+          </Box>
+        )}
       </Flex>
 
       <Flex

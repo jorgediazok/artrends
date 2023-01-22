@@ -28,6 +28,8 @@ import CardTitle from "../components/ui/TrendCard/CardTitle/CardTitle";
 import { getPosition } from "../utils/position";
 
 export default function Home() {
+  const [hasCarrousel, setHasCarrousel] = useState(true);
+  const [hasSearch, setHasSearch] = useState(true);
   const [activeSectionIndex, setActiveSectionIndex] = useState();
 
   // Hooks
@@ -133,7 +135,11 @@ export default function Home() {
       </Head>
 
       {/* NAV */}
-      <Navbar activeSectionIndex={activeSectionIndex} />
+      <Navbar
+        activeSectionIndex={activeSectionIndex}
+        hasSearch={hasSearch}
+        hasCarrousel={hasCarrousel}
+      />
 
       <Box as="main" className="main-background-home">
         <Container
