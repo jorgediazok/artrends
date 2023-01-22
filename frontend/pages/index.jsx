@@ -32,19 +32,19 @@ export default function Home() {
 
   // Hooks
   const { ref: twitterSectionRef, inView: twitterIsInView } = useInView({
-    delay: 1000,
+    delay: 300,
   });
   const { ref: spotifySectionRef, inView: spotifyIsInView } = useInView({
-    delay: 1000,
+    delay: 300,
   });
   const { ref: googleSectionRef, inView: googleIsInView } = useInView({
-    delay: 1000,
+    delay: 300,
   });
   const { ref: youtubeSectionRef, inView: youtubeIsInView } = useInView({
-    delay: 1000,
+    delay: 300,
   });
   const { ref: portalSectionRef, inView: portalsIsInView } = useInView({
-    delay: 1000,
+    delay: 300,
   });
 
   // Queries
@@ -82,18 +82,6 @@ export default function Home() {
     queryKey: ["portals"],
     queryFn: getPortals,
   });
-
-  // console.log("Google: ", google?.current?.record?.trends);
-  // console.log("Google full: ", google);
-  // console.log("Twitter: ", twitter?.current?.record?.trends);
-  // console.log("Twitter full", twitter);
-  // console.log("Spotify Artist: ", spotifyArtist?.current?.record?.trends);
-  // console.log("Spotify Song: ", spotifySong?.current?.record?.trends);
-  // console.log("Spotify Podcast: ", spotifyPodcast?.current?.record?.trends);
-  // console.log("Spotify Podcast full: ", spotifyPodcast);
-  // console.log("Youtube: ", youtube?.current?.record?.trends);
-  // console.log("Youtube full: ", youtube);
-  // console.log("Portals: ", portals);
 
   // Effects
   useEffect(() => {
@@ -163,7 +151,7 @@ export default function Home() {
             id="twitter"
             display="flex"
             width="100%"
-            mt={{ base: "24px", lg: "128px" }}
+            mt={{ base: "260px", lg: "128px" }}
             ref={twitterSectionRef}
           >
             <CardTitle title="Lo más discutido en Twitter" />

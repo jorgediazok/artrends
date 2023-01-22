@@ -50,8 +50,13 @@ const Footer = () => {
             <Text as="button">Sobre las tendencias</Text>
           </NextLink>
 
-          <Text>Contacto</Text>
-          <Text>Políticas de privacidad</Text>
+          <NextLink href="/contacto">
+            <Text as="button">Contacto</Text>
+          </NextLink>
+
+          <NextLink href="/politicas-de-privacidad">
+            <Text as="button">Políticas de privacidad</Text>
+          </NextLink>
         </Box>
         <Box display="flex" marginTop="36px" gap="62px">
           <Twitter />

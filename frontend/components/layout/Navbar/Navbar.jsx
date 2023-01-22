@@ -56,7 +56,7 @@ const Navbar = ({ activeSectionIndex }) => {
     window.addEventListener("scroll", changeNav);
   }, []);
 
-  // Constans
+  // Constants
   const navBarStyles =
     scrollDirection === "up" ? styles["nav-bar"] : styles["nav-hidden"];
 

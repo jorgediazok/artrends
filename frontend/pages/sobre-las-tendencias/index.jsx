@@ -1,5 +1,6 @@
 // Chakra
 import { Box, Breadcrumb, BreadcrumbItem, Text } from "@chakra-ui/react";
+import NextLink from "next/link";
 
 // Components
 import Footer from "../../components/layout/Footer";
@@ -22,11 +23,15 @@ const SobreLasTendencias = () => {
             separator={<ArrowRight color="#FFFFFF" />}
           >
             <BreadcrumbItem>
-              <Text fontSize="text-sm">Home</Text>
+              <NextLink href="/">
+                <Text as="button" fontSize="text-sm">
+                  Home
+                </Text>
+              </NextLink>
             </BreadcrumbItem>
 
             <BreadcrumbItem>
-              <Text>Sobre las tendencias</Text>
+              <Text fontWeight="600">Sobre las tendencias</Text>
             </BreadcrumbItem>
           </Breadcrumb>
         </Box>
