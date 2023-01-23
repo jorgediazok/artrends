@@ -20,7 +20,9 @@ const CardTitle = ({ title }) => {
       flexDirection={{ base: "column", lg: "row" }}
     >
       <Box display="flex" gap={3} alignItems="center">
-        <Text fontSize={{ base: "md", lg: "2xl" }}>{title}</Text>
+        <Text fontSize={{ base: "xl", lg: "3xl" }} fontWeight={700}>
+          {title}
+        </Text>
         <Box display={{ base: "none", lg: "block" }}>
           {title === "Lo más discutido en Twitter" && <Chat />}
         </Box>
@@ -38,20 +40,25 @@ const CardTitle = ({ title }) => {
         </Box>
       </Box>
 
-      <Badge colorScheme="purple" variant="solid" marginTop="15px">
-        <Text fontSize="xs">
+      <Badge
+        background="indigo.800"
+        variant="solid"
+        marginTop="15px"
+        p="2px 4px"
+      >
+        <Text fontSize="xs" fontWeight={700}>
           {title === "Lo más discutido en Twitter" && "Actualizado cada hora"}
         </Text>
-        <Text fontSize="xs">
+        <Text fontSize="xs" fontWeight={700}>
           {title === "Lo más escuchado en Spotify" && "Actualizado cada semana"}
         </Text>
-        <Text fontSize="xs">
+        <Text fontSize="xs" fontWeight={700}>
           {title === "Lo más visto en Youtube" && "Actualizado cada hora"}
         </Text>
-        <Text fontSize="xs">
+        <Text fontSize="xs" fontWeight={700}>
           {title === "Lo más buscado en Google" && "Actualizado cada hora"}
         </Text>
-        <Text fontSize="xs">
+        <Text fontSize="xs" fontWeight={700}>
           {title === "Lo más leído en portales de noticias" &&
             "Actualizado cada hora"}
         </Text>

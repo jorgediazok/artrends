@@ -6,7 +6,10 @@
 }
 
 .container svg {
-  width: 36px;
-  height: 36px !important;
-  height: auto;
+  max-width: 32px;
+  max-height: 32px;
+}
+
+.active svg path {
+  fill: black;
 }

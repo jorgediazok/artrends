@@ -106,12 +106,6 @@ ul {
   --chakra-sizes-container-xl: 920px !important;
 }
 
-.main-background-home {
-  background-image: url("/images/pattern3.jpg") !important;
-  background-size: 75%;
-  background-repeat: repeat;
-}
-
 /* HELPER CLASSES */
 .one-max-line {
   display: -webkit-box;
@@ -140,8 +134,16 @@ ul {
   max-height: calc(36px * 3);
 }
 
-/* MOBILE SVG */
+.four-max-lines {
+  display: -webkit-box;
+  -webkit-line-clamp: 4;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-height: calc(36px * 4);
+}
 
+/* MOBILE SVG */
 .arrow-down {
   width: 24px;
   height: 24px;

@@ -24,28 +24,31 @@ import Footer from "../components/layout/Footer";
 import TrendCard from "../components/ui/TrendCard/TrendCard";
 import CardTitle from "../components/ui/TrendCard/CardTitle/CardTitle";
 
+// Theme
+import theme from "../styles/theme";
+
 // Utils
-import { getPosition } from "../utils/position";
+import { getPosition, intersectionObserverOptions } from "../utils/position";
 
 export default function Home() {
   const [activeSectionIndex, setActiveSectionIndex] = useState();
 
   // Hooks
-  const { ref: twitterSectionRef, inView: twitterIsInView } = useInView({
-    delay: 1000,
-  });
-  const { ref: spotifySectionRef, inView: spotifyIsInView } = useInView({
-    delay: 1000,
-  });
-  const { ref: googleSectionRef, inView: googleIsInView } = useInView({
-    delay: 1000,
-  });
-  const { ref: youtubeSectionRef, inView: youtubeIsInView } = useInView({
-    delay: 1000,
-  });
-  const { ref: portalSectionRef, inView: portalsIsInView } = useInView({
-    delay: 1000,
-  });
+  const { ref: twitterSectionRef, inView: twitterIsInView } = useInView(
+    intersectionObserverOptions
+  );
+  const { ref: spotifySectionRef, inView: spotifyIsInView } = useInView(
+    intersectionObserverOptions
+  );
+  const { ref: googleSectionRef, inView: googleIsInView } = useInView(
+    intersectionObserverOptions
+  );
+  const { ref: youtubeSectionRef, inView: youtubeIsInView } = useInView(
+    intersectionObserverOptions
+  );
+  const { ref: portalSectionRef, inView: portalsIsInView } = useInView(
+    intersectionObserverOptions
+  );
 
   // Queries
   const { data: google } = useQuery({
@@ -147,7 +150,14 @@ export default function Home() {
       {/* NAV */}
       <Navbar activeSectionIndex={activeSectionIndex} />
 
-      <Box as="main" className="main-background-home">
+      <Box
+        as="main"
+        background={{
+          base: theme.colors.gradients["background-home-mobile"],
+          lg: theme.colors.gradients["background-home-desktop"],
+        }}
+        pt={{ base: "248px", lg: 0 }}
+      >
         <Container
           maxW="container.lg"
           display="flex"
@@ -193,7 +203,7 @@ export default function Home() {
                   direction={getPosition(currentIndex, prevIndex)}
                   amount={trend.amount}
                   link={trend.link}
-                  height="100px"
+                  height="72px"
                   type="discutido"
                 />
               );
@@ -221,7 +231,7 @@ export default function Home() {
                 color="white"
                 paddingX={{ base: "12px", lg: "16px" }}
                 paddingY={{ base: "6px", lg: "8px" }}
-                fontSize={{ base: "xs", lg: "md" }}
+                fontSize={{ base: "sm", lg: "md" }}
               >
                 Artista
               </Tab>
@@ -229,7 +239,7 @@ export default function Home() {
                 color="white"
                 paddingX={{ base: "12px", lg: "16px" }}
                 paddingY={{ base: "6px", lg: "8px" }}
-                fontSize={{ base: "xs", lg: "md" }}
+                fontSize={{ base: "sm", lg: "md" }}
               >
                 Canción
               </Tab>
@@ -237,7 +247,7 @@ export default function Home() {
                 color="white"
                 paddingX={{ base: "12px", lg: "16px" }}
                 paddingY={{ base: "6px", lg: "8px" }}
-                fontSize={{ base: "xs", lg: "md" }}
+                fontSize={{ base: "sm", lg: "md" }}
               >
                 Podcast
               </Tab>
@@ -266,13 +276,13 @@ export default function Home() {
                         <TrendCard
                           key={trend.name}
                           position={currentIndex + 1}
-                          height={{ base: "103px", lg: "157px" }}
+                          height={{ base: "100px", lg: "157px" }}
                           title={trend.name}
                           direction={getPosition(currentIndex, prevIndex)}
                           amount={trend.amount}
                           streak={trend.streak}
                           link={trend.link}
-                          type="escuchado"
+                          type="artist"
                         />
                       );
                     }
@@ -301,14 +311,14 @@ export default function Home() {
                         <TrendCard
                           key={trend.name}
                           position={currentIndex + 1}
-                          height={{ base: "120px", lg: "157px" }}
+                          height={{ base: "100px", lg: "157px" }}
                           title={trend.name}
                           direction={getPosition(currentIndex, prevIndex)}
-                          amount={trend.amount}
+                          amount={trend.streams}
                           streak={trend.streak}
                           author={trend.author}
                           link={trend.link}
-                          type="escuchado"
+                          type="song"
                         />
                       );
                     }
@@ -337,7 +347,7 @@ export default function Home() {
                         <TrendCard
                           key={trend.name}
                           position={currentIndex + 1}
-                          height={{ base: "103px", lg: "157px" }}
+                          height={{ base: "100px", lg: "157px" }}
                           title={trend.name}
                           direction={getPosition(currentIndex, prevIndex)}
                           amount={trend.amount}
@@ -386,7 +396,7 @@ export default function Home() {
                   title={trend.title}
                   direction={getPosition(currentIndex, prevIndex)}
                   amount={trend.amount}
-                  height={{ base: "130px", lg: "171px" }}
+                  height={{ base: "118px", lg: "171px" }}
                   link={trend.link}
                   channel={trend.channel}
                   channelLink={trend.channelLink}
@@ -428,7 +438,7 @@ export default function Home() {
                 <TrendCard
                   key={trend.title}
                   position={currentIndex + 1}
-                  height="100px"
+                  height="94px"
                   title={trend.title}
                   direction={getPosition(currentIndex, prevIndex)}
                   amount={trend.amount}
@@ -465,7 +475,7 @@ export default function Home() {
                 paddingY={{ base: "6px", lg: "8px" }}
                 fontSize={{ base: "xs", lg: "md" }}
               >
-                Nación
+                La Nación
               </Tab>
               <Tab
                 color="white"
@@ -489,7 +499,7 @@ export default function Home() {
                 paddingY={{ base: "6px", lg: "8px" }}
                 fontSize={{ base: "xs", lg: "md" }}
               >
-                Telam
+                Télam
               </Tab>
               <Tab
                 color="white"
@@ -528,7 +538,7 @@ export default function Home() {
                           direction={getPosition(currentIndex, prevIndex)}
                           link={trend.link}
                           type="leido"
-                          height="157px"
+                          height="148px"
                         />
                       );
                     }
@@ -562,7 +572,7 @@ export default function Home() {
                           direction={getPosition(currentIndex, prevIndex)}
                           link={trend.link}
                           type="leido"
-                          height="157px"
+                          height="114px"
                         />
                       );
                     }
@@ -596,7 +606,7 @@ export default function Home() {
                           direction={getPosition(currentIndex, prevIndex)}
                           link={trend.link}
                           type="leido"
-                          height="157px"
+                          height="114px"
                         />
                       );
                     }
@@ -629,7 +639,7 @@ export default function Home() {
                           title={trend.article}
                           direction={getPosition(currentIndex, prevIndex)}
                           link={trend.link}
-                          height="157px"
+                          height="114px"
                           type="leido"
                         />
                       );
@@ -664,7 +674,7 @@ export default function Home() {
                           direction={getPosition(currentIndex, prevIndex)}
                           link={trend.link}
                           type="leido"
-                          height="157px"
+                          height="114px"
                         />
                       );
                     }

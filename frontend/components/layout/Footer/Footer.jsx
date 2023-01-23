@@ -15,7 +15,7 @@ const Footer = () => {
   return (
     <Box
       width="100%"
-      bg={theme.colors.gradients["grad-footer"]}
+      bg={theme.colors.gradients["grad-purp-180"]}
       height="315px"
       as="footer"
       display="flex"

@@ -1,9 +1,9 @@
 // Icons
-import Discutido from "../icons/Chat";
-import Escuchado from "../icons/Escuchado";
-import Visto from "../icons/Visto";
-import Buscado from "../icons/Buscado";
-import Leido from "../icons/Book";
+import Discutido from "../icons/CarouselDiscutido";
+import Escuchado from "../icons/CarouselEscuchado";
+import Visto from "../icons/CarouselVisto";
+import Buscado from "../icons/CarouselBuscado";
+import Leido from "../icons/CarouselLeido";
 
 // Chakra
 import { Box, Text } from "@chakra-ui/react";
@@ -16,23 +16,24 @@ import theme from "../../../styles/theme";
 
 const items = [
   {
-    nombre: "+Discutido",
+    nombre: "Más discutido",
     Icon: Discutido,
   },
   {
-    nombre: "+Escuchado",
+    nombre: "Más escuchado",
     Icon: Escuchado,
   },
   {
-    nombre: "+Visto",
+    nombre: "Más visto",
     Icon: Visto,
   },
   {
-    nombre: "+Buscado",
+    nombre: "Más buscado",
     Icon: Buscado,
   },
+
   {
-    nombre: "+Leído",
+    nombre: "Más leído",
     Icon: Leido,
   },
 ];
@@ -54,24 +55,33 @@ export default function MobileCarousel({ activeSectionIndex }) {
               as="li"
               key={nombre}
               shadow="sm"
+              lineHeight={1.5}
+              textAlign="center"
               flexDir="column"
               background={
                 index === activeSectionIndex
-                  ? "indigo.800"
-                  : theme.colors.gradients["grad-purp-45"]
+                  ? "cyan.200"
+                  : theme.colors.gradients["grad-ind-purple-2"]
               }
               height="86px"
               minW="86px"
               display="flex"
               justifyContent="center"
               alignItems="center"
-              px="4px"
+              px="11px"
+              py="4px"
               width="max-content"
-              textColor="#fff"
               borderRadius="6px"
+              className={index === activeSectionIndex && styles.active}
+              fontWeight={600}
             >
               <Icon />
-              <Text as="p" fontSize="sm">
+              <Text
+                as="p"
+                fontSize="sm"
+                width="min-content"
+                textColor={index === activeSectionIndex ? "indigo.800" : "#fff"}
+              >
                 {nombre}
               </Text>
             </Box>
