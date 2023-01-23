@@ -1,5 +1,5 @@
 // Chakra
-import { Box, Text } from "@chakra-ui/react";
+import { Badge, Box, Flex, Text } from "@chakra-ui/react";
 
 // Icons
 import ArrowDown from "../../icons/ArrowDown";
@@ -37,87 +37,119 @@ const CardMobile = ({
       bg={theme.colors.indigo[800]}
       border="1px"
       borderColor={theme.colors.cyan[150]}
-      borderRadius={theme.radius.xl}
-      paddingX={type === "discutido" || type === "buscado" ? "20px" : "16px"} //VER ESTO
-      paddingY="12px"
+      borderRadius={theme.radius.md}
       width="100%"
       height={height}
       mb={2}
       display={{ base: "flex", lg: "none" }}
       alignItems="center"
+      p="8px 16px"
     >
       <Box
         display="flex"
         justifyContent="space-between"
         alignItems="center"
-        w="100%"
-        flexWrap="wrap"
+        width="100%"
+        flexDir="column"
       >
         <Box
           display="flex"
           width="100%"
-          alignItems="center"
+          height="100%"
           justifyContent="space-between"
+          alignItems="center"
         >
-          <Box maxWidth="80%">
-            <a href={link} target="_blank" rel="noopener noreferrer">
-              <Text
-                fontWeight={type === "leido" ? 500 : 600}
-                fontSize="16px"
-                className={calculateLines(type)}
-              >
-                {title}
-              </Text>
-            </a>
-          </Box>
-          <Box maxWidth="20%">
-            <ThreeDots />
-          </Box>
-        </Box>
+          <Box w="100%">
+            <Flex
+              justifyContent="space-between"
+              alignItems="center"
+              flexDirection="row"
+            >
+              <a href={link} target="_blank" rel="noopener noreferrer">
+                <Text
+                  width={type === "leido" ? "85%" : "100%"}
+                  fontWeight={600}
+                  fontSize="16px"
+                  className={calculateLines(type)}
+                  pr="10px"
+                >
+                  {title}
+                </Text>
+              </a>
 
-        <Box
-          mt="20px"
-          display="flex"
-          w="100%"
-          alignItems="center"
-          justifyContent="space-between"
-          alignContent="flex-start"
-        >
-          <Box maxWidth="80%">
+              <ThreeDots />
+            </Flex>
+
+            {type === "song" && (
+              <Text
+                fontSize={{ base: "md", lg: "xl" }}
+                className="one-max-line"
+                lineHeight={1.5}
+                mt="2px"
+              >
+                {author}
+              </Text>
+            )}
+
+            {type === "podcast" && (
+              <Text
+                fontSize={{ base: "md", lg: "xl" }}
+                className="one-max-line"
+                mt="6px"
+              >
+                {publisher}
+              </Text>
+            )}
+
             {type === "visto" && (
               <a href={channelLink} target="_blank" rel="noopener noreferrer">
                 <Text fontSize="md">{channel}</Text>
               </a>
             )}
-            {type === "podcast" && (
-              <Text fontSize={{ base: "sm", lg: "xl" }}>{publisher}</Text>
-            )}
-            {type === "escuchado" && (
-              <Text
-                fontSize={{ base: "md", lg: "xl" }}
-                className="one-max-line"
-              >
-                {author}
-              </Text>
-            )}
-            <Text className="one-max-line" w="100%" fontSize="sm">
+          </Box>
+        </Box>
+
+        <Box
+          display="flex"
+          w="100%"
+          justifyContent="space-between"
+          alignItems="center"
+          height="100%"
+        >
+          <Box maxWidth="80%" display={type === "podcast" ? "none" : "revert"}>
+            <Badge
+              className="one-max-line"
+              w="100%"
+              fontSize="sm"
+              textTransform="uppercase"
+              variant="outline"
+              colorScheme="#fff"
+              border="1px solid #fff"
+              display={
+                type === "podcast" || type === "leido" ? "none" : "revert"
+              }
+            >
               {type === "discutido" && amount + " Tweets"}
-              {type === "escuchado" && streak + " Semanas seguidas"}
+              {type === "artist" && streak + " Semanas seguidas"}
+              {type === "song" && amount + " reproducciones"}
               {type === "visto" && amount + " reproducciones"}
               {type === "buscado" && "Más de " + amount + " búsquedas"}
-            </Text>
+            </Badge>
           </Box>
 
           <Box
             display="flex"
             justifyContent="space-between"
             alignItems="center"
-            width="20%"
+            width="50px"
+            ml={type === "podcast" || type === "leido" ? "auto" : "revert"}
           >
-            <Text fontSize="2xl">{position}</Text>
+            <Text fontSize="2xl" mr="4px">
+              {position}
+            </Text>
             {direction === "down" && <ArrowDown />}
             {direction === "up" && <ArrowUp />}
-            {direction === "same" && <Same className={styles.same} />}
+            {direction === "same" && <Same />}
           </Box>
         </Box>
       </Box>

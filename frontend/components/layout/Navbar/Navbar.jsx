@@ -1,11 +1,12 @@
 import { useState, useEffect } from "react";
 import Image from "next/image";
+import NextLink from "next/link";
+import { Link } from "react-scroll";
 
 // Chakra
 import { Box, Collapse, Flex, IconButton, Input, Text } from "@chakra-ui/react";
 
 // Utils
-import { Link } from "react-scroll";
 import { navItems } from "../../../utils/navItems";
 
 // Theme
@@ -22,7 +23,10 @@ import { useScrollDirection } from "../../../utils/hooks";
 
 // Components
 import MobileCarousel from "../../ui/MobileCarousel/MobileCarousel";
+
+// Icons
 import SearchInput from "../../ui/Search/SearchInput";
+import QuestionIcon from "../../ui/icons/Question";
 
 const Navbar = ({ activeSectionIndex }) => {
   const [showInput, setShowInput] = useState(false);
@@ -66,35 +70,52 @@ const Navbar = ({ activeSectionIndex }) => {
       <Flex
         display={{ base: "flex", lg: "none" }}
         as="nav"
-        bg="purple.600"
+        bg={theme.colors.gradients["background-mobile-2"]}
         align="center"
         justifyContent="center"
         position="fixed"
         top={0}
         flexDirection="column"
-        py="12px"
         w="100%"
+        p={0}
+        pb="12px"
+        shadow="md"
       >
-        <Image
-          src="/images/logo-mobile.png"
-          alt="Artrends"
-          height={27}
-          width={120}
-          quality={100}
-        />
+        <Flex
+          shadow="md"
+          width="100%"
+          height="100%"
+          py="12px"
+          alignItems="center"
+          justifyContent="center"
+        >
+          <Image
+            src="/images/logo-mobile.png"
+            alt="Artrends"
+            height={27}
+            width={120}
+            quality={100}
+          />
+        </Flex>
 
         <MobileCarousel activeSectionIndex={activeSectionIndex} />
 
-        {/* SEARCH INPUT */}
+        {/* SEARCH INPUT AND ABOUT ICON */}
         <Box
-          display={{ base: "block", lg: "none" }}
+          display={{ base: "flex", lg: "none" }}
           alignItems="center"
+          flexDir="row"
           width="100%"
-          justifyContent="center"
+          justifyContent="space-between"
           marginTop="24px"
           padding="0 16px"
         >
           <SearchInput />
+          <NextLink href="/sobre-las-tendencias">
+            <a>
+              <QuestionIcon />
+            </a>
+          </NextLink>
         </Box>
       </Flex>
 
