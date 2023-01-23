@@ -49,6 +49,7 @@ const theme = extendTheme({
       "grad-purp-45": `linear-gradient(135deg, hsl(257, 32%, 56%) 0%, hsl(257, 66%, 20%) 100%)`,
       "grad-ind-purple": `linear-gradient(91.11deg, hsl(242, 78%, 14%) 0%, hsl(257, 39%, 39%) 100%)`,
       "grad-ind-purple-2": `linear-gradient(133.42deg, #5F61CC 0%, #533D8A 97.4%);`,
+      "grad-ind-purple-3": `linear-gradient(133.42deg, #5F61CC 0%, #241154 97.4%);`,
       "grad-purp-transparent": `linear-gradient(135deg, hsla(257, 66%, 20%, 0) 0%, hsl(257, 66%, 20%) 100%)`,
       "grad-purp-transp": `linear-gradient(135deg, rgba(36, 17, 84, 0) 0%, #241154 100%);`,
       "grad-purp-90": `linear-gradient(180deg, hsl(257, 32%, 56%) 0%, hsl(257, 66%, 20%) 100%)`,

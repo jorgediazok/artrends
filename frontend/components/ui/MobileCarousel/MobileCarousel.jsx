@@ -1,3 +1,6 @@
+//Utils
+import { Link } from "react-scroll";
+
 // Icons
 import Discutido from "../icons/CarouselDiscutido";
 import Escuchado from "../icons/CarouselEscuchado";
@@ -13,20 +16,25 @@ import styles from "./MobileCarousel.module.css";
 
 // Theme
 import theme from "../../../styles/theme";
+import { useEffect, useState } from "react";
 
 const items = [
   {
     nombre: "Más discutido",
     Icon: Discutido,
+    to: "twitter",
   },
   {
     nombre: "Más escuchado",
     Icon: Escuchado,
+    to: "spotify",
   },
   {
     nombre: "Más visto",
     Icon: Visto,
+    to: "youtube",
   },
+  { id: 4, nombre: "+Buscado", Icon: Buscado, to: "google" },
   {
     nombre: "Más buscado",
     Icon: Buscado,
@@ -35,21 +43,38 @@ const items = [
   {
     nombre: "Más leído",
     Icon: Leido,
+    to: "portals",
   },
 ];
 
 export default function MobileCarousel({ activeSectionIndex }) {
+  const [scrollNav, setScrollNav] = useState(false);
+  // Smooth scrolling
+  const changeNav = () => {
+    if (window.scrollY >= 80) {
+      setScrollNav(true);
+    } else {
+      setScrollNav(false);
+    }
+  };
+
+  // Effects
+  useEffect(() => {
+    window.addEventListener("scroll", changeNav);
+  }, []);
+
   return (
     <Box
       as="nav"
       display={{ base: "flex", lg: "none" }}
       position="relative"
       top="16px"
+      scrollnav={scrollNav.toString()}
       pt="16px"
       maxWidth="100%"
     >
       <ul className={styles.container}>
-        {items.map(({ nombre, Icon }, index) => {
+        {items.map(({ nombre, to, id, Icon }, index) => {
           return (
             <Box
               as="li"

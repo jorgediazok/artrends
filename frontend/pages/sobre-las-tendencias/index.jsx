@@ -1,5 +1,7 @@
 // Chakra
-import { Box, Breadcrumb, BreadcrumbItem, Text } from "@chakra-ui/react";
+import { Box, Breadcrumb, BreadcrumbItem, Link, Text } from "@chakra-ui/react";
+import NextLink from "next/link";
+import { useState } from "react";
 
 // Components
 import Footer from "../../components/layout/Footer";
@@ -9,39 +11,51 @@ import Navbar from "../../components/layout/Navbar";
 import ArrowRight from "../../components/ui/icons/ArrowRight";
 
 const SobreLasTendencias = () => {
+  const [hasCarrousel, setHasCarrousel] = useState(false);
+  const [hasSearch, setHasSearch] = useState(false);
+
   return (
     <>
-      <Navbar />
-      <Box paddingX="260px" background="#241154">
+      <Navbar hasCarrousel={hasCarrousel} hasSearch={hasSearch} />
+      <Box paddingX={{ base: "16px", lg: "260px" }} background="#241154">
         <Box display="flex" alignItems="center" justifyContent="flex-start">
           <Breadcrumb
-            marginTop="152px"
+            marginTop={{ base: "82px", lg: "152px" }}
             fontSize="text-sm"
             color="#FFFFFF"
             spacing="16px"
             separator={<ArrowRight color="#FFFFFF" />}
           >
             <BreadcrumbItem>
-              <Text fontSize="text-sm">Home</Text>
+              <NextLink href="/">
+                <Text as="button" fontSize="text-sm">
+                  Home
+                </Text>
+              </NextLink>
             </BreadcrumbItem>
 
             <BreadcrumbItem>
-              <Text>Sobre las tendencias</Text>
+              <Text fontWeight="600">Sobre las tendencias</Text>
             </BreadcrumbItem>
           </Breadcrumb>
         </Box>
 
         <Text
-          fontSize="30px"
+          fontSize={{ base: "20px", lg: "30px" }}
           color="#FFFFFF"
           fontWeight="bold"
           marginTop="32px"
           marginBottom="40px"
+          textAlign={{ base: "center", lg: "left" }}
         >
           ¿Cómo se determinan las tendencias?
         </Text>
 
-        <Box fontSize="20px" color="#FFFFFF" textAlign="left">
+        <Box
+          fontSize={{ base: "16px", lg: "20px" }}
+          color="#FFFFFF"
+          textAlign="left"
+        >
           <Text>
             Cada plataforma determina sus tendencias mediante el uso de
             algoritmos los cuales son modificados según el cambio de políticas o
@@ -51,7 +65,28 @@ const SobreLasTendencias = () => {
             que influyen en su disposición.
           </Text>
 
-          <Text marginTop="40px" fontWeight="bold">
+          <Box
+            display={{ base: "flex", lg: "none" }}
+            flexDirection="column"
+            marginTop="20px"
+            gap="12px"
+            textDecoration="underline"
+            justifyContent="center"
+            alignItems="left"
+            marginLeft="89px"
+          >
+            <Link href="#twitter">Twitter</Link>
+            <Link href="#spotify">Spotify</Link>
+            <Link href="#youtube">Youtube</Link>
+            <Link href="#google">Google</Link>
+            <Link href="#portals">Portales de noticias</Link>
+          </Box>
+
+          <Text
+            id="twitter"
+            marginTop={{ base: "24px", lg: "40px" }}
+            fontWeight="bold"
+          >
             Twitter
           </Text>
           <Text>
@@ -61,7 +96,7 @@ const SobreLasTendencias = () => {
             cuenta, algunos de ellos son:
           </Text>
 
-          <Text marginTop="40px">
+          <Text marginTop={{ base: "24px", lg: "40px" }}>
             Novedad: jerarquiza la etiqueta o palabras que “emergen” en
             popularidad en un tiempo reciente o que no hayan aparecido en
             interacciones anteriores.
@@ -80,7 +115,11 @@ const SobreLasTendencias = () => {
             palabras claves o hashtags
           </Text>
 
-          <Text marginTop="40px" fontWeight="bold">
+          <Text
+            id="spotify"
+            marginTop={{ base: "24px", lg: "40px" }}
+            fontWeight="bold"
+          >
             Spotify
           </Text>
           <Text>
@@ -92,7 +131,11 @@ const SobreLasTendencias = () => {
             podcast es similar.
           </Text>
 
-          <Text marginTop="40px" fontWeight="bold">
+          <Text
+            id="youtube"
+            marginTop={{ base: "24px", lg: "40px" }}
+            fontWeight="bold"
+          >
             Youtube
           </Text>
           <Text>
@@ -110,7 +153,11 @@ const SobreLasTendencias = () => {
             contenido original, entre otros puntos.
           </Text>
 
-          <Text marginTop="40px" fontWeight="bold">
+          <Text
+            id="google"
+            marginTop={{ base: "24px", lg: "40px" }}
+            fontWeight="bold"
+          >
             Google
           </Text>
           <Text>
@@ -119,7 +166,11 @@ const SobreLasTendencias = () => {
             tráfico en un periodo de 24 horas.
           </Text>
 
-          <Text marginTop="40px" fontWeight="bold">
+          <Text
+            id="portals"
+            marginTop={{ base: "24px", lg: "40px" }}
+            fontWeight="bold"
+          >
             Portales de noticias
           </Text>
           <Text>

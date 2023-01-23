@@ -28,7 +28,7 @@ import MobileCarousel from "../../ui/MobileCarousel/MobileCarousel";
 import SearchInput from "../../ui/Search/SearchInput";
 import QuestionIcon from "../../ui/icons/Question";
 
-const Navbar = ({ activeSectionIndex }) => {
+const Navbar = ({ activeSectionIndex, hasCarrousel, hasSearch }) => {
   const [showInput, setShowInput] = useState(false);
   const [scrollNav, setScrollNav] = useState(false);
 
@@ -60,7 +60,7 @@ const Navbar = ({ activeSectionIndex }) => {
     window.addEventListener("scroll", changeNav);
   }, []);
 
-  // Constans
+  // Constants
   const navBarStyles =
     scrollDirection === "up" ? styles["nav-bar"] : styles["nav-hidden"];
 
@@ -98,7 +98,9 @@ const Navbar = ({ activeSectionIndex }) => {
           />
         </Flex>
 
-        <MobileCarousel activeSectionIndex={activeSectionIndex} />
+        {hasCarrousel === true && (
+          <MobileCarousel activeSectionIndex={activeSectionIndex} />
+        )}
 
         {/* SEARCH INPUT AND ABOUT ICON */}
         <Box

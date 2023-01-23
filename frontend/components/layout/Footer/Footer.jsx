@@ -16,11 +16,11 @@ const Footer = () => {
     <Box
       width="100%"
       bg={theme.colors.gradients["grad-purp-180"]}
-      height="315px"
       as="footer"
       display="flex"
       justifyContent="center"
       alignItems="center"
+      py="64px"
     >
       <Box
         display="flex"
@@ -50,8 +50,13 @@ const Footer = () => {
             <Text as="button">Sobre las tendencias</Text>
           </NextLink>
 
-          <Text>Contacto</Text>
-          <Text>Políticas de privacidad</Text>
+          <NextLink href="/contacto">
+            <Text as="button">Contacto</Text>
+          </NextLink>
+
+          <NextLink href="/politicas-de-privacidad">
+            <Text as="button">Políticas de privacidad</Text>
+          </NextLink>
         </Box>
         <Box display="flex" marginTop="36px" gap="62px">
           <Twitter />

@@ -50,15 +50,3 @@ const TrendCard = ({
 };
 
 export default TrendCard;
-
-{
-  /* <CardContainer>
-  <CardMobile >
-<TresBotoncitos/>
-<PosicionYFlechita/>
-</CardMobile>
-  <CardDesktop >
-<PosicionYFlechita/>
-<Share />
-</CardContainer> */
-}

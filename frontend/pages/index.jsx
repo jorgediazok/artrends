@@ -31,6 +31,8 @@ import theme from "../styles/theme";
 import { getPosition, intersectionObserverOptions } from "../utils/position";
 
 export default function Home() {
+  const [hasCarrousel, setHasCarrousel] = useState(true);
+  const [hasSearch, setHasSearch] = useState(true);
   const [activeSectionIndex, setActiveSectionIndex] = useState();
 
   // Hooks
@@ -86,18 +88,6 @@ export default function Home() {
     queryFn: getPortals,
   });
 
-  // console.log("Google: ", google?.current?.record?.trends);
-  // console.log("Google full: ", google);
-  // console.log("Twitter: ", twitter?.current?.record?.trends);
-  // console.log("Twitter full", twitter);
-  // console.log("Spotify Artist: ", spotifyArtist?.current?.record?.trends);
-  // console.log("Spotify Song: ", spotifySong?.current?.record?.trends);
-  // console.log("Spotify Podcast: ", spotifyPodcast?.current?.record?.trends);
-  // console.log("Spotify Podcast full: ", spotifyPodcast);
-  // console.log("Youtube: ", youtube?.current?.record?.trends);
-  // console.log("Youtube full: ", youtube);
-  // console.log("Portals: ", portals);
-
   // Effects
   useEffect(() => {
     if (twitterIsInView) {
@@ -148,7 +138,11 @@ export default function Home() {
       </Head>
 
       {/* NAV */}
-      <Navbar activeSectionIndex={activeSectionIndex} />
+      <Navbar
+        activeSectionIndex={activeSectionIndex}
+        hasSearch={hasSearch}
+        hasCarrousel={hasCarrousel}
+      />
 
       <Box
         as="main"
@@ -173,7 +167,7 @@ export default function Home() {
             id="twitter"
             display="flex"
             width="100%"
-            mt={{ base: "24px", lg: "128px" }}
+            mt={{ base: "260px", lg: "128px" }}
             ref={twitterSectionRef}
           >
             <CardTitle title="Lo más discutido en Twitter" />
