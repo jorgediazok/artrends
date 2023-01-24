@@ -1,4 +1,3 @@
-import { replace } from "lodash";
 import { chromium } from "playwright";
 
 export const getTwitterTrendingTopics = async (
@@ -38,7 +37,7 @@ export const getTwitterTrendingTopics = async (
 			.allInnerTexts()
 	)
 		.slice(0, itemLimit)
-		.forEach(tweet => tweet.replace("K", " mil"));
+		.map(tweet => tweet.replace("K", " mil"));
 
 	await page.close();
 	await browser.close();
