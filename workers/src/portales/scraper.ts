@@ -58,10 +58,16 @@ export const getPortalsMostRead = async (
 		await telam.waitForTimeout(3000);
 
 		const telamArticleTitles = await (
-			await telam.locator(".moreread h5").allInnerTexts()
+			await telam.locator(".moreread .img-content > h5 > a").allInnerTexts()
 		).slice(0, itemLimit);
 
-		const telamLinkLocator = await telam.locator(".moreread h5 a");
+		/* Reordenar  artículos */
+		const itemMasLeido = telamArticleTitles.splice(3, 1)[0];
+		telamArticleTitles.unshift(itemMasLeido);
+
+		const telamLinkLocator = await telam.locator(
+			".moreread .img-content > h5 > a"
+		);
 
 		const telamArticleLinks = await telamLinkLocator.evaluateAll(
 			(list, { itemLimit }) => {
@@ -71,6 +77,10 @@ export const getPortalsMostRead = async (
 			},
 			{ PORTAL_TELAM_URL, itemLimit }
 		);
+
+		/* Reordenar links artículos */
+		const itemLinkMasLeido = telamArticleLinks.splice(3, 1)[0];
+		telamArticleLinks.unshift(itemLinkMasLeido);
 
 		await telam.close();
 
