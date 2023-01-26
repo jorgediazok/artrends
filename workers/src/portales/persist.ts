@@ -18,6 +18,8 @@ export async function persistPortalsData(
 		for (const portalDataEntry of portalsDataEntries) {
 			const [portalName, portalData] = portalDataEntry;
 
+			if (!portalData.length) return;
+
 			await db.collection(`portal.${portalName}`).insertOne({
 				record: {
 					date: trendsDate,
