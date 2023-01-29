@@ -1,5 +1,4 @@
 //Utils
-import { Link } from "react-scroll";
 
 // Icons
 import Discutido from "../icons/CarouselDiscutido";

@@ -1,10 +1,17 @@
 import { useState, useEffect } from "react";
 import Image from "next/image";
 import NextLink from "next/link";
-import { Link } from "react-scroll";
 
 // Chakra
-import { Box, Collapse, Flex, IconButton, Input, Text } from "@chakra-ui/react";
+import {
+  Box,
+  Collapse,
+  Flex,
+  IconButton,
+  Input,
+  Link,
+  Text,
+} from "@chakra-ui/react";
 
 // Utils
 import { navItems } from "../../../utils/navItems";
@@ -40,25 +47,12 @@ const Navbar = ({ activeSectionIndex, hasCarrousel, hasSearch }) => {
   // };
 
   // Handlers
-  // Smooth scrolling
-  const changeNav = () => {
-    if (window.scrollY >= 80) {
-      setScrollNav(true);
-    } else {
-      setScrollNav(false);
-    }
-  };
 
   const handleInputClose = () => {
     setTimeout(() => {
       setShowInput(false);
     }, 300);
   };
-
-  // Effects
-  useEffect(() => {
-    window.addEventListener("scroll", changeNav);
-  }, []);
 
   // Constants
   const navBarStyles =
@@ -155,7 +149,7 @@ const Navbar = ({ activeSectionIndex, hasCarrousel, hasSearch }) => {
               as="li"
               className={styles["nav-item"]}
             >
-              <Link to={item.to} smooth="true" duration={300} exact="true">
+              <Link href={item.to}>
                 <Text
                   color="white.500"
                   fontSize="18px"
