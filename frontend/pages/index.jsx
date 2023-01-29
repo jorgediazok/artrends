@@ -36,21 +36,26 @@ export default function Home() {
   const [activeSectionIndex, setActiveSectionIndex] = useState();
 
   // Hooks
-  const { ref: twitterSectionRef, inView: twitterIsInView } = useInView(
-    intersectionObserverOptions
-  );
-  const { ref: spotifySectionRef, inView: spotifyIsInView } = useInView(
-    intersectionObserverOptions
-  );
-  const { ref: googleSectionRef, inView: googleIsInView } = useInView(
-    intersectionObserverOptions
-  );
-  const { ref: youtubeSectionRef, inView: youtubeIsInView } = useInView(
-    intersectionObserverOptions
-  );
-  const { ref: portalSectionRef, inView: portalsIsInView } = useInView(
-    intersectionObserverOptions
-  );
+  const { ref: twitterSectionRef, inView: twitterIsInView } = useInView({
+    ...intersectionObserverOptions,
+    skip: typeof window !== "undefined" && window.innerWidth > 1100,
+  });
+  const { ref: spotifySectionRef, inView: spotifyIsInView } = useInView({
+    ...intersectionObserverOptions,
+    skip: typeof window !== "undefined" && window.innerWidth > 1100,
+  });
+  const { ref: googleSectionRef, inView: googleIsInView } = useInView({
+    ...intersectionObserverOptions,
+    skip: typeof window !== "undefined" && window.innerWidth > 1100,
+  });
+  const { ref: youtubeSectionRef, inView: youtubeIsInView } = useInView({
+    ...intersectionObserverOptions,
+    skip: typeof window !== "undefined" && window.innerWidth > 1100,
+  });
+  const { ref: portalSectionRef, inView: portalsIsInView } = useInView({
+    ...intersectionObserverOptions,
+    skip: typeof window !== "undefined" && window.innerWidth > 1100,
+  });
 
   // Queries
   const { data: google } = useQuery({
