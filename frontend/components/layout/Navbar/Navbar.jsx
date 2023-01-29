@@ -80,6 +80,7 @@ const Navbar = ({ activeSectionIndex, hasCarrousel, hasSearch }) => {
         p={0}
         pb="12px"
         shadow="md"
+        zIndex={1}
       >
         <Flex
           shadow="md"
@@ -98,7 +99,7 @@ const Navbar = ({ activeSectionIndex, hasCarrousel, hasSearch }) => {
           />
         </Flex>
 
-        {hasCarrousel === true && (
+        {hasCarrousel && (
           <MobileCarousel activeSectionIndex={activeSectionIndex} />
         )}
 
