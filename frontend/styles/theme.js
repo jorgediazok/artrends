@@ -57,6 +57,7 @@ const theme = extendTheme({
       "grad-purp-new": `linear-gradient(133.42deg, hsl(239, 52%, 59%) 0%, hsl(257, 39%, 39%) 97.4%)`,
       "grad-white": `linear-gradient(135deg, rgba(255, 255, 255, 0.4) 0%, rgba(255, 255, 255, 0) 100%);`,
       "grad-footer": `linear-gradient(180deg, #241154 0%, #7F6BB3 100%);`,
+      "grad-contacto": `linear-gradient(180deg, #241154 9.83%, #406BAC 100%);`,
       "background-home-mobile": `linear-gradient(180deg, #241154 0%, #2D5899 12.84%, #241154 35.42%, #2D5899 48.96%, #241154 100%);`,
       "background-home-desktop": `linear-gradient(to bottom, #241154 1.26%, #2d5899 14.53%, #241154 100%);`,
       "background-mobile-2":

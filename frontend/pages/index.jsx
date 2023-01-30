@@ -4,7 +4,7 @@ import { useQuery, QueryClient, dehydrate } from "@tanstack/react-query";
 import { useInView } from "react-intersection-observer";
 
 // Charka UI
-import { Box, Container, Flex, Text } from "@chakra-ui/react";
+import { Box, Container, Flex } from "@chakra-ui/react";
 import { Tabs, TabList, TabPanels, Tab, TabPanel } from "@chakra-ui/react";
 
 // API
