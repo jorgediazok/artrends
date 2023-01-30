@@ -39,6 +39,7 @@ export default function contactRoutes(app: AppInstance) {
 			reply: FastifyReply
 		) => {
 			const discord = await Discord();
+
 			discord.once(Events.ClientReady, async client => {
 				if (!req.body) return;
 
