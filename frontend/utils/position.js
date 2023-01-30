@@ -15,5 +15,5 @@ export function getPosition(currentIndex, prevIndex) {
 }
 
 export const intersectionObserverOptions = {
-  delay: 500,
+  delay: 1000,
 };
