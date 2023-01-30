@@ -30,9 +30,14 @@ import theme from "../styles/theme";
 // Utils
 import { getPosition, intersectionObserverOptions } from "../utils/position";
 
+/* Esto es necesario para que en el scroll al elemento
+la navbar tape el título de la seccion  */
+const offset = {
+  mobile: 210,
+  desktop: 48,
+};
+
 export default function Home() {
-  const [hasCarrousel, setHasCarrousel] = useState(true);
-  const [hasSearch, setHasSearch] = useState(true);
   const [activeSectionIndex, setActiveSectionIndex] = useState();
 
   // Hooks
@@ -145,8 +150,8 @@ export default function Home() {
       {/* NAV */}
       <Navbar
         activeSectionIndex={activeSectionIndex}
-        hasSearch={hasSearch}
-        hasCarrousel={hasCarrousel}
+        hasSearch={true}
+        hasCarrousel={true}
       />
 
       <Box
@@ -166,14 +171,19 @@ export default function Home() {
           color="white"
           width="100%"
           p={0}
+          pt={{ base: "24px", lg: "128px" }}
         >
           {/* TWITTER */}
           <Box
             id="twitter"
             display="flex"
             width="100%"
-            mt={{ base: "60px", lg: "128px" }}
             ref={twitterSectionRef}
+            paddingY={{ base: `${offset.mobile}px`, lg: `${offset.desktop}px` }}
+            marginY={{
+              base: `${-offset.mobile}px`,
+              lg: `${-offset.desktop}px`,
+            }}
           >
             <CardTitle title="Lo más discutido en Twitter" />
           </Box>
@@ -214,8 +224,15 @@ export default function Home() {
             id="spotify"
             display="flex"
             width="100%"
-            mt={{ base: "24px", lg: "72px" }}
             ref={spotifySectionRef}
+            paddingY={{
+              base: `${offset.mobile}px`,
+              lg: `${offset.desktop}px`,
+            }}
+            marginY={{
+              base: `${-offset.mobile}px`,
+              lg: `-${offset.desktop}px`,
+            }}
           >
             <CardTitle title="Lo más escuchado en Spotify" />
           </Box>
@@ -367,8 +384,13 @@ export default function Home() {
             id="youtube"
             display="flex"
             width="100%"
-            mt={{ base: "24px", lg: "72px" }}
             ref={youtubeSectionRef}
+            paddingY={{ base: `${offset.mobile}px`, lg: `${offset.desktop}px` }}
+            marginY={{
+              base: `${-offset.mobile}px`,
+              lg: `-${offset.desktop}px`,
+            }}
+            // mt={{ base: "24px", lg: "72px" }}
           >
             <CardTitle title="Lo más visto en Youtube" />
           </Box>
@@ -412,6 +434,11 @@ export default function Home() {
             width="100%"
             mt="24px"
             ref={googleSectionRef}
+            paddingY={{ base: `${offset.mobile}px`, lg: `${offset.desktop}px` }}
+            marginY={{
+              base: `${-offset.mobile}px`,
+              lg: `-${offset.desktop}px`,
+            }}
           >
             <CardTitle title="Lo más buscado en Google" />
           </Box>
@@ -456,6 +483,11 @@ export default function Home() {
             width="100%"
             mt={{ base: "24px", lg: "72px" }}
             ref={portalSectionRef}
+            paddingY={{ base: `${offset.mobile}px`, lg: `${offset.desktop}px` }}
+            marginY={{
+              base: `${-offset.mobile}px`,
+              lg: `-${offset.desktop}px`,
+            }}
           >
             <CardTitle title="Lo más leído en portales de noticias" />
           </Box>

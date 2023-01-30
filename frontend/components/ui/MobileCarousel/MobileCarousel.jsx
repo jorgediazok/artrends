@@ -15,7 +15,6 @@ import styles from "./MobileCarousel.module.css";
 
 // Theme
 import theme from "../../../styles/theme";
-import { useEffect, useState } from "react";
 
 const items = [
   {
@@ -33,10 +32,10 @@ const items = [
     Icon: Visto,
     to: "#youtube",
   },
-  { id: 4, nombre: "+Buscado", Icon: Buscado, to: "#google" },
   {
     nombre: "Más buscado",
     Icon: Buscado,
+    to: "#google",
   },
 
   {
@@ -57,11 +56,11 @@ export default function MobileCarousel({ activeSectionIndex }) {
       maxWidth="100%"
     >
       <ul className={styles.container}>
-        {items.map(({ nombre, to, id, Icon }, index) => {
+        {items.map(({ nombre, to, Icon }, index) => {
           return (
             <Box
               as="li"
-              key={id}
+              key={to}
               shadow="sm"
               lineHeight={1.5}
               textAlign="center"
