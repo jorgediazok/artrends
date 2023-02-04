@@ -33,10 +33,10 @@ const items = [
     Icon: Visto,
     to: "#youtube",
   },
-  { id: 4, nombre: "+Buscado", Icon: Buscado, to: "#google" },
   {
     nombre: "Más buscado",
     Icon: Buscado,
+    to: "#google",
   },
 
   {
@@ -61,7 +61,7 @@ export default function MobileCarousel({ activeSectionIndex }) {
           return (
             <Box
               as="li"
-              key={id}
+              key={nombre}
               shadow="sm"
               lineHeight={1.5}
               textAlign="center"

@@ -16,6 +16,7 @@ import {
   getSpotifyPodcastTrends,
   getYoutubeTrends,
   getPortals,
+  getTrends,
 } from "../services/services";
 
 // Components
@@ -29,6 +30,11 @@ import theme from "../styles/theme";
 
 // Utils
 import { getPosition, intersectionObserverOptions } from "../utils/position";
+import TwitterCardDesktop from "../components/ui/Cards/Twitter/TwitterCardDesktop/TwitterCardDesktop";
+import YoutubeCardDesktop from "../components/ui/Cards/Youtube/YoutubeCardDesktop/YoutubeCardDesktop";
+import GoogleCardDesktop from "../components/ui/Cards/Google/GoogleCardDesktop/GoogleCardDesktop";
+import PortalesDesktop from "../components/ui/Cards/Portales/PortalesDesktop/PortalesDesktop";
+import SpotifyCardDesktop from "../components/ui/Cards/Spotify/SpotifyCardDesktop/SpotifyCardDesktop";
 
 export default function Home() {
   const [hasCarrousel, setHasCarrousel] = useState(true);
@@ -36,10 +42,6 @@ export default function Home() {
   const [activeSectionIndex, setActiveSectionIndex] = useState();
 
   // Hooks
-  const { ref: twitterSectionRef, inView: twitterIsInView } = useInView({
-    ...intersectionObserverOptions,
-    skip: typeof window !== "undefined" && window.innerWidth > 1100,
-  });
   const { ref: spotifySectionRef, inView: spotifyIsInView } = useInView({
     ...intersectionObserverOptions,
     skip: typeof window !== "undefined" && window.innerWidth > 1100,
@@ -57,82 +59,66 @@ export default function Home() {
     skip: typeof window !== "undefined" && window.innerWidth > 1100,
   });
 
-  // Queries
-  const { data: google } = useQuery({
-    queryKey: ["google"],
-    queryFn: getGoogleTrends,
+  const { ref: twitterSectionRef, inView: twitterIsInView } = useInView({
+    ...intersectionObserverOptions,
+    skip: typeof window !== "undefined" && window.innerWidth > 1100,
   });
 
-  const { data: twitter } = useQuery({
-    queryKey: ["twitter"],
-    queryFn: getTwitterTrends,
-  });
-
-  const { data: spotifyArtist } = useQuery({
-    queryKey: ["spotifyArtist"],
-    queryFn: getSpotifyArtistTrends,
-  });
-
-  const { data: spotifySong } = useQuery({
-    queryKey: ["spotifySong"],
-    queryFn: getSpotifySongTrends,
-  });
-
-  const { data: spotifyPodcast } = useQuery({
-    queryKey: ["spotifyPodcast"],
-    queryFn: getSpotifyPodcastTrends,
-  });
-
-  const { data: youtube } = useQuery({
-    queryKey: ["youtube"],
-    queryFn: getYoutubeTrends,
-  });
-
-  const { data: portals } = useQuery({
-    queryKey: ["portals"],
-    queryFn: getPortals,
-  });
-
-  // Effects
   useEffect(() => {
     if (twitterIsInView) {
       setActiveSectionIndex(0);
       return;
     }
-    if (spotifyIsInView) {
-      setActiveSectionIndex(1);
-      return;
-    }
-    if (youtubeIsInView) {
-      setActiveSectionIndex(2);
-      return;
-    }
-    if (googleIsInView) {
-      setActiveSectionIndex(3);
-      return;
-    }
-    if (portalsIsInView) {
-      setActiveSectionIndex(4);
-      return;
-    }
-  }, [
-    googleIsInView,
-    portalsIsInView,
-    spotifyIsInView,
-    twitterIsInView,
-    youtubeIsInView,
-  ]);
+  }, [twitterIsInView]);
 
-  if (
-    !google ||
-    !twitter ||
-    !spotifyArtist ||
-    !spotifySong ||
-    !spotifyPodcast ||
-    !youtube
-  ) {
-    return <div>No data</div>;
-  }
+  // Queries
+  const { data: trends } = useQuery({
+    queryKey: ["trends"],
+    queryFn: getTrends,
+  });
+
+  console.log(trends);
+
+  // Effects
+  // useEffect(() => {
+  //   if (twitterIsInView) {
+  //     setActiveSectionIndex(0);
+  //     return;
+  //   }
+  //   if (spotifyIsInView) {
+  //     setActiveSectionIndex(1);
+  //     return;
+  //   }
+  //   if (youtubeIsInView) {
+  //     setActiveSectionIndex(2);
+  //     return;
+  //   }
+  //   if (googleIsInView) {
+  //     setActiveSectionIndex(3);
+  //     return;
+  //   }
+  //   if (portalsIsInView) {
+  //     setActiveSectionIndex(4);
+  //     return;
+  //   }
+  // }, [
+  //   googleIsInView,
+  //   portalsIsInView,
+  //   spotifyIsInView,
+  //   twitterIsInView,
+  //   youtubeIsInView,
+  // ]);
+
+  // if (
+  //   !google ||
+  //   !twitter ||
+  //   !spotifyArtist ||
+  //   !spotifySong ||
+  //   !spotifyPodcast ||
+  //   !youtube
+  // ) {
+  //   return <div>No data</div>;
+  // }
 
   return (
     <>
@@ -168,520 +154,32 @@ export default function Home() {
           p={0}
         >
           {/* TWITTER */}
-          <Box
-            id="twitter"
-            display="flex"
-            width="100%"
-            mt={{ base: "60px", lg: "128px" }}
-            ref={twitterSectionRef}
-          >
-            <CardTitle title="Lo más discutido en Twitter" />
-          </Box>
-          <Flex
-            width="100%"
-            flexWrap={{ base: "nowrap", lg: "wrap" }}
-            flexDirection="column"
-            alignContent="space-between"
-            paddingX={{ base: "16px", lg: "0" }}
-            mt="24px"
-            maxHeight={{ base: "none", lg: "460px" }}
-            alignItems="center"
-          >
-            {twitter?.current?.record?.trends?.map((trend, currentIndex) => {
-              const elementInPrevious = twitter?.previous?.record?.trends?.find(
-                element => element.title === trend.title
-              );
-              const prevIndex = twitter?.previous?.record?.trends?.findIndex(
-                element => element.title === elementInPrevious?.title
-              );
-              return (
-                <TrendCard
-                  key={trend.title}
-                  position={currentIndex + 1}
-                  title={trend.title}
-                  direction={getPosition(currentIndex, prevIndex)}
-                  amount={trend.amount}
-                  link={trend.link}
-                  height="72px"
-                  type="discutido"
-                />
-              );
-            })}
-          </Flex>
-
+          <TwitterCardDesktop
+            twitter={trends.twitter}
+            twitterSectionRef={twitterSectionRef}
+          />
           {/* SPOTIFY */}
-          <Box
-            id="spotify"
-            display="flex"
-            width="100%"
-            mt={{ base: "24px", lg: "72px" }}
-            ref={spotifySectionRef}
-          >
-            <CardTitle title="Lo más escuchado en Spotify" />
-          </Box>
-          <Tabs
-            variant="soft-rounded"
-            colorScheme="green"
-            w="100%"
-            className="no-padding"
-          >
-            <TabList mb="24px" ml={{ base: "16px", lg: 0 }} mt="24px">
-              <Tab
-                color="white"
-                paddingX={{ base: "12px", lg: "16px" }}
-                paddingY={{ base: "6px", lg: "8px" }}
-                fontSize={{ base: "sm", lg: "md" }}
-              >
-                Artista
-              </Tab>
-              <Tab
-                color="white"
-                paddingX={{ base: "12px", lg: "16px" }}
-                paddingY={{ base: "6px", lg: "8px" }}
-                fontSize={{ base: "sm", lg: "md" }}
-              >
-                Canción
-              </Tab>
-              <Tab
-                color="white"
-                paddingX={{ base: "12px", lg: "16px" }}
-                paddingY={{ base: "6px", lg: "8px" }}
-                fontSize={{ base: "sm", lg: "md" }}
-              >
-                Podcast
-              </Tab>
-            </TabList>
-            <TabPanels>
-              <TabPanel>
-                <Box
-                  width="100%"
-                  flexDirection="column"
-                  alignContent="space-between"
-                  paddingX={{ base: "16px", lg: "0" }}
-                  alignItems="center"
-                  overflow="auto"
-                >
-                  {spotifyArtist?.current?.record?.trends?.map(
-                    (trend, currentIndex) => {
-                      const elementInPrevious =
-                        spotifyArtist?.previous?.record?.trends?.find(
-                          element => element.name === trend.name
-                        );
-                      const prevIndex =
-                        spotifyArtist?.previous?.record?.trends?.findIndex(
-                          element => element.name === elementInPrevious?.name
-                        );
-                      return (
-                        <TrendCard
-                          key={trend.name}
-                          position={currentIndex + 1}
-                          height={{ base: "100px", lg: "157px" }}
-                          title={trend.name}
-                          direction={getPosition(currentIndex, prevIndex)}
-                          amount={trend.amount}
-                          streak={trend.streak}
-                          link={trend.link}
-                          type="artist"
-                        />
-                      );
-                    }
-                  )}
-                </Box>
-              </TabPanel>
-              <TabPanel>
-                <Box
-                  width="100%"
-                  flexDirection="column"
-                  alignContent="space-between"
-                  paddingX={{ base: "16px", lg: "0" }}
-                  alignItems="center"
-                >
-                  {spotifySong?.current?.record?.trends?.map(
-                    (trend, currentIndex) => {
-                      const elementInPrevious =
-                        spotifySong?.previous?.record?.trends?.find(
-                          element => element.name === trend.name
-                        );
-                      const prevIndex =
-                        spotifySong?.previous?.record?.trends?.findIndex(
-                          element => element.name === elementInPrevious?.name
-                        );
-                      return (
-                        <TrendCard
-                          key={trend.name}
-                          position={currentIndex + 1}
-                          height={{ base: "100px", lg: "157px" }}
-                          title={trend.name}
-                          direction={getPosition(currentIndex, prevIndex)}
-                          amount={trend.streams}
-                          streak={trend.streak}
-                          author={trend.author}
-                          link={trend.link}
-                          type="song"
-                        />
-                      );
-                    }
-                  )}
-                </Box>
-              </TabPanel>
-              <TabPanel>
-                <Box
-                  width="100%"
-                  flexDirection="column"
-                  alignContent="space-between"
-                  paddingX={{ base: "16px", lg: "0" }}
-                  alignItems="center"
-                >
-                  {spotifyPodcast?.current?.record?.trends?.map(
-                    (trend, currentIndex) => {
-                      const elementInPrevious =
-                        spotifyPodcast?.previous?.record?.trends?.find(
-                          element => element.name === trend.name
-                        );
-                      const prevIndex =
-                        spotifyPodcast?.previous?.record?.trends?.findIndex(
-                          element => element.name === elementInPrevious?.name
-                        );
-                      return (
-                        <TrendCard
-                          key={trend.name}
-                          position={currentIndex + 1}
-                          height={{ base: "100px", lg: "157px" }}
-                          title={trend.name}
-                          direction={getPosition(currentIndex, prevIndex)}
-                          amount={trend.amount}
-                          link={trend.link}
-                          publisher={trend.publisher}
-                          type="podcast"
-                        />
-                      );
-                    }
-                  )}
-                </Box>
-              </TabPanel>
-            </TabPanels>
-          </Tabs>
-
+          <SpotifyCardDesktop
+            spotifyArtist={trends.spotifyArtists}
+            spotifyPodcast={trends.spotifyPodcasts}
+            spotifySong={trends.spotifySongs}
+            spotifySectionRef={spotifySectionRef}
+          />
           {/* YOUTUBE */}
-          <Box
-            id="youtube"
-            display="flex"
-            width="100%"
-            mt={{ base: "24px", lg: "72px" }}
-            ref={youtubeSectionRef}
-          >
-            <CardTitle title="Lo más visto en Youtube" />
-          </Box>
-
-          <Box
-            width="100%"
-            flexDirection="column"
-            alignContent="space-between"
-            paddingX={{ base: "16px", lg: "0" }}
-            alignItems="center"
-            mt="24px"
-          >
-            {youtube?.current?.record?.trends?.map((trend, currentIndex) => {
-              const elementInPrevious = youtube?.previous?.record?.trends?.find(
-                element => element.title === trend.title
-              );
-              const prevIndex = youtube?.previous?.record?.trends?.findIndex(
-                element => element.title === elementInPrevious?.title
-              );
-              return (
-                <TrendCard
-                  key={trend.title}
-                  position={currentIndex + 1}
-                  title={trend.title}
-                  direction={getPosition(currentIndex, prevIndex)}
-                  amount={trend.amount}
-                  height={{ base: "118px", lg: "171px" }}
-                  link={trend.link}
-                  channel={trend.channel}
-                  channelLink={trend.channelLink}
-                  type="visto"
-                />
-              );
-            })}
-          </Box>
-
+          <YoutubeCardDesktop
+            youtube={trends.youtube}
+            youtubeSectionRef={youtubeSectionRef}
+          />
           {/* GOOGLE */}
-          <Box
-            id="google"
-            display="flex"
-            width="100%"
-            mt="24px"
-            ref={googleSectionRef}
-          >
-            <CardTitle title="Lo más buscado en Google" />
-          </Box>
-          <Flex
-            width="100%"
-            flexWrap={{ base: "nowrap", lg: "wrap" }}
-            flexDirection="column"
-            paddingX={{ base: "16px", lg: "0" }}
-            alignContent="space-between"
-            maxHeight={{ base: "none", lg: "540px" }}
-            alignItems="center"
-            mt="24px"
-          >
-            {google?.current?.record?.trends?.map((trend, currentIndex) => {
-              const elementInPrevious = google?.previous?.record?.trends?.find(
-                element => element.title === trend.title
-              );
-              const prevIndex = google?.previous?.record?.trends?.findIndex(
-                element => element.title === elementInPrevious?.title
-              );
-
-              return (
-                <TrendCard
-                  key={trend.title}
-                  position={currentIndex + 1}
-                  height="94px"
-                  title={trend.title}
-                  direction={getPosition(currentIndex, prevIndex)}
-                  amount={trend.amount}
-                  streak={trend.streak}
-                  link={trend.link}
-                  type="buscado"
-                />
-              );
-            })}
-          </Flex>
-
+          <GoogleCardDesktop
+            google={trends.google}
+            googleSectionRef={googleSectionRef}
+          />
           {/* PORTALS */}
-          <Box
-            id="portals"
-            display="flex"
-            width="100%"
-            mt={{ base: "24px", lg: "72px" }}
-            ref={portalSectionRef}
-          >
-            <CardTitle title="Lo más leído en portales de noticias" />
-          </Box>
-          <Tabs
-            variant="soft-rounded"
-            colorScheme="green"
-            width="100%"
-            overflow="auto"
-            className="no-padding"
-            mt="24px"
-          >
-            <TabList mb="24px" ml={{ base: "16px", lg: "0px" }}>
-              <Tab
-                color="white"
-                paddingX={{ base: "12px", lg: "16px" }}
-                paddingY={{ base: "6px", lg: "8px" }}
-                fontSize={{ base: "xs", lg: "md" }}
-              >
-                La Nación
-              </Tab>
-              <Tab
-                color="white"
-                paddingX={{ base: "12px", lg: "16px" }}
-                paddingY={{ base: "6px", lg: "8px" }}
-                fontSize={{ base: "xs", lg: "md" }}
-              >
-                El Destape
-              </Tab>
-              <Tab
-                color="white"
-                paddingX={{ base: "12px", lg: "16px" }}
-                paddingY={{ base: "6px", lg: "8px" }}
-                fontSize={{ base: "xs", lg: "md" }}
-              >
-                Clarín
-              </Tab>
-              <Tab
-                color="white"
-                paddingX={{ base: "12px", lg: "16px" }}
-                paddingY={{ base: "6px", lg: "8px" }}
-                fontSize={{ base: "xs", lg: "md" }}
-              >
-                Télam
-              </Tab>
-              <Tab
-                color="white"
-                paddingX={{ base: "12px", lg: "16px" }}
-                paddingY={{ base: "6px", lg: "8px" }}
-                fontSize={{ base: "xs", lg: "md" }}
-              >
-                Infobae
-              </Tab>
-            </TabList>
-            <TabPanels>
-              <TabPanel>
-                <Box
-                  width="100%"
-                  flexDirection="column"
-                  alignContent="space-between"
-                  paddingX={{ base: "16px", lg: "0" }}
-                  alignItems="center"
-                >
-                  {portals?.current?.laNacion?.record?.trends?.map(
-                    (trend, currentIndex) => {
-                      const elementInPrevious =
-                        portals?.previous?.laNacion?.record?.trends?.find(
-                          element => element.article === trend.article
-                        );
-                      const prevIndex =
-                        portals?.previous?.laNacion?.record?.trends?.findIndex(
-                          element =>
-                            element.article === elementInPrevious?.article
-                        );
-                      return (
-                        <TrendCard
-                          key={trend.article}
-                          position={currentIndex + 1}
-                          title={trend.article}
-                          direction={getPosition(currentIndex, prevIndex)}
-                          link={trend.link}
-                          type="leido"
-                          height="148px"
-                        />
-                      );
-                    }
-                  )}
-                </Box>
-              </TabPanel>
-              <TabPanel>
-                <Box
-                  width="100%"
-                  flexDirection="column"
-                  alignContent="space-between"
-                  paddingX={{ base: "16px", lg: "0" }}
-                  alignItems="center"
-                >
-                  {portals?.current?.elDestape?.record?.trends?.map(
-                    (trend, currentIndex) => {
-                      const elementInPrevious =
-                        portals?.previous?.elDestape?.record?.trends?.find(
-                          element => element.article === trend.article
-                        );
-                      const prevIndex =
-                        portals?.previous?.elDestape?.record?.trends?.findIndex(
-                          element =>
-                            element.article === elementInPrevious?.article
-                        );
-                      return (
-                        <TrendCard
-                          key={trend.article}
-                          position={currentIndex + 1}
-                          title={trend.article}
-                          direction={getPosition(currentIndex, prevIndex)}
-                          link={trend.link}
-                          type="leido"
-                          height="114px"
-                        />
-                      );
-                    }
-                  )}
-                </Box>
-              </TabPanel>
-              <TabPanel>
-                <Box
-                  width="100%"
-                  flexDirection="column"
-                  alignContent="space-between"
-                  paddingX={{ base: "16px", lg: "0" }}
-                  alignItems="center"
-                >
-                  {portals?.current?.clarin?.record?.trends?.map(
-                    (trend, currentIndex) => {
-                      const elementInPrevious =
-                        portals?.previous?.clarin?.record?.trends?.find(
-                          element => element.article === trend.article
-                        );
-                      const prevIndex =
-                        portals?.previous?.clarin?.record?.trends?.findIndex(
-                          element =>
-                            element.article === elementInPrevious?.article
-                        );
-                      return (
-                        <TrendCard
-                          key={trend.article}
-                          position={currentIndex + 1}
-                          title={trend.article}
-                          direction={getPosition(currentIndex, prevIndex)}
-                          link={trend.link}
-                          type="leido"
-                          height="114px"
-                        />
-                      );
-                    }
-                  )}
-                </Box>
-              </TabPanel>
-              <TabPanel>
-                <Box
-                  width="100%"
-                  flexDirection="column"
-                  alignContent="space-between"
-                  paddingX={{ base: "16px", lg: "0" }}
-                  alignItems="center"
-                >
-                  {portals?.current?.telam?.record?.trends?.map(
-                    (trend, currentIndex) => {
-                      const elementInPrevious =
-                        portals?.previous?.telam?.record?.trends?.find(
-                          element => element.article === trend.article
-                        );
-                      const prevIndex =
-                        portals?.previous?.telam?.record?.trends?.findIndex(
-                          element =>
-                            element.article === elementInPrevious?.article
-                        );
-                      return (
-                        <TrendCard
-                          key={trend.article}
-                          position={currentIndex + 1}
-                          title={trend.article}
-                          direction={getPosition(currentIndex, prevIndex)}
-                          link={trend.link}
-                          height="114px"
-                          type="leido"
-                        />
-                      );
-                    }
-                  )}
-                </Box>
-              </TabPanel>
-              <TabPanel>
-                <Box
-                  width="100%"
-                  flexDirection="column"
-                  alignContent="space-between"
-                  paddingX={{ base: "16px", lg: "0" }}
-                  alignItems="center"
-                >
-                  {portals?.current?.infobae?.record?.trends?.map(
-                    (trend, currentIndex) => {
-                      const elementInPrevious =
-                        portals?.previous?.infobae?.record?.trends?.find(
-                          element => element.article === trend.article
-                        );
-                      const prevIndex =
-                        portals?.previous?.infobae?.record?.trends?.findIndex(
-                          element =>
-                            element.article === elementInPrevious?.article
-                        );
-                      return (
-                        <TrendCard
-                          key={trend.article}
-                          position={currentIndex + 1}
-                          title={trend.article}
-                          direction={getPosition(currentIndex, prevIndex)}
-                          link={trend.link}
-                          type="leido"
-                          height="114px"
-                        />
-                      );
-                    }
-                  )}
-                </Box>
-              </TabPanel>
-            </TabPanels>
-          </Tabs>
+          <PortalesDesktop
+            portals={trends.portals}
+            portalSectionRef={portalSectionRef}
+          />
         </Container>
       </Box>
 
@@ -694,13 +192,7 @@ export default function Home() {
 export async function getServerSideProps() {
   const queryClient = new QueryClient();
 
-  await queryClient.prefetchQuery(["google"], getGoogleTrends);
-  await queryClient.prefetchQuery(["twitter"], getTwitterTrends);
-  await queryClient.prefetchQuery(["spotifyArtist"], getSpotifyArtistTrends);
-  await queryClient.prefetchQuery(["spotifySong"], getSpotifySongTrends);
-  await queryClient.prefetchQuery(["spotifyPodcast"], getSpotifyPodcastTrends);
-  await queryClient.prefetchQuery(["youtube"], getYoutubeTrends);
-  await queryClient.prefetchQuery(["portals"], getPortals);
+  await queryClient.prefetchQuery(["trends"], getTrends);
 
   return {
     props: {
