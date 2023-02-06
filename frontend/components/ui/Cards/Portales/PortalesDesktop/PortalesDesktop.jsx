@@ -1,11 +1,23 @@
-import { Box, Tab, TabList, TabPanel, TabPanels, Tabs } from "@chakra-ui/react";
+import {
+  Box,
+  Tab,
+  TabList,
+  TabPanel,
+  TabPanels,
+  Tabs,
+  Text,
+} from "@chakra-ui/react";
 import { getPosition } from "../../../../../utils/position";
+import ArrowDown from "../../../icons/ArrowDown";
+import ArrowUp from "../../../icons/ArrowUp";
+import Same from "../../../icons/Same";
+import Share from "../../../icons/Share";
 import CardTitle from "../../../TrendCard/CardTitle/CardTitle";
-import TrendCard from "../../../TrendCard/TrendCard";
+import theme from "../../../../../styles/theme";
+import styles from "./PortalesCardDesktop.module.css";
+import { calculateLines } from "../../../../../utils/calculateLines";
 
 const PortalesDesktop = ({ portalSectionRef, portals }) => {
-  console.log(portals);
-
   return (
     <>
       <Box
@@ -21,6 +33,7 @@ const PortalesDesktop = ({ portalSectionRef, portals }) => {
         variant="soft-rounded"
         colorScheme="green"
         width="100%"
+        display={{ base: "none", lg: "block" }}
         overflow="auto"
         className="no-padding"
         mt="24px"
@@ -73,7 +86,6 @@ const PortalesDesktop = ({ portalSectionRef, portals }) => {
               width="100%"
               flexDirection="column"
               alignContent="space-between"
-              paddingX={{ base: "16px", lg: "0" }}
               alignItems="center"
             >
               {portals?.current?.laNacion?.record?.trends?.map(
@@ -87,15 +99,74 @@ const PortalesDesktop = ({ portalSectionRef, portals }) => {
                       element => element.article === elementInPrevious?.article
                     );
                   return (
-                    <TrendCard
-                      key={trend.article}
-                      position={currentIndex + 1}
-                      title={trend.article}
-                      direction={getPosition(currentIndex, prevIndex)}
-                      link={trend.link}
-                      type="leido"
-                      height="148px"
-                    />
+                    <>
+                      <Box
+                        as="article"
+                        color={theme.colors.white[500]}
+                        bg={theme.colors.indigo[800]}
+                        border="1px"
+                        borderColor={theme.colors.cyan[150]}
+                        borderRadius={theme.radius.xl}
+                        paddingX="48px"
+                        paddingY="12px"
+                        width="100%"
+                        height="157px"
+                        mb={2}
+                        display={{ base: "none", lg: "flex" }}
+                        alignItems="center"
+                      >
+                        <Box
+                          display="flex"
+                          justifyContent="space-between"
+                          alignItems="center"
+                          w="100%"
+                        >
+                          <Box display="flex" gap={6} alignItems="center">
+                            <Box
+                              display="flex"
+                              justifyContent="space-between"
+                              alignItems="center"
+                              width="80px"
+                            >
+                              <Text fontSize="4xl">{currentIndex + 1}</Text>
+                              {getPosition(currentIndex, prevIndex) ===
+                              "down" ? (
+                                <ArrowDown />
+                              ) : getPosition(currentIndex, prevIndex) ===
+                                "up" ? (
+                                <ArrowUp />
+                              ) : (
+                                <Same className={styles.same} />
+                              )}
+                            </Box>
+                            <Box
+                              display="flex"
+                              gap={2}
+                              flexDirection="column"
+                              maxW="600px"
+                              ml={2}
+                            >
+                              <a
+                                href={trend.link}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                              >
+                                <Text
+                                  fontWeight={600}
+                                  fontSize="2xl"
+                                  className={calculateLines("leido")}
+                                >
+                                  {trend.article}
+                                </Text>
+                              </a>
+                            </Box>
+                          </Box>
+                          <Box display="flex" gap={8} alignItems="center">
+                            <Share />
+                          </Box>
+                        </Box>
+                      </Box>
+                    </>
                   );
                 }
               )}
@@ -120,15 +191,74 @@ const PortalesDesktop = ({ portalSectionRef, portals }) => {
                       element => element.article === elementInPrevious?.article
                     );
                   return (
-                    <TrendCard
-                      key={trend.article}
-                      position={currentIndex + 1}
-                      title={trend.article}
-                      direction={getPosition(currentIndex, prevIndex)}
-                      link={trend.link}
-                      type="leido"
-                      height="114px"
-                    />
+                    <>
+                      <Box
+                        as="article"
+                        color={theme.colors.white[500]}
+                        bg={theme.colors.indigo[800]}
+                        border="1px"
+                        borderColor={theme.colors.cyan[150]}
+                        borderRadius={theme.radius.xl}
+                        paddingX="48px"
+                        paddingY="12px"
+                        width="100%"
+                        height="157px"
+                        mb={2}
+                        display={{ base: "none", lg: "flex" }}
+                        alignItems="center"
+                      >
+                        <Box
+                          display="flex"
+                          justifyContent="space-between"
+                          alignItems="center"
+                          w="100%"
+                        >
+                          <Box display="flex" gap={6} alignItems="center">
+                            <Box
+                              display="flex"
+                              justifyContent="space-between"
+                              alignItems="center"
+                              width="80px"
+                            >
+                              <Text fontSize="4xl">{currentIndex + 1}</Text>
+                              {getPosition(currentIndex, prevIndex) ===
+                              "down" ? (
+                                <ArrowDown />
+                              ) : getPosition(currentIndex, prevIndex) ===
+                                "up" ? (
+                                <ArrowUp />
+                              ) : (
+                                <Same className={styles.same} />
+                              )}
+                            </Box>
+                            <Box
+                              display="flex"
+                              gap={2}
+                              flexDirection="column"
+                              maxW="600px"
+                              ml={2}
+                            >
+                              <a
+                                href={trend.link}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                              >
+                                <Text
+                                  fontWeight={600}
+                                  fontSize="2xl"
+                                  className={calculateLines("leido")}
+                                >
+                                  {trend.article}
+                                </Text>
+                              </a>
+                            </Box>
+                          </Box>
+                          <Box display="flex" gap={8} alignItems="center">
+                            <Share />
+                          </Box>
+                        </Box>
+                      </Box>
+                    </>
                   );
                 }
               )}
@@ -153,15 +283,74 @@ const PortalesDesktop = ({ portalSectionRef, portals }) => {
                       element => element.article === elementInPrevious?.article
                     );
                   return (
-                    <TrendCard
-                      key={trend.article}
-                      position={currentIndex + 1}
-                      title={trend.article}
-                      direction={getPosition(currentIndex, prevIndex)}
-                      link={trend.link}
-                      type="leido"
-                      height="114px"
-                    />
+                    <>
+                      <Box
+                        as="article"
+                        color={theme.colors.white[500]}
+                        bg={theme.colors.indigo[800]}
+                        border="1px"
+                        borderColor={theme.colors.cyan[150]}
+                        borderRadius={theme.radius.xl}
+                        paddingX="48px"
+                        paddingY="12px"
+                        width="100%"
+                        height="157px"
+                        mb={2}
+                        display={{ base: "none", lg: "flex" }}
+                        alignItems="center"
+                      >
+                        <Box
+                          display="flex"
+                          justifyContent="space-between"
+                          alignItems="center"
+                          w="100%"
+                        >
+                          <Box display="flex" gap={6} alignItems="center">
+                            <Box
+                              display="flex"
+                              justifyContent="space-between"
+                              alignItems="center"
+                              width="80px"
+                            >
+                              <Text fontSize="4xl">{currentIndex + 1}</Text>
+                              {getPosition(currentIndex, prevIndex) ===
+                              "down" ? (
+                                <ArrowDown />
+                              ) : getPosition(currentIndex, prevIndex) ===
+                                "up" ? (
+                                <ArrowUp />
+                              ) : (
+                                <Same className={styles.same} />
+                              )}
+                            </Box>
+                            <Box
+                              display="flex"
+                              gap={2}
+                              flexDirection="column"
+                              maxW="600px"
+                              ml={2}
+                            >
+                              <a
+                                href={trend.link}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                              >
+                                <Text
+                                  fontWeight={600}
+                                  fontSize="2xl"
+                                  className={calculateLines("leido")}
+                                >
+                                  {trend.article}
+                                </Text>
+                              </a>
+                            </Box>
+                          </Box>
+                          <Box display="flex" gap={8} alignItems="center">
+                            <Share />
+                          </Box>
+                        </Box>
+                      </Box>
+                    </>
                   );
                 }
               )}
@@ -186,15 +375,74 @@ const PortalesDesktop = ({ portalSectionRef, portals }) => {
                       element => element.article === elementInPrevious?.article
                     );
                   return (
-                    <TrendCard
-                      key={trend.article}
-                      position={currentIndex + 1}
-                      title={trend.article}
-                      direction={getPosition(currentIndex, prevIndex)}
-                      link={trend.link}
-                      height="114px"
-                      type="leido"
-                    />
+                    <>
+                      <Box
+                        as="article"
+                        color={theme.colors.white[500]}
+                        bg={theme.colors.indigo[800]}
+                        border="1px"
+                        borderColor={theme.colors.cyan[150]}
+                        borderRadius={theme.radius.xl}
+                        paddingX="48px"
+                        paddingY="12px"
+                        width="100%"
+                        height="157px"
+                        mb={2}
+                        display={{ base: "none", lg: "flex" }}
+                        alignItems="center"
+                      >
+                        <Box
+                          display="flex"
+                          justifyContent="space-between"
+                          alignItems="center"
+                          w="100%"
+                        >
+                          <Box display="flex" gap={6} alignItems="center">
+                            <Box
+                              display="flex"
+                              justifyContent="space-between"
+                              alignItems="center"
+                              width="80px"
+                            >
+                              <Text fontSize="4xl">{currentIndex + 1}</Text>
+                              {getPosition(currentIndex, prevIndex) ===
+                              "down" ? (
+                                <ArrowDown />
+                              ) : getPosition(currentIndex, prevIndex) ===
+                                "up" ? (
+                                <ArrowUp />
+                              ) : (
+                                <Same className={styles.same} />
+                              )}
+                            </Box>
+                            <Box
+                              display="flex"
+                              gap={2}
+                              flexDirection="column"
+                              maxW="600px"
+                              ml={2}
+                            >
+                              <a
+                                href={trend.link}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                              >
+                                <Text
+                                  fontWeight={600}
+                                  fontSize="2xl"
+                                  className={calculateLines("leido")}
+                                >
+                                  {trend.article}
+                                </Text>
+                              </a>
+                            </Box>
+                          </Box>
+                          <Box display="flex" gap={8} alignItems="center">
+                            <Share />
+                          </Box>
+                        </Box>
+                      </Box>
+                    </>
                   );
                 }
               )}
@@ -219,15 +467,74 @@ const PortalesDesktop = ({ portalSectionRef, portals }) => {
                       element => element.article === elementInPrevious?.article
                     );
                   return (
-                    <TrendCard
-                      key={trend.article}
-                      position={currentIndex + 1}
-                      title={trend.article}
-                      direction={getPosition(currentIndex, prevIndex)}
-                      link={trend.link}
-                      type="leido"
-                      height="114px"
-                    />
+                    <>
+                      <Box
+                        as="article"
+                        color={theme.colors.white[500]}
+                        bg={theme.colors.indigo[800]}
+                        border="1px"
+                        borderColor={theme.colors.cyan[150]}
+                        borderRadius={theme.radius.xl}
+                        paddingX="48px"
+                        paddingY="12px"
+                        width="100%"
+                        height="157px"
+                        mb={2}
+                        display={{ base: "none", lg: "flex" }}
+                        alignItems="center"
+                      >
+                        <Box
+                          display="flex"
+                          justifyContent="space-between"
+                          alignItems="center"
+                          w="100%"
+                        >
+                          <Box display="flex" gap={6} alignItems="center">
+                            <Box
+                              display="flex"
+                              justifyContent="space-between"
+                              alignItems="center"
+                              width="80px"
+                            >
+                              <Text fontSize="4xl">{currentIndex + 1}</Text>
+                              {getPosition(currentIndex, prevIndex) ===
+                              "down" ? (
+                                <ArrowDown />
+                              ) : getPosition(currentIndex, prevIndex) ===
+                                "up" ? (
+                                <ArrowUp />
+                              ) : (
+                                <Same className={styles.same} />
+                              )}
+                            </Box>
+                            <Box
+                              display="flex"
+                              gap={2}
+                              flexDirection="column"
+                              maxW="600px"
+                              ml={2}
+                            >
+                              <a
+                                href={trend.link}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                              >
+                                <Text
+                                  fontWeight={600}
+                                  fontSize="2xl"
+                                  className={calculateLines("leido")}
+                                >
+                                  {trend.article}
+                                </Text>
+                              </a>
+                            </Box>
+                          </Box>
+                          <Box display="flex" gap={8} alignItems="center">
+                            <Share />
+                          </Box>
+                        </Box>
+                      </Box>
+                    </>
                   );
                 }
               )}

@@ -3,15 +3,14 @@ import React from "react";
 const ArrowUp = () => {
   return (
     <svg
-      width="24"
-      height="25"
-      viewBox="0 0 24 25"
+      width="36"
+      height="36"
+      viewBox="0 0 36 36"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
-      className="arrow-up"
     >
       <path
-        d="M13.4999 6.19323V24.4512H10.4999V6.19323L2.45389 14.2392L0.332886 12.1182L11.9999 0.451233L23.6669 12.1182L21.5459 14.2392L13.4999 6.19323Z"
+        d="M20.1704 8.613V36H15.6704V8.613L3.60142 20.682L0.419922 17.5005L17.9204 0L35.4209 17.5005L32.2394 20.682L20.1704 8.613Z"
         fill="#71E9EB"
       />
     </svg>

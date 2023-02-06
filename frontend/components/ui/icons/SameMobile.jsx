@@ -1,20 +1,20 @@
-const Same = ({ className }) => {
+const SameMobile = () => {
   return (
     <svg
-      width="12"
-      height="4"
-      viewBox="0 0 12 4"
+      width="8"
+      height="2"
+      viewBox="0 0 8 2"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
     >
       <path
         fillRule="evenodd"
         clipRule="evenodd"
-        d="M12 0.5H0V3.5H12V0.5Z"
+        d="M8 0H0V2H8V0Z"
         fill="#B8A7E2"
       />
     </svg>
   );
 };
 
-export default Same;
+export default SameMobile;

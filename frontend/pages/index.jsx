@@ -5,36 +5,29 @@ import { useInView } from "react-intersection-observer";
 
 // Charka UI
 import { Box, Container, Flex } from "@chakra-ui/react";
-import { Tabs, TabList, TabPanels, Tab, TabPanel } from "@chakra-ui/react";
 
 // API
-import {
-  getGoogleTrends,
-  getTwitterTrends,
-  getSpotifyArtistTrends,
-  getSpotifySongTrends,
-  getSpotifyPodcastTrends,
-  getYoutubeTrends,
-  getPortals,
-  getTrends,
-} from "../services/services";
+import { getTrends } from "../services/services";
 
 // Components
 import Navbar from "../components/layout/Navbar";
 import Footer from "../components/layout/Footer";
-import TrendCard from "../components/ui/TrendCard/TrendCard";
-import CardTitle from "../components/ui/TrendCard/CardTitle/CardTitle";
 
 // Theme
 import theme from "../styles/theme";
 
 // Utils
-import { getPosition, intersectionObserverOptions } from "../utils/position";
+import { intersectionObserverOptions } from "../utils/position";
 import TwitterCardDesktop from "../components/ui/Cards/Twitter/TwitterCardDesktop/TwitterCardDesktop";
 import YoutubeCardDesktop from "../components/ui/Cards/Youtube/YoutubeCardDesktop/YoutubeCardDesktop";
 import GoogleCardDesktop from "../components/ui/Cards/Google/GoogleCardDesktop/GoogleCardDesktop";
 import PortalesDesktop from "../components/ui/Cards/Portales/PortalesDesktop/PortalesDesktop";
 import SpotifyCardDesktop from "../components/ui/Cards/Spotify/SpotifyCardDesktop/SpotifyCardDesktop";
+import TwitterCardMobile from "../components/ui/Cards/Twitter/TwitterCardMobile/TwitterCardMobile";
+import GoogleCardMobile from "../components/ui/Cards/Google/GoogleCardMobile/GoogleCardMobile";
+import YoutubeCardMobile from "../components/ui/Cards/Youtube/YoutubeCardMobile/YoutubeCardMobile";
+import SpotifyCardMobile from "../components/ui/Cards/Spotify/SpotifyCardMobile/SpotifyCardMobile";
+import PortalesMobile from "../components/ui/Cards/Portales/PortalesMobile/PortalesMobile";
 
 export default function Home() {
   const [hasCarrousel, setHasCarrousel] = useState(true);
@@ -77,48 +70,39 @@ export default function Home() {
     queryFn: getTrends,
   });
 
-  console.log(trends);
-
   // Effects
-  // useEffect(() => {
-  //   if (twitterIsInView) {
-  //     setActiveSectionIndex(0);
-  //     return;
-  //   }
-  //   if (spotifyIsInView) {
-  //     setActiveSectionIndex(1);
-  //     return;
-  //   }
-  //   if (youtubeIsInView) {
-  //     setActiveSectionIndex(2);
-  //     return;
-  //   }
-  //   if (googleIsInView) {
-  //     setActiveSectionIndex(3);
-  //     return;
-  //   }
-  //   if (portalsIsInView) {
-  //     setActiveSectionIndex(4);
-  //     return;
-  //   }
-  // }, [
-  //   googleIsInView,
-  //   portalsIsInView,
-  //   spotifyIsInView,
-  //   twitterIsInView,
-  //   youtubeIsInView,
-  // ]);
+  useEffect(() => {
+    if (twitterIsInView) {
+      setActiveSectionIndex(0);
+      return;
+    }
+    if (spotifyIsInView) {
+      setActiveSectionIndex(1);
+      return;
+    }
+    if (youtubeIsInView) {
+      setActiveSectionIndex(2);
+      return;
+    }
+    if (googleIsInView) {
+      setActiveSectionIndex(3);
+      return;
+    }
+    if (portalsIsInView) {
+      setActiveSectionIndex(4);
+      return;
+    }
+  }, [
+    googleIsInView,
+    portalsIsInView,
+    spotifyIsInView,
+    twitterIsInView,
+    youtubeIsInView,
+  ]);
 
-  // if (
-  //   !google ||
-  //   !twitter ||
-  //   !spotifyArtist ||
-  //   !spotifySong ||
-  //   !spotifyPodcast ||
-  //   !youtube
-  // ) {
-  //   return <div>No data</div>;
-  // }
+  if (!trends) {
+    return <div>No data</div>;
+  }
 
   return (
     <>
@@ -158,6 +142,10 @@ export default function Home() {
             twitter={trends.twitter}
             twitterSectionRef={twitterSectionRef}
           />
+          <TwitterCardMobile
+            twitter={trends.twitter}
+            twitterSectionRef={twitterSectionRef}
+          />
           {/* SPOTIFY */}
           <SpotifyCardDesktop
             spotifyArtist={trends.spotifyArtists}
@@ -165,21 +153,29 @@ export default function Home() {
             spotifySong={trends.spotifySongs}
             spotifySectionRef={spotifySectionRef}
           />
+          <SpotifyCardMobile
+            spotifyArtist={trends.spotifyArtists}
+            spotifyPodcast={trends.spotifyPodcasts}
+            spotifySong={trends.spotifySongs}
+          />
           {/* YOUTUBE */}
           <YoutubeCardDesktop
             youtube={trends.youtube}
             youtubeSectionRef={youtubeSectionRef}
           />
+          <YoutubeCardMobile youtube={trends.youtube} />
           {/* GOOGLE */}
           <GoogleCardDesktop
             google={trends.google}
             googleSectionRef={googleSectionRef}
           />
+          <GoogleCardMobile google={trends.google} />
           {/* PORTALS */}
           <PortalesDesktop
             portals={trends.portals}
             portalSectionRef={portalSectionRef}
           />
+          <PortalesMobile portals={trends.portals} />
         </Container>
       </Box>
 
