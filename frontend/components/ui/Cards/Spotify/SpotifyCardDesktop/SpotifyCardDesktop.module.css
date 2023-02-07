@@ -1,5 +1,6 @@
 .same {
-  margin-left: -30px !important;
+  position: relative;
+  right: 12px;
 }
 
 .one-max-line {

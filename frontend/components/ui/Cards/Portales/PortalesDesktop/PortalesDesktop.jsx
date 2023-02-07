@@ -7,15 +7,25 @@ import {
   Tabs,
   Text,
 } from "@chakra-ui/react";
+
+// Utils
 import { getPosition } from "../../../../../utils/position";
+import { calculateLines } from "../../../../../utils/calculateLines";
+
+// Icons
 import ArrowDown from "../../../icons/ArrowDown";
 import ArrowUp from "../../../icons/ArrowUp";
 import Same from "../../../icons/Same";
 import Share from "../../../icons/Share";
+
+// Components
 import CardTitle from "../../../TrendCard/CardTitle/CardTitle";
+
+// Theme
 import theme from "../../../../../styles/theme";
+
+// Styles
 import styles from "./PortalesCardDesktop.module.css";
-import { calculateLines } from "../../../../../utils/calculateLines";
 
 const PortalesDesktop = ({ portalSectionRef, portals }) => {
   return (

@@ -6,6 +6,7 @@ const Same = ({ className }) => {
       viewBox="0 0 12 4"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
+      className={className}
     >
       <path
         fillRule="evenodd"

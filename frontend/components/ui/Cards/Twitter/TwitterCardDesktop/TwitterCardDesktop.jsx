@@ -1,12 +1,20 @@
 import { Badge, Box, Flex, Text } from "@chakra-ui/react";
+
+// Utils
 import { getPosition } from "../../../../../utils/position";
 import { calculateLines } from "../../../../../utils/calculateLines";
+
+// Components
 import CardTitle from "../../../TrendCard/CardTitle/CardTitle";
-import theme from "../../../../../styles/theme";
 import Share from "../../../icons/Share";
 import ArrowDown from "../../../icons/ArrowDown";
 import ArrowUp from "../../../icons/ArrowUp";
 import Same from "../../../icons/Same";
+
+// Theme
+import theme from "../../../../../styles/theme";
+
+// Styles
 import styles from "./TwitterCardDesktop.module.css";
 
 const TwitterCardDesktop = ({ twitter, twitterSectionRef }) => {
@@ -67,7 +75,8 @@ const TwitterCardDesktop = ({ twitter, twitterSectionRef }) => {
                       display="flex"
                       justifyContent="space-between"
                       alignItems="center"
-                      width="80px"
+                      w="80px"
+                      className="position-container"
                     >
                       <Text fontSize="4xl">{currentIndex + 1}</Text>
                       {getPosition(currentIndex, prevIndex) === "down" ? (
@@ -78,13 +87,7 @@ const TwitterCardDesktop = ({ twitter, twitterSectionRef }) => {
                         <Same className={styles.same} />
                       )}
                     </Box>
-                    <Box
-                      display="flex"
-                      gap={2}
-                      flexDirection="column"
-                      maxW="600px"
-                      ml={0}
-                    >
+                    <Box display="flex" gap="4px" flexDirection="column" ml={0}>
                       <a
                         href={trend.link}
                         target="_blank"

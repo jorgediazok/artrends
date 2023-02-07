@@ -8,14 +8,24 @@ import {
   Tabs,
   Text,
 } from "@chakra-ui/react";
+
+// Utils
 import { calculateLines } from "../../../../../utils/calculateLines";
 import { getPosition } from "../../../../../utils/position";
+
+// Icons
 import ArrowDown from "../../../icons/ArrowDown";
 import ArrowUp from "../../../icons/ArrowUp";
 import Same from "../../../icons/Same";
 import Share from "../../../icons/Share";
+
+// Components
 import CardTitle from "../../../TrendCard/CardTitle/CardTitle";
+
+// Theme
 import theme from "../../../../../styles/theme";
+
+// Styles
 import styles from "./SpotifyCardDesktop.module.css";
 
 const SpotifyCardDesktop = ({
@@ -116,7 +126,8 @@ const SpotifyCardDesktop = ({
                               display="flex"
                               justifyContent="space-between"
                               alignItems="center"
-                              width="80px"
+                              w="80px"
+                              className="position-container"
                             >
                               <Text fontSize="4xl">{currentIndex + 1}</Text>
                               {getPosition(currentIndex, prevIndex) ===
@@ -131,10 +142,9 @@ const SpotifyCardDesktop = ({
                             </Box>
                             <Box
                               display="flex"
-                              gap={2}
+                              gap="4px"
                               flexDirection="column"
-                              maxW="600px"
-                              ml={2}
+                              ml={0}
                             >
                               <a
                                 href={trend.link}

@@ -65,7 +65,8 @@ const YoutubeCardDesktop = ({ youtube, youtubeSectionRef }) => {
                       display="flex"
                       justifyContent="space-between"
                       alignItems="center"
-                      width="80px"
+                      w="80px"
+                      className="position-container"
                     >
                       <Text fontSize="4xl">{currentIndex + 1}</Text>
                       {getPosition(currentIndex, prevIndex) === "down" ? (
@@ -78,10 +79,10 @@ const YoutubeCardDesktop = ({ youtube, youtubeSectionRef }) => {
                     </Box>
                     <Box
                       display="flex"
-                      gap={2}
+                      gap="4px"
                       flexDirection="column"
-                      maxW="600px"
-                      ml={2}
+                      ml={0}
+                      maxW="80%"
                     >
                       <a
                         href={trend.link}
