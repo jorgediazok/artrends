@@ -12,6 +12,7 @@ import {
 // Utils
 import { calculateLines } from "../../../../../utils/calculateLines";
 import { getPosition } from "../../../../../utils/position";
+import { scrollOffset } from "../../../../../utils/scrollOffset";
 
 // Icons
 import ArrowDown from "../../../icons/ArrowDown";
@@ -42,6 +43,8 @@ const SpotifyCardDesktop = ({
         width="100%"
         mt={{ base: "24px", lg: "72px" }}
         ref={spotifySectionRef}
+        paddingY={scrollOffset.desktop}
+        marginY={scrollOffset.desktop}
       >
         <CardTitle title="Lo más escuchado en Spotify" />
       </Box>
