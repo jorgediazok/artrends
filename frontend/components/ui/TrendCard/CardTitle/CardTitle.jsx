@@ -18,6 +18,7 @@ const CardTitle = ({ title }) => {
       justifyContent={{ base: "flex-start", lg: "space-between" }}
       width="100%"
       flexDirection={{ base: "column", lg: "row" }}
+      mt={{ base: "24px", lg: "72px" }}
     >
       <Box display="flex" gap={3} alignItems="center">
         <Text fontSize={{ base: "xl", lg: "3xl" }} fontWeight={700}>

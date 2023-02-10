@@ -29,9 +29,14 @@ import YoutubeCardMobile from "../components/ui/Cards/Youtube/YoutubeCardMobile/
 import SpotifyCardMobile from "../components/ui/Cards/Spotify/SpotifyCardMobile/SpotifyCardMobile";
 import PortalesMobile from "../components/ui/Cards/Portales/PortalesMobile/PortalesMobile";
 
+/* Esto es necesario para que en el scroll al elemento
+la navbar tape el título de la seccion  */
+const offset = {
+  mobile: 210,
+  desktop: 48,
+};
+
 export default function Home() {
-  const [hasCarrousel, setHasCarrousel] = useState(true);
-  const [hasSearch, setHasSearch] = useState(true);
   const [activeSectionIndex, setActiveSectionIndex] = useState();
 
   // Hooks
@@ -115,8 +120,8 @@ export default function Home() {
       {/* NAV */}
       <Navbar
         activeSectionIndex={activeSectionIndex}
-        hasSearch={hasSearch}
-        hasCarrousel={hasCarrousel}
+        hasSearch={true}
+        hasCarrousel={true}
       />
 
       <Box
@@ -136,6 +141,7 @@ export default function Home() {
           color="white"
           width="100%"
           p={0}
+          pt={{ base: "24px", lg: "128px" }}
         >
           {/* TWITTER */}
           <TwitterCardDesktop

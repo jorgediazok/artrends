@@ -15,7 +15,6 @@ import styles from "./MobileCarousel.module.css";
 
 // Theme
 import theme from "../../../styles/theme";
-import { useEffect, useState } from "react";
 
 const items = [
   {
@@ -57,7 +56,7 @@ export default function MobileCarousel({ activeSectionIndex }) {
       maxWidth="100%"
     >
       <ul className={styles.container}>
-        {items.map(({ nombre, to, id, Icon }, index) => {
+        {items.map(({ nombre, to, Icon }, index) => {
           return (
             <Box
               as="li"
