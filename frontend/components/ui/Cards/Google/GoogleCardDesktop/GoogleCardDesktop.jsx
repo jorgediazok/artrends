@@ -3,6 +3,7 @@ import { Badge, Box, Flex, Text } from "@chakra-ui/react";
 // Utils
 import { calculateLines } from "../../../../../utils/calculateLines";
 import { getPosition } from "../../../../../utils/position";
+import { scrollOffset } from "../../../../../utils/scrollOffset";
 
 // Icons
 import ArrowDown from "../../../icons/ArrowDown";
@@ -28,6 +29,8 @@ const GoogleCardDesktop = ({ google, googleSectionRef }) => {
         width="100%"
         mt={{ base: "24px", lg: "72px" }}
         ref={googleSectionRef}
+        paddingY={scrollOffset.desktop}
+        marginY={scrollOffset.desktop}
       >
         <CardTitle title="Lo más buscado en Google" />
       </Box>

@@ -3,6 +3,7 @@ import { Badge, Box, Flex, Text } from "@chakra-ui/react";
 // Utils
 import { getPosition } from "../../../../../utils/position";
 import { calculateLines } from "../../../../../utils/calculateLines";
+import { scrollOffset } from "../../../../../utils/scrollOffset";
 
 // Components
 import CardTitle from "../../../TrendCard/CardTitle/CardTitle";
@@ -26,6 +27,8 @@ const TwitterCardDesktop = ({ twitter, twitterSectionRef }) => {
         width="100%"
         mt={{ base: "60px", lg: "158px" }}
         ref={twitterSectionRef}
+        paddingY={scrollOffset.desktop}
+        marginY={scrollOffset.desktop}
       >
         <CardTitle title="Lo más discutido en Twitter" />
       </Box>

@@ -4,7 +4,7 @@ import { useQuery, QueryClient, dehydrate } from "@tanstack/react-query";
 import { useInView } from "react-intersection-observer";
 
 // Charka UI
-import { Box, Container, Flex } from "@chakra-ui/react";
+import { Box, Container } from "@chakra-ui/react";
 
 // API
 import { getTrends } from "../services/services";
@@ -28,13 +28,6 @@ import GoogleCardMobile from "../components/ui/Cards/Google/GoogleCardMobile/Goo
 import YoutubeCardMobile from "../components/ui/Cards/Youtube/YoutubeCardMobile/YoutubeCardMobile";
 import SpotifyCardMobile from "../components/ui/Cards/Spotify/SpotifyCardMobile/SpotifyCardMobile";
 import PortalesMobile from "../components/ui/Cards/Portales/PortalesMobile/PortalesMobile";
-
-/* Esto es necesario para que en el scroll al elemento
-la navbar tape el título de la seccion  */
-const offset = {
-  mobile: 210,
-  desktop: 48,
-};
 
 export default function Home() {
   const [activeSectionIndex, setActiveSectionIndex] = useState();

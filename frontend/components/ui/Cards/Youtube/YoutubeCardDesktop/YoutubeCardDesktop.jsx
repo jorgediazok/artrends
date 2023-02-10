@@ -2,6 +2,8 @@ import { Badge, Box, Text } from "@chakra-ui/react";
 import theme from "../../../../../styles/theme";
 import { calculateLines } from "../../../../../utils/calculateLines";
 import { getPosition } from "../../../../../utils/position";
+import { scrollOffset } from "../../../../../utils/scrollOffset";
+
 import ArrowDown from "../../../icons/ArrowDown";
 import ArrowUp from "../../../icons/ArrowUp";
 import Same from "../../../icons/Same";
@@ -18,6 +20,8 @@ const YoutubeCardDesktop = ({ youtube, youtubeSectionRef }) => {
         width="100%"
         mt={{ base: "24px", lg: "72px" }}
         ref={youtubeSectionRef}
+        paddingY={scrollOffset.desktop}
+        marginY={scrollOffset.desktop}
       >
         <CardTitle title="Lo más visto en Youtube" />
       </Box>
