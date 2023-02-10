@@ -60,7 +60,7 @@ export default function MobileCarousel({ activeSectionIndex }) {
           return (
             <Box
               as="li"
-              key={to}
+              key={nombre}
               shadow="sm"
               lineHeight={1.5}
               textAlign="center"

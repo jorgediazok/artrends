@@ -36,3 +36,8 @@ export const getPortals = async () => {
   const result = await fetch("https://api.artrends.ar/api/portals");
   return result.json();
 };
+
+export const getTrends = async () => {
+  const result = await fetch("https://api.artrends.ar/api/trends");
+  return result.json();
+};
