@@ -1,15 +1,14 @@
 const ArrowDown = ({ width, height }) => {
   return (
     <svg
-      width="24"
-      height="24"
-      viewBox="0 0 24 24"
+      width="36"
+      height="36"
+      viewBox="0 0 36 36"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
-      className="arrow-down"
     >
       <path
-        d="M13.4999 18.258L21.5459 10.212L23.6669 12.333L11.9999 24L0.332886 12.333L2.45389 10.212L10.4999 18.258V0H13.4999V18.258Z"
+        d="M20.25 27.387L32.319 15.318L35.5005 18.4995L18 36L0.499512 18.4995L3.68101 15.318L15.75 27.387V0H20.25V27.387Z"
         fill="#BC55E0"
       />
     </svg>
