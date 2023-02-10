@@ -19,7 +19,6 @@ import ThreeDots from "../../../icons/ThreeDots";
 import styles from "./PortalesCardMobile.module.css";
 
 const PortalesMobile = ({ portals }) => {
-  console.log(portals);
   return (
     <Tabs
       variant="soft-rounded"

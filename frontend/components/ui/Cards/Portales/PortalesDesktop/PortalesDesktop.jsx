@@ -11,6 +11,7 @@ import {
 // Utils
 import { getPosition } from "../../../../../utils/position";
 import { calculateLines } from "../../../../../utils/calculateLines";
+import { scrollOffset } from "../../../../../utils/scrollOffset";
 
 // Icons
 import ArrowDown from "../../../icons/ArrowDown";
@@ -36,6 +37,8 @@ const PortalesDesktop = ({ portalSectionRef, portals }) => {
         width="100%"
         mt={{ base: "24px", lg: "72px" }}
         ref={portalSectionRef}
+        paddingY={scrollOffset.desktop}
+        marginY={scrollOffset.desktop}
       >
         <CardTitle title="Lo más leído en portales de noticias" />
       </Box>
