@@ -30,6 +30,7 @@ export default function portalRoutes(app: AppInstance, db: Db) {
 					return;
 				}
 				if (isCacheResult(cacheHit)) {
+					console.log({ cache: cacheHit.stored });
 					if (cacheHit.stored) {
 						if (!cacheHit.item) {
 							console.log({ cacheHit });
@@ -44,6 +45,7 @@ export default function portalRoutes(app: AppInstance, db: Db) {
 
 				if (!cacheHit) {
 					const result = await getPortalTrends(db);
+					console.log({ noCache: result });
 
 					app.cache.set("portal-trends", result, 360000, err => {
 						if (err) {
