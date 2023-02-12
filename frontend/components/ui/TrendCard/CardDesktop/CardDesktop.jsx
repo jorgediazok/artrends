@@ -9,6 +9,8 @@ import Share from "../../icons/Share";
 
 // Theme
 import theme from "../../../../styles/theme";
+
+// Utils
 import { calculateLines } from "../../../../utils/calculateLines";
 
 // Styles

@@ -8,7 +8,7 @@ import SameMobile from "../../../icons/SameMobile";
 import ThreeDots from "../../../icons/ThreeDots";
 import styles from "./YoutubeCardMobile.module.css";
 
-const YoutubeCardMobile = ({ youtube }) => {
+const YoutubeCardMobile = ({ youtube, youtubeSectionRef }) => {
   return (
     <Flex
       width="100%"
@@ -27,114 +27,113 @@ const YoutubeCardMobile = ({ youtube }) => {
           element => element.title === elementInPrevious?.title
         );
         return (
-          <>
+          <Box
+            as="article"
+            color={theme.colors.white[500]}
+            bg={theme.colors.indigo[800]}
+            border="1px"
+            borderColor={theme.colors.cyan[150]}
+            borderRadius={theme.radius.md}
+            width="100%"
+            height="118px"
+            mb={2}
+            display={{ base: "flex", lg: "none" }}
+            alignItems="center"
+            p="8px 16px"
+            key={trend.title}
+          >
             <Box
-              as="article"
-              color={theme.colors.white[500]}
-              bg={theme.colors.indigo[800]}
-              border="1px"
-              borderColor={theme.colors.cyan[150]}
-              borderRadius={theme.radius.md}
-              width="100%"
-              height="118px"
-              mb={2}
-              display={{ base: "flex", lg: "none" }}
+              display="flex"
+              justifyContent="space-between"
               alignItems="center"
-              p="8px 16px"
+              width="100%"
+              flexDir="column"
             >
               <Box
                 display="flex"
+                width="100%"
+                height="100%"
                 justifyContent="space-between"
                 alignItems="center"
-                width="100%"
-                flexDir="column"
               >
-                <Box
-                  display="flex"
-                  width="100%"
-                  height="100%"
-                  justifyContent="space-between"
-                  alignItems="center"
-                >
-                  <Box w="100%">
-                    <Flex
-                      justifyContent="space-between"
-                      alignItems="center"
-                      flexDirection="row"
-                    >
-                      <a
-                        href={trend.link}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                      >
-                        <Text
-                          width="100%"
-                          fontWeight={600}
-                          fontSize="16px"
-                          className={calculateLines("visto")}
-                          pr="10px"
-                        >
-                          {trend.title}
-                        </Text>
-                      </a>
-
-                      <ThreeDots />
-                    </Flex>
-
+                <Box w="100%">
+                  <Flex
+                    justifyContent="space-between"
+                    alignItems="center"
+                    flexDirection="row"
+                  >
                     <a
-                      href={trend.channelLink}
+                      href={trend.link}
                       target="_blank"
                       rel="noopener noreferrer"
                     >
-                      <Text fontSize="md">{trend.channel}</Text>
+                      <Text
+                        width="100%"
+                        fontWeight={600}
+                        fontSize="16px"
+                        className={calculateLines("visto")}
+                        pr="10px"
+                      >
+                        {trend.title}
+                      </Text>
                     </a>
-                  </Box>
+
+                    <ThreeDots />
+                  </Flex>
+
+                  <a
+                    href={trend.channelLink}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    <Text fontSize="md">{trend.channel}</Text>
+                  </a>
+                </Box>
+              </Box>
+
+              <Box
+                display="flex"
+                w="100%"
+                justifyContent="space-between"
+                alignItems="center"
+                height="100%"
+              >
+                <Box maxWidth="80%" display="revert">
+                  <Badge
+                    className="one-max-line"
+                    w="100%"
+                    fontSize="sm"
+                    textTransform="uppercase"
+                    variant="outline"
+                    colorScheme="#fff"
+                    border="1px solid #fff"
+                    display="revert"
+                  >
+                    {trend.amount + " reproducciones"}
+                  </Badge>
                 </Box>
 
                 <Box
                   display="flex"
-                  w="100%"
                   justifyContent="space-between"
                   alignItems="center"
-                  height="100%"
+                  width="50px"
+                  ml="revert"
                 >
-                  <Box maxWidth="80%" display="revert">
-                    <Badge
-                      className="one-max-line"
-                      w="100%"
-                      fontSize="sm"
-                      textTransform="uppercase"
-                      variant="outline"
-                      colorScheme="#fff"
-                      border="1px solid #fff"
-                      display="revert"
-                    >
-                      {trend.amount + " reproducciones"}
-                    </Badge>
-                  </Box>
-
-                  <Box
-                    display="flex"
-                    justifyContent="space-between"
-                    alignItems="center"
-                    width="50px"
-                    ml="revert"
-                  >
-                    <Text fontSize="2xl" mr="4px">
-                      {currentIndex + 1}
-                    </Text>
-                    {getPosition(currentIndex, prevIndex) === "down" ? (
-                      <ArrowDownMobile />
-                    ) : getPosition(currentIndex, prevIndex) === "up" ? (
-                      <ArrowUpMobile />
-                    ) : (
-                      <SameMobile className={styles.same} />
-                    )}
-                  </Box>
+                  <Text fontSize="2xl" mr="4px">
+                    {currentIndex + 1}
+                  </Text>
+                  {getPosition(currentIndex, prevIndex) === "down" ? (
+                    <ArrowDownMobile />
+                  ) : getPosition(currentIndex, prevIndex) === "up" ? (
+                    <ArrowUpMobile />
+                  ) : (
+                    <SameMobile className={styles.same} />
+                  )}
                 </Box>
               </Box>
             </Box>
-          </>
+          </Box>
         );
       })}
     </Flex>

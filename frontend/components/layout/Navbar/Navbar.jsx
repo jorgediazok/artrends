@@ -42,6 +42,7 @@ const Navbar = ({ activeSectionIndex, hasCarrousel }) => {
           py="12px"
           alignItems="center"
           justifyContent="center"
+          as="header"
         >
           <NextLink href="/">
             <a>
@@ -62,7 +63,6 @@ const Navbar = ({ activeSectionIndex, hasCarrousel }) => {
       </Flex>
 
       <Flex
-        as="nav"
         align="center"
         bg="purple.600"
         className={styles["nav-bar"]}

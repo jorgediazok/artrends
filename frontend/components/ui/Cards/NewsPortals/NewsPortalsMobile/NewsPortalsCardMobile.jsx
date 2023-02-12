@@ -9,16 +9,24 @@ import {
   Tabs,
   Text,
 } from "@chakra-ui/react";
+
+// Theme
 import theme from "../../../../../styles/theme";
+
+// Utils
 import { calculateLines } from "../../../../../utils/calculateLines";
 import { getPosition } from "../../../../../utils/position";
+
+// Icons
 import ArrowDownMobile from "../../../icons/ArrowDownMobile";
 import ArrowUpMobile from "../../../icons/ArrowUpMobile";
 import SameMobile from "../../../icons/SameMobile";
 import ThreeDots from "../../../icons/ThreeDots";
-import styles from "./PortalesCardMobile.module.css";
 
-const PortalesMobile = ({ portals }) => {
+// Styles
+import styles from "./NewsPortalsCardMobile.module.css";
+
+const NewsPortalsCardMobile = ({ portals }) => {
   return (
     <Tabs
       variant="soft-rounded"
@@ -27,20 +35,55 @@ const PortalesMobile = ({ portals }) => {
       className="no-padding"
       display={{ base: "block", lg: "none" }}
     >
-      <TabList mb="24px" ml="16px" mt="24px">
-        <Tab color="white" paddingX="12px" paddingY="6px" fontSize="sm">
+      <TabList mb="24px" pl="16px" overflow="auto">
+        <Tab
+          color="white"
+          paddingX="12px"
+          paddingY="6px"
+          fontSize="sm"
+          width="max-content"
+          whiteSpace="nowrap"
+        >
           La Nación
         </Tab>
-        <Tab color="white" paddingX="12px" paddingY="6px" fontSize="sm">
+        <Tab
+          color="white"
+          paddingX="12px"
+          paddingY="6px"
+          fontSize="sm"
+          width="max-content"
+          whiteSpace="nowrap"
+        >
           El Destape
         </Tab>
-        <Tab color="white" paddingX="12px" paddingY="6px" fontSize="sm">
+        <Tab
+          color="white"
+          paddingX="12px"
+          paddingY="6px"
+          fontSize="sm"
+          width="max-content"
+          whiteSpace="nowrap"
+        >
           Clarín
         </Tab>
-        <Tab color="white" paddingX="12px" paddingY="6px" fontSize="sm">
+        <Tab
+          color="white"
+          paddingX="12px"
+          paddingY="6px"
+          fontSize="sm"
+          width="max-content"
+          whiteSpace="nowrap"
+        >
           Télam
         </Tab>
-        <Tab color="white" paddingX="12px" paddingY="6px" fontSize="sm">
+        <Tab
+          color="white"
+          paddingX="12px"
+          paddingY="6px"
+          fontSize="sm"
+          width="max-content"
+          whiteSpace="nowrap"
+        >
           Infobae
         </Tab>
       </TabList>
@@ -65,70 +108,76 @@ const PortalesMobile = ({ portals }) => {
                     element => element.article === elementInPrevious?.article
                   );
                 return (
-                  <>
+                  <Box
+                    as="article"
+                    color={theme.colors.white[500]}
+                    bg={theme.colors.indigo[800]}
+                    border="1px"
+                    borderColor={theme.colors.cyan[150]}
+                    borderRadius={theme.radius.md}
+                    width="100%"
+                    height="114px"
+                    mb={2}
+                    display={{ base: "flex", lg: "none" }}
+                    alignItems="center"
+                    p="8px 16px"
+                    key={trend.article}
+                  >
                     <Box
-                      as="article"
-                      color={theme.colors.white[500]}
-                      bg={theme.colors.indigo[800]}
-                      border="1px"
-                      borderColor={theme.colors.cyan[150]}
-                      borderRadius={theme.radius.md}
-                      width="100%"
-                      height="114px"
-                      mb={2}
-                      display={{ base: "flex", lg: "none" }}
+                      display="flex"
+                      justifyContent="space-between"
                       alignItems="center"
-                      p="8px 16px"
+                      width="100%"
+                      height="100%"
+                      flexDir="column"
                     >
+                      <Box w="100%">
+                        <Flex
+                          justifyContent="flex-end"
+                          alignItems="center"
+                          flexDirection="row"
+                        ></Flex>
+                      </Box>
+
                       <Box
                         display="flex"
+                        w="100%"
                         justifyContent="space-between"
                         alignItems="center"
-                        width="100%"
-                        flexDir="column"
+                        height="100%"
                       >
-                        <Box w="100%">
-                          <Flex
-                            justifyContent="flex-end"
-                            alignItems="center"
-                            flexDirection="row"
+                        <Box width="100%" display="revert">
+                          <a
+                            href={trend.link}
+                            target="_blank"
+                            rel="noopener noreferrer"
                           >
-                            <ThreeDots />
-                          </Flex>
+                            <Text
+                              maxWidth="80%"
+                              fontWeight={600}
+                              fontSize="16px"
+                              className={calculateLines("leido")}
+                            >
+                              {trend.article}
+                            </Text>
+                          </a>
                         </Box>
 
                         <Box
                           display="flex"
-                          w="100%"
                           justifyContent="space-between"
-                          alignItems="center"
+                          alignItems="flex-end"
                           height="100%"
-                          marginTop="10px"
+                          ml=""
+                          flexDirection="column"
+                          py="8px"
                         >
-                          <Box width="100%" display="revert" marginTop="-15px">
-                            <a
-                              href={trend.link}
-                              target="_blank"
-                              rel="noopener noreferrer"
-                            >
-                              <Text
-                                maxWidth="80%"
-                                fontWeight={600}
-                                fontSize="16px"
-                                className={calculateLines("leido")}
-                                pr="10px"
-                              >
-                                {trend.article}
-                              </Text>
-                            </a>
-                          </Box>
-
+                          <ThreeDots />
                           <Box
                             display="flex"
                             justifyContent="space-between"
                             alignItems="center"
                             width="50px"
-                            ml="revert"
                           >
                             <Text fontSize="2xl" mr="4px">
                               {currentIndex + 1}
@@ -145,7 +194,7 @@ const PortalesMobile = ({ portals }) => {
                         </Box>
                       </Box>
                     </Box>
-                  </>
+                  </Box>
                 );
               }
             )}
@@ -170,70 +219,76 @@ const PortalesMobile = ({ portals }) => {
                     element => element.article === elementInPrevious?.article
                   );
                 return (
-                  <>
+                  <Box
+                    as="article"
+                    color={theme.colors.white[500]}
+                    bg={theme.colors.indigo[800]}
+                    border="1px"
+                    borderColor={theme.colors.cyan[150]}
+                    borderRadius={theme.radius.md}
+                    width="100%"
+                    height="114px"
+                    mb={2}
+                    display={{ base: "flex", lg: "none" }}
+                    alignItems="center"
+                    p="8px 16px"
+                    key={trend.article}
+                  >
                     <Box
-                      as="article"
-                      color={theme.colors.white[500]}
-                      bg={theme.colors.indigo[800]}
-                      border="1px"
-                      borderColor={theme.colors.cyan[150]}
-                      borderRadius={theme.radius.md}
-                      width="100%"
-                      height="114px"
-                      mb={2}
-                      display={{ base: "flex", lg: "none" }}
+                      display="flex"
+                      justifyContent="space-between"
                       alignItems="center"
-                      p="8px 16px"
+                      width="100%"
+                      height="100%"
+                      flexDir="column"
                     >
+                      <Box w="100%">
+                        <Flex
+                          justifyContent="flex-end"
+                          alignItems="center"
+                          flexDirection="row"
+                        ></Flex>
+                      </Box>
+
                       <Box
                         display="flex"
+                        w="100%"
                         justifyContent="space-between"
                         alignItems="center"
-                        width="100%"
-                        flexDir="column"
+                        height="100%"
                       >
-                        <Box w="100%">
-                          <Flex
-                            justifyContent="flex-end"
-                            alignItems="center"
-                            flexDirection="row"
+                        <Box width="100%" display="revert">
+                          <a
+                            href={trend.link}
+                            target="_blank"
+                            rel="noopener noreferrer"
                           >
-                            <ThreeDots />
-                          </Flex>
+                            <Text
+                              maxWidth="80%"
+                              fontWeight={600}
+                              fontSize="16px"
+                              className={calculateLines("leido")}
+                            >
+                              {trend.article}
+                            </Text>
+                          </a>
                         </Box>
 
                         <Box
                           display="flex"
-                          w="100%"
                           justifyContent="space-between"
-                          alignItems="center"
+                          alignItems="flex-end"
                           height="100%"
-                          marginTop="10px"
+                          ml=""
+                          flexDirection="column"
+                          py="8px"
                         >
-                          <Box width="100%" display="revert" marginTop="-15px">
-                            <a
-                              href={trend.link}
-                              target="_blank"
-                              rel="noopener noreferrer"
-                            >
-                              <Text
-                                maxWidth="80%"
-                                fontWeight={600}
-                                fontSize="16px"
-                                className={calculateLines("leido")}
-                                pr="10px"
-                              >
-                                {trend.article}
-                              </Text>
-                            </a>
-                          </Box>
-
+                          <ThreeDots />
                           <Box
                             display="flex"
                             justifyContent="space-between"
                             alignItems="center"
                             width="50px"
-                            ml="revert"
                           >
                             <Text fontSize="2xl" mr="4px">
                               {currentIndex + 1}
@@ -250,7 +305,7 @@ const PortalesMobile = ({ portals }) => {
                         </Box>
                       </Box>
                     </Box>
-                  </>
+                  </Box>
                 );
               }
             )}
@@ -275,70 +330,76 @@ const PortalesMobile = ({ portals }) => {
                     element => element.article === elementInPrevious?.article
                   );
                 return (
-                  <>
+                  <Box
+                    as="article"
+                    color={theme.colors.white[500]}
+                    bg={theme.colors.indigo[800]}
+                    border="1px"
+                    borderColor={theme.colors.cyan[150]}
+                    borderRadius={theme.radius.md}
+                    width="100%"
+                    height="114px"
+                    mb={2}
+                    display={{ base: "flex", lg: "none" }}
+                    alignItems="center"
+                    p="8px 16px"
+                    key={trend.article}
+                  >
                     <Box
-                      as="article"
-                      color={theme.colors.white[500]}
-                      bg={theme.colors.indigo[800]}
-                      border="1px"
-                      borderColor={theme.colors.cyan[150]}
-                      borderRadius={theme.radius.md}
-                      width="100%"
-                      height="114px"
-                      mb={2}
-                      display={{ base: "flex", lg: "none" }}
+                      display="flex"
+                      justifyContent="space-between"
                       alignItems="center"
-                      p="8px 16px"
+                      width="100%"
+                      height="100%"
+                      flexDir="column"
                     >
+                      <Box w="100%">
+                        <Flex
+                          justifyContent="flex-end"
+                          alignItems="center"
+                          flexDirection="row"
+                        ></Flex>
+                      </Box>
+
                       <Box
                         display="flex"
+                        w="100%"
                         justifyContent="space-between"
                         alignItems="center"
-                        width="100%"
-                        flexDir="column"
+                        height="100%"
                       >
-                        <Box w="100%">
-                          <Flex
-                            justifyContent="flex-end"
-                            alignItems="center"
-                            flexDirection="row"
+                        <Box width="100%" display="revert">
+                          <a
+                            href={trend.link}
+                            target="_blank"
+                            rel="noopener noreferrer"
                           >
-                            <ThreeDots />
-                          </Flex>
+                            <Text
+                              maxWidth="80%"
+                              fontWeight={600}
+                              fontSize="16px"
+                              className={calculateLines("leido")}
+                            >
+                              {trend.article}
+                            </Text>
+                          </a>
                         </Box>
 
                         <Box
                           display="flex"
-                          w="100%"
                           justifyContent="space-between"
-                          alignItems="center"
+                          alignItems="flex-end"
                           height="100%"
-                          marginTop="10px"
+                          ml=""
+                          flexDirection="column"
+                          py="8px"
                         >
-                          <Box width="100%" display="revert" marginTop="-15px">
-                            <a
-                              href={trend.link}
-                              target="_blank"
-                              rel="noopener noreferrer"
-                            >
-                              <Text
-                                maxWidth="80%"
-                                fontWeight={600}
-                                fontSize="16px"
-                                className={calculateLines("leido")}
-                                pr="10px"
-                              >
-                                {trend.article}
-                              </Text>
-                            </a>
-                          </Box>
-
+                          <ThreeDots />
                           <Box
                             display="flex"
                             justifyContent="space-between"
                             alignItems="center"
                             width="50px"
-                            ml="revert"
                           >
                             <Text fontSize="2xl" mr="4px">
                               {currentIndex + 1}
@@ -355,7 +416,7 @@ const PortalesMobile = ({ portals }) => {
                         </Box>
                       </Box>
                     </Box>
-                  </>
+                  </Box>
                 );
               }
             )}
@@ -380,70 +441,76 @@ const PortalesMobile = ({ portals }) => {
                     element => element.article === elementInPrevious?.article
                   );
                 return (
-                  <>
+                  <Box
+                    as="article"
+                    color={theme.colors.white[500]}
+                    bg={theme.colors.indigo[800]}
+                    border="1px"
+                    borderColor={theme.colors.cyan[150]}
+                    borderRadius={theme.radius.md}
+                    width="100%"
+                    height="114px"
+                    mb={2}
+                    display={{ base: "flex", lg: "none" }}
+                    alignItems="center"
+                    p="8px 16px"
+                    key={trend.article}
+                  >
                     <Box
-                      as="article"
-                      color={theme.colors.white[500]}
-                      bg={theme.colors.indigo[800]}
-                      border="1px"
-                      borderColor={theme.colors.cyan[150]}
-                      borderRadius={theme.radius.md}
-                      width="100%"
-                      height="114px"
-                      mb={2}
-                      display={{ base: "flex", lg: "none" }}
+                      display="flex"
+                      justifyContent="space-between"
                       alignItems="center"
-                      p="8px 16px"
+                      width="100%"
+                      height="100%"
+                      flexDir="column"
                     >
+                      <Box w="100%">
+                        <Flex
+                          justifyContent="flex-end"
+                          alignItems="center"
+                          flexDirection="row"
+                        ></Flex>
+                      </Box>
+
                       <Box
                         display="flex"
+                        w="100%"
                         justifyContent="space-between"
                         alignItems="center"
-                        width="100%"
-                        flexDir="column"
+                        height="100%"
                       >
-                        <Box w="100%">
-                          <Flex
-                            justifyContent="flex-end"
-                            alignItems="center"
-                            flexDirection="row"
+                        <Box width="100%" display="revert">
+                          <a
+                            href={trend.link}
+                            target="_blank"
+                            rel="noopener noreferrer"
                           >
-                            <ThreeDots />
-                          </Flex>
+                            <Text
+                              maxWidth="80%"
+                              fontWeight={600}
+                              fontSize="16px"
+                              className={calculateLines("leido")}
+                            >
+                              {trend.article}
+                            </Text>
+                          </a>
                         </Box>
 
                         <Box
                           display="flex"
-                          w="100%"
                           justifyContent="space-between"
-                          alignItems="center"
+                          alignItems="flex-end"
                           height="100%"
-                          marginTop="10px"
+                          ml=""
+                          flexDirection="column"
+                          py="8px"
                         >
-                          <Box width="100%" display="revert" marginTop="-15px">
-                            <a
-                              href={trend.link}
-                              target="_blank"
-                              rel="noopener noreferrer"
-                            >
-                              <Text
-                                maxWidth="80%"
-                                fontWeight={600}
-                                fontSize="16px"
-                                className={calculateLines("leido")}
-                                pr="10px"
-                              >
-                                {trend.article}
-                              </Text>
-                            </a>
-                          </Box>
-
+                          <ThreeDots />
                           <Box
                             display="flex"
                             justifyContent="space-between"
                             alignItems="center"
                             width="50px"
-                            ml="revert"
                           >
                             <Text fontSize="2xl" mr="4px">
                               {currentIndex + 1}
@@ -460,7 +527,7 @@ const PortalesMobile = ({ portals }) => {
                         </Box>
                       </Box>
                     </Box>
-                  </>
+                  </Box>
                 );
               }
             )}
@@ -485,70 +552,76 @@ const PortalesMobile = ({ portals }) => {
                     element => element.article === elementInPrevious?.article
                   );
                 return (
-                  <>
+                  <Box
+                    as="article"
+                    color={theme.colors.white[500]}
+                    bg={theme.colors.indigo[800]}
+                    border="1px"
+                    borderColor={theme.colors.cyan[150]}
+                    borderRadius={theme.radius.md}
+                    width="100%"
+                    height="114px"
+                    mb={2}
+                    display={{ base: "flex", lg: "none" }}
+                    alignItems="center"
+                    p="8px 16px"
+                    key={trend.article}
+                  >
                     <Box
-                      as="article"
-                      color={theme.colors.white[500]}
-                      bg={theme.colors.indigo[800]}
-                      border="1px"
-                      borderColor={theme.colors.cyan[150]}
-                      borderRadius={theme.radius.md}
-                      width="100%"
-                      height="114px"
-                      mb={2}
-                      display={{ base: "flex", lg: "none" }}
+                      display="flex"
+                      justifyContent="space-between"
                       alignItems="center"
-                      p="8px 16px"
+                      width="100%"
+                      height="100%"
+                      flexDir="column"
                     >
+                      <Box w="100%">
+                        <Flex
+                          justifyContent="flex-end"
+                          alignItems="center"
+                          flexDirection="row"
+                        ></Flex>
+                      </Box>
+
                       <Box
                         display="flex"
+                        w="100%"
                         justifyContent="space-between"
                         alignItems="center"
-                        width="100%"
-                        flexDir="column"
+                        height="100%"
                       >
-                        <Box w="100%">
-                          <Flex
-                            justifyContent="flex-end"
-                            alignItems="center"
-                            flexDirection="row"
+                        <Box width="100%" display="revert">
+                          <a
+                            href={trend.link}
+                            target="_blank"
+                            rel="noopener noreferrer"
                           >
-                            <ThreeDots />
-                          </Flex>
+                            <Text
+                              maxWidth="80%"
+                              fontWeight={600}
+                              fontSize="16px"
+                              className={calculateLines("leido")}
+                            >
+                              {trend.article}
+                            </Text>
+                          </a>
                         </Box>
 
                         <Box
                           display="flex"
-                          w="100%"
                           justifyContent="space-between"
-                          alignItems="center"
+                          alignItems="flex-end"
                           height="100%"
-                          marginTop="10px"
+                          ml=""
+                          flexDirection="column"
+                          py="8px"
                         >
-                          <Box width="100%" display="revert" marginTop="-15px">
-                            <a
-                              href={trend.link}
-                              target="_blank"
-                              rel="noopener noreferrer"
-                            >
-                              <Text
-                                maxWidth="80%"
-                                fontWeight={600}
-                                fontSize="16px"
-                                className={calculateLines("leido")}
-                                pr="10px"
-                              >
-                                {trend.article}
-                              </Text>
-                            </a>
-                          </Box>
-
+                          <ThreeDots />
                           <Box
                             display="flex"
                             justifyContent="space-between"
                             alignItems="center"
                             width="50px"
-                            ml="revert"
                           >
                             <Text fontSize="2xl" mr="4px">
                               {currentIndex + 1}
@@ -565,7 +638,7 @@ const PortalesMobile = ({ portals }) => {
                         </Box>
                       </Box>
                     </Box>
-                  </>
+                  </Box>
                 );
               }
             )}
@@ -576,4 +649,4 @@ const PortalesMobile = ({ portals }) => {
   );
 };
 
-export default PortalesMobile;
+export default NewsPortalsCardMobile;

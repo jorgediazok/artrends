@@ -9,13 +9,19 @@ import {
   Tabs,
   Text,
 } from "@chakra-ui/react";
+
+// Utils
 import { getPosition } from "../../../../../utils/position";
 import { calculateLines } from "../../../../../utils/calculateLines";
+
+// Icons
 import ArrowDownMobile from "../../../icons/ArrowDownMobile";
 import ArrowUpMobile from "../../../icons/ArrowUpMobile";
 import SameMobile from "../../../icons/SameMobile";
-import theme from "../../../../../styles/theme";
 import ThreeDots from "../../../icons/ThreeDots";
+
+// Styiles
+import theme from "../../../../../styles/theme";
 import styles from "./SpotifyCardMobile.module.css";
 
 const SpotifyCardMobile = ({ spotifyArtist, spotifySong, spotifyPodcast }) => {
@@ -27,7 +33,7 @@ const SpotifyCardMobile = ({ spotifyArtist, spotifySong, spotifyPodcast }) => {
       className="no-padding"
       display={{ base: "block", lg: "none" }}
     >
-      <TabList mb="24px" ml="16px" mt="24px">
+      <TabList mb="24px" pl="16px">
         <Tab color="white" paddingX="12px" paddingY="6px" fontSize="sm">
           Artista
         </Tab>
@@ -59,108 +65,111 @@ const SpotifyCardMobile = ({ spotifyArtist, spotifySong, spotifyPodcast }) => {
                     element => element.name === elementInPrevious?.name
                   );
                 return (
-                  <>
+                  <Box
+                    as="article"
+                    key={trend.name}
+                    color={theme.colors.white[500]}
+                    bg={theme.colors.indigo[800]}
+                    border="1px"
+                    borderColor={theme.colors.cyan[150]}
+                    borderRadius={theme.radius.md}
+                    width="100%"
+                    height="100px"
+                    mb={2}
+                    display={{ base: "flex", lg: "none" }}
+                    p="8px 16px"
+                  >
                     <Box
-                      as="article"
-                      color={theme.colors.white[500]}
-                      bg={theme.colors.indigo[800]}
-                      border="1px"
-                      borderColor={theme.colors.cyan[150]}
-                      borderRadius={theme.radius.md}
-                      width="100%"
-                      height="100px"
-                      mb={2}
-                      display={{ base: "flex", lg: "none" }}
+                      display="flex"
+                      justifyContent="space-between"
                       alignItems="center"
-                      p="8px 16px"
+                      width="100%"
+                      flexDir="column"
                     >
                       <Box
                         display="flex"
+                        width="100%"
                         justifyContent="space-between"
                         alignItems="center"
-                        width="100%"
-                        flexDir="column"
                       >
-                        <Box
-                          display="flex"
-                          width="100%"
-                          height="100%"
-                          justifyContent="space-between"
-                          alignItems="center"
-                        >
-                          <Box w="100%">
-                            <Flex
-                              justifyContent="space-between"
-                              alignItems="center"
-                              flexDirection="row"
+                        <Box w="100%">
+                          <Flex
+                            justifyContent="space-between"
+                            alignItems="center"
+                            flexDirection="row"
+                          >
+                            <a
+                              href={trend.link}
+                              target="_blank"
+                              rel="noopener noreferrer"
                             >
-                              <a
-                                href={trend.link}
-                                target="_blank"
-                                rel="noopener noreferrer"
+                              <Text
+                                width="100%"
+                                fontWeight={600}
+                                fontSize="16px"
+                                className={calculateLines("escuchado")}
+                                pr="10px"
                               >
-                                <Text
-                                  width="100%"
-                                  fontWeight={600}
-                                  fontSize="16px"
-                                  className={calculateLines("escuchado")}
-                                  pr="10px"
-                                >
-                                  {trend.name}
-                                </Text>
-                              </a>
+                                {trend.name}
+                              </Text>
+                            </a>
 
-                              <ThreeDots />
-                            </Flex>
-                          </Box>
+                            <ThreeDots />
+                          </Flex>
+                        </Box>
+                      </Box>
+
+                      <Box
+                        display="flex"
+                        w="100%"
+                        justifyContent="space-between"
+                        alignItems="center"
+                        height="100%"
+                        marginTop="10px"
+                        position="relative"
+                      >
+                        <Box maxWidth="80%" display="revert">
+                          <Badge
+                            h="100%"
+                            fontSize="xs"
+                            textTransform="uppercase"
+                            variant="outline"
+                            colorScheme="#fff"
+                            border="1px solid #fff"
+                            display="flex"
+                            whiteSpace="wrap"
+                            fontWeight={400}
+                            w="217px"
+                          >
+                            {trend.streak +
+                              " Semanas seguidas en el top 200 de Spotify"}
+                          </Badge>
                         </Box>
 
                         <Box
                           display="flex"
-                          w="100%"
                           justifyContent="space-between"
                           alignItems="center"
-                          height="100%"
-                          marginTop="10px"
+                          width="50px"
+                          ml="revert"
+                          position="absolute"
+                          bottom={0}
+                          right={0}
                         >
-                          <Box maxWidth="80%" display="revert">
-                            <Badge
-                              className="one-max-line"
-                              w="100%"
-                              fontSize="sm"
-                              textTransform="uppercase"
-                              variant="outline"
-                              colorScheme="#fff"
-                              border="1px solid #fff"
-                              display="revert"
-                            >
-                              {trend.streak + " Semanas seguidas en el top"}
-                            </Badge>
-                          </Box>
-
-                          <Box
-                            display="flex"
-                            justifyContent="space-between"
-                            alignItems="center"
-                            width="50px"
-                            ml="revert"
-                          >
-                            <Text fontSize="2xl" mr="4px">
-                              {currentIndex + 1}
-                            </Text>
-                            {getPosition(currentIndex, prevIndex) === "down" ? (
-                              <ArrowDownMobile />
-                            ) : getPosition(currentIndex, prevIndex) ===
-                              "up" ? (
-                              <ArrowUpMobile />
-                            ) : (
-                              <SameMobile className={styles.same} />
-                            )}
-                          </Box>
+                          <Text fontSize="2xl" mr="4px" lineHeight={1}>
+                            {currentIndex + 1}
+                          </Text>
+                          {getPosition(currentIndex, prevIndex) === "down" ? (
+                            <ArrowDownMobile />
+                          ) : getPosition(currentIndex, prevIndex) === "up" ? (
+                            <ArrowUpMobile />
+                          ) : (
+                            <SameMobile className={styles.same} />
+                          )}
                         </Box>
                       </Box>
                     </Box>
-                  </>
+                  </Box>
                 );
               }
             )}
@@ -185,115 +194,119 @@ const SpotifyCardMobile = ({ spotifyArtist, spotifySong, spotifyPodcast }) => {
                     element => element.name === elementInPrevious?.name
                   );
                 return (
-                  <>
+                  <Box
+                    as="article"
+                    color={theme.colors.white[500]}
+                    bg={theme.colors.indigo[800]}
+                    border="1px"
+                    borderColor={theme.colors.cyan[150]}
+                    borderRadius={theme.radius.md}
+                    width="100%"
+                    height="100px"
+                    mb={2}
+                    display={{ base: "flex", lg: "none" }}
+                    alignItems="center"
+                    p="8px 16px"
+                    key={trend.name}
+                  >
                     <Box
-                      as="article"
-                      color={theme.colors.white[500]}
-                      bg={theme.colors.indigo[800]}
-                      border="1px"
-                      borderColor={theme.colors.cyan[150]}
-                      borderRadius={theme.radius.md}
-                      width="100%"
-                      height="100px"
-                      mb={2}
-                      display={{ base: "flex", lg: "none" }}
+                      display="flex"
+                      justifyContent="space-between"
                       alignItems="center"
-                      p="8px 16px"
+                      width="100%"
+                      flexDir="column"
                     >
                       <Box
                         display="flex"
+                        width="100%"
                         justifyContent="space-between"
                         alignItems="center"
-                        width="100%"
-                        flexDir="column"
                       >
-                        <Box
-                          display="flex"
-                          width="100%"
-                          height="100%"
-                          justifyContent="space-between"
-                          alignItems="center"
-                        >
-                          <Box w="100%">
-                            <Flex
-                              justifyContent="space-between"
-                              alignItems="center"
-                              flexDirection="row"
+                        <Box w="100%">
+                          <Flex
+                            justifyContent="space-between"
+                            alignItems="center"
+                            flexDirection="row"
+                          >
+                            <a
+                              href={trend.link}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              style={{ width: "100%" }}
                             >
-                              <a
-                                href={trend.link}
-                                target="_blank"
-                                rel="noopener noreferrer"
+                              <Text
+                                width="100%"
+                                maxW="248px"
+                                fontWeight={600}
+                                fontSize="16px"
+                                className={calculateLines("escuchado")}
+                                pr="10px"
                               >
-                                <Text
-                                  width="100%"
-                                  fontWeight={600}
-                                  fontSize="16px"
-                                  className={calculateLines("escuchado")}
-                                  pr="10px"
-                                >
-                                  {trend.name}
-                                </Text>
-                              </a>
-                              <ThreeDots />
-                            </Flex>
-                          </Box>
+                                {trend.name}
+                              </Text>
+                            </a>
+                            <ThreeDots />
+                          </Flex>
+                        </Box>
+                      </Box>
+
+                      <Box
+                        display="flex"
+                        w="100%"
+                        justifyContent="space-between"
+                        alignItems="center"
+                        height="100%"
+                        marginTop="10px"
+                        position="relative"
+                      >
+                        <Box maxWidth="80%" display="revert">
+                          <Text
+                            fontSize="md"
+                            className="one-max-line"
+                            lineHeight={1.5}
+                            mb="4px"
+                          >
+                            {trend.author}
+                          </Text>
+                          <Badge
+                            className="one-max-line"
+                            w="100%"
+                            fontSize="xs"
+                            fontWeight={400}
+                            textTransform="uppercase"
+                            variant="outline"
+                            colorScheme="#fff"
+                            border="1px solid #fff"
+                            display="revert"
+                          >
+                            {trend.streams + " reproducciones"}
+                          </Badge>
                         </Box>
 
                         <Box
                           display="flex"
-                          w="100%"
                           justifyContent="space-between"
                           alignItems="center"
-                          height="100%"
-                          marginTop="10px"
+                          width="50px"
+                          ml="revert"
+                          position="absolute"
+                          bottom={0}
+                          right={0}
                         >
-                          <Box maxWidth="80%" display="revert">
-                            <Text
-                              fontSize="md"
-                              className="one-max-line"
-                              lineHeight={1.5}
-                              mb="4px"
-                            >
-                              {trend.author}
-                            </Text>
-                            <Badge
-                              className="one-max-line"
-                              w="100%"
-                              fontSize="sm"
-                              textTransform="uppercase"
-                              variant="outline"
-                              colorScheme="#fff"
-                              border="1px solid #fff"
-                              display="revert"
-                            >
-                              {trend.streams + " reproducciones"}
-                            </Badge>
-                          </Box>
-
-                          <Box
-                            display="flex"
-                            justifyContent="space-between"
-                            alignItems="center"
-                            width="50px"
-                            ml="revert"
-                          >
-                            <Text fontSize="2xl" mr="4px">
-                              {currentIndex + 1}
-                            </Text>
-                            {getPosition(currentIndex, prevIndex) === "down" ? (
-                              <ArrowDownMobile />
-                            ) : getPosition(currentIndex, prevIndex) ===
-                              "up" ? (
-                              <ArrowUpMobile />
-                            ) : (
-                              <SameMobile className={styles.same} />
-                            )}
-                          </Box>
+                          <Text fontSize="2xl" mr="4px" lineHeight={1}>
+                            {currentIndex + 1}
+                          </Text>
+                          {getPosition(currentIndex, prevIndex) === "down" ? (
+                            <ArrowDownMobile />
+                          ) : getPosition(currentIndex, prevIndex) === "up" ? (
+                            <ArrowUpMobile />
+                          ) : (
+                            <SameMobile className={styles.same} />
+                          )}
                         </Box>
                       </Box>
                     </Box>
-                  </>
+                  </Box>
                 );
               }
             )}
@@ -318,103 +331,105 @@ const SpotifyCardMobile = ({ spotifyArtist, spotifySong, spotifyPodcast }) => {
                     element => element.name === elementInPrevious?.name
                   );
                 return (
-                  <>
+                  <Box
+                    as="article"
+                    color={theme.colors.white[500]}
+                    bg={theme.colors.indigo[800]}
+                    border="1px"
+                    borderColor={theme.colors.cyan[150]}
+                    borderRadius={theme.radius.md}
+                    width="100%"
+                    height="100px"
+                    mb={2}
+                    display={{ base: "flex", lg: "none" }}
+                    alignItems="center"
+                    p="8px 16px"
+                    key={trend.name}
+                  >
                     <Box
-                      as="article"
-                      color={theme.colors.white[500]}
-                      bg={theme.colors.indigo[800]}
-                      border="1px"
-                      borderColor={theme.colors.cyan[150]}
-                      borderRadius={theme.radius.md}
-                      width="100%"
-                      height="100px"
-                      mb={2}
-                      display={{ base: "flex", lg: "none" }}
+                      display="flex"
+                      justifyContent="space-between"
                       alignItems="center"
-                      p="8px 16px"
+                      width="100%"
+                      height="100%"
+                      flexDir="column"
                     >
                       <Box
                         display="flex"
+                        width="100%"
                         justifyContent="space-between"
                         alignItems="center"
-                        width="100%"
-                        flexDir="column"
                       >
-                        <Box
-                          display="flex"
-                          width="100%"
-                          height="100%"
-                          justifyContent="space-between"
-                          alignItems="center"
-                        >
-                          <Box w="100%">
-                            <Flex
-                              justifyContent="space-between"
-                              alignItems="center"
-                              flexDirection="row"
+                        <Box w="100%">
+                          <Flex
+                            justifyContent="space-between"
+                            alignItems="center"
+                            flexDirection="row"
+                          >
+                            <a
+                              href={trend.link}
+                              target="_blank"
+                              rel="noopener noreferrer"
                             >
-                              <a
-                                href={trend.link}
-                                target="_blank"
-                                rel="noopener noreferrer"
+                              <Text
+                                width="100%"
+                                maxW="248px"
+                                fontWeight={600}
+                                fontSize="16px"
+                                className={calculateLines("escuchado")}
+                                pr="10px"
                               >
-                                <Text
-                                  width="100%"
-                                  fontWeight={600}
-                                  fontSize="16px"
-                                  className={calculateLines("escuchado")}
-                                  pr="10px"
-                                >
-                                  {trend.name}
-                                </Text>
-                              </a>
-                              <ThreeDots />
-                            </Flex>
-                          </Box>
+                                {trend.name}
+                              </Text>
+                            </a>
+                            <ThreeDots />
+                          </Flex>
+                        </Box>
+                      </Box>
+
+                      <Box
+                        display="flex"
+                        w="100%"
+                        justifyContent="space-between"
+                        alignItems="center"
+                        height="100%"
+                        position="relative"
+                      >
+                        <Box maxWidth="80%" display="revert">
+                          <Text
+                            fontWeight={400}
+                            fontSize="16px"
+                            marginTop="-8px"
+                            className={calculateLines("escuchado")}
+                          >
+                            {trend.publisher}
+                          </Text>
                         </Box>
 
                         <Box
                           display="flex"
-                          w="100%"
                           justifyContent="space-between"
                           alignItems="center"
-                          height="100%"
-                          marginTop="10px"
+                          width="50px"
+                          ml="revert"
+                          position="absolute"
+                          bottom={0}
+                          right={0}
                         >
-                          <Box maxWidth="80%" display="revert">
-                            <Text
-                              fontWeight={400}
-                              fontSize="16px"
-                              marginTop="-8px"
-                              className={calculateLines("escuchado")}
-                            >
-                              {trend.publisher}
-                            </Text>
-                          </Box>
-
-                          <Box
-                            display="flex"
-                            justifyContent="space-between"
-                            alignItems="center"
-                            width="50px"
-                            ml="revert"
-                          >
-                            <Text fontSize="2xl" mr="4px">
-                              {currentIndex + 1}
-                            </Text>
-                            {getPosition(currentIndex, prevIndex) === "down" ? (
-                              <ArrowDownMobile />
-                            ) : getPosition(currentIndex, prevIndex) ===
-                              "up" ? (
-                              <ArrowUpMobile />
-                            ) : (
-                              <SameMobile className={styles.same} />
-                            )}
-                          </Box>
+                          <Text fontSize="2xl" mr="4px" lineHeight={1}>
+                            {currentIndex + 1}
+                          </Text>
+                          {getPosition(currentIndex, prevIndex) === "down" ? (
+                            <ArrowDownMobile />
+                          ) : getPosition(currentIndex, prevIndex) === "up" ? (
+                            <ArrowUpMobile />
+                          ) : (
+                            <SameMobile className={styles.same} />
+                          )}
                         </Box>
                       </Box>
                     </Box>
-                  </>
+                  </Box>
                 );
               }
             )}
