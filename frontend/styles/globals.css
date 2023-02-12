@@ -167,3 +167,18 @@ ul {
     height: 19px;
   }
 }
+
+.same {
+  position: relative;
+  right: 8px;
+}
+
+@media screen and (min-width: 1110px) {
+  .same {
+    right: 12px;
+  }
+}
+
+section {
+  width: 100%;
+}

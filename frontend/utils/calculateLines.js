@@ -3,12 +3,8 @@ export const calculateLines = type => {
     case "buscado":
       return "one-max-line";
     case "discutido":
-      return "one-max-lines";
-    case "artist":
       return "one-max-line";
-    case "song":
-      return "one-max-line";
-    case "podcast":
+    case "escuchado":
       return "one-max-line";
     case "visto":
       return "two-max-lines";

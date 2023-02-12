@@ -8,6 +8,7 @@ const ThreeDots = () => {
       viewBox="0 0 19 4"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
+      style={{ position: "relative", left: "-3px" }}
     >
       <path
         fillRule="evenodd"

@@ -18,16 +18,22 @@ import theme from "../styles/theme";
 
 // Utils
 import { intersectionObserverOptions } from "../utils/position";
-import TwitterCardDesktop from "../components/ui/Cards/Twitter/TwitterCardDesktop/TwitterCardDesktop";
-import YoutubeCardDesktop from "../components/ui/Cards/Youtube/YoutubeCardDesktop/YoutubeCardDesktop";
-import GoogleCardDesktop from "../components/ui/Cards/Google/GoogleCardDesktop/GoogleCardDesktop";
-import PortalesDesktop from "../components/ui/Cards/Portales/PortalesDesktop/PortalesDesktop";
-import SpotifyCardDesktop from "../components/ui/Cards/Spotify/SpotifyCardDesktop/SpotifyCardDesktop";
-import TwitterCardMobile from "../components/ui/Cards/Twitter/TwitterCardMobile/TwitterCardMobile";
-import GoogleCardMobile from "../components/ui/Cards/Google/GoogleCardMobile/GoogleCardMobile";
-import YoutubeCardMobile from "../components/ui/Cards/Youtube/YoutubeCardMobile/YoutubeCardMobile";
-import SpotifyCardMobile from "../components/ui/Cards/Spotify/SpotifyCardMobile/SpotifyCardMobile";
-import PortalesMobile from "../components/ui/Cards/Portales/PortalesMobile/PortalesMobile";
+
+// Components
+import TwitterCardDesktop from "../components/ui/Cards/Twitter/TwitterCardDesktop/";
+import YoutubeCardDesktop from "../components/ui/Cards/Youtube/YoutubeCardDesktop/";
+import GoogleCardDesktop from "../components/ui/Cards/Google/GoogleCardDesktop/";
+import SpotifyCardDesktop from "../components/ui/Cards/Spotify/SpotifyCardDesktop/";
+import TwitterCardMobile from "../components/ui/Cards/Twitter/TwitterCardMobile/";
+import GoogleCardMobile from "../components/ui/Cards/Google/GoogleCardMobile/";
+import YoutubeCardMobile from "../components/ui/Cards/Youtube/YoutubeCardMobile/";
+import SpotifyCardMobile from "../components/ui/Cards/Spotify/SpotifyCardMobile/";
+import NewsPortalsMobile from "../components/ui/Cards/NewsPortals/NewsPortalsMobile";
+import NewsPortalsDesktop from "../components/ui/Cards/NewsPortals/NewsPortalsDesktop";
+import SectionTitle from "../components/ui/SectionTitle";
+
+// Utils
+import { scrollOffset as offset } from "../utils/scrollOffset";
 
 export default function Home() {
   const [activeSectionIndex, setActiveSectionIndex] = useState();
@@ -54,13 +60,6 @@ export default function Home() {
     ...intersectionObserverOptions,
     skip: typeof window !== "undefined" && window.innerWidth > 1100,
   });
-
-  useEffect(() => {
-    if (twitterIsInView) {
-      setActiveSectionIndex(0);
-      return;
-    }
-  }, [twitterIsInView]);
 
   // Queries
   const { data: trends } = useQuery({
@@ -99,7 +98,12 @@ export default function Home() {
   ]);
 
   if (!trends) {
-    return <div>No data</div>;
+    return (
+      <strong>
+        No pudimos conectarnos con nuestros servidores. Estamos trabajando para
+        solucionarlo.
+      </strong>
+    );
   }
 
   return (
@@ -123,7 +127,7 @@ export default function Home() {
           base: theme.colors.gradients["background-home-mobile"],
           lg: theme.colors.gradients["background-home-desktop"],
         }}
-        pt={{ base: "248px", lg: 0 }}
+        pt={{ base: "220px", lg: "128px" }}
       >
         <Container
           maxW="container.lg"
@@ -134,47 +138,106 @@ export default function Home() {
           color="white"
           width="100%"
           p={0}
-          pt={{ base: "24px", lg: "128px" }}
         >
           {/* TWITTER */}
-          <TwitterCardDesktop
-            twitter={trends.twitter}
-            twitterSectionRef={twitterSectionRef}
-          />
-          <TwitterCardMobile
-            twitter={trends.twitter}
-            twitterSectionRef={twitterSectionRef}
-          />
+          <Box
+            as="section"
+            ref={twitterSectionRef}
+            id="twitter"
+            paddingY={{ base: `${offset.mobile}px`, lg: `${offset.desktop}px` }}
+            marginY={{
+              base: `${-offset.mobile}px`,
+              lg: `${-offset.desktop}px`,
+            }}
+          >
+            <SectionTitle title="Lo más discutido en Twitter" />
+            <TwitterCardMobile twitter={trends.twitter} />
+            <TwitterCardDesktop twitter={trends.twitter} />
+          </Box>
+
           {/* SPOTIFY */}
-          <SpotifyCardDesktop
-            spotifyArtist={trends.spotifyArtists}
-            spotifyPodcast={trends.spotifyPodcasts}
-            spotifySong={trends.spotifySongs}
-            spotifySectionRef={spotifySectionRef}
-          />
-          <SpotifyCardMobile
-            spotifyArtist={trends.spotifyArtists}
-            spotifyPodcast={trends.spotifyPodcasts}
-            spotifySong={trends.spotifySongs}
-          />
+          <Box
+            as="section"
+            id="spotify"
+            ref={spotifySectionRef}
+            paddingY={{ base: `${offset.mobile}px`, lg: `${offset.desktop}px` }}
+            marginY={{
+              base: `${-offset.mobile}px`,
+              lg: `${-offset.desktop}px`,
+            }}
+          >
+            <SectionTitle title="Lo más escuchado en Spotify" />
+            <SpotifyCardMobile
+              spotifyArtist={trends.spotifyArtists}
+              spotifyPodcast={trends.spotifyPodcasts}
+              spotifySong={trends.spotifySongs}
+            />
+            <SpotifyCardDesktop
+              spotifyArtist={trends.spotifyArtists}
+              spotifyPodcast={trends.spotifyPodcasts}
+              spotifySong={trends.spotifySongs}
+            />
+          </Box>
+
           {/* YOUTUBE */}
-          <YoutubeCardDesktop
-            youtube={trends.youtube}
-            youtubeSectionRef={youtubeSectionRef}
-          />
-          <YoutubeCardMobile youtube={trends.youtube} />
+          <Box
+            as="section"
+            ref={youtubeSectionRef}
+            id="youtube"
+            paddingY={{ base: `${offset.mobile}px`, lg: `${offset.desktop}px` }}
+            marginY={{
+              base: `${-offset.mobile}px`,
+              lg: `${-offset.desktop}px`,
+            }}
+          >
+            <SectionTitle title="Lo más visto en Youtube" />
+            <YoutubeCardMobile youtube={trends.youtube} />
+            <YoutubeCardDesktop youtube={trends.youtube} />
+          </Box>
+
           {/* GOOGLE */}
-          <GoogleCardDesktop
-            google={trends.google}
-            googleSectionRef={googleSectionRef}
-          />
-          <GoogleCardMobile google={trends.google} />
+          <Box
+            as="section"
+            ref={googleSectionRef}
+            id="google"
+            paddingY={{ base: `${offset.mobile}px`, lg: `${offset.desktop}px` }}
+            marginY={{
+              base: `${-offset.mobile}px`,
+              lg: `${-offset.desktop}px`,
+            }}
+          >
+            <SectionTitle title="Lo más buscado en Google" />
+            <GoogleCardMobile
+              google={trends.google}
+              googleSectionRef={googleSectionRef}
+            />
+            <GoogleCardDesktop
+              google={trends.google}
+              googleSectionRef={googleSectionRef}
+            />
+          </Box>
+
           {/* PORTALS */}
-          <PortalesDesktop
-            portals={trends.portals}
-            portalSectionRef={portalSectionRef}
-          />
-          <PortalesMobile portals={trends.portals} />
+          <Box
+            as="section"
+            ref={portalSectionRef}
+            id="portals"
+            paddingY={{ base: `${offset.mobile}px`, lg: `${offset.desktop}px` }}
+            marginY={{
+              base: `${-offset.mobile}px`,
+              lg: `${-offset.desktop}px`,
+            }}
+          >
+            <SectionTitle title="Las noticias más leídas" id="portals" />
+            <NewsPortalsMobile
+              portals={trends.portals}
+              portalSectionRef={portalSectionRef}
+            />
+            <NewsPortalsDesktop
+              portals={trends.portals}
+              portalSectionRef={portalSectionRef}
+            />
+          </Box>
         </Container>
       </Box>
 
