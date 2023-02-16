@@ -1,0 +1,19 @@
+.argentino {
+  width: 18vw;
+  height: auto;
+  margin-left: 100px;
+  align-self: flex-end;
+  position: relative;
+  top: 5px;
+}
+
+.chart {
+  position: relative;
+}
+
+/* @media screen and (max-width: 1440px) and (max-width: 1920px) {
+  .chart {
+    top: 0px;
+    left: -80px;
+  }
+} */
