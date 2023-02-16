@@ -20,6 +20,7 @@ import theme from "../styles/theme";
 import { intersectionObserverOptions } from "../utils/position";
 
 // Components
+import Hero from "../components/ui/Hero";
 import TwitterCardDesktop from "../components/ui/Cards/Twitter/TwitterCardDesktop/";
 import YoutubeCardDesktop from "../components/ui/Cards/Youtube/YoutubeCardDesktop/";
 import GoogleCardDesktop from "../components/ui/Cards/Google/GoogleCardDesktop/";
@@ -120,6 +121,9 @@ export default function Home() {
         hasSearch={true}
         hasCarrousel={true}
       />
+
+      {/* HERO */}
+      <Hero />
 
       <Box
         as="main"
