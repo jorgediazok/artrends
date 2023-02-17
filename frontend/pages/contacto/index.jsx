@@ -89,7 +89,7 @@ const Contacto = () => {
 
   return (
     <Box background="#241154">
-      <Navbar hasCarrousel={false} hasSearch={false} />
+      <Navbar hasCarrousel={false} hasNavItems={false} />
       <Container paddingX={{ base: "16px" }} maxW="container.lg">
         <Box
           display="flex"
