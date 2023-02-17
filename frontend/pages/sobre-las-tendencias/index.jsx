@@ -11,12 +11,9 @@ import Navbar from "../../components/layout/Navbar";
 import ArrowRight from "../../components/ui/icons/ArrowRight";
 
 const SobreLasTendencias = () => {
-  const [hasCarrousel, setHasCarrousel] = useState(false);
-  const [hasSearch, setHasSearch] = useState(false);
-
   return (
     <>
-      <Navbar hasCarrousel={hasCarrousel} hasSearch={hasSearch} />
+      <Navbar hasCarrousel={false} hasNavItems={false} />
       <Box paddingX={{ base: "16px", lg: "260px" }} background="#241154">
         <Box display="flex" alignItems="center" justifyContent="flex-start">
           <Breadcrumb
@@ -47,6 +44,7 @@ const SobreLasTendencias = () => {
           marginTop="32px"
           marginBottom="40px"
           textAlign={{ base: "center", lg: "left" }}
+          as="h1"
         >
           ¿Cómo se determinan las tendencias?
         </Text>
@@ -56,15 +54,14 @@ const SobreLasTendencias = () => {
           color="#FFFFFF"
           textAlign="left"
         >
-          <Text>
+          <Text as="p">
             Cada plataforma determina sus tendencias mediante el uso de
-            algoritmos los cuales son modificados según el cambio de políticas o
-            modelo de negocio que consideren necesario. Si bien éstas empresas
-            no brindan mucha información sobre los criterios que emplean para
-            establecer qué es y qué no es una tendencia, existen muchos factores
-            que influyen en su disposición.
+            algoritmos. Estos se van según el cambio de políticas o modelo de
+            negocio que consideren necesario. Si bien estas empresas no brindan
+            mucha información sobre los criterios que emplean para establecer
+            qué es y qué no es una tendencia, existen muchos factores que
+            influyen en su disposición.
           </Text>
-
           <Box
             display={{ base: "flex", lg: "none" }}
             flexDirection="column"
@@ -73,7 +70,7 @@ const SobreLasTendencias = () => {
             textDecoration="underline"
             justifyContent="center"
             alignItems="left"
-            marginLeft="89px"
+            as="nav"
           >
             <Link href="#twitter">Twitter</Link>
             <Link href="#spotify">Spotify</Link>
@@ -81,102 +78,109 @@ const SobreLasTendencias = () => {
             <Link href="#google">Google</Link>
             <Link href="#portals">Portales de noticias</Link>
           </Box>
-
           <Text
             id="twitter"
-            marginTop={{ base: "24px", lg: "40px" }}
+            marginTop={{ base: 6, lg: "40px" }}
             fontWeight="bold"
+            as="h2"
           >
             Twitter
           </Text>
-          <Text>
-            Las Tendencias por ubicación son los temas populares entre las
-            personas usuarias ubicadas en una zona geográfica específica (en
-            nuestro caso Argentina) son varios los elementos que se toman en
-            cuenta, algunos de ellos son:
+          Brinda información de principales tendencias por ubicación geográfica.
+          En nuestro caso, tomamos las de Argentina. <br />
+          Para armar el ranking de tendencias son varios los elementos que se
+          toman en cuenta. Algunos de ellos son:
+          <Text className="italics" as="h3" mt={4}>
+            Novedad
           </Text>
-
-          <Text marginTop={{ base: "24px", lg: "40px" }}>
-            Novedad: jerarquiza la etiqueta o palabras que “emergen” en
-            popularidad en un tiempo reciente o que no hayan aparecido en
-            interacciones anteriores.
+          <p>
+            Se jerarquiza la etiqueta o palabras que emergen en popularidad en
+            un tiempo reciente o que no hayan aparecido en interacciones
+            anteriores.
+          </p>
+          <Text className="italics" as="h3" mt={4}>
+            Cantidad de menciones
           </Text>
-          <Text marginTop="10px">
-            Cantidad de personas usuarias: que utilizan determinada palabra
-            clave o etiqueta. Si existen tendencias o hastag que se relacionan
-            con un mismo tema el algoritmo las detecta y agrupa.
+          <p>
+            Se siguen las palabras claves o <i>hashtags</i> usados. Si existe
+            repetición de frases similares o que se relacionan con un mismo tema
+            el algoritmo las detecta y agrupa.
+          </p>
+          <Text className="italics" as="h3" mt={4}>
+            Nivel de influencia
           </Text>
-          <Text marginTop="10px">
-            Nivel de influencia: las cuentas con más llegada y cantidad de
-            seguidores son más relevantes a la hora de establecer tendencias.
+          <p>
+            Las cuentas con más llegada y cantidad de seguidores son más
+            relevantes a la hora de establecer tendencias.
+          </p>
+          <Text className="italics" as="h3" mt={4}>
+            Interacciones
           </Text>
-          <Text marginTop="10px">
-            Interacciones: volúmen de conversaciones creadas a partir de las
-            palabras claves o hashtags
-          </Text>
-
+          <p>
+            El volúmen de conversaciones creadas a partir de las palabras claves
+            o hashtags.
+          </p>
           <Text
             id="spotify"
-            marginTop={{ base: "24px", lg: "40px" }}
+            marginTop={{ base: 6, lg: "40px" }}
             fontWeight="bold"
+            as="h2"
           >
             Spotify
           </Text>
-          <Text>
-            Se sabe poco de su cálculo de popularidad pero en sus métricas de
-            interacción se valoran la cantidad de escuchas, repeticiones de
-            escuchas, seguidores por oyente, guardado de canciones para
-            reproducir más tarde, canciones añadidas a playlists e incluso,
-            apariciones en la prensa musical y redes sociales. En el caso de los
-            podcast es similar.
+          <Text as="p">
+            Por lo poco que se sabe sobre cómo realizan los cálculos se presume
+            que en sus métricas de interacción se valoran la cantidad de
+            escuchas, repeticiones de escuchas, seguidores por oyente, guardado
+            de canciones para reproducir más tarde, canciones añadidas a las
+            playlists e, incluso, apariciones en la prensa musical y redes
+            sociales. En el caso de los podcasts es similar.
           </Text>
-
           <Text
             id="youtube"
-            marginTop={{ base: "24px", lg: "40px" }}
+            marginTop={{ base: 6, lg: "40px" }}
             fontWeight="bold"
+            as="h2"
           >
             Youtube
           </Text>
-          <Text>
+          <Text as="p">
             Considera factores como las vistas, la velocidad en que se alcanzan
-            esas vistas, la antigüedad del video, nivel de rendimiento en
-            comparación con los videos subidos recientemente del mismo canal,
-            etc.
-          </Text>
-          <Text>
+            esas vistas, la antigüedad del video, el nivel de rendimiento en
+            comparación con los videos subidos recientemente en el mismo canal,
+            entre otros.
+            <br />
             Otro dato a tomar en cuenta es que los rankings de tendencias en
-            youtube tienen como fin ser listas representativas de lo que se
-            puede encontrar en la plataforma, por consiguiente analizan el tipo
-            de contenido valorando lo novedoso, lo atrayente que puede resultar
-            para una amplia variedad de personas usuarias y jerarquiza el
-            contenido original, entre otros puntos.
+            Youtube tienen como fin ser listas representativas de lo que se
+            puede encontrar en la plataforma. Por consiguiente analizan el tipo
+            de contenido valorando lo novedoso, lo atrayente que pueda resultar
+            el contenido para una amplia variedad de personas usuarias. De esta
+            forma jerarquiza el más original, entre otros puntos.
           </Text>
-
           <Text
             id="google"
-            marginTop={{ base: "24px", lg: "40px" }}
+            marginTop={{ base: 6, lg: "40px" }}
             fontWeight="bold"
+            as="h2"
           >
             Google
           </Text>
-          <Text>
-            Las tendencias que se muestran en Artrends son las del tipo búsqueda
-            diarias en google, las cuales son las consultas con más aumento de
-            tráfico en un periodo de 24 horas.
+          <Text as="p">
+            Las tendencias que se muestran en Artrends son las del tipo
+            &quot;Búsqueda diarias en Google&quot;, las cuales son las consultas
+            con más aumento de tráfico en un período de 24 horas.
           </Text>
-
           <Text
             id="portals"
-            marginTop={{ base: "24px", lg: "40px" }}
+            marginTop={{ base: 6, lg: "40px" }}
             fontWeight="bold"
+            as="h2"
           >
-            Portales de noticias
+            Portales de Noticias
           </Text>
-          <Text>
-            Se muestran los artículos más leidos segun informan cada uno de los
-            portales. La selección de estas cinco es a razon de considerarlas
-            más representativas y populares.
+          <Text as="p">
+            Se muestran los cuatro artículos más leídos según informan cada uno
+            de los portales en las secciones dedicadas a tal fin.
           </Text>
         </Box>
       </Box>

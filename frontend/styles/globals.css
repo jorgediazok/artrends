@@ -180,3 +180,7 @@ ul {
 section {
   width: 100%;
 }
+
+.italics {
+  font-style: italic;
+}

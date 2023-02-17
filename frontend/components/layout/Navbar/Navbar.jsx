@@ -16,7 +16,7 @@ import styles from "./Navbar.module.css";
 // Components
 import MobileCarousel from "../../ui/MobileCarousel/MobileCarousel";
 
-const Navbar = ({ activeSectionIndex, hasCarrousel }) => {
+const Navbar = ({ activeSectionIndex, hasCarrousel, hasNavItems = true }) => {
   return (
     <>
       {/* MOBILE */}
@@ -71,7 +71,12 @@ const Navbar = ({ activeSectionIndex, hasCarrousel }) => {
         justifyContent="center"
         shadow="md"
       >
-        <Box display="flex" alignItems="center" width="20%">
+        <Box
+          display="flex"
+          alignItems="center"
+          width={hasNavItems ? "20%" : "100%"}
+          marginRight={hasNavItems ? "none" : "none"}
+        >
           <NextLink href="/">
             <a>
               <Image
@@ -89,7 +94,7 @@ const Navbar = ({ activeSectionIndex, hasCarrousel }) => {
           justifyContent="center"
           flex="1"
           gap={12}
-          display={{ base: "none", lg: "flex" }}
+          display={{ base: "none", lg: hasNavItems ? "flex" : "none" }}
         >
           {navItems.map(item => (
             <Box
