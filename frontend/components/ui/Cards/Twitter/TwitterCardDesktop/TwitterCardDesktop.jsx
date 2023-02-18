@@ -3,7 +3,6 @@ import { Badge, Box, Flex, Text } from "@chakra-ui/react";
 // Utils
 import { getPosition } from "../../../../../utils/position";
 import { calculateLines } from "../../../../../utils/calculateLines";
-import { scrollOffset } from "../../../../../utils/scrollOffset";
 
 // Components
 import Share from "../../../icons/Share";
@@ -109,7 +108,13 @@ const TwitterCardDesktop = ({ twitter, twitterSectionRef }) => {
                 bottom={0}
                 right="16px"
               >
-                <Share />
+                <a
+                  href="https://twitter.com/intent/tweet?url=https://artrends.ar&text=Mirate%20qué%20tendencia%20esta%20siendo%20discutida%20en%20Twitter%20en%20Argentina%20en%20este%20momento!%20%23Artrends"
+                  target="_blank"
+                  rel="noreferrer"
+                >
+                  <Share />
+                </a>
               </Box>
             </Box>
           </Box>
