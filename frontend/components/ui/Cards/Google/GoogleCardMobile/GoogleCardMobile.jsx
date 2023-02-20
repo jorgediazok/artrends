@@ -1,4 +1,13 @@
-import { Badge, Box, Flex, Text } from "@chakra-ui/react";
+import {
+  Badge,
+  Box,
+  Flex,
+  Menu,
+  MenuButton,
+  MenuItem,
+  MenuList,
+  Text,
+} from "@chakra-ui/react";
 import theme from "../../../../../styles/theme";
 import { calculateLines } from "../../../../../utils/calculateLines";
 import { getPosition } from "../../../../../utils/position";
@@ -6,6 +15,8 @@ import ArrowDownMobile from "../../../icons/ArrowDownMobile";
 import ArrowUpMobile from "../../../icons/ArrowUpMobile";
 import SameMobile from "../../../icons/SameMobile";
 import ThreeDots from "../../../icons/ThreeDots";
+import TwitterCompartir from "../../../icons/TwitterCompartir";
+import Whatsapp from "../../../icons/Whatsapp";
 import styles from "./GoogleCardMobile.module.css";
 
 const GoogleCardMobile = ({ google }) => {
@@ -77,8 +88,70 @@ const GoogleCardMobile = ({ google }) => {
                         {trend.title}
                       </Text>
                     </a>
-
-                    <ThreeDots />
+                    <Menu maxW="162px">
+                      <MenuButton>
+                        <ThreeDots />
+                      </MenuButton>
+                      <MenuList
+                        maxWidth="162px"
+                        minWidth="162px"
+                        backgroundColor="#27238F"
+                        borderRadius="6px"
+                        padding="6px 0px"
+                        zIndex="10"
+                        boxShadow="75px 75px 43px rgba(0, 0, 0, 0.01), 42px 42px 36px rgba(0, 0, 0, 0.05), 19px 19px 27px rgba(0, 0, 0, 0.09), 5px 5px 15px rgba(0, 0, 0, 0.1), 0px 0px 0px rgba(0, 0, 0, 0.1);"
+                        border="none"
+                      >
+                        <MenuItem
+                          backgroundColor="#27238F"
+                          color="#FFFFFF"
+                          as="a"
+                          fontSize="md"
+                          href="#"
+                          icon={<Whatsapp />}
+                          iconSpacing="10px"
+                          flexDirection="row-reverse"
+                          display="flex"
+                          alignItems="center"
+                          _active={{
+                            boxShadow:
+                              "inset 75px 75px 43px rgba(0, 0, 0, 0.01), inset 42px 42px 36px rgba(0, 0, 0, 0.05), inset 19px 19px 27px rgba(0, 0, 0, 0.09), inset 5px 5px 15px rgba(0, 0, 0, 0.1)",
+                          }}
+                        >
+                          Compartir por
+                        </MenuItem>
+                        <MenuItem
+                          backgroundColor="#27238F"
+                          color="#FFFFFF"
+                          as="a"
+                          fontSize="md"
+                          href="#"
+                          iconSpacing="10px"
+                          flexDirection="row-reverse"
+                          alignItems="center"
+                          display="flex"
+                          icon={<TwitterCompartir />}
+                          _active={{
+                            boxShadow:
+                              "inset 75px 75px 43px rgba(0, 0, 0, 0.01), inset 42px 42px 36px rgba(0, 0, 0, 0.05), inset 19px 19px 27px rgba(0, 0, 0, 0.09), inset 5px 5px 15px rgba(0, 0, 0, 0.1)",
+                          }}
+                        >
+                          Compartir por
+                        </MenuItem>
+                        <MenuItem
+                          color="#FFFFFF"
+                          backgroundColor="#27238F"
+                          fontSize="md"
+                          variant="mobile"
+                          _active={{
+                            boxShadow:
+                              "inset 75px 75px 43px rgba(0, 0, 0, 0.01), inset 42px 42px 36px rgba(0, 0, 0, 0.05), inset 19px 19px 27px rgba(0, 0, 0, 0.09), inset 5px 5px 15px rgba(0, 0, 0, 0.1)",
+                          }}
+                        >
+                          Ir al sitio
+                        </MenuItem>
+                      </MenuList>
+                    </Menu>{" "}
                   </Flex>
                 </Box>
               </Box>
