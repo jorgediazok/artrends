@@ -107,7 +107,14 @@ const GoogleCardMobile = ({ google }) => {
                           color="#FFFFFF"
                           as="a"
                           fontSize="md"
-                          href="#"
+                          href={`https://api.whatsapp.com/send?text=En%20este%20momento%20${
+                            trend.title
+                          }%20está%20en%20el%20puesto%20N°%20${
+                            currentIndex + 1
+                          }%20en%20tendencias%20en%20Google%20Argentina.%20Mirá%20más%20en%20Artrends%20%23Artrends"
+                          `}
+                          data-action="share/whatsapp/share"
+                          target="_blank"
                           icon={<Whatsapp />}
                           iconSpacing="10px"
                           flexDirection="row-reverse"

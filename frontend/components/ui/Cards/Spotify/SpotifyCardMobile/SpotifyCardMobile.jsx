@@ -138,7 +138,14 @@ const SpotifyCardMobile = ({ spotifyArtist, spotifySong, spotifyPodcast }) => {
                                   color="#FFFFFF"
                                   as="a"
                                   fontSize="md"
-                                  href="#"
+                                  href={`https://api.whatsapp.com/send?text=En%20este%20momento%20${
+                                    trend.name
+                                  }%20está%20en%20el%20puesto%20N°%20${
+                                    currentIndex + 1
+                                  }%20en%20tendencias%20en%20artistas%20en%20Spotify%20Argentina.%20Mirá%20más%20en%20Artrends%20%23Artrends"
+                                  `}
+                                  data-action="share/whatsapp/share"
+                                  target="_blank"
                                   icon={<Whatsapp />}
                                   iconSpacing="10px"
                                   flexDirection="row-reverse"
@@ -338,7 +345,14 @@ const SpotifyCardMobile = ({ spotifyArtist, spotifySong, spotifyPodcast }) => {
                                   color="#FFFFFF"
                                   as="a"
                                   fontSize="md"
-                                  href="#"
+                                  href={`https://api.whatsapp.com/send?text=En%20este%20momento%20${
+                                    trend.name
+                                  }%20está%20en%20el%20puesto%20N°%20${
+                                    currentIndex + 1
+                                  }%20en%20tendencias%20en%20canciones%20en%20Spotify%20Argentina.%20Mirá%20más%20en%20Artrends%20%23Artrends"
+                                  `}
+                                  data-action="share/whatsapp/share"
+                                  target="_blank"
                                   icon={<Whatsapp />}
                                   iconSpacing="10px"
                                   flexDirection="row-reverse"
@@ -544,7 +558,14 @@ const SpotifyCardMobile = ({ spotifyArtist, spotifySong, spotifyPodcast }) => {
                                   color="#FFFFFF"
                                   as="a"
                                   fontSize="md"
-                                  href="#"
+                                  href={`https://api.whatsapp.com/send?text=En%20este%20momento%20${
+                                    trend.name
+                                  }%20está%20en%20el%20puesto%20N°%20${
+                                    currentIndex + 1
+                                  }%20en%20tendencias%20en%20podcasts%20en%20Spotify%20Argentina.%20Mirá%20más%20en%20Artrends%20%23Artrends"
+                                  `}
+                                  data-action="share/whatsapp/share"
+                                  target="_blank"
                                   icon={<Whatsapp />}
                                   iconSpacing="10px"
                                   flexDirection="row-reverse"

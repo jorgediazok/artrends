@@ -34,7 +34,7 @@ const TwitterCardDesktop = ({ twitter, twitterSectionRef }) => {
         );
         return (
           <Box
-            key={trend.title}
+            key={currentIndex}
             as="article"
             color={theme.colors.white[500]}
             bg={theme.colors.indigo[800]}
