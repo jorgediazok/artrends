@@ -160,18 +160,6 @@ const TwitterCardMobile = ({ twitter, twitterSectionRef }) => {
                         >
                           Compartir por
                         </MenuItem>
-                        <MenuItem
-                          color="#FFFFFF"
-                          backgroundColor="#27238F"
-                          fontSize="md"
-                          variant="mobile"
-                          _active={{
-                            boxShadow:
-                              "inset 75px 75px 43px rgba(0, 0, 0, 0.01), inset 42px 42px 36px rgba(0, 0, 0, 0.05), inset 19px 19px 27px rgba(0, 0, 0, 0.09), inset 5px 5px 15px rgba(0, 0, 0, 0.1)",
-                          }}
-                        >
-                          Ir al sitio
-                        </MenuItem>
                       </MenuList>
                     </Menu>
                   </Flex>

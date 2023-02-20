@@ -1,4 +1,13 @@
-import { Badge, Box, Flex, Text } from "@chakra-ui/react";
+import {
+  Badge,
+  Box,
+  Flex,
+  Menu,
+  MenuButton,
+  MenuItem,
+  MenuList,
+  Text,
+} from "@chakra-ui/react";
 
 // Utils
 import { calculateLines } from "../../../../../utils/calculateLines";
@@ -16,6 +25,8 @@ import theme from "../../../../../styles/theme";
 
 // Styles
 import styles from "./GoogleCardDesktop.module.css";
+import TwitterCompartir from "../../../icons/TwitterCompartir";
+import Whatsapp from "../../../icons/Whatsapp";
 
 const GoogleCardDesktop = ({ google, googleSectionRef }) => {
   return (
@@ -111,7 +122,71 @@ const GoogleCardDesktop = ({ google, googleSectionRef }) => {
                 justifyContent="flex-end"
                 marginTop="40px"
               >
-                <Share />
+                <Menu>
+                  <MenuButton>
+                    <Share />
+                  </MenuButton>
+                  <MenuList
+                    maxWidth="162px"
+                    minWidth="162px"
+                    backgroundColor="#27238F"
+                    borderRadius="6px"
+                    padding="6px 0px"
+                    zIndex="10"
+                    boxShadow="75px 75px 43px rgba(0, 0, 0, 0.01), 42px 42px 36px rgba(0, 0, 0, 0.05), 19px 19px 27px rgba(0, 0, 0, 0.09), 5px 5px 15px rgba(0, 0, 0, 0.1), 0px 0px 0px rgba(0, 0, 0, 0.1);"
+                    border="none"
+                  >
+                    <MenuItem
+                      backgroundColor="#27238F"
+                      color="#FFFFFF"
+                      as="a"
+                      fontSize="md"
+                      href={`https://api.whatsapp.com/send?text=En%20este%20momento%20${
+                        trend.title
+                      }%20está%20en%20el%20puesto%20N°%20${
+                        currentIndex + 1
+                      }%20en%20tendencias%20en%20Google%20Argentina.%20Mirá%20más%20en%20Artrends%20%23Artrends"
+                          `}
+                      data-action="share/whatsapp/share"
+                      target="_blank"
+                      icon={<Whatsapp />}
+                      iconSpacing="10px"
+                      flexDirection="row-reverse"
+                      display="flex"
+                      alignItems="center"
+                      _active={{
+                        boxShadow:
+                          "inset 75px 75px 43px rgba(0, 0, 0, 0.01), inset 42px 42px 36px rgba(0, 0, 0, 0.05), inset 19px 19px 27px rgba(0, 0, 0, 0.09), inset 5px 5px 15px rgba(0, 0, 0, 0.1)",
+                      }}
+                    >
+                      Compartir por
+                    </MenuItem>
+                    <MenuItem
+                      backgroundColor="#27238F"
+                      color="#FFFFFF"
+                      as="a"
+                      fontSize="md"
+                      href={`https://twitter.com/intent/tweet?url=artrends.ar&text=En%20este%20momento%20${
+                        trend.title
+                      }%20está%20en%20el%20puesto%20N°%20${
+                        currentIndex + 1
+                      }%20en%20tendencias%20en%20Google%20Argentina.%20Mirá%20más%20en%20Artrends%20%23Artrends`}
+                      target="_blank"
+                      rel="noreferrer"
+                      iconSpacing="10px"
+                      flexDirection="row-reverse"
+                      alignItems="center"
+                      display="flex"
+                      icon={<TwitterCompartir />}
+                      _active={{
+                        boxShadow:
+                          "inset 75px 75px 43px rgba(0, 0, 0, 0.01), inset 42px 42px 36px rgba(0, 0, 0, 0.05), inset 19px 19px 27px rgba(0, 0, 0, 0.09), inset 5px 5px 15px rgba(0, 0, 0, 0.1)",
+                      }}
+                    >
+                      Compartir por
+                    </MenuItem>
+                  </MenuList>
+                </Menu>
               </Box>
             </Box>
           </Box>
