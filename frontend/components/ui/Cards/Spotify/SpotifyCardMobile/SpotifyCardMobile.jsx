@@ -156,7 +156,13 @@ const SpotifyCardMobile = ({ spotifyArtist, spotifySong, spotifyPodcast }) => {
                                   color="#FFFFFF"
                                   as="a"
                                   fontSize="md"
-                                  href="#"
+                                  href={`https://twitter.com/intent/tweet?url=artrends.ar&text=En%20este%20momento%20${
+                                    trend.name
+                                  }%20está%20en%20el%20puesto%20N°%20${
+                                    currentIndex + 1
+                                  }%20en%20tendencias%20en%20artistas%20en%20Spotify%20Argentina.%20Mirá%20más%20en%20Artrends%20%23Artrends`}
+                                  target="_blank"
+                                  rel="noopener noreferrer"
                                   iconSpacing="10px"
                                   flexDirection="row-reverse"
                                   alignItems="center"
@@ -350,7 +356,13 @@ const SpotifyCardMobile = ({ spotifyArtist, spotifySong, spotifyPodcast }) => {
                                   color="#FFFFFF"
                                   as="a"
                                   fontSize="md"
-                                  href="#"
+                                  href={`https://twitter.com/intent/tweet?url=artrends.ar&text=En%20este%20momento%20${
+                                    trend.name
+                                  }%20está%20en%20el%20puesto%20N°%20${
+                                    currentIndex + 1
+                                  }%20en%20tendencias%20en%20canciones%20en%20Spotify%20Argentina.%20Mirá%20más%20en%20Artrends%20%23Artrends`}
+                                  target="_blank"
+                                  rel="noopener noreferrer"
                                   iconSpacing="10px"
                                   flexDirection="row-reverse"
                                   alignItems="center"
@@ -550,7 +562,13 @@ const SpotifyCardMobile = ({ spotifyArtist, spotifySong, spotifyPodcast }) => {
                                   color="#FFFFFF"
                                   as="a"
                                   fontSize="md"
-                                  href="#"
+                                  href={`https://twitter.com/intent/tweet?url=artrends.ar&text=En%20este%20momento%20${
+                                    trend.name
+                                  }%20está%20en%20el%20puesto%20N°%20${
+                                    currentIndex + 1
+                                  }%20en%20tendencias%20en%20podcasts%20en%20Spotify%20Argentina.%20Mirá%20más%20en%20Artrends%20%23Artrends`}
+                                  target="_blank"
+                                  rel="noopener noreferrer"
                                   iconSpacing="10px"
                                   flexDirection="row-reverse"
                                   alignItems="center"
@@ -576,7 +594,7 @@ const SpotifyCardMobile = ({ spotifyArtist, spotifySong, spotifyPodcast }) => {
                                   Ir al sitio
                                 </MenuItem>
                               </MenuList>
-                            </Menu>{" "}
+                            </Menu>
                           </Flex>
                         </Box>
                       </Box>

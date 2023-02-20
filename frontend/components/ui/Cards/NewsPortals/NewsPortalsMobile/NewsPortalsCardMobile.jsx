@@ -215,7 +215,13 @@ const NewsPortalsCardMobile = ({ portals }) => {
                                 color="#FFFFFF"
                                 as="a"
                                 fontSize="md"
-                                href="#"
+                                href={`https://twitter.com/intent/tweet?url=${
+                                  trend.link
+                                }&text=Mirate%20esta%20noticia%20de%20La%20Nación%20que%20está%20en%20el%20puesto%20N°%20${
+                                  currentIndex + 1
+                                }%20en%20tendencias%20en%20noticias%20en%20Argentina.%20Mirá%20más%20en%20Artrends%20%23Artrends`}
+                                target="_blank"
+                                rel="noopener noreferrer"
                                 iconSpacing="10px"
                                 flexDirection="row-reverse"
                                 alignItems="center"
@@ -389,7 +395,13 @@ const NewsPortalsCardMobile = ({ portals }) => {
                                 color="#FFFFFF"
                                 as="a"
                                 fontSize="md"
-                                href="#"
+                                href={`https://twitter.com/intent/tweet?url=${
+                                  trend.link
+                                }&text=Mirate%20esta%20noticia%20de%20El%20Destape%20que%20está%20en%20el%20puesto%20N°%20${
+                                  currentIndex + 1
+                                }%20en%20tendencias%20en%20noticias%20en%20Argentina.%20Mirá%20más%20en%20Artrends%20%23Artrends`}
+                                target="_blank"
+                                rel="noopener noreferrer"
                                 iconSpacing="10px"
                                 flexDirection="row-reverse"
                                 alignItems="center"
@@ -563,7 +575,13 @@ const NewsPortalsCardMobile = ({ portals }) => {
                                 color="#FFFFFF"
                                 as="a"
                                 fontSize="md"
-                                href="#"
+                                href={`https://twitter.com/intent/tweet?url=${
+                                  trend.link
+                                }&text=Mirate%20esta%20noticia%20de%20Clarín%20que%20está%20en%20el%20puesto%20N°%20${
+                                  currentIndex + 1
+                                }%20en%20tendencias%20en%20noticias%20en%20Argentina.%20Mirá%20más%20en%20Artrends%20%23Artrends`}
+                                target="_blank"
+                                rel="noopener noreferrer"
                                 iconSpacing="10px"
                                 flexDirection="row-reverse"
                                 alignItems="center"
@@ -737,7 +755,13 @@ const NewsPortalsCardMobile = ({ portals }) => {
                                 color="#FFFFFF"
                                 as="a"
                                 fontSize="md"
-                                href="#"
+                                href={`https://twitter.com/intent/tweet?url=${
+                                  trend.link
+                                }&text=Mirate%20esta%20noticia%20de%20Télam%20que%20está%20en%20el%20puesto%20N°%20${
+                                  currentIndex + 1
+                                }%20en%20tendencias%20en%20noticias%20en%20Argentina.%20Mirá%20más%20en%20Artrends%20%23Artrends`}
+                                target="_blank"
+                                rel="noopener noreferrer"
                                 iconSpacing="10px"
                                 flexDirection="row-reverse"
                                 alignItems="center"
@@ -911,7 +935,13 @@ const NewsPortalsCardMobile = ({ portals }) => {
                                 color="#FFFFFF"
                                 as="a"
                                 fontSize="md"
-                                href="#"
+                                href={`https://twitter.com/intent/tweet?url=${
+                                  trend.link
+                                }&text=Mirate%20esta%20noticia%20de%20Infobae%20que%20está%20en%20el%20puesto%20N°%20${
+                                  currentIndex + 1
+                                }%20en%20tendencias%20en%20noticias%20en%20Argentina.%20Mirá%20más%20en%20Artrends%20%23Artrends`}
+                                target="_blank"
+                                rel="noopener noreferrer"
                                 iconSpacing="10px"
                                 flexDirection="row-reverse"
                                 alignItems="center"

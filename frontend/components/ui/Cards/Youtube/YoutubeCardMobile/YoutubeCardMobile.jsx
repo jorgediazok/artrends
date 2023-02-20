@@ -124,7 +124,15 @@ const YoutubeCardMobile = ({ youtube, youtubeSectionRef }) => {
                           color="#FFFFFF"
                           as="a"
                           fontSize="md"
-                          href="#"
+                          href={`https://twitter.com/intent/tweet?url=${
+                            trend.link
+                          }&text=Mirate%20este%20video%20de%20${
+                            trend.channel
+                          }%20que%20está%20en%20el%20puesto%20N°%20${
+                            currentIndex + 1
+                          }%20en%20Youtube%20en%20Argentina%20en%20este%20momento!%20%23Artrends`}
+                          target="_blank"
+                          rel="noreferrer"
                           iconSpacing="10px"
                           flexDirection="row-reverse"
                           alignItems="center"
