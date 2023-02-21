@@ -164,7 +164,7 @@ const NewsPortalsCardDesktop = ({ portalSectionRef, portals }) => {
                       </Box>
                       <Box display="flex" gap={8} alignItems="center">
                         <Menu>
-                          <MenuButton>
+                          <MenuButton isolation="isolate">
                             <Share />
                           </MenuButton>
                           <MenuList
@@ -317,7 +317,7 @@ const NewsPortalsCardDesktop = ({ portalSectionRef, portals }) => {
                       </Box>
                       <Box display="flex" gap={8} alignItems="center">
                         <Menu>
-                          <MenuButton>
+                          <MenuButton isolation="isolate">
                             <Share />
                           </MenuButton>
                           <MenuList
@@ -470,7 +470,7 @@ const NewsPortalsCardDesktop = ({ portalSectionRef, portals }) => {
                       </Box>
                       <Box display="flex" gap={8} alignItems="center">
                         <Menu>
-                          <MenuButton>
+                          <MenuButton isolation="isolate">
                             <Share />
                           </MenuButton>
                           <MenuList
@@ -623,7 +623,7 @@ const NewsPortalsCardDesktop = ({ portalSectionRef, portals }) => {
                       </Box>
                       <Box display="flex" gap={8} alignItems="center">
                         <Menu>
-                          <MenuButton>
+                          <MenuButton isolation="isolate">
                             <Share />
                           </MenuButton>
                           <MenuList
@@ -776,7 +776,7 @@ const NewsPortalsCardDesktop = ({ portalSectionRef, portals }) => {
                       </Box>
                       <Box display="flex" gap={8} alignItems="center">
                         <Menu>
-                          <MenuButton>
+                          <MenuButton isolation="isolate">
                             <Share />
                           </MenuButton>
                           <MenuList

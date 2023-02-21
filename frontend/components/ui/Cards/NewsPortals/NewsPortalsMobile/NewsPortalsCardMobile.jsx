@@ -179,7 +179,7 @@ const NewsPortalsCardMobile = ({ portals }) => {
                           py="8px"
                         >
                           <Menu maxW="162px">
-                            <MenuButton>
+                            <MenuButton isolation="isolate">
                               <ThreeDots />
                             </MenuButton>
                             <MenuList
@@ -354,7 +354,7 @@ const NewsPortalsCardMobile = ({ portals }) => {
                           py="8px"
                         >
                           <Menu maxW="162px">
-                            <MenuButton>
+                            <MenuButton isolation="isolate">
                               <ThreeDots />
                             </MenuButton>
                             <MenuList
@@ -529,7 +529,7 @@ const NewsPortalsCardMobile = ({ portals }) => {
                           py="8px"
                         >
                           <Menu maxW="162px">
-                            <MenuButton>
+                            <MenuButton isolation="isolate">
                               <ThreeDots />
                             </MenuButton>
                             <MenuList
@@ -704,7 +704,7 @@ const NewsPortalsCardMobile = ({ portals }) => {
                           py="8px"
                         >
                           <Menu maxW="162px">
-                            <MenuButton>
+                            <MenuButton isolation="isolate">
                               <ThreeDots />
                             </MenuButton>
                             <MenuList
@@ -879,7 +879,7 @@ const NewsPortalsCardMobile = ({ portals }) => {
                           py="8px"
                         >
                           <Menu maxW="162px">
-                            <MenuButton>
+                            <MenuButton isolation="isolate">
                               <ThreeDots />
                             </MenuButton>
                             <MenuList

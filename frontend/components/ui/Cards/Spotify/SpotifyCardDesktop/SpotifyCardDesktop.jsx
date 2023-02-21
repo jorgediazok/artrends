@@ -32,12 +32,7 @@ import styles from "./SpotifyCardDesktop.module.css";
 import Whatsapp from "../../../icons/Whatsapp";
 import TwitterCompartir from "../../../icons/TwitterCompartir";
 
-const SpotifyCardDesktop = ({
-  spotifyArtist,
-  spotifyPodcast,
-  spotifySong,
-  spotifySectionRef,
-}) => {
+const SpotifyCardDesktop = ({ spotifyArtist, spotifyPodcast, spotifySong }) => {
   return (
     <Tabs
       variant="soft-rounded"
@@ -164,7 +159,7 @@ const SpotifyCardDesktop = ({
                       </Box>
                       <Box display="flex" gap={8} alignItems="center">
                         <Menu>
-                          <MenuButton>
+                          <MenuButton isolation="isolate">
                             <Share />
                           </MenuButton>
                           <MenuList
@@ -182,9 +177,9 @@ const SpotifyCardDesktop = ({
                               color="#FFFFFF"
                               as="a"
                               fontSize="md"
-                              href={`https://api.whatsapp.com/send?text=En%20este%20momento%20${
+                              href={`https://api.whatsapp.com/send?text=En%20este%20momento%20${encodeURIComponent(
                                 trend.name
-                              }%20está%20en%20el%20puesto%20N°%20${
+                              )}%20está%20en%20el%20puesto%20N°%20${
                                 currentIndex + 1
                               }%20en%20tendencias%20en%20artistas%20en%20Spotify%20Argentina.%20Mirá%20más%20en%20Artrends%20%23Artrends"
                                   `}
@@ -207,9 +202,9 @@ const SpotifyCardDesktop = ({
                               color="#FFFFFF"
                               as="a"
                               fontSize="md"
-                              href={`https://twitter.com/intent/tweet?url=artrends.ar&text=En%20este%20momento%20${
+                              href={`https://twitter.com/intent/tweet?url=artrends.ar&text=En%20este%20momento%20${encodeURIComponent(
                                 trend.name
-                              }%20está%20en%20el%20puesto%20N°%20${
+                              )}%20está%20en%20el%20puesto%20N°%20${
                                 currentIndex + 1
                               }%20en%20tendencias%20en%20artistas%20en%20Spotify%20Argentina.%20Mirá%20más%20en%20Artrends%20%23Artrends`}
                               target="_blank"
@@ -332,7 +327,7 @@ const SpotifyCardDesktop = ({
                       </Box>
                       <Box display="flex" gap={8} alignItems="center">
                         <Menu>
-                          <MenuButton>
+                          <MenuButton isolation="isolate">
                             <Share />
                           </MenuButton>
                           <MenuList
@@ -350,9 +345,9 @@ const SpotifyCardDesktop = ({
                               color="#FFFFFF"
                               as="a"
                               fontSize="md"
-                              href={`https://api.whatsapp.com/send?text=En%20este%20momento%20${
+                              href={`https://api.whatsapp.com/send?text=En%20este%20momento%20${encodeURIComponent(
                                 trend.name
-                              }%20está%20en%20el%20puesto%20N°%20${
+                              )}%20está%20en%20el%20puesto%20N°%20${
                                 currentIndex + 1
                               }%20en%20tendencias%20en%20canciones%20en%20Spotify%20Argentina.%20Mirá%20más%20en%20Artrends%20%23Artrends"
                                   `}
@@ -375,9 +370,9 @@ const SpotifyCardDesktop = ({
                               color="#FFFFFF"
                               as="a"
                               fontSize="md"
-                              href={`https://twitter.com/intent/tweet?url=artrends.ar&text=En%20este%20momento%20${
+                              href={`https://twitter.com/intent/tweet?url=artrends.ar&text=En%20este%20momento%20${encodeURIComponent(
                                 trend.name
-                              }%20está%20en%20el%20puesto%20N°%20${
+                              )}%20está%20en%20el%20puesto%20N°%20${
                                 currentIndex + 1
                               }%20en%20tendencias%20en%20canciones%20en%20Spotify%20Argentina.%20Mirá%20más%20en%20Artrends%20%23Artrends`}
                               target="_blank"
@@ -489,7 +484,7 @@ const SpotifyCardDesktop = ({
                       </Box>
                       <Box display="flex" gap={8} alignItems="center">
                         <Menu>
-                          <MenuButton>
+                          <MenuButton isolation="isolate">
                             <Share />
                           </MenuButton>
                           <MenuList
@@ -507,9 +502,9 @@ const SpotifyCardDesktop = ({
                               color="#FFFFFF"
                               as="a"
                               fontSize="md"
-                              href={`https://api.whatsapp.com/send?text=En%20este%20momento%20${
+                              href={`https://api.whatsapp.com/send?text=En%20este%20momento%20${encodeURIComponent(
                                 trend.name
-                              }%20está%20en%20el%20puesto%20N°%20${
+                              )}%20está%20en%20el%20puesto%20N°%20${
                                 currentIndex + 1
                               }%20en%20tendencias%20en%20podcasts%20en%20Spotify%20Argentina.%20Mirá%20más%20en%20Artrends%20%23Artrends"
                                   `}
@@ -532,9 +527,9 @@ const SpotifyCardDesktop = ({
                               color="#FFFFFF"
                               as="a"
                               fontSize="md"
-                              href={`https://twitter.com/intent/tweet?url=artrends.ar&text=En%20este%20momento%20${
+                              href={`https://twitter.com/intent/tweet?url=artrends.ar&text=En%20este%20momento%20${encodeURIComponent(
                                 trend.name
-                              }%20está%20en%20el%20puesto%20N°%20${
+                              )}%20está%20en%20el%20puesto%20N°%20${
                                 currentIndex + 1
                               }%20en%20tendencias%20en%20podcasts%20en%20Spotify%20Argentina.%20Mirá%20más%20en%20Artrends%20%23Artrends`}
                               target="_blank"

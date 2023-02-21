@@ -126,7 +126,7 @@ const YoutubeCardDesktop = ({ youtube, youtubeSectionRef }) => {
               </Box>
               <Box display="flex" gap={8} alignItems="center">
                 <Menu maxW="162px">
-                  <MenuButton minW="40px">
+                  <MenuButton minW="40px" isolation="isolate">
                     <Share />
                   </MenuButton>
                   <MenuList
@@ -144,9 +144,9 @@ const YoutubeCardDesktop = ({ youtube, youtubeSectionRef }) => {
                       color="#FFFFFF"
                       as="a"
                       fontSize="md"
-                      href={`https://api.whatsapp.com/send?text=En%20este%20momento%20${
+                      href={`https://api.whatsapp.com/send?text=En%20este%20momento%20${encodeURIComponent(
                         trend.title
-                      }%20está%20en%20el%20puesto%20N°%20${
+                      )}%20está%20en%20el%20puesto%20N°%20${
                         currentIndex + 1
                       }%20en%20tendencias%20en%20Youtube%20Argentina.%20Mirá%20más%20en%20Artrends%20%23Artrends"
                           `}
