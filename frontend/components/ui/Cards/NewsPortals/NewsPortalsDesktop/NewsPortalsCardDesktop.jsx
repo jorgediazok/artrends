@@ -31,7 +31,7 @@ import theme from "../../../../../styles/theme";
 // Styles
 import styles from "./NewsPortalsCardDesktop.module.css";
 
-const NewsPortalsCardDesktop = ({ portalSectionRef, portals }) => {
+const NewsPortalsCardDesktop = ({ portals }) => {
   return (
     <Tabs
       variant="soft-rounded"
@@ -175,7 +175,7 @@ const NewsPortalsCardDesktop = ({ portalSectionRef, portals }) => {
                             <MenuList
                               maxWidth="162px"
                               minWidth="162px"
-                              backgroundColor="#27238F"
+                              backgroundColor="purple.500"
                               borderRadius="6px"
                               padding="6px 0px"
                               zIndex="10"
@@ -183,7 +183,7 @@ const NewsPortalsCardDesktop = ({ portalSectionRef, portals }) => {
                               border="none"
                             >
                               <MenuItem
-                                backgroundColor="#27238F"
+                                backgroundColor="purple.500"
                                 color="#FFFFFF"
                                 as="a"
                                 fontSize="md"
@@ -208,7 +208,7 @@ const NewsPortalsCardDesktop = ({ portalSectionRef, portals }) => {
                                 Compartir por
                               </MenuItem>
                               <MenuItem
-                                backgroundColor="#27238F"
+                                backgroundColor="purple.500"
                                 color="#FFFFFF"
                                 as="a"
                                 fontSize="md"
@@ -333,7 +333,7 @@ const NewsPortalsCardDesktop = ({ portalSectionRef, portals }) => {
                             <MenuList
                               maxWidth="162px"
                               minWidth="162px"
-                              backgroundColor="#27238F"
+                              backgroundColor="purple.500"
                               borderRadius="6px"
                               padding="6px 0px"
                               zIndex="10"
@@ -341,7 +341,7 @@ const NewsPortalsCardDesktop = ({ portalSectionRef, portals }) => {
                               border="none"
                             >
                               <MenuItem
-                                backgroundColor="#27238F"
+                                backgroundColor="purple.500"
                                 color="#FFFFFF"
                                 as="a"
                                 fontSize="md"
@@ -366,7 +366,7 @@ const NewsPortalsCardDesktop = ({ portalSectionRef, portals }) => {
                                 Compartir por
                               </MenuItem>
                               <MenuItem
-                                backgroundColor="#27238F"
+                                backgroundColor="purple.500"
                                 color="#FFFFFF"
                                 as="a"
                                 fontSize="md"
@@ -491,7 +491,7 @@ const NewsPortalsCardDesktop = ({ portalSectionRef, portals }) => {
                             <MenuList
                               maxWidth="162px"
                               minWidth="162px"
-                              backgroundColor="#27238F"
+                              backgroundColor="purple.500"
                               borderRadius="6px"
                               padding="6px 0px"
                               zIndex="10"
@@ -499,7 +499,7 @@ const NewsPortalsCardDesktop = ({ portalSectionRef, portals }) => {
                               border="none"
                             >
                               <MenuItem
-                                backgroundColor="#27238F"
+                                backgroundColor="purple.500"
                                 color="#FFFFFF"
                                 as="a"
                                 fontSize="md"
@@ -524,7 +524,7 @@ const NewsPortalsCardDesktop = ({ portalSectionRef, portals }) => {
                                 Compartir por
                               </MenuItem>
                               <MenuItem
-                                backgroundColor="#27238F"
+                                backgroundColor="purple.500"
                                 color="#FFFFFF"
                                 as="a"
                                 fontSize="md"
@@ -649,7 +649,7 @@ const NewsPortalsCardDesktop = ({ portalSectionRef, portals }) => {
                             <MenuList
                               maxWidth="162px"
                               minWidth="162px"
-                              backgroundColor="#27238F"
+                              backgroundColor="purple.500"
                               borderRadius="6px"
                               padding="6px 0px"
                               zIndex="10"
@@ -657,7 +657,7 @@ const NewsPortalsCardDesktop = ({ portalSectionRef, portals }) => {
                               border="none"
                             >
                               <MenuItem
-                                backgroundColor="#27238F"
+                                backgroundColor="purple.500"
                                 color="#FFFFFF"
                                 as="a"
                                 fontSize="md"
@@ -682,7 +682,7 @@ const NewsPortalsCardDesktop = ({ portalSectionRef, portals }) => {
                                 Compartir por
                               </MenuItem>
                               <MenuItem
-                                backgroundColor="#27238F"
+                                backgroundColor="purple.500"
                                 color="#FFFFFF"
                                 as="a"
                                 fontSize="md"
@@ -807,7 +807,7 @@ const NewsPortalsCardDesktop = ({ portalSectionRef, portals }) => {
                             <MenuList
                               maxWidth="162px"
                               minWidth="162px"
-                              backgroundColor="#27238F"
+                              backgroundColor="purple.500"
                               borderRadius="6px"
                               padding="6px 0px"
                               zIndex="10"
@@ -815,7 +815,7 @@ const NewsPortalsCardDesktop = ({ portalSectionRef, portals }) => {
                               border="none"
                             >
                               <MenuItem
-                                backgroundColor="#27238F"
+                                backgroundColor="purple.500"
                                 color="#FFFFFF"
                                 as="a"
                                 fontSize="md"
@@ -840,7 +840,7 @@ const NewsPortalsCardDesktop = ({ portalSectionRef, portals }) => {
                                 Compartir por
                               </MenuItem>
                               <MenuItem
-                                backgroundColor="#27238F"
+                                backgroundColor="purple.500"
                                 color="#FFFFFF"
                                 as="a"
                                 fontSize="md"

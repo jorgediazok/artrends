@@ -20,6 +20,10 @@ import theme from "../../../../../styles/theme";
 // Utils
 import { calculateLines } from "../../../../../utils/calculateLines";
 import { getPosition } from "../../../../../utils/position";
+import {
+  getTwitterShareText,
+  getWhatsappShareText,
+} from "../../../../../utils/shareText";
 
 // Icons
 import ArrowDownMobile from "../../../icons/ArrowDownMobile";
@@ -190,7 +194,7 @@ const NewsPortalsCardMobile = ({ portals }) => {
                               <MenuList
                                 maxWidth="162px"
                                 minWidth="162px"
-                                backgroundColor="#27238F"
+                                backgroundColor="purple.500"
                                 borderRadius="6px"
                                 padding="6px 0px"
                                 zIndex="10"
@@ -198,15 +202,15 @@ const NewsPortalsCardMobile = ({ portals }) => {
                                 border="none"
                               >
                                 <MenuItem
-                                  backgroundColor="#27238F"
+                                  backgroundColor="purple.500"
                                   color="#FFFFFF"
                                   as="a"
                                   fontSize="md"
-                                  href={`https://api.whatsapp.com/send?text=Mirate%20esta%20noticia:%20${
-                                    trend.link
-                                  }%20de%20La%20Nación%20que%20está%20en%20el%20puesto%20N°%20${
-                                    currentIndex + 1
-                                  }%20en%20tendencias%20en%20noticias%20en%20Argentina.%20Mirá%20más%20en%20Artrends%20%23Artrends`}
+                                  href={getWhatsappShareText(
+                                    "portals.laNacion",
+                                    currentIndex,
+                                    trend.article
+                                  )}
                                   target="_blank"
                                   rel="noopener noreferrer"
                                   data-action="share/whatsapp/share"
@@ -223,15 +227,15 @@ const NewsPortalsCardMobile = ({ portals }) => {
                                   Compartir por
                                 </MenuItem>
                                 <MenuItem
-                                  backgroundColor="#27238F"
+                                  backgroundColor="purple.500"
                                   color="#FFFFFF"
                                   as="a"
                                   fontSize="md"
-                                  href={`https://twitter.com/intent/tweet?url=${
-                                    trend.link
-                                  }&text=Mirate%20esta%20noticia%20de%20La%20Nación%20que%20está%20en%20el%20puesto%20N°%20${
-                                    currentIndex + 1
-                                  }%20en%20tendencias%20en%20noticias%20en%20Argentina.%20Mirá%20más%20en%20Artrends%20%23Artrends`}
+                                  href={getTwitterShareText(
+                                    "portals.laNacion",
+                                    currentIndex,
+                                    trend.article
+                                  )}
                                   target="_blank"
                                   rel="noopener noreferrer"
                                   iconSpacing="10px"
@@ -370,7 +374,7 @@ const NewsPortalsCardMobile = ({ portals }) => {
                               <MenuList
                                 maxWidth="162px"
                                 minWidth="162px"
-                                backgroundColor="#27238F"
+                                backgroundColor="purple.500"
                                 borderRadius="6px"
                                 padding="6px 0px"
                                 zIndex="10"
@@ -378,15 +382,15 @@ const NewsPortalsCardMobile = ({ portals }) => {
                                 border="none"
                               >
                                 <MenuItem
-                                  backgroundColor="#27238F"
+                                  backgroundColor="purple.500"
                                   color="#FFFFFF"
                                   as="a"
                                   fontSize="md"
-                                  href={`https://api.whatsapp.com/send?text=Mirate%20esta%20noticia:%20${
-                                    trend.link
-                                  }%20de%20El%20Destape%20que%20está%20en%20el%20puesto%20N°%20${
-                                    currentIndex + 1
-                                  }%20en%20tendencias%20en%20noticias%20en%20Argentina.%20Mirá%20más%20en%20Artrends%20%23Artrends`}
+                                  href={getWhatsappShareText(
+                                    "portals.elDestape",
+                                    currentIndex,
+                                    trend.article
+                                  )}
                                   target="_blank"
                                   rel="noopener noreferrer"
                                   data-action="share/whatsapp/share"
@@ -403,15 +407,15 @@ const NewsPortalsCardMobile = ({ portals }) => {
                                   Compartir por
                                 </MenuItem>
                                 <MenuItem
-                                  backgroundColor="#27238F"
+                                  backgroundColor="purple.500"
                                   color="#FFFFFF"
                                   as="a"
                                   fontSize="md"
-                                  href={`https://twitter.com/intent/tweet?url=${
-                                    trend.link
-                                  }&text=Mirate%20esta%20noticia%20de%20El%20Destape%20que%20está%20en%20el%20puesto%20N°%20${
-                                    currentIndex + 1
-                                  }%20en%20tendencias%20en%20noticias%20en%20Argentina.%20Mirá%20más%20en%20Artrends%20%23Artrends`}
+                                  href={getTwitterShareText(
+                                    "portals.elDestape",
+                                    currentIndex,
+                                    trend.article
+                                  )}
                                   target="_blank"
                                   rel="noopener noreferrer"
                                   iconSpacing="10px"
@@ -550,7 +554,7 @@ const NewsPortalsCardMobile = ({ portals }) => {
                               <MenuList
                                 maxWidth="162px"
                                 minWidth="162px"
-                                backgroundColor="#27238F"
+                                backgroundColor="purple.500"
                                 borderRadius="6px"
                                 padding="6px 0px"
                                 zIndex="10"
@@ -558,15 +562,15 @@ const NewsPortalsCardMobile = ({ portals }) => {
                                 border="none"
                               >
                                 <MenuItem
-                                  backgroundColor="#27238F"
+                                  backgroundColor="purple.500"
                                   color="#FFFFFF"
                                   as="a"
                                   fontSize="md"
-                                  href={`https://api.whatsapp.com/send?text=Mirate%20esta%20noticia:%20${
-                                    trend.link
-                                  }%20de%20Clarín%20que%20está%20en%20el%20puesto%20N°%20${
-                                    currentIndex + 1
-                                  }%20en%20tendencias%20en%20noticias%20en%20Argentina.%20Mirá%20más%20en%20Artrends%20%23Artrends`}
+                                  href={getWhatsappShareText(
+                                    "portals.clarin",
+                                    currentIndex,
+                                    trend.article
+                                  )}
                                   target="_blank"
                                   rel="noopener noreferrer"
                                   data-action="share/whatsapp/share"
@@ -583,15 +587,15 @@ const NewsPortalsCardMobile = ({ portals }) => {
                                   Compartir por
                                 </MenuItem>
                                 <MenuItem
-                                  backgroundColor="#27238F"
+                                  backgroundColor="purple.500"
                                   color="#FFFFFF"
                                   as="a"
                                   fontSize="md"
-                                  href={`https://twitter.com/intent/tweet?url=${
-                                    trend.link
-                                  }&text=Mirate%20esta%20noticia%20de%20Clarín%20que%20está%20en%20el%20puesto%20N°%20${
-                                    currentIndex + 1
-                                  }%20en%20tendencias%20en%20noticias%20en%20Argentina.%20Mirá%20más%20en%20Artrends%20%23Artrends`}
+                                  href={getTwitterShareText(
+                                    "portals.clarin",
+                                    currentIndex,
+                                    trend.article
+                                  )}
                                   target="_blank"
                                   rel="noopener noreferrer"
                                   iconSpacing="10px"
@@ -730,7 +734,7 @@ const NewsPortalsCardMobile = ({ portals }) => {
                               <MenuList
                                 maxWidth="162px"
                                 minWidth="162px"
-                                backgroundColor="#27238F"
+                                backgroundColor="purple.500"
                                 borderRadius="6px"
                                 padding="6px 0px"
                                 zIndex="10"
@@ -738,15 +742,15 @@ const NewsPortalsCardMobile = ({ portals }) => {
                                 border="none"
                               >
                                 <MenuItem
-                                  backgroundColor="#27238F"
+                                  backgroundColor="purple.500"
                                   color="#FFFFFF"
                                   as="a"
                                   fontSize="md"
-                                  href={`https://api.whatsapp.com/send?text=Mirate%20esta%20noticia:%20${
-                                    trend.link
-                                  }%20de%20Télam%20que%20está%20en%20el%20puesto%20N°%20${
-                                    currentIndex + 1
-                                  }%20en%20tendencias%20en%20noticias%20en%20Argentina.%20Mirá%20más%20en%20Artrends%20%23Artrends`}
+                                  href={getWhatsappShareText(
+                                    "portals.telam",
+                                    currentIndex,
+                                    trend.article
+                                  )}
                                   target="_blank"
                                   rel="noopener noreferrer"
                                   data-action="share/whatsapp/share"
@@ -763,15 +767,15 @@ const NewsPortalsCardMobile = ({ portals }) => {
                                   Compartir por
                                 </MenuItem>
                                 <MenuItem
-                                  backgroundColor="#27238F"
+                                  backgroundColor="purple.500"
                                   color="#FFFFFF"
                                   as="a"
                                   fontSize="md"
-                                  href={`https://twitter.com/intent/tweet?url=${
-                                    trend.link
-                                  }&text=Mirate%20esta%20noticia%20de%20Télam%20que%20está%20en%20el%20puesto%20N°%20${
-                                    currentIndex + 1
-                                  }%20en%20tendencias%20en%20noticias%20en%20Argentina.%20Mirá%20más%20en%20Artrends%20%23Artrends`}
+                                  href={getTwitterShareText(
+                                    "portals.telam",
+                                    currentIndex,
+                                    trend.article
+                                  )}
                                   target="_blank"
                                   rel="noopener noreferrer"
                                   iconSpacing="10px"
@@ -910,7 +914,7 @@ const NewsPortalsCardMobile = ({ portals }) => {
                               <MenuList
                                 maxWidth="162px"
                                 minWidth="162px"
-                                backgroundColor="#27238F"
+                                backgroundColor="purple.500"
                                 borderRadius="6px"
                                 padding="6px 0px"
                                 zIndex="10"
@@ -918,15 +922,15 @@ const NewsPortalsCardMobile = ({ portals }) => {
                                 border="none"
                               >
                                 <MenuItem
-                                  backgroundColor="#27238F"
+                                  backgroundColor="purple.500"
                                   color="#FFFFFF"
                                   as="a"
                                   fontSize="md"
-                                  href={`https://api.whatsapp.com/send?text=Mirate%20esta%20noticia:%20${
-                                    trend.link
-                                  }%20de%20Infobae%20que%20está%20en%20el%20puesto%20N°%20${
-                                    currentIndex + 1
-                                  }%20en%20tendencias%20en%20noticias%20en%20Argentina.%20Mirá%20más%20en%20Artrends%20%23Artrends`}
+                                  href={getWhatsappShareText(
+                                    "portals.infobae",
+                                    currentIndex,
+                                    trend.article
+                                  )}
                                   target="_blank"
                                   rel="noopener noreferrer"
                                   data-action="share/whatsapp/share"
@@ -943,15 +947,15 @@ const NewsPortalsCardMobile = ({ portals }) => {
                                   Compartir por
                                 </MenuItem>
                                 <MenuItem
-                                  backgroundColor="#27238F"
+                                  backgroundColor="purple.500"
                                   color="#FFFFFF"
                                   as="a"
                                   fontSize="md"
-                                  href={`https://twitter.com/intent/tweet?url=${
-                                    trend.link
-                                  }&text=Mirate%20esta%20noticia%20de%20Infobae%20que%20está%20en%20el%20puesto%20N°%20${
-                                    currentIndex + 1
-                                  }%20en%20tendencias%20en%20noticias%20en%20Argentina.%20Mirá%20más%20en%20Artrends%20%23Artrends`}
+                                  href={getTwitterShareText(
+                                    "portals.infobae",
+                                    currentIndex,
+                                    trend.article
+                                  )}
                                   target="_blank"
                                   rel="noopener noreferrer"
                                   iconSpacing="10px"

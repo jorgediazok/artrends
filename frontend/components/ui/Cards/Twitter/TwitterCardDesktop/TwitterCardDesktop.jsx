@@ -12,6 +12,10 @@ import {
 // Utils
 import { getPosition } from "../../../../../utils/position";
 import { calculateLines } from "../../../../../utils/calculateLines";
+import {
+  getTwitterShareText,
+  getWhatsappShareText,
+} from "../../../../../utils/shareText";
 
 // Components
 import Share from "../../../icons/Share";
@@ -130,7 +134,7 @@ const TwitterCardDesktop = ({ twitter }) => {
                     <MenuList
                       maxWidth="162px"
                       minWidth="162px"
-                      backgroundColor="#27238F"
+                      backgroundColor="purple.500"
                       borderRadius="6px"
                       padding="6px 0px"
                       zIndex="10"
@@ -138,16 +142,15 @@ const TwitterCardDesktop = ({ twitter }) => {
                       border="none"
                     >
                       <MenuItem
-                        backgroundColor="#27238F"
+                        backgroundColor="purple.500"
                         color="#FFFFFF"
                         as="a"
                         fontSize="md"
-                        href={`https://api.whatsapp.com/send?text=En%20este%20momento%20${encodeURIComponent(
+                        href={getWhatsappShareText(
+                          "twitter",
+                          currentIndex,
                           trend.title
-                        )}%20está%20en%20el%20puesto%20N°%20${
-                          currentIndex + 1
-                        }%20en%20tendencias%20en%20Twitter%20Argentina.%20Mirá%20más%20en%20Artrends%20%23Artrends"
-                          `}
+                        )}
                         data-action="share/whatsapp/share"
                         target="_blank"
                         rel="noreferrer"
@@ -164,15 +167,15 @@ const TwitterCardDesktop = ({ twitter }) => {
                         Compartir por
                       </MenuItem>
                       <MenuItem
-                        backgroundColor="#27238F"
+                        backgroundColor="purple.500"
                         color="#FFFFFF"
                         as="a"
                         fontSize="md"
-                        href={`https://twitter.com/intent/tweet?url=artrends.ar&text=En%20este%20momento%20${encodeURIComponent(
+                        href={getTwitterShareText(
+                          "twitter",
+                          currentIndex,
                           trend.title
-                        )}%20está%20en%20el%20puesto%20N°%20${
-                          currentIndex + 1
-                        }%20en%20tendencias%20en%20Twitter%20Argentina.%20Mirá%20más%20en%20Artrends%20%23Artrends`}
+                        )}
                         target="_blank"
                         rel="noreferrer"
                         iconSpacing="10px"

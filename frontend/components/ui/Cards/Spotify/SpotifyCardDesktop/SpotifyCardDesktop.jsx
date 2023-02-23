@@ -16,6 +16,10 @@ import {
 // Utils
 import { calculateLines } from "../../../../../utils/calculateLines";
 import { getPosition } from "../../../../../utils/position";
+import {
+  getTwitterShareText,
+  getWhatsappShareText,
+} from "../../../../../utils/shareText";
 
 // Icons
 import ArrowDown from "../../../icons/ArrowDown";
@@ -169,7 +173,7 @@ const SpotifyCardDesktop = ({ spotifyArtist, spotifyPodcast, spotifySong }) => {
                             <MenuList
                               maxWidth="162px"
                               minWidth="162px"
-                              backgroundColor="#27238F"
+                              backgroundColor="purple.500"
                               borderRadius="6px"
                               padding="6px 0px"
                               zIndex="10"
@@ -177,16 +181,15 @@ const SpotifyCardDesktop = ({ spotifyArtist, spotifyPodcast, spotifySong }) => {
                               border="none"
                             >
                               <MenuItem
-                                backgroundColor="#27238F"
+                                backgroundColor="purple.500"
                                 color="#FFFFFF"
                                 as="a"
                                 fontSize="md"
-                                href={`https://api.whatsapp.com/send?text=En%20este%20momento%20${encodeURIComponent(
+                                href={getWhatsappShareText(
+                                  "spotify.artist",
+                                  currentIndex,
                                   trend.name
-                                )}%20está%20en%20el%20puesto%20N°%20${
-                                  currentIndex + 1
-                                }%20en%20tendencias%20en%20artistas%20en%20Spotify%20Argentina.%20Mirá%20más%20en%20Artrends%20%23Artrends"
-                                  `}
+                                )}
                                 data-action="share/whatsapp/share"
                                 target="_blank"
                                 icon={<Whatsapp />}
@@ -202,15 +205,15 @@ const SpotifyCardDesktop = ({ spotifyArtist, spotifyPodcast, spotifySong }) => {
                                 Compartir por
                               </MenuItem>
                               <MenuItem
-                                backgroundColor="#27238F"
+                                backgroundColor="purple.500"
                                 color="#FFFFFF"
                                 as="a"
                                 fontSize="md"
-                                href={`https://twitter.com/intent/tweet?url=artrends.ar&text=En%20este%20momento%20${encodeURIComponent(
+                                href={getTwitterShareText(
+                                  "spotify.artist",
+                                  currentIndex,
                                   trend.name
-                                )}%20está%20en%20el%20puesto%20N°%20${
-                                  currentIndex + 1
-                                }%20en%20tendencias%20en%20artistas%20en%20Spotify%20Argentina.%20Mirá%20más%20en%20Artrends%20%23Artrends`}
+                                )}
                                 target="_blank"
                                 rel="noopener noreferrer"
                                 iconSpacing="10px"
@@ -342,7 +345,7 @@ const SpotifyCardDesktop = ({ spotifyArtist, spotifyPodcast, spotifySong }) => {
                             <MenuList
                               maxWidth="162px"
                               minWidth="162px"
-                              backgroundColor="#27238F"
+                              backgroundColor="purple.500"
                               borderRadius="6px"
                               padding="6px 0px"
                               zIndex="10"
@@ -350,16 +353,15 @@ const SpotifyCardDesktop = ({ spotifyArtist, spotifyPodcast, spotifySong }) => {
                               border="none"
                             >
                               <MenuItem
-                                backgroundColor="#27238F"
+                                backgroundColor="purple.500"
                                 color="#FFFFFF"
                                 as="a"
                                 fontSize="md"
-                                href={`https://api.whatsapp.com/send?text=En%20este%20momento%20${encodeURIComponent(
+                                href={getWhatsappShareText(
+                                  "spotify.artist",
+                                  currentIndex,
                                   trend.name
-                                )}%20está%20en%20el%20puesto%20N°%20${
-                                  currentIndex + 1
-                                }%20en%20tendencias%20en%20canciones%20en%20Spotify%20Argentina.%20Mirá%20más%20en%20Artrends%20%23Artrends"
-                                  `}
+                                )}
                                 data-action="share/whatsapp/share"
                                 target="_blank"
                                 icon={<Whatsapp />}
@@ -375,15 +377,15 @@ const SpotifyCardDesktop = ({ spotifyArtist, spotifyPodcast, spotifySong }) => {
                                 Compartir por
                               </MenuItem>
                               <MenuItem
-                                backgroundColor="#27238F"
+                                backgroundColor="purple.500"
                                 color="#FFFFFF"
                                 as="a"
                                 fontSize="md"
-                                href={`https://twitter.com/intent/tweet?url=artrends.ar&text=En%20este%20momento%20${encodeURIComponent(
+                                href={getTwitterShareText(
+                                  "spotify.song",
+                                  currentIndex,
                                   trend.name
-                                )}%20está%20en%20el%20puesto%20N°%20${
-                                  currentIndex + 1
-                                }%20en%20tendencias%20en%20canciones%20en%20Spotify%20Argentina.%20Mirá%20más%20en%20Artrends%20%23Artrends`}
+                                )}
                                 target="_blank"
                                 rel="noopener noreferrer"
                                 iconSpacing="10px"
@@ -504,7 +506,7 @@ const SpotifyCardDesktop = ({ spotifyArtist, spotifyPodcast, spotifySong }) => {
                             <MenuList
                               maxWidth="162px"
                               minWidth="162px"
-                              backgroundColor="#27238F"
+                              backgroundColor="purple.500"
                               borderRadius="6px"
                               padding="6px 0px"
                               zIndex="10"
@@ -512,16 +514,15 @@ const SpotifyCardDesktop = ({ spotifyArtist, spotifyPodcast, spotifySong }) => {
                               border="none"
                             >
                               <MenuItem
-                                backgroundColor="#27238F"
+                                backgroundColor="purple.500"
                                 color="#FFFFFF"
                                 as="a"
                                 fontSize="md"
-                                href={`https://api.whatsapp.com/send?text=En%20este%20momento%20${encodeURIComponent(
+                                href={getWhatsappShareText(
+                                  "spotify.podcast",
+                                  currentIndex,
                                   trend.name
-                                )}%20está%20en%20el%20puesto%20N°%20${
-                                  currentIndex + 1
-                                }%20en%20tendencias%20en%20podcasts%20en%20Spotify%20Argentina.%20Mirá%20más%20en%20Artrends%20%23Artrends"
-                                  `}
+                                )}
                                 data-action="share/whatsapp/share"
                                 target="_blank"
                                 icon={<Whatsapp />}
@@ -537,15 +538,15 @@ const SpotifyCardDesktop = ({ spotifyArtist, spotifyPodcast, spotifySong }) => {
                                 Compartir por
                               </MenuItem>
                               <MenuItem
-                                backgroundColor="#27238F"
+                                backgroundColor="purple.500"
                                 color="#FFFFFF"
                                 as="a"
                                 fontSize="md"
-                                href={`https://twitter.com/intent/tweet?url=artrends.ar&text=En%20este%20momento%20${encodeURIComponent(
+                                href={getTwitterShareText(
+                                  "spotify.podcast",
+                                  currentIndex,
                                   trend.name
-                                )}%20está%20en%20el%20puesto%20N°%20${
-                                  currentIndex + 1
-                                }%20en%20tendencias%20en%20podcasts%20en%20Spotify%20Argentina.%20Mirá%20más%20en%20Artrends%20%23Artrends`}
+                                )}
                                 target="_blank"
                                 rel="noopener noreferrer"
                                 iconSpacing="10px"
