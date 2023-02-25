@@ -1,6 +1,6 @@
 export function getWhatsappShareText(trend, currentIndex, title) {
   if (trend === "twitter") {
-    return `https://api.whatsapp.com/send?text=En%20este%20momento${encodeURI(
+    return `https://api.whatsapp.com/send?text=En%20este%20momento%20${encodeURI(
       title
     )} está en el puesto N° ${
       currentIndex + 1
