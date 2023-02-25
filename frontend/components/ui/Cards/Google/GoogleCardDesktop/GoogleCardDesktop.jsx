@@ -1,15 +1,30 @@
-import { Badge, Box, Flex, Text } from "@chakra-ui/react";
+import {
+  Badge,
+  Box,
+  Flex,
+  Menu,
+  MenuButton,
+  MenuItem,
+  MenuList,
+  Text,
+} from "@chakra-ui/react";
 
 // Utils
 import { calculateLines } from "../../../../../utils/calculateLines";
 import { getPosition } from "../../../../../utils/position";
-import { scrollOffset } from "../../../../../utils/scrollOffset";
+import {
+  getTwitterShareText,
+  getWhatsappShareText,
+} from "../../../../../utils/shareText";
 
 // Icons
 import ArrowDown from "../../../icons/ArrowDown";
 import ArrowUp from "../../../icons/ArrowUp";
 import Same from "../../../icons/Same";
 import Share from "../../../icons/Share";
+import TwitterCompartir from "../../../icons/TwitterCompartir";
+import Whatsapp from "../../../icons/Whatsapp";
+import ErrorCardDesktop from "../../ErrorCard/ErrorCardDesktop/ErrorCardDesktop";
 
 // Theme
 import theme from "../../../../../styles/theme";
@@ -17,7 +32,9 @@ import theme from "../../../../../styles/theme";
 // Styles
 import styles from "./GoogleCardDesktop.module.css";
 
-const GoogleCardDesktop = ({ google, googleSectionRef }) => {
+const GoogleCardDesktop = ({ google }) => {
+  const hasData = google?.current?.record?.trends && google.current.record.trends.length > 0;
+
   return (
     <Flex
       width="100%"
@@ -29,94 +46,161 @@ const GoogleCardDesktop = ({ google, googleSectionRef }) => {
       maxHeight={{ base: "none", lg: "540px" }}
       alignItems="center"
     >
-      {google?.current?.record?.trends?.map((trend, currentIndex) => {
-        const elementInPrevious = google?.previous?.record?.trends?.find(
-          element => element.title === trend.title
-        );
-        const prevIndex = google?.previous?.record?.trends?.findIndex(
-          element => element.title === elementInPrevious?.title
-        );
+      { !hasData? (
+        <ErrorCardDesktop />
+      ) : (
+        google.current.record.trends.map((trend, currentIndex) => {
+          const elementInPrevious = google?.previous?.record?.trends?.find(
+            element => element.title === trend.title
+          );
+          const prevIndex = google?.previous?.record?.trends?.findIndex(
+            element => element.title === elementInPrevious?.title
+          );
 
-        return (
-          <Box
-            key={trend.title}
-            as="article"
-            color={theme.colors.white[500]}
-            bg={theme.colors.indigo[800]}
-            border="1px"
-            borderColor={theme.colors.cyan[200]}
-            borderRadius={theme.radius.xl}
-            paddingX="20px"
-            paddingY="12px"
-            width="440px"
-            height="100px"
-            mb={2}
-            display={{ base: "none", lg: "flex" }}
-            alignItems="center"
-          >
+          return (
             <Box
-              display="flex"
-              justifyContent="space-between"
+              key={trend.title}
+              as="article"
+              color={theme.colors.white[500]}
+              bg={theme.colors.indigo[800]}
+              border="1px"
+              borderColor={theme.colors.cyan[200]}
+              borderRadius={theme.radius.xl}
+              paddingX="20px"
+              paddingY="12px"
+              width="440px"
+              height="100px"
+              mb={2}
+              display={{ base: "none", lg: "flex" }}
               alignItems="center"
-              w="100%"
             >
-              <Box display="flex" gap="9px" alignItems="center">
-                <Box
-                  display="flex"
-                  justifyContent="space-between"
-                  alignItems="center"
-                  w="80px"
-                  className="position-container"
-                >
-                  <Text fontSize="4xl">{currentIndex + 1}</Text>
-                  {getPosition(currentIndex, prevIndex) === "down" ? (
-                    <ArrowDown />
-                  ) : getPosition(currentIndex, prevIndex) === "up" ? (
-                    <ArrowUp />
-                  ) : (
-                    <Same className={styles.same} />
-                  )}
-                </Box>
-                <Box display="flex" gap="12px" flexDirection="column" ml={0}>
-                  <a
-                    href={trend.link}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
-                    <Text
-                      fontWeight={600}
-                      fontSize="xl"
-                      className={calculateLines("buscado")}
-                    >
-                      {trend.title}
-                    </Text>
-                  </a>
-                  <Badge
-                    className="one-max-line"
-                    width="fit-content"
-                    fontSize="xs"
-                    textTransform="uppercase"
-                    variant="outline"
-                    colorScheme="#fff"
-                    border="1px solid #fff"
-                  >
-                    {"más de " + trend.amount + " mil búsquedas"}
-                  </Badge>
-                </Box>
-              </Box>
               <Box
                 display="flex"
-                gap={8}
-                alignItems="flex-end"
-                justifyContent="flex-end"
-                marginTop="40px"
+                justifyContent="space-between"
+                alignItems="center"
+                w="100%"
               >
-                <Share />
+                <Box display="flex" gap="9px" alignItems="center">
+                  <Box
+                    display="flex"
+                    justifyContent="space-between"
+                    alignItems="center"
+                    w="80px"
+                    className="position-container"
+                  >
+                    <Text fontSize="4xl">{currentIndex + 1}</Text>
+                    {getPosition(currentIndex, prevIndex) === "down" ? (
+                      <ArrowDown />
+                    ) : getPosition(currentIndex, prevIndex) === "up" ? (
+                      <ArrowUp />
+                    ) : (
+                      <Same className={styles.same} />
+                    )}
+                  </Box>
+                  <Box display="flex" gap="12px" flexDirection="column" ml={0}>
+                    <a
+                      href={trend.link}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      <Text
+                        fontWeight={600}
+                        fontSize="xl"
+                        className={calculateLines("buscado")}
+                      >
+                        {trend.title}
+                      </Text>
+                    </a>
+                    <Badge
+                      className="one-max-line"
+                      width="fit-content"
+                      fontSize="xs"
+                      textTransform="uppercase"
+                      variant="outline"
+                      colorScheme="#fff"
+                      border="1px solid #fff"
+                    >
+                      {"más de " + trend.amount + " mil búsquedas"}
+                    </Badge>
+                  </Box>
+                </Box>
+                <Box
+                  display="flex"
+                  gap={8}
+                  alignItems="flex-end"
+                  justifyContent="flex-end"
+                  marginTop="40px"
+                >
+                  <Menu>
+                    <MenuButton isolation="isolate">
+                      <Share />
+                    </MenuButton>
+                    <MenuList
+                      maxWidth="162px"
+                      minWidth="162px"
+                      backgroundColor="purple.500"
+                      borderRadius="6px"
+                      padding="6px 0px"
+                      zIndex="10"
+                      boxShadow="75px 75px 43px rgba(0, 0, 0, 0.01), 42px 42px 36px rgba(0, 0, 0, 0.05), 19px 19px 27px rgba(0, 0, 0, 0.09), 5px 5px 15px rgba(0, 0, 0, 0.1), 0px 0px 0px rgba(0, 0, 0, 0.1);"
+                      border="none"
+                    >
+                      <MenuItem
+                        backgroundColor="purple.500"
+                        color="#FFFFFF"
+                        as="a"
+                        fontSize="md"
+                        href={getWhatsappShareText(
+                          "google",
+                          currentIndex,
+                          trend.title
+                        )}
+                        data-action="share/whatsapp/share"
+                        target="_blank"
+                        icon={<Whatsapp />}
+                        iconSpacing="10px"
+                        flexDirection="row-reverse"
+                        display="flex"
+                        alignItems="center"
+                        _active={{
+                          boxShadow:
+                            "inset 75px 75px 43px rgba(0, 0, 0, 0.01), inset 42px 42px 36px rgba(0, 0, 0, 0.05), inset 19px 19px 27px rgba(0, 0, 0, 0.09), inset 5px 5px 15px rgba(0, 0, 0, 0.1)",
+                        }}
+                      >
+                        Compartir por
+                      </MenuItem>
+                      <MenuItem
+                        backgroundColor="purple.500"
+                        color="#FFFFFF"
+                        as="a"
+                        fontSize="md"
+                        href={getTwitterShareText(
+                          "google",
+                          currentIndex,
+                          trend.title
+                        )}
+                        target="_blank"
+                        rel="noreferrer"
+                        iconSpacing="10px"
+                        flexDirection="row-reverse"
+                        alignItems="center"
+                        display="flex"
+                        icon={<TwitterCompartir />}
+                        _active={{
+                          boxShadow:
+                            "inset 75px 75px 43px rgba(0, 0, 0, 0.01), inset 42px 42px 36px rgba(0, 0, 0, 0.05), inset 19px 19px 27px rgba(0, 0, 0, 0.09), inset 5px 5px 15px rgba(0, 0, 0, 0.1)",
+                        }}
+                      >
+                        Compartir por
+                      </MenuItem>
+                    </MenuList>
+                  </Menu>
+                </Box>
               </Box>
             </Box>
-          </Box>
-        );
-      })}
+          );
+        })
+      )}
     </Flex>
   );
 };
