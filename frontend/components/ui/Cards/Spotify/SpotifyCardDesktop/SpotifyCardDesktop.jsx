@@ -28,6 +28,8 @@ import Same from "../../../icons/Same";
 import Share from "../../../icons/Share";
 import Whatsapp from "../../../icons/Whatsapp";
 import TwitterCompartir from "../../../icons/TwitterCompartir";
+
+// Components
 import ErrorCardDesktop from "../../ErrorCard/ErrorCardDesktop/ErrorCardDesktop";
 
 // Theme
@@ -37,6 +39,10 @@ import theme from "../../../../../styles/theme";
 import styles from "./SpotifyCardDesktop.module.css";
 
 const SpotifyCardDesktop = ({ spotifyArtist, spotifyPodcast, spotifySong }) => {
+ const hasArtistData = spotifyArtist?.current?.record?.trends?.length && spotifyArtist.current.record.trends.length > 0;
+ const hasSongData = spotifySong?.current?.record?.trends?.length && spotifySong.current.record.trends.length > 0;
+ const hasPodcastData = spotifyPodcast?.current?.record?.trends?.length && spotifyPodcast.current.record.trends.length > 0;
+
   return (
     <Tabs
       variant="soft-rounded"
@@ -81,10 +87,10 @@ const SpotifyCardDesktop = ({ spotifyArtist, spotifyPodcast, spotifySong }) => {
             alignItems="center"
             overflow="auto"
           >
-            {spotifyArtist?.current?.record?.trends?.length === 0 ? (
+            {!hasArtistData ? (
               <ErrorCardDesktop />
             ) : (
-              spotifyArtist?.current?.record?.trends?.map(
+              spotifyArtist.current.record.trends.map(
                 (trend, currentIndex) => {
                   const elementInPrevious =
                     spotifyArtist?.previous?.record?.trends?.find(
@@ -107,7 +113,6 @@ const SpotifyCardDesktop = ({ spotifyArtist, spotifyPodcast, spotifySong }) => {
                       width="100%"
                       height="131px"
                       mb={2}
-                      display={{ base: "none", lg: "flex" }}
                       alignItems="center"
                       key={trend.name}
                     >
@@ -247,10 +252,10 @@ const SpotifyCardDesktop = ({ spotifyArtist, spotifyPodcast, spotifySong }) => {
             paddingX={{ base: "16px", lg: "0" }}
             alignItems="center"
           >
-            {spotifySong?.current?.record?.trends?.length === 0 ? (
+            {!hasSongData ? (
               <ErrorCardDesktop />
             ) : (
-              spotifySong?.current?.record?.trends?.map(
+              spotifySong.current.record.trends.map(
                 (trend, currentIndex) => {
                   const elementInPrevious =
                     spotifySong?.previous?.record?.trends?.find(
@@ -419,10 +424,10 @@ const SpotifyCardDesktop = ({ spotifyArtist, spotifyPodcast, spotifySong }) => {
             paddingX={{ base: "16px", lg: "0" }}
             alignItems="center"
           >
-            {spotifyPodcast?.current?.record?.trends?.length === 0 ? (
+            { !hasPodcastData ? (
               <ErrorCardDesktop />
             ) : (
-              spotifyPodcast?.current?.record?.trends?.map(
+              spotifyPodcast.current.record.trends.map(
                 (trend, currentIndex) => {
                   const elementInPrevious =
                     spotifyPodcast?.previous?.record?.trends?.find(

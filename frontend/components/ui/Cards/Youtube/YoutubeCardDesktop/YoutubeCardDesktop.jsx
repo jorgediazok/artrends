@@ -26,12 +26,16 @@ import Same from "../../../icons/Same";
 import Share from "../../../icons/Share";
 import TwitterCompartir from "../../../icons/TwitterCompartir";
 import Whatsapp from "../../../icons/Whatsapp";
+
+// Components
 import ErrorCardDesktop from "../../ErrorCard/ErrorCardDesktop/ErrorCardDesktop";
 
 // Styles
 import styles from "./YoutubeCardDesktop.module.css";
 
-const YoutubeCardDesktop = ({ youtube, youtubeSectionRef }) => {
+const YoutubeCardDesktop = ({ youtube }) => {
+  const hasData = youtube?.current?.record?.trends?.length && youtube.current.record?.trends.length > 0;
+
   return (
     <Box
       width="100%"
@@ -40,11 +44,12 @@ const YoutubeCardDesktop = ({ youtube, youtubeSectionRef }) => {
       paddingX={{ base: "16px", lg: "0" }}
       alignItems="center"
       mt="24px"
+      display={{ base: "none", lg: "flex" }}
     >
-      {youtube?.current?.record?.trends?.length === 0 ? (
+      {!hasData ? (
         <ErrorCardDesktop />
       ) : (
-        youtube?.current?.record?.trends?.map((trend, currentIndex) => {
+        youtube.current.record.trends.map((trend, currentIndex) => {
           const elementInPrevious = youtube?.previous?.record?.trends?.find(
             element => element.title === trend.title
           );
@@ -64,7 +69,6 @@ const YoutubeCardDesktop = ({ youtube, youtubeSectionRef }) => {
               width="100%"
               height="161px"
               mb={2}
-              display={{ base: "none", lg: "flex" }}
               alignItems="center"
               key={trend.title}
             >

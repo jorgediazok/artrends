@@ -23,6 +23,8 @@ import Same from "../../../icons/Same";
 import Share from "../../../icons/Share";
 import TwitterCompartir from "../../../icons/TwitterCompartir";
 import Whatsapp from "../../../icons/Whatsapp";
+
+// Components
 import ErrorCardDesktop from "../../ErrorCard/ErrorCardDesktop/ErrorCardDesktop";
 
 // Theme
@@ -32,6 +34,13 @@ import theme from "../../../../../styles/theme";
 import styles from "./NewsPortalsCardDesktop.module.css";
 
 const NewsPortalsCardDesktop = ({ portals }) => {
+  const hasLaNacionData = portals?.current?.laNacion?.record?.trends?.length &&  portals.current.laNacion.record.trends.length > 0;
+  const hasElDestapeData = portals?.current?.elDestape?.record?.trends?.length &&  portals.current.elDestape.record.trends.length > 0;
+  const hasClarinData =  portals?.current?.clarin?.record?.trends?.length && portals.current.clarin.record.trends.length > 0;
+  const hasTelamData =  portals?.current?.telam?.record?.trends?.length && portals.current.telam.record.trends.length > 0;
+  const hasInfobaeData =  portals?.current?.infobae?.record?.trends?.length && portals.current.infobae.record.trends.length > 0;
+
+
   return (
     <Tabs
       variant="soft-rounded"
@@ -92,10 +101,10 @@ const NewsPortalsCardDesktop = ({ portals }) => {
             alignContent="space-between"
             alignItems="center"
           >
-            {portals?.current?.laNacion?.record?.trends?.length === 0 ? (
+            {!hasLaNacionData ? (
               <ErrorCardDesktop />
             ) : (
-              portals?.current?.laNacion?.record?.trends?.map(
+              portals.current.laNacion.record.trends.map(
                 (trend, currentIndex) => {
                   const elementInPrevious =
                     portals?.previous?.laNacion?.record?.trends?.find(
@@ -250,10 +259,10 @@ const NewsPortalsCardDesktop = ({ portals }) => {
             paddingX={{ base: "16px", lg: "0" }}
             alignItems="center"
           >
-            {portals?.current?.elDestape?.record?.trends?.length === 0 ? (
+            {!hasElDestapeData ? (
               <ErrorCardDesktop />
             ) : (
-              portals?.current?.elDestape?.record?.trends?.map(
+              portals.current.elDestape.record.trends.map(
                 (trend, currentIndex) => {
                   const elementInPrevious =
                     portals?.previous?.elDestape?.record?.trends?.find(
@@ -408,10 +417,10 @@ const NewsPortalsCardDesktop = ({ portals }) => {
             paddingX={{ base: "16px", lg: "0" }}
             alignItems="center"
           >
-            {portals?.current?.clarin?.record?.trends?.length === 0 ? (
+            {!hasClarinData ? (
               <ErrorCardDesktop />
             ) : (
-              portals?.current?.clarin?.record?.trends?.map(
+              portals.current.clarin.record.trends.map(
                 (trend, currentIndex) => {
                   const elementInPrevious =
                     portals?.previous?.clarin?.record?.trends?.find(
@@ -566,10 +575,10 @@ const NewsPortalsCardDesktop = ({ portals }) => {
             paddingX={{ base: "16px", lg: "0" }}
             alignItems="center"
           >
-            {portals?.current?.telam?.record?.trends?.length === 0 ? (
+            {!hasTelamData ? (
               <ErrorCardDesktop />
             ) : (
-              portals?.current?.telam?.record?.trends?.map(
+              portals.current.telam.record.trends.map(
                 (trend, currentIndex) => {
                   const elementInPrevious =
                     portals?.previous?.telam?.record?.trends?.find(
@@ -724,10 +733,10 @@ const NewsPortalsCardDesktop = ({ portals }) => {
             paddingX={{ base: "16px", lg: "0" }}
             alignItems="center"
           >
-            {portals?.current?.infobae?.record?.trends?.length === 0 ? (
+            {!hasInfobaeData? (
               <ErrorCardDesktop />
             ) : (
-              portals?.current?.infobae?.record?.trends?.map(
+              portals.current.infobae.record.trends.map(
                 (trend, currentIndex) => {
                   const elementInPrevious =
                     portals?.previous?.infobae?.record?.trends?.find(

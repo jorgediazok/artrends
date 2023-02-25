@@ -17,19 +17,23 @@ import {
   getWhatsappShareText,
 } from "../../../../../utils/shareText";
 
-// Components
+// Icons
 import Share from "../../../icons/Share";
 import ArrowDown from "../../../icons/ArrowDown";
 import ArrowUp from "../../../icons/ArrowUp";
 import Same from "../../../icons/Same";
 import TwitterCompartir from "../../../icons/TwitterCompartir";
 import Whatsapp from "../../../icons/Whatsapp";
+
+// Components
 import ErrorCardDesktop from "../../ErrorCard/ErrorCardDesktop/ErrorCardDesktop";
 
 // Theme
 import theme from "../../../../../styles/theme";
 
 const TwitterCardDesktop = ({ twitter }) => {
+  const hasData = twitter?.current?.record?.trends?.length && twitter.current.record.trends.length > 0;
+
   return (
     <Flex
       width="100%"
@@ -40,11 +44,12 @@ const TwitterCardDesktop = ({ twitter }) => {
       mt="24px"
       maxHeight={{ base: "none", lg: "540px" }}
       alignItems="center"
+      display={{ base: "none", lg: "flex" }}
     >
-      {twitter?.current?.record?.trends?.length === 0 ? (
+      {!hasData ? (
         <ErrorCardDesktop />
       ) : (
-        twitter?.current?.record?.trends?.map((trend, currentIndex) => {
+        twitter.current.record.trends.map((trend, currentIndex) => {
           const elementInPrevious = twitter?.previous?.record?.trends?.find(
             element => element.title === trend.title
           );
@@ -65,7 +70,6 @@ const TwitterCardDesktop = ({ twitter }) => {
               width="440px"
               height="100px"
               mb={2}
-              display={{ base: "none", lg: "flex" }}
               alignItems="center"
             >
               <Box

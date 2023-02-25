@@ -33,6 +33,8 @@ import theme from "../../../../../styles/theme";
 import styles from "./GoogleCardDesktop.module.css";
 
 const GoogleCardDesktop = ({ google }) => {
+  const hasData = google?.current?.record?.trends && google.current.record.trends.length > 0;
+
   return (
     <Flex
       width="100%"
@@ -44,10 +46,10 @@ const GoogleCardDesktop = ({ google }) => {
       maxHeight={{ base: "none", lg: "540px" }}
       alignItems="center"
     >
-      {google?.current?.record?.trends?.length === 0 ? (
+      { !hasData? (
         <ErrorCardDesktop />
       ) : (
-        google?.current?.record?.trends?.map((trend, currentIndex) => {
+        google.current.record.trends.map((trend, currentIndex) => {
           const elementInPrevious = google?.previous?.record?.trends?.find(
             element => element.title === trend.title
           );

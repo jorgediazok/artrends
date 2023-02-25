@@ -27,15 +27,22 @@ import ArrowDownMobile from "../../../icons/ArrowDownMobile";
 import ArrowUpMobile from "../../../icons/ArrowUpMobile";
 import SameMobile from "../../../icons/SameMobile";
 import ThreeDots from "../../../icons/ThreeDots";
+import TwitterCompartir from "../../../icons/TwitterCompartir";
+
+// Components
 import ErrorCardMobile from "../../ErrorCard/ErrorCardMobile/ErrorCardMobile";
 
 // Styles
 import theme from "../../../../../styles/theme";
 import styles from "./SpotifyCardMobile.module.css";
 import Whatsapp from "../../../icons/Whatsapp";
-import TwitterCompartir from "../../../icons/TwitterCompartir";
 
 const SpotifyCardMobile = ({ spotifyArtist, spotifySong, spotifyPodcast }) => {
+  const hasArtistData = spotifyArtist?.current?.record?.trends?.length && spotifyArtist.current.record.trends.length > 0;
+  const hasSongData = spotifySong?.current?.record?.trends?.length && spotifySong.current.record.trends.length > 0;
+  const hasPodcastData = spotifyPodcast?.current?.record?.trends?.length && spotifyPodcast.current.record.trends.length > 0;
+
+  
   return (
     <Tabs
       isolation="isolate"
@@ -66,10 +73,10 @@ const SpotifyCardMobile = ({ spotifyArtist, spotifySong, spotifyPodcast }) => {
             alignItems="center"
             overflow="auto"
           >
-            {spotifyArtist?.current?.record?.trends?.length === 0 ? (
+            {!hasArtistData ? (
               <ErrorCardMobile />
             ) : (
-              spotifyArtist?.current?.record?.trends?.map(
+              spotifyArtist.current.record.trends.map(
                 (trend, currentIndex) => {
                   const elementInPrevious =
                     spotifyArtist?.previous?.record?.trends?.find(
@@ -262,10 +269,10 @@ const SpotifyCardMobile = ({ spotifyArtist, spotifySong, spotifyPodcast }) => {
             paddingX="16px"
             alignItems="center"
           >
-            {spotifySong?.current?.record?.trends?.length === 0 ? (
+            {!hasSongData ? (
               <ErrorCardMobile />
             ) : (
-              spotifySong?.current?.record?.trends?.map(
+              spotifySong.current.record.trends.map(
                 (trend, currentIndex) => {
                   const elementInPrevious =
                     spotifySong?.previous?.record?.trends?.find(
@@ -467,10 +474,10 @@ const SpotifyCardMobile = ({ spotifyArtist, spotifySong, spotifyPodcast }) => {
             paddingX={{ base: "16px", lg: "0" }}
             alignItems="center"
           >
-            {spotifyPodcast?.current?.record?.trends?.length === 0 ? (
+            {!hasPodcastData ? (
               <ErrorCardMobile />
             ) : (
-              spotifyPodcast?.current?.record?.trends?.map(
+              spotifyPodcast.current.record.trends.map(
                 (trend, currentIndex) => {
                   const elementInPrevious =
                     spotifyPodcast?.previous?.record?.trends?.find(

@@ -30,7 +30,9 @@ import ErrorCardMobile from "../../ErrorCard/ErrorCardMobile/ErrorCardMobile";
 import styles from "./YoutubeCardMobile.module.css";
 import theme from "../../../../../styles/theme";
 
-const YoutubeCardMobile = ({ youtube, youtubeSectionRef }) => {
+const YoutubeCardMobile = ({ youtube }) => {
+  const hasData = youtube?.current?.record?.trends?.length && youtube.current.record.trends.length > 0;
+
   return (
     <Flex
       width="100%"
@@ -40,11 +42,12 @@ const YoutubeCardMobile = ({ youtube, youtubeSectionRef }) => {
       paddingX={{ base: "16px", lg: "0" }}
       maxHeight={{ base: "none", lg: "540px" }}
       alignItems="center"
+      display={{ base: "flex", lg: "none" }}
     >
-      {youtube?.current?.record?.trends?.length === 0 ? (
+      {!hasData ? (
         <ErrorCardMobile />
       ) : (
-        youtube?.current?.record?.trends?.map((trend, currentIndex) => {
+        youtube.current.record.trends.map((trend, currentIndex) => {
           const elementInPrevious = youtube?.previous?.record?.trends?.find(
             element => element.title === trend.title
           );

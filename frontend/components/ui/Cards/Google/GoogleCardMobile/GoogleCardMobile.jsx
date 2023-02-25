@@ -31,6 +31,8 @@ import styles from "./GoogleCardMobile.module.css";
 import theme from "../../../../../styles/theme";
 
 const GoogleCardMobile = ({ google }) => {
+  const hasData = google?.current?.record?.trends && google?.current?.record?.trends.length > 0;
+
   return (
     <Flex
       width="100%"
@@ -40,11 +42,12 @@ const GoogleCardMobile = ({ google }) => {
       paddingX={{ base: "16px", lg: "0" }}
       maxHeight={{ base: "none", lg: "540px" }}
       alignItems="center"
+      display={{ base: "flex", lg: "none" }}
     >
-      {google?.current?.record?.trends?.length === 0 ? (
+      {!hasData ? (
         <ErrorCardMobile />
       ) : (
-        google?.current?.record?.trends?.map((trend, currentIndex) => {
+        google.current.record.trends.map((trend, currentIndex) => {
           const elementInPrevious = google?.previous?.record?.trends?.find(
             element => element.title === trend.title
           );
@@ -62,7 +65,7 @@ const GoogleCardMobile = ({ google }) => {
               width="100%"
               height="72px"
               mb={2}
-              display={{ base: "flex", lg: "none" }}
+
               alignItems="center"
               p="8px 16px"
               key={trend.title}

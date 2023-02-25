@@ -32,12 +32,20 @@ import SameMobile from "../../../icons/SameMobile";
 import ThreeDots from "../../../icons/ThreeDots";
 import TwitterCompartir from "../../../icons/TwitterCompartir";
 import Whatsapp from "../../../icons/Whatsapp";
+
+// Components
 import ErrorCardMobile from "../../ErrorCard/ErrorCardMobile/ErrorCardMobile";
 
 // Styles
 import styles from "./NewsPortalsCardMobile.module.css";
 
 const NewsPortalsCardMobile = ({ portals }) => {
+  const hasLaNacionData = portals?.current?.laNacion?.record?.trends?.length &&  portals.current.laNacion.record.trends.length > 0;
+  const hasElDestapeData = portals?.current?.elDestape?.record?.trends?.length &&  portals.current.elDestape.record.trends.length > 0;
+  const hasClarinData =  portals?.current?.clarin?.record?.trends?.length && portals.current.clarin.record.trends.length > 0;
+  const hasTelamData =  portals?.current?.telam?.record?.trends?.length && portals.current.telam.record.trends.length > 0;
+  const hasInfobaeData =  portals?.current?.infobae?.record?.trends?.length && portals.current.infobae.record.trends.length > 0;
+
   return (
     <Tabs
       isolation="isolate"
@@ -109,10 +117,10 @@ const NewsPortalsCardMobile = ({ portals }) => {
             alignItems="center"
             overflow="auto"
           >
-            {portals?.current?.laNacion?.record?.trends?.length === 0 ? (
+            {!hasLaNacionData ? (
               <ErrorCardMobile />
             ) : (
-              portals?.current?.laNacion?.record?.trends?.map(
+              portals.current.laNacion.record.trends.map(
                 (trend, currentIndex) => {
                   const elementInPrevious =
                     portals?.previous?.laNacion?.record?.trends?.find(
@@ -289,10 +297,10 @@ const NewsPortalsCardMobile = ({ portals }) => {
             paddingX="16px"
             alignItems="center"
           >
-            {portals?.current?.elDestape?.record?.trends?.length === 0 ? (
+            {!hasElDestapeData ? (
               <ErrorCardMobile />
             ) : (
-              portals?.current?.elDestape?.record?.trends?.map(
+              portals.current.elDestape.record.trends.map(
                 (trend, currentIndex) => {
                   const elementInPrevious =
                     portals?.previous?.elDestape?.record?.trends?.find(
@@ -469,10 +477,10 @@ const NewsPortalsCardMobile = ({ portals }) => {
             paddingX={{ base: "16px", lg: "0" }}
             alignItems="center"
           >
-            {portals?.current?.clarin?.record?.trends?.length === 0 ? (
+            {!hasClarinData ? (
               <ErrorCardMobile />
             ) : (
-              portals?.current?.clarin?.record?.trends?.map(
+              portals.current.clarin.record.trends.map(
                 (trend, currentIndex) => {
                   const elementInPrevious =
                     portals?.previous?.clarin?.record?.trends?.find(
@@ -649,10 +657,10 @@ const NewsPortalsCardMobile = ({ portals }) => {
             paddingX={{ base: "16px", lg: "0" }}
             alignItems="center"
           >
-            {portals?.current?.telam?.record?.trends?.length === 0 ? (
+            {!hasTelamData ? (
               <ErrorCardMobile />
             ) : (
-              portals?.current?.telam?.record?.trends?.map(
+              portals.current.telam.record.trends.map(
                 (trend, currentIndex) => {
                   const elementInPrevious =
                     portals?.previous?.telam?.record?.trends?.find(
@@ -829,10 +837,10 @@ const NewsPortalsCardMobile = ({ portals }) => {
             paddingX={{ base: "16px", lg: "0" }}
             alignItems="center"
           >
-            {portals?.current?.infobae?.record?.trends?.length === 0 ? (
+            {!hasInfobaeData ? (
               <ErrorCardMobile />
             ) : (
-              portals?.current?.infobae?.record?.trends?.map(
+              portals.current.infobae.record.trends.map(
                 (trend, currentIndex) => {
                   const elementInPrevious =
                     portals?.previous?.infobae?.record?.trends?.find(

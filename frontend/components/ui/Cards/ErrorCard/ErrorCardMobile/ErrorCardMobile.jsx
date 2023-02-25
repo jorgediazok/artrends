@@ -1,21 +1,16 @@
 import { Box, Flex, Text } from "@chakra-ui/react";
 
-//ICONS
-import Folder from "../../../icons/Folder";
-import FolderFive from "../../../icons/FolderFive";
-import FolderFour from "../../../icons/FolderFour";
-import FolderSix from "../../../icons/FolderSix";
-import FolderThree from "../../../icons/FolderThree";
-import FolderTwo from "../../../icons/FolderTwo";
-
-//THEME
-import theme from "../../../../../styles/theme";
+// Icons
 import FolderMobile from "../../../icons/FolderMobile";
 import FolderTwoMobile from "../../../icons/FolderTwoMobile";
 import FolderThreeMobile from "../../../icons/FolderThreeMobile";
 import FolderFourMobile from "../../../icons/FolderFourMobile";
 import FolderFiveMobile from "../../../icons/FolderFiveMobile";
 import FolderSixMobile from "../../../icons/FolderSixMobile";
+
+// Theme
+import theme from "../../../../../styles/theme";
+
 
 const ErrorCardMobile = () => {
   return (
@@ -26,7 +21,7 @@ const ErrorCardMobile = () => {
         border="1px"
         borderColor={theme.colors.cyan[150]}
         borderRadius={theme.radius.md}
-        width="338px"
+        width="100%"
         height="114px"
         display="flex"
         justifyContent="center"

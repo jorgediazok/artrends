@@ -25,12 +25,16 @@ import SameMobile from "../../../icons/SameMobile";
 import ThreeDots from "../../../icons/ThreeDots";
 import Whatsapp from "../../../icons/Whatsapp";
 import TwitterCompartir from "../../../icons/TwitterCompartir";
+
+// Components
 import ErrorCardMobile from "../../ErrorCard/ErrorCardMobile/ErrorCardMobile";
 
 // Styles
 import theme from "../../../../../styles/theme";
 
 const TwitterCardMobile = ({ twitter, twitterSectionRef }) => {
+  const hasData = twitter?.current?.record?.trends?.length && twitter.current.record.trends.length > 0;
+
   return (
     <Flex
       width="100%"
@@ -41,11 +45,12 @@ const TwitterCardMobile = ({ twitter, twitterSectionRef }) => {
       maxHeight={{ base: "none", lg: "540px" }}
       alignItems="center"
       ref={twitterSectionRef}
+      display={{ base: "flex", lg: "none" }}
     >
-      {twitter?.current?.record?.trends?.length === 0 ? (
+      {!hasData ? (
         <ErrorCardMobile />
       ) : (
-        twitter?.current?.record?.trends?.map((trend, currentIndex) => {
+        twitter.current.record.trends.map((trend, currentIndex) => {
           const elementInPrevious = twitter?.previous?.record?.trends?.find(
             element => element.title === trend.title
           );
@@ -64,7 +69,6 @@ const TwitterCardMobile = ({ twitter, twitterSectionRef }) => {
               width="100%"
               height="72px"
               mb={2}
-              display={{ base: "flex", lg: "none" }}
               alignItems="center"
               p="8px 16px"
             >
