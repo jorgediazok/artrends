@@ -33,7 +33,7 @@ const Navbar = ({ activeSectionIndex, hasCarrousel, hasNavItems = true }) => {
         p={0}
         pb="12px"
         shadow="md"
-        zIndex={1}
+        zIndex={103}
       >
         <Flex
           shadow="md"
