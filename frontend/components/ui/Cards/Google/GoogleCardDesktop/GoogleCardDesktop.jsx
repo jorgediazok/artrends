@@ -45,6 +45,7 @@ const GoogleCardDesktop = ({ google }) => {
       mt="24px"
       maxHeight={{ base: "none", lg: "540px" }}
       alignItems="center"
+      display={{base: "none", lg: "flex"}}
     >
       { !hasData? (
         <ErrorCardDesktop />
