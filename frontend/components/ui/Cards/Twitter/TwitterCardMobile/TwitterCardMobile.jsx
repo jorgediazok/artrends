@@ -69,6 +69,7 @@ const TwitterCardMobile = ({ twitter, twitterSectionRef }) => {
               width="100%"
               height="72px"
               mb={2}
+              display="flex"
               alignItems="center"
               p="8px 16px"
             >

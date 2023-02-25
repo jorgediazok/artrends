@@ -71,8 +71,6 @@ const GoogleCardDesktop = ({ google }) => {
               width="440px"
               height="100px"
               mb={2}
-              display={{ base: "none", lg: "flex" }}
-              alignItems="center"
             >
               <Box
                 display="flex"

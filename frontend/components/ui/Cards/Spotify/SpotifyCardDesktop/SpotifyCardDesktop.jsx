@@ -113,6 +113,7 @@ const SpotifyCardDesktop = ({ spotifyArtist, spotifyPodcast, spotifySong }) => {
                       width="100%"
                       height="131px"
                       mb={2}
+                      display="flex"
                       alignItems="center"
                       key={trend.name}
                     >
@@ -278,8 +279,6 @@ const SpotifyCardDesktop = ({ spotifyArtist, spotifyPodcast, spotifySong }) => {
                       width="100%"
                       height="131px"
                       mb={2}
-                      display={{ base: "none", lg: "flex" }}
-                      alignItems="center"
                       key={trend.name}
                     >
                       <Box

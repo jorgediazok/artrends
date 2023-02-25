@@ -69,6 +69,7 @@ const YoutubeCardDesktop = ({ youtube }) => {
               width="100%"
               height="161px"
               mb={2}
+              display="flex"
               alignItems="center"
               key={trend.title}
             >
