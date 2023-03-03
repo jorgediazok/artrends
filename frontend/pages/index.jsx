@@ -133,10 +133,7 @@ export default function Home() {
         />
         <meta property="og:url" content="https://artrends.ar" />
         <meta property="og:site_name" content="Artrends" />
-        <meta
-          property="og:image"
-          content="https://artrends.ar/_next/image?url=%2Fimages%2Flogo-desktop.png&w=384&q=100"
-        />
+        <meta property="og:image" content="https://artrends.ar/og_image.png" />
         <link rel="icon" href="/favicon.ico" />
       </NextHead>
 
