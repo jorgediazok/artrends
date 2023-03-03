@@ -39,9 +39,15 @@ import theme from "../../../../../styles/theme";
 import styles from "./SpotifyCardDesktop.module.css";
 
 const SpotifyCardDesktop = ({ spotifyArtist, spotifyPodcast, spotifySong }) => {
- const hasArtistData = spotifyArtist?.current?.record?.trends?.length && spotifyArtist.current.record.trends.length > 0;
- const hasSongData = spotifySong?.current?.record?.trends?.length && spotifySong.current.record.trends.length > 0;
- const hasPodcastData = spotifyPodcast?.current?.record?.trends?.length && spotifyPodcast.current.record.trends.length > 0;
+  const hasArtistData =
+    spotifyArtist?.current?.record?.trends?.length &&
+    spotifyArtist.current.record.trends.length > 0;
+  const hasSongData =
+    spotifySong?.current?.record?.trends?.length &&
+    spotifySong.current.record.trends.length > 0;
+  const hasPodcastData =
+    spotifyPodcast?.current?.record?.trends?.length &&
+    spotifyPodcast.current.record.trends.length > 0;
 
   return (
     <Tabs
@@ -90,158 +96,158 @@ const SpotifyCardDesktop = ({ spotifyArtist, spotifyPodcast, spotifySong }) => {
             {!hasArtistData ? (
               <ErrorCardDesktop />
             ) : (
-              spotifyArtist.current.record.trends.map(
-                (trend, currentIndex) => {
-                  const elementInPrevious =
-                    spotifyArtist?.previous?.record?.trends?.find(
-                      element => element.name === trend.name
-                    );
-                  const prevIndex =
-                    spotifyArtist?.previous?.record?.trends?.findIndex(
-                      element => element.name === elementInPrevious?.name
-                    );
-                  return (
+              spotifyArtist.current.record.trends.map((trend, currentIndex) => {
+                const elementInPrevious =
+                  spotifyArtist?.previous?.record?.trends?.find(
+                    element => element.name === trend.name
+                  );
+                const prevIndex =
+                  spotifyArtist?.previous?.record?.trends?.findIndex(
+                    element => element.name === elementInPrevious?.name
+                  );
+                return (
+                  <Box
+                    as="article"
+                    color={theme.colors.white[500]}
+                    bg={theme.colors.indigo[800]}
+                    border="1px"
+                    borderColor={theme.colors.cyan[150]}
+                    borderRadius={theme.radius.xl}
+                    paddingX="48px"
+                    paddingY="12px"
+                    width="100%"
+                    height="131px"
+                    mb={2}
+                    display="flex"
+                    alignItems="center"
+                    key={trend.name}
+                  >
                     <Box
-                      as="article"
-                      color={theme.colors.white[500]}
-                      bg={theme.colors.indigo[800]}
-                      border="1px"
-                      borderColor={theme.colors.cyan[150]}
-                      borderRadius={theme.radius.xl}
-                      paddingX="48px"
-                      paddingY="12px"
-                      width="100%"
-                      height="131px"
-                      mb={2}
                       display="flex"
+                      justifyContent="space-between"
                       alignItems="center"
-                      key={trend.name}
+                      w="100%"
                     >
-                      <Box
-                        display="flex"
-                        justifyContent="space-between"
-                        alignItems="center"
-                        w="100%"
-                      >
-                        <Box display="flex" gap={6} alignItems="center">
-                          <Box
-                            display="flex"
-                            justifyContent="space-between"
-                            alignItems="center"
-                            w="80px"
-                            className="position-container"
-                          >
-                            <Text fontSize="4xl">{currentIndex + 1}</Text>
-                            {getPosition(currentIndex, prevIndex) === "down" ? (
-                              <ArrowDown />
-                            ) : getPosition(currentIndex, prevIndex) ===
-                              "up" ? (
-                              <ArrowUp />
-                            ) : (
-                              <Same className={styles.same} />
-                            )}
-                          </Box>
-                          <Box
-                            display="flex"
-                            gap="20px"
-                            flexDirection="column"
-                            ml={0}
-                          >
-                            <a
-                              href={trend.link}
-                              target="_blank"
-                              rel="noopener noreferrer"
-                            >
-                              <Text fontSize="2xl" fontWeight={600}>
-                                {trend.name}
-                              </Text>
-                            </a>
-                            <Badge
-                              className="one-max-line"
-                              width="fit-content"
-                              fontSize="xs"
-                              textTransform="uppercase"
-                              variant="outline"
-                              fontWeight={500}
-                              colorScheme="#fff"
-                              border="1px solid #fff"
-                            >
-                              {trend.streak +
-                                " Semanas seguidas en el top 200 de spotify"}
-                            </Badge>
-                          </Box>
+                      <Box display="flex" gap={6} alignItems="center">
+                        <Box
+                          display="flex"
+                          justifyContent="space-between"
+                          alignItems="center"
+                          w="80px"
+                          className="position-container"
+                        >
+                          <Text fontSize="4xl">{currentIndex + 1}</Text>
+                          {getPosition(currentIndex, prevIndex) === "down" ? (
+                            <ArrowDown />
+                          ) : getPosition(currentIndex, prevIndex) === "up" ? (
+                            <ArrowUp />
+                          ) : (
+                            <Same className={styles.same} />
+                          )}
                         </Box>
-                        <Box display="flex" gap={8} alignItems="center">
-                          <Menu>
-                            <MenuButton isolation="isolate">
-                              <Share />
-                            </MenuButton>
-                            <MenuList
-                              maxWidth="162px"
-                              minWidth="162px"
-                              backgroundColor="purple.500"
-                              borderRadius="6px"
-                              padding="6px 0px"
-                              zIndex="10"
-                              boxShadow="75px 75px 43px rgba(0, 0, 0, 0.01), 42px 42px 36px rgba(0, 0, 0, 0.05), 19px 19px 27px rgba(0, 0, 0, 0.09), 5px 5px 15px rgba(0, 0, 0, 0.1), 0px 0px 0px rgba(0, 0, 0, 0.1);"
-                              border="none"
-                            >
-                              <MenuItem
-                                backgroundColor="purple.500"
-                                color="#FFFFFF"
-                                as="a"
-                                fontSize="md"
-                                href={getWhatsappShareText(
-                                  "spotify.artist",
-                                  currentIndex,
-                                  trend.name
-                                )}
-                                data-action="share/whatsapp/share"
-                                target="_blank"
-                                icon={<Whatsapp />}
-                                iconSpacing="10px"
-                                flexDirection="row-reverse"
-                                display="flex"
-                                alignItems="center"
-                                _active={{
-                                  boxShadow:
-                                    "inset 75px 75px 43px rgba(0, 0, 0, 0.01), inset 42px 42px 36px rgba(0, 0, 0, 0.05), inset 19px 19px 27px rgba(0, 0, 0, 0.09), inset 5px 5px 15px rgba(0, 0, 0, 0.1)",
-                                }}
-                              >
-                                Compartir por
-                              </MenuItem>
-                              <MenuItem
-                                backgroundColor="purple.500"
-                                color="#FFFFFF"
-                                as="a"
-                                fontSize="md"
-                                href={getTwitterShareText(
-                                  "spotify.artist",
-                                  currentIndex,
-                                  trend.name
-                                )}
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                iconSpacing="10px"
-                                flexDirection="row-reverse"
-                                alignItems="center"
-                                display="flex"
-                                icon={<TwitterCompartir />}
-                                _active={{
-                                  boxShadow:
-                                    "inset 75px 75px 43px rgba(0, 0, 0, 0.01), inset 42px 42px 36px rgba(0, 0, 0, 0.05), inset 19px 19px 27px rgba(0, 0, 0, 0.09), inset 5px 5px 15px rgba(0, 0, 0, 0.1)",
-                                }}
-                              >
-                                Compartir por
-                              </MenuItem>
-                            </MenuList>
-                          </Menu>
+                        <Box
+                          display="flex"
+                          gap="20px"
+                          flexDirection="column"
+                          ml={0}
+                        >
+                          <a
+                            href={trend.link}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                          >
+                            <Text fontSize="2xl" fontWeight={600}>
+                              {trend.name}
+                            </Text>
+                          </a>
+                          <Badge
+                            className="one-max-line"
+                            width="fit-content"
+                            fontSize="xs"
+                            textTransform="uppercase"
+                            variant="outline"
+                            fontWeight={500}
+                            colorScheme="#fff"
+                            border="1px solid #fff"
+                          >
+                            {trend.streak +
+                              " Semanas seguidas en el top 200 de spotify"}
+                          </Badge>
                         </Box>
                       </Box>
+                      <Box display="flex" gap={8} alignItems="center">
+                        <Menu>
+                          <MenuButton
+                            isolation="isolate"
+                            title="Ver opciones para esta tendencia"
+                          >
+                            <Share />
+                          </MenuButton>
+                          <MenuList
+                            maxWidth="162px"
+                            minWidth="162px"
+                            backgroundColor="purple.500"
+                            borderRadius="6px"
+                            padding="6px 0px"
+                            zIndex="10"
+                            boxShadow="75px 75px 43px rgba(0, 0, 0, 0.01), 42px 42px 36px rgba(0, 0, 0, 0.05), 19px 19px 27px rgba(0, 0, 0, 0.09), 5px 5px 15px rgba(0, 0, 0, 0.1), 0px 0px 0px rgba(0, 0, 0, 0.1);"
+                            border="none"
+                          >
+                            <MenuItem
+                              backgroundColor="purple.500"
+                              color="#FFFFFF"
+                              as="a"
+                              fontSize="md"
+                              href={getWhatsappShareText(
+                                "spotify.artist",
+                                currentIndex,
+                                trend.name
+                              )}
+                              data-action="share/whatsapp/share"
+                              target="_blank"
+                              icon={<Whatsapp />}
+                              iconSpacing="10px"
+                              flexDirection="row-reverse"
+                              display="flex"
+                              alignItems="center"
+                              _active={{
+                                boxShadow:
+                                  "inset 75px 75px 43px rgba(0, 0, 0, 0.01), inset 42px 42px 36px rgba(0, 0, 0, 0.05), inset 19px 19px 27px rgba(0, 0, 0, 0.09), inset 5px 5px 15px rgba(0, 0, 0, 0.1)",
+                              }}
+                            >
+                              Compartir por
+                            </MenuItem>
+                            <MenuItem
+                              backgroundColor="purple.500"
+                              color="#FFFFFF"
+                              as="a"
+                              fontSize="md"
+                              href={getTwitterShareText(
+                                "spotify.artist",
+                                currentIndex,
+                                trend.name
+                              )}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              iconSpacing="10px"
+                              flexDirection="row-reverse"
+                              alignItems="center"
+                              display="flex"
+                              icon={<TwitterCompartir />}
+                              _active={{
+                                boxShadow:
+                                  "inset 75px 75px 43px rgba(0, 0, 0, 0.01), inset 42px 42px 36px rgba(0, 0, 0, 0.05), inset 19px 19px 27px rgba(0, 0, 0, 0.09), inset 5px 5px 15px rgba(0, 0, 0, 0.1)",
+                              }}
+                            >
+                              Compartir por
+                            </MenuItem>
+                          </MenuList>
+                        </Menu>
+                      </Box>
                     </Box>
-                  );
-                }
-              )
+                  </Box>
+                );
+              })
             )}
           </Box>
         </TabPanel>
@@ -256,162 +262,162 @@ const SpotifyCardDesktop = ({ spotifyArtist, spotifyPodcast, spotifySong }) => {
             {!hasSongData ? (
               <ErrorCardDesktop />
             ) : (
-              spotifySong.current.record.trends.map(
-                (trend, currentIndex) => {
-                  const elementInPrevious =
-                    spotifySong?.previous?.record?.trends?.find(
-                      element => element.name === trend.name
-                    );
-                  const prevIndex =
-                    spotifySong?.previous?.record?.trends?.findIndex(
-                      element => element.name === elementInPrevious?.name
-                    );
-                  return (
+              spotifySong.current.record.trends.map((trend, currentIndex) => {
+                const elementInPrevious =
+                  spotifySong?.previous?.record?.trends?.find(
+                    element => element.name === trend.name
+                  );
+                const prevIndex =
+                  spotifySong?.previous?.record?.trends?.findIndex(
+                    element => element.name === elementInPrevious?.name
+                  );
+                return (
+                  <Box
+                    as="article"
+                    color={theme.colors.white[500]}
+                    bg={theme.colors.indigo[800]}
+                    border="1px"
+                    borderColor={theme.colors.cyan[150]}
+                    borderRadius={theme.radius.xl}
+                    paddingX="48px"
+                    paddingY="12px"
+                    width="100%"
+                    height="131px"
+                    mb={2}
+                    key={trend.name}
+                  >
                     <Box
-                      as="article"
-                      color={theme.colors.white[500]}
-                      bg={theme.colors.indigo[800]}
-                      border="1px"
-                      borderColor={theme.colors.cyan[150]}
-                      borderRadius={theme.radius.xl}
-                      paddingX="48px"
-                      paddingY="12px"
-                      width="100%"
-                      height="131px"
-                      mb={2}
-                      key={trend.name}
+                      display="flex"
+                      justifyContent="space-between"
+                      alignItems="center"
+                      w="100%"
                     >
-                      <Box
-                        display="flex"
-                        justifyContent="space-between"
-                        alignItems="center"
-                        w="100%"
-                      >
-                        <Box display="flex" gap={6} alignItems="center">
-                          <Box
-                            display="flex"
-                            justifyContent="space-between"
-                            alignItems="center"
-                            width="80px"
-                          >
-                            <Text fontSize="4xl">{currentIndex + 1}</Text>
-                            {getPosition(currentIndex, prevIndex) === "down" ? (
-                              <ArrowDown />
-                            ) : getPosition(currentIndex, prevIndex) ===
-                              "up" ? (
-                              <ArrowUp />
-                            ) : (
-                              <Same className={styles.same} />
-                            )}
-                          </Box>
-                          <Box
-                            display="flex"
-                            gap={2}
-                            flexDirection="column"
-                            maxW="600px"
-                            ml={2}
-                          >
-                            <a
-                              href={trend.link}
-                              target="_blank"
-                              rel="noopener noreferrer"
-                            >
-                              <Text fontSize="2xl" fontWeight={600}>
-                                {trend.name}
-                              </Text>
-                            </a>
-                            <Text
-                              fontWeight={600}
-                              fontSize="lg"
-                              marginTop="-8px"
-                              className={calculateLines("escuchado")}
-                            >
-                              {trend.author}
-                            </Text>
-                            <Badge
-                              className="one-max-line"
-                              width="fit-content"
-                              fontSize="xs"
-                              textTransform="uppercase"
-                              variant="outline"
-                              colorScheme="#fff"
-                              border="1px solid #fff"
-                            >
-                              {trend.streams + " reproducciones"}
-                            </Badge>
-                          </Box>
+                      <Box display="flex" gap={6} alignItems="center">
+                        <Box
+                          display="flex"
+                          justifyContent="space-between"
+                          alignItems="center"
+                          width="80px"
+                        >
+                          <Text fontSize="4xl">{currentIndex + 1}</Text>
+                          {getPosition(currentIndex, prevIndex) === "down" ? (
+                            <ArrowDown />
+                          ) : getPosition(currentIndex, prevIndex) === "up" ? (
+                            <ArrowUp />
+                          ) : (
+                            <Same className={styles.same} />
+                          )}
                         </Box>
-                        <Box display="flex" gap={8} alignItems="center">
-                          <Menu>
-                            <MenuButton isolation="isolate">
-                              <Share />
-                            </MenuButton>
-                            <MenuList
-                              maxWidth="162px"
-                              minWidth="162px"
-                              backgroundColor="purple.500"
-                              borderRadius="6px"
-                              padding="6px 0px"
-                              zIndex="10"
-                              boxShadow="75px 75px 43px rgba(0, 0, 0, 0.01), 42px 42px 36px rgba(0, 0, 0, 0.05), 19px 19px 27px rgba(0, 0, 0, 0.09), 5px 5px 15px rgba(0, 0, 0, 0.1), 0px 0px 0px rgba(0, 0, 0, 0.1);"
-                              border="none"
-                            >
-                              <MenuItem
-                                backgroundColor="purple.500"
-                                color="#FFFFFF"
-                                as="a"
-                                fontSize="md"
-                                href={getWhatsappShareText(
-                                  "spotify.artist",
-                                  currentIndex,
-                                  trend.name
-                                )}
-                                data-action="share/whatsapp/share"
-                                target="_blank"
-                                icon={<Whatsapp />}
-                                iconSpacing="10px"
-                                flexDirection="row-reverse"
-                                display="flex"
-                                alignItems="center"
-                                _active={{
-                                  boxShadow:
-                                    "inset 75px 75px 43px rgba(0, 0, 0, 0.01), inset 42px 42px 36px rgba(0, 0, 0, 0.05), inset 19px 19px 27px rgba(0, 0, 0, 0.09), inset 5px 5px 15px rgba(0, 0, 0, 0.1)",
-                                }}
-                              >
-                                Compartir por
-                              </MenuItem>
-                              <MenuItem
-                                backgroundColor="purple.500"
-                                color="#FFFFFF"
-                                as="a"
-                                fontSize="md"
-                                href={getTwitterShareText(
-                                  "spotify.song",
-                                  currentIndex,
-                                  trend.name
-                                )}
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                iconSpacing="10px"
-                                flexDirection="row-reverse"
-                                alignItems="center"
-                                display="flex"
-                                icon={<TwitterCompartir />}
-                                _active={{
-                                  boxShadow:
-                                    "inset 75px 75px 43px rgba(0, 0, 0, 0.01), inset 42px 42px 36px rgba(0, 0, 0, 0.05), inset 19px 19px 27px rgba(0, 0, 0, 0.09), inset 5px 5px 15px rgba(0, 0, 0, 0.1)",
-                                }}
-                              >
-                                Compartir por
-                              </MenuItem>
-                            </MenuList>
-                          </Menu>
+                        <Box
+                          display="flex"
+                          gap={2}
+                          flexDirection="column"
+                          maxW="600px"
+                          ml={2}
+                        >
+                          <a
+                            href={trend.link}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                          >
+                            <Text fontSize="2xl" fontWeight={600}>
+                              {trend.name}
+                            </Text>
+                          </a>
+                          <Text
+                            fontWeight={600}
+                            fontSize="lg"
+                            marginTop="-8px"
+                            className={calculateLines("escuchado")}
+                          >
+                            {trend.author}
+                          </Text>
+                          <Badge
+                            className="one-max-line"
+                            width="fit-content"
+                            fontSize="xs"
+                            textTransform="uppercase"
+                            variant="outline"
+                            colorScheme="#fff"
+                            border="1px solid #fff"
+                          >
+                            {trend.streams + " reproducciones"}
+                          </Badge>
                         </Box>
                       </Box>
+                      <Box display="flex" gap={8} alignItems="center">
+                        <Menu>
+                          <MenuButton
+                            isolation="isolate"
+                            title="Ver opciones para esta tendencia"
+                          >
+                            <Share />
+                          </MenuButton>
+                          <MenuList
+                            maxWidth="162px"
+                            minWidth="162px"
+                            backgroundColor="purple.500"
+                            borderRadius="6px"
+                            padding="6px 0px"
+                            zIndex="10"
+                            boxShadow="75px 75px 43px rgba(0, 0, 0, 0.01), 42px 42px 36px rgba(0, 0, 0, 0.05), 19px 19px 27px rgba(0, 0, 0, 0.09), 5px 5px 15px rgba(0, 0, 0, 0.1), 0px 0px 0px rgba(0, 0, 0, 0.1);"
+                            border="none"
+                          >
+                            <MenuItem
+                              backgroundColor="purple.500"
+                              color="#FFFFFF"
+                              as="a"
+                              fontSize="md"
+                              href={getWhatsappShareText(
+                                "spotify.artist",
+                                currentIndex,
+                                trend.name
+                              )}
+                              data-action="share/whatsapp/share"
+                              target="_blank"
+                              icon={<Whatsapp />}
+                              iconSpacing="10px"
+                              flexDirection="row-reverse"
+                              display="flex"
+                              alignItems="center"
+                              _active={{
+                                boxShadow:
+                                  "inset 75px 75px 43px rgba(0, 0, 0, 0.01), inset 42px 42px 36px rgba(0, 0, 0, 0.05), inset 19px 19px 27px rgba(0, 0, 0, 0.09), inset 5px 5px 15px rgba(0, 0, 0, 0.1)",
+                              }}
+                            >
+                              Compartir por
+                            </MenuItem>
+                            <MenuItem
+                              backgroundColor="purple.500"
+                              color="#FFFFFF"
+                              as="a"
+                              fontSize="md"
+                              href={getTwitterShareText(
+                                "spotify.song",
+                                currentIndex,
+                                trend.name
+                              )}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              iconSpacing="10px"
+                              flexDirection="row-reverse"
+                              alignItems="center"
+                              display="flex"
+                              icon={<TwitterCompartir />}
+                              _active={{
+                                boxShadow:
+                                  "inset 75px 75px 43px rgba(0, 0, 0, 0.01), inset 42px 42px 36px rgba(0, 0, 0, 0.05), inset 19px 19px 27px rgba(0, 0, 0, 0.09), inset 5px 5px 15px rgba(0, 0, 0, 0.1)",
+                              }}
+                            >
+                              Compartir por
+                            </MenuItem>
+                          </MenuList>
+                        </Menu>
+                      </Box>
                     </Box>
-                  );
-                }
-              )
+                  </Box>
+                );
+              })
             )}
           </Box>
         </TabPanel>
@@ -423,7 +429,7 @@ const SpotifyCardDesktop = ({ spotifyArtist, spotifyPodcast, spotifySong }) => {
             paddingX={{ base: "16px", lg: "0" }}
             alignItems="center"
           >
-            { !hasPodcastData ? (
+            {!hasPodcastData ? (
               <ErrorCardDesktop />
             ) : (
               spotifyPodcast.current.record.trends.map(
@@ -504,7 +510,10 @@ const SpotifyCardDesktop = ({ spotifyArtist, spotifyPodcast, spotifySong }) => {
                         </Box>
                         <Box display="flex" gap={8} alignItems="center">
                           <Menu>
-                            <MenuButton isolation="isolate">
+                            <MenuButton
+                              isolation="isolate"
+                              title="Ver opciones para esta tendencia"
+                            >
                               <Share />
                             </MenuButton>
                             <MenuList

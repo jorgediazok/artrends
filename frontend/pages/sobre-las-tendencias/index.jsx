@@ -1,3 +1,4 @@
+import NextHead from "next/head";
 // Chakra
 import { Box, Breadcrumb, BreadcrumbItem, Link, Text } from "@chakra-ui/react";
 import NextLink from "next/link";
@@ -13,6 +14,38 @@ import ArrowRight from "../../components/ui/icons/ArrowRight";
 const SobreLasTendencias = () => {
   return (
     <>
+      <NextHead>
+        <title>
+          Artrends | Contacto | Lo que nos interesa a los argentinos en un sólo
+          lugar
+        </title>
+        <meta
+          name="description"
+          content="Enterate rápido y en un sólo lugar qué les interesa ahora a los argentinos. Tendencias de Twitter, lo más buscado en Google, lo más visto en Youtube, lo más escuchado en Spotify, lo más leído en portales de noticias y más."
+        />
+        <meta
+          name="keywords"
+          content="trends, tendencias, argentina, tt, trending topics, google, qué buscan argentinos en google, ranking de canciones, ranking de artistas, ranking de podcasts, intereses de los argentinos, portales de noticias, twitter argentina, noticias de Argentina, intereses de argentinos, spotify argentina, youtubers argentinos, youtube argentina, lo más leído, lo más buscado, lo más escuchado, lo más visto."
+        />
+        <meta name="canonical" content="https://artrends.ar" />
+        <meta name="robots" content="index follow" />
+        <meta
+          property="og:title"
+          content="Artrends | Contacto | Lo que nos interesa a los argentinos en un sólo lugar"
+        />
+        <meta
+          property="og:description"
+          content="Enterate rápido y en un sólo lugar qué les interesa ahora a los argentinos. Tendencias de Twitter, lo más buscado en Google, lo más visto en Youtube, lo más escuchado en Spotify, lo más leído en portales de noticias y más."
+        />
+        <meta property="og:url" content="https://artrends.ar" />
+        <meta property="og:site_name" content="Artrends" />
+        <meta
+          property="og:image"
+          content="https://artrends.ar/_next/image?url=%2Fimages%2Flogo-desktop.png&w=384&q=100"
+        />
+        <link rel="icon" href="/favicon.ico" />
+      </NextHead>
+
       <Navbar hasCarrousel={false} hasNavItems={false} />
       <Box paddingX={{ base: "16px", lg: "260px" }} background="#241154">
         <Box display="flex" alignItems="center" justifyContent="flex-start">

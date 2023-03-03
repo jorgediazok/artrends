@@ -31,7 +31,9 @@ import styles from "./GoogleCardMobile.module.css";
 import theme from "../../../../../styles/theme";
 
 const GoogleCardMobile = ({ google }) => {
-  const hasData = google?.current?.record?.trends && google?.current?.record?.trends.length > 0;
+  const hasData =
+    google?.current?.record?.trends &&
+    google?.current?.record?.trends.length > 0;
 
   return (
     <Flex
@@ -106,7 +108,10 @@ const GoogleCardMobile = ({ google }) => {
                         </Text>
                       </a>
                       <Menu maxW="162px">
-                        <MenuButton isolation="isolate">
+                        <MenuButton
+                          isolation="isolate"
+                          title="Ver opciones para esta tendencia"
+                        >
                           <ThreeDots />
                         </MenuButton>
                         <MenuList

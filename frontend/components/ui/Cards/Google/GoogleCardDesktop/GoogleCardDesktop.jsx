@@ -33,7 +33,8 @@ import theme from "../../../../../styles/theme";
 import styles from "./GoogleCardDesktop.module.css";
 
 const GoogleCardDesktop = ({ google }) => {
-  const hasData = google?.current?.record?.trends && google.current.record.trends.length > 0;
+  const hasData =
+    google?.current?.record?.trends && google.current.record.trends.length > 0;
 
   return (
     <Flex
@@ -45,9 +46,9 @@ const GoogleCardDesktop = ({ google }) => {
       mt="24px"
       maxHeight={{ base: "none", lg: "540px" }}
       alignItems="center"
-      display={{base: "none", lg: "flex"}}
+      display={{ base: "none", lg: "flex" }}
     >
-      { !hasData? (
+      {!hasData ? (
         <ErrorCardDesktop />
       ) : (
         google.current.record.trends.map((trend, currentIndex) => {
@@ -131,7 +132,10 @@ const GoogleCardDesktop = ({ google }) => {
                   marginTop="40px"
                 >
                   <Menu>
-                    <MenuButton isolation="isolate">
+                    <MenuButton
+                      isolation="isolate"
+                      title="Ver opciones para esta tendencia"
+                    >
                       <Share />
                     </MenuButton>
                     <MenuList

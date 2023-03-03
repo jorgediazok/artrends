@@ -31,7 +31,9 @@ import styles from "./YoutubeCardMobile.module.css";
 import theme from "../../../../../styles/theme";
 
 const YoutubeCardMobile = ({ youtube }) => {
-  const hasData = youtube?.current?.record?.trends?.length && youtube.current.record.trends.length > 0;
+  const hasData =
+    youtube?.current?.record?.trends?.length &&
+    youtube.current.record.trends.length > 0;
 
   return (
     <Flex
@@ -110,6 +112,7 @@ const YoutubeCardMobile = ({ youtube }) => {
                           width="10%"
                           minW="10%"
                           pl={3}
+                          title="Ver más opciones para esta tendencia"
                         >
                           <ThreeDots />
                         </MenuButton>

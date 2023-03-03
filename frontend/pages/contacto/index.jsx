@@ -1,4 +1,5 @@
 import NextLink from "next/link";
+import NextHead from "next/head";
 import { useState } from "react";
 
 // Chakra
@@ -88,292 +89,331 @@ const Contacto = () => {
   };
 
   return (
-    <Box background="#241154">
-      <Navbar hasCarrousel={false} hasNavItems={false} />
-      <Container paddingX={{ base: "16px" }} maxW="container.lg">
-        <Box
-          display="flex"
-          alignItems="center"
-          justifyContent="flex-start"
-          marginTop={{ base: "50px", lg: "0px" }}
-          as="section"
-          id="contacto"
-        >
-          <Breadcrumb
-            marginTop={{ base: "32px", lg: "152px" }}
-            fontSize="text-sm"
-            color="#FFFFFF"
-            spacing="16px"
-            separator={<ArrowRight color="#FFFFFF" />}
-          >
-            <BreadcrumbItem>
-              <NextLink href="/">
-                <a>
-                  <Text fontSize="text-sm">Home</Text>
-                </a>
-              </NextLink>
-            </BreadcrumbItem>
+    <>
+      <NextHead>
+        <title>
+          Artrends | Contacto | Lo que nos interesa a los argentinos en un sólo
+          lugar
+        </title>
+        <meta
+          name="description"
+          content="Enterate rápido y en un sólo lugar qué les interesa ahora a los argentinos. Tendencias de Twitter, lo más buscado en Google, lo más visto en Youtube, lo más escuchado en Spotify, lo más leído en portales de noticias y más."
+        />
+        <meta
+          name="keywords"
+          content="trends, tendencias, argentina, tt, trending topics, google, qué buscan argentinos en google, ranking de canciones, ranking de artistas, ranking de podcasts, intereses de los argentinos, portales de noticias, twitter argentina, noticias de Argentina, intereses de argentinos, spotify argentina, youtubers argentinos, youtube argentina, lo más leído, lo más buscado, lo más escuchado, lo más visto."
+        />
+        <meta name="canonical" content="https://artrends.ar" />
+        <meta name="robots" content="index follow" />
+        <meta
+          property="og:title"
+          content="Artrends | Contacto | Lo que nos interesa a los argentinos en un sólo lugar"
+        />
+        <meta
+          property="og:description"
+          content="Enterate rápido y en un sólo lugar qué les interesa ahora a los argentinos. Tendencias de Twitter, lo más buscado en Google, lo más visto en Youtube, lo más escuchado en Spotify, lo más leído en portales de noticias y más."
+        />
+        <meta property="og:url" content="https://artrends.ar" />
+        <meta property="og:site_name" content="Artrends" />
+        <meta
+          property="og:image"
+          content="https://artrends.ar/_next/image?url=%2Fimages%2Flogo-desktop.png&w=384&q=100"
+        />
+        <link rel="icon" href="/favicon.ico" />
+      </NextHead>
 
-            <BreadcrumbItem>
-              <Text fontWeight="600">Contacto</Text>
-            </BreadcrumbItem>
-          </Breadcrumb>
-        </Box>
-
-        {!messageHasBeenSent && (
+      <Box background="#241154">
+        <Navbar hasCarrousel={false} hasNavItems={false} />
+        <Container paddingX={{ base: "16px" }} maxW="container.lg">
           <Box
             display="flex"
-            marginTop={{ base: "120px", lg: "33px" }}
-            border={{ base: "none", lg: "1px solid #D6F3F3" }}
-            borderRadius="12px"
-            flexDirection={{ base: "column", lg: "row" }}
-            as="form"
-            onSubmit={handleFormSubmit}
+            alignItems="center"
+            justifyContent="flex-start"
+            marginTop={{ base: "50px", lg: "0px" }}
+            as="section"
+            id="contacto"
           >
-            {/* LEFT */}
-            <Box
-              width={{ base: "100%", lg: "50%" }}
-              flexDirection="column"
-              display="flex"
-              justifyContent="center"
-              borderTopLeftRadius={{ base: "0px", lg: "12px" }}
-              borderBottomLeftRadius={{ base: "0px", lg: "12px" }}
-              marginTop={{ base: "-88px", lg: "0px" }}
-              background={{
-                base: "#241154",
-                lg: theme.colors.gradients["grad-contacto"],
-              }}
-              borderRight={{ base: "none", lg: "1px solid #D6F3F3" }}
+            <Breadcrumb
+              marginTop={{ base: "32px", lg: "152px" }}
+              fontSize="text-sm"
+              color="#FFFFFF"
+              spacing="16px"
+              separator={<ArrowRight color="#FFFFFF" />}
             >
-              <Text
-                fontSize={{ base: "20px", lg: "36px" }}
-                textAlign="center"
-                fontWeight="700"
-                lineHeight={{ base: "24px", lg: "120%" }}
-                color="#fff"
-              >
-                Contacto
-              </Text>
-              <Text
-                marginTop={{ base: "32px", lg: "40px" }}
-                fontSize={{ base: "16px", lg: "24px" }}
-                marginLeft={{ base: "none", lg: "auto" }}
-                marginRight="auto"
-                textAlign={{ base: "left", lg: "center" }}
-                fontWeight={{ base: "600", lg: "400" }}
-                lineHeight={{ base: "20px", lg: "175%" }}
-                color="#fff"
-              >
-                Para dejarnos un mensaje completá el formulario
-              </Text>
-            </Box>
+              <BreadcrumbItem>
+                <NextLink href="/">
+                  <a>
+                    <Text fontSize="text-sm">Home</Text>
+                  </a>
+                </NextLink>
+              </BreadcrumbItem>
 
-            {/* RIGHT */}
+              <BreadcrumbItem>
+                <Text fontWeight="600">Contacto</Text>
+              </BreadcrumbItem>
+            </Breadcrumb>
+          </Box>
+
+          {!messageHasBeenSent && (
             <Box
-              width="100%"
-              flexDirection="column"
               display="flex"
-              justifyContent="center"
-              background="#241154"
-              borderTopRightRadius="12px"
-              borderBottomRightRadius="12px"
-              padding={{ base: 0, lg: "32px" }}
+              marginTop={{ base: "120px", lg: "33px" }}
+              border={{ base: "none", lg: "1px solid #D6F3F3" }}
+              borderRadius="12px"
+              flexDirection={{ base: "column", lg: "row" }}
+              as="form"
+              onSubmit={handleFormSubmit}
             >
+              {/* LEFT */}
               <Box
+                width={{ base: "100%", lg: "50%" }}
+                flexDirection="column"
                 display="flex"
-                alignItems="center"
-                flexDirection={{ base: "column", lg: "row" }}
-                marginTop={{ base: "29px", lg: "44px" }}
-                gap="36px"
-                zIndex={0}
+                justifyContent="center"
+                borderTopLeftRadius={{ base: "0px", lg: "12px" }}
+                borderBottomLeftRadius={{ base: "0px", lg: "12px" }}
+                marginTop={{ base: "-88px", lg: "0px" }}
+                background={{
+                  base: "#241154",
+                  lg: theme.colors.gradients["grad-contacto"],
+                }}
+                borderRight={{ base: "none", lg: "1px solid #D6F3F3" }}
               >
-                <Box display={{ base: "none", lg: "block" }}>
-                  <Agenda />
-                </Box>
-                <Box width="100%">
-                  <FormControl isInvalid={nameHasError}>
-                    <Input
-                      width="100%"
-                      color="#FFFFFF"
-                      variant="flushed"
-                      _hover={{ borderColor: "#C7F0F0" }}
-                      focusBorderColor="#71E9EB"
-                      errorBorderColor="red.300"
-                      borderColor="rgba(255,255,255,0.5)"
-                      placeholder="Ingresá tu nombre completo"
-                      _placeholder={{
-                        opacity: 1,
-                        color: "rgba(255,255,255,0.5)",
-                      }}
-                      onInput={event => setName(event.currentTarget.value)}
-                    />
-                    {nameHasError && (
-                      <FormErrorMessage
-                        color="#FFFFFF"
-                        fontSize="sm"
-                        marginTop="6px"
-                      >
-                        Por favor completá el campo para poder enviar el mensaje
-                      </FormErrorMessage>
-                    )}
-                  </FormControl>
-                </Box>
-              </Box>
-              <Box
-                marginTop="50px"
-                display="flex"
-                alignItems="center"
-                gap="36px"
-                justifyContent="space-between"
-              >
-                <Box display={{ base: "none", lg: "block" }}>
-                  <Envelope />
-                </Box>
-                <Box width="100%">
-                  <FormControl isInvalid={emailHasError}>
-                    <Input
-                      width="100%"
-                      focusBorderColor="#71E9EB"
-                      _hover={{ borderColor: "#C7F0F0" }}
-                      errorBorderColor="red.300"
-                      borderColor="rgba(255,255,255,0.5)"
-                      color="#FFFFFF"
-                      variant="flushed"
-                      placeholder="Ingresá tu correo electrónico"
-                      _placeholder={{
-                        opacity: 1,
-                        color: "rgba(255,255,255,0.5)",
-                      }}
-                      onInput={event => setEmail(event.currentTarget.value)}
-                    />
-                    {emailHasError && (
-                      <FormErrorMessage
-                        color="#FFFFFF"
-                        fontSize="sm"
-                        marginTop="6px"
-                      >
-                        Por favor completá el campo para poder enviar el mensaje
-                      </FormErrorMessage>
-                    )}
-                  </FormControl>
-                </Box>
-              </Box>
-              <Box
-                marginTop="50px"
-                display="flex"
-                alignItems="center"
-                gap="36px"
-              >
-                <Box display={{ base: "none", lg: "block" }}>
-                  <Archive />
-                </Box>
-                <Box w="100%">
-                  <RadioGroup onChange={setTypeOfMessage} value={typeOfMessage}>
-                    <Stack
-                      display="flex"
-                      direction="row"
-                      justifyContent="space-between"
-                      color="#FFFFFF"
-                    >
-                      <Radio
-                        value="Consulta"
-                        size={{ base: "sm", lg: "lg" }}
-                        bg={theme.colors.gradients["grad-ind-purple-2"]}
-                        colorScheme={
-                          theme.colors.gradients["grad-ind-purple-2"]
-                        }
-                      >
-                        Consulta
-                      </Radio>
-                      <Radio
-                        value="Sugerencia"
-                        size={{ base: "sm", lg: "lg" }}
-                        bg={theme.colors.gradients["grad-ind-purple-2"]}
-                        colorScheme={
-                          theme.colors.gradients["grad-ind-purple-2"]
-                        }
-                      >
-                        Sugerencia
-                      </Radio>
-                      <Radio
-                        value="Comentario"
-                        size={{ base: "sm", lg: "lg" }}
-                        bg={theme.colors.gradients["grad-ind-purple-2"]}
-                        colorScheme={
-                          theme.colors.gradients["grad-ind-purple-2"]
-                        }
-                      >
-                        Comentario
-                      </Radio>
-                    </Stack>
-                  </RadioGroup>
-                </Box>
-              </Box>
-              <Box>
-                <FormControl isInvalid={messageHasError}>
-                  <Textarea
-                    placeholder="Ingresá tu mensaje"
-                    height={{ base: "132px", lg: "217px" }}
-                    background={theme.colors.gradients["grad-ind-purple"]}
-                    color="#FFFFFF"
-                    marginTop={{ base: "24px", lg: "50px" }}
-                    onInput={event => setMessage(event.currentTarget.value)}
-                  />
-                  {messageHasError && (
-                    <FormErrorMessage
-                      color="#FFFFFF"
-                      fontSize="sm"
-                      marginTop="6px"
-                    >
-                      Por favor completá el campo para poder enviar el mensaje
-                    </FormErrorMessage>
-                  )}
-                </FormControl>
-              </Box>
-              <Box
-                display="flex"
-                alignItems="center"
-                justifyContent="space-between"
-              >
-                <Button
-                  background={theme.colors.gradients["grad-ind-purple-2"]}
-                  _hover={{
-                    background: theme.colors.gradients["grad-ind-purple-3"],
-                  }}
-                  _active={{
-                    background: "indigo.300",
-                  }}
-                  borderRadius="6px"
-                  color="#FFFFFF"
-                  padding={{ base: "10px 16px", lg: "10px 24px" }}
-                  marginTop="64px"
-                  transition="all 0.5s"
-                  type="submit"
-                  marginLeft="auto"
+                <Text
+                  fontSize={{ base: "20px", lg: "36px" }}
+                  textAlign="center"
+                  fontWeight="700"
+                  lineHeight={{ base: "24px", lg: "120%" }}
+                  color="#fff"
                 >
-                  Enviar
-                </Button>
+                  Contacto
+                </Text>
+                <Text
+                  marginTop={{ base: "32px", lg: "40px" }}
+                  fontSize={{ base: "16px", lg: "24px" }}
+                  marginLeft={{ base: "none", lg: "auto" }}
+                  marginRight="auto"
+                  textAlign={{ base: "left", lg: "center" }}
+                  fontWeight={{ base: "600", lg: "400" }}
+                  lineHeight={{ base: "20px", lg: "175%" }}
+                  color="#fff"
+                >
+                  Para dejarnos un mensaje completá el formulario
+                </Text>
+              </Box>
+
+              {/* RIGHT */}
+              <Box
+                width="100%"
+                flexDirection="column"
+                display="flex"
+                justifyContent="center"
+                background="#241154"
+                borderTopRightRadius="12px"
+                borderBottomRightRadius="12px"
+                padding={{ base: 0, lg: "32px" }}
+              >
+                <Box
+                  display="flex"
+                  alignItems="center"
+                  flexDirection={{ base: "column", lg: "row" }}
+                  marginTop={{ base: "29px", lg: "44px" }}
+                  gap="36px"
+                  zIndex={0}
+                >
+                  <Box display={{ base: "none", lg: "block" }}>
+                    <Agenda />
+                  </Box>
+                  <Box width="100%">
+                    <FormControl isInvalid={nameHasError}>
+                      <Input
+                        width="100%"
+                        color="#FFFFFF"
+                        variant="flushed"
+                        _hover={{ borderColor: "#C7F0F0" }}
+                        focusBorderColor="#71E9EB"
+                        errorBorderColor="red.300"
+                        borderColor="rgba(255,255,255,0.5)"
+                        placeholder="Ingresá tu nombre completo"
+                        _placeholder={{
+                          opacity: 1,
+                          color: "rgba(255,255,255,0.5)",
+                        }}
+                        onInput={event => setName(event.currentTarget.value)}
+                      />
+                      {nameHasError && (
+                        <FormErrorMessage
+                          color="#FFFFFF"
+                          fontSize="sm"
+                          marginTop="6px"
+                        >
+                          Por favor completá el campo para poder enviar el
+                          mensaje
+                        </FormErrorMessage>
+                      )}
+                    </FormControl>
+                  </Box>
+                </Box>
+                <Box
+                  marginTop="50px"
+                  display="flex"
+                  alignItems="center"
+                  gap="36px"
+                  justifyContent="space-between"
+                >
+                  <Box display={{ base: "none", lg: "block" }}>
+                    <Envelope />
+                  </Box>
+                  <Box width="100%">
+                    <FormControl isInvalid={emailHasError}>
+                      <Input
+                        width="100%"
+                        focusBorderColor="#71E9EB"
+                        _hover={{ borderColor: "#C7F0F0" }}
+                        errorBorderColor="red.300"
+                        borderColor="rgba(255,255,255,0.5)"
+                        color="#FFFFFF"
+                        variant="flushed"
+                        placeholder="Ingresá tu correo electrónico"
+                        _placeholder={{
+                          opacity: 1,
+                          color: "rgba(255,255,255,0.5)",
+                        }}
+                        onInput={event => setEmail(event.currentTarget.value)}
+                      />
+                      {emailHasError && (
+                        <FormErrorMessage
+                          color="#FFFFFF"
+                          fontSize="sm"
+                          marginTop="6px"
+                        >
+                          Por favor completá el campo para poder enviar el
+                          mensaje
+                        </FormErrorMessage>
+                      )}
+                    </FormControl>
+                  </Box>
+                </Box>
+                <Box
+                  marginTop="50px"
+                  display="flex"
+                  alignItems="center"
+                  gap="36px"
+                >
+                  <Box display={{ base: "none", lg: "block" }}>
+                    <Archive />
+                  </Box>
+                  <Box w="100%">
+                    <RadioGroup
+                      onChange={setTypeOfMessage}
+                      value={typeOfMessage}
+                    >
+                      <Stack
+                        display="flex"
+                        direction="row"
+                        justifyContent="space-between"
+                        color="#FFFFFF"
+                      >
+                        <Radio
+                          value="Consulta"
+                          size={{ base: "sm", lg: "lg" }}
+                          bg={theme.colors.gradients["grad-ind-purple-2"]}
+                          colorScheme={
+                            theme.colors.gradients["grad-ind-purple-2"]
+                          }
+                        >
+                          Consulta
+                        </Radio>
+                        <Radio
+                          value="Sugerencia"
+                          size={{ base: "sm", lg: "lg" }}
+                          bg={theme.colors.gradients["grad-ind-purple-2"]}
+                          colorScheme={
+                            theme.colors.gradients["grad-ind-purple-2"]
+                          }
+                        >
+                          Sugerencia
+                        </Radio>
+                        <Radio
+                          value="Comentario"
+                          size={{ base: "sm", lg: "lg" }}
+                          bg={theme.colors.gradients["grad-ind-purple-2"]}
+                          colorScheme={
+                            theme.colors.gradients["grad-ind-purple-2"]
+                          }
+                        >
+                          Comentario
+                        </Radio>
+                      </Stack>
+                    </RadioGroup>
+                  </Box>
+                </Box>
+                <Box>
+                  <FormControl isInvalid={messageHasError}>
+                    <Textarea
+                      placeholder="Ingresá tu mensaje"
+                      height={{ base: "132px", lg: "217px" }}
+                      background={theme.colors.gradients["grad-ind-purple"]}
+                      color="#FFFFFF"
+                      marginTop={{ base: "24px", lg: "50px" }}
+                      onInput={event => setMessage(event.currentTarget.value)}
+                    />
+                    {messageHasError && (
+                      <FormErrorMessage
+                        color="#FFFFFF"
+                        fontSize="sm"
+                        marginTop="6px"
+                      >
+                        Por favor completá el campo para poder enviar el mensaje
+                      </FormErrorMessage>
+                    )}
+                  </FormControl>
+                </Box>
+                <Box
+                  display="flex"
+                  alignItems="center"
+                  justifyContent="space-between"
+                >
+                  <Button
+                    background={theme.colors.gradients["grad-ind-purple-2"]}
+                    _hover={{
+                      background: theme.colors.gradients["grad-ind-purple-3"],
+                    }}
+                    _active={{
+                      background: "indigo.300",
+                    }}
+                    borderRadius="6px"
+                    color="#FFFFFF"
+                    padding={{ base: "10px 16px", lg: "10px 24px" }}
+                    marginTop="64px"
+                    transition="all 0.5s"
+                    type="submit"
+                    marginLeft="auto"
+                  >
+                    Enviar
+                  </Button>
+                </Box>
               </Box>
             </Box>
-          </Box>
-        )}
+          )}
 
-        {messageHasBeenSent && (
-          <Box
-            display="flex"
-            marginTop={{ base: "120px" }}
-            borderRadius="12px"
-            flexDirection={{ base: "column", lg: "row" }}
-            py={{ base: "32px", lg: "164px" }}
-          >
-            <Text color="#fff" maxHeight="100px" fontSize="2xl">
-              Tu mensaje fue enviado. Lo leeremos pronto. ¡Muchas gracias!
-            </Text>
-          </Box>
-        )}
-      </Container>
-      <Footer />
-    </Box>
+          {messageHasBeenSent && (
+            <Box
+              display="flex"
+              marginTop={{ base: "120px" }}
+              borderRadius="12px"
+              flexDirection={{ base: "column", lg: "row" }}
+              py={{ base: "32px", lg: "164px" }}
+            >
+              <Text color="#fff" maxHeight="100px" fontSize="2xl">
+                Tu mensaje fue enviado. Lo leeremos pronto. ¡Muchas gracias!
+              </Text>
+            </Box>
+          )}
+        </Container>
+        <Footer />
+      </Box>
+    </>
   );
 };
 
