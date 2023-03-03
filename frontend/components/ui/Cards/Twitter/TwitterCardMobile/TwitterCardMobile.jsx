@@ -33,7 +33,9 @@ import ErrorCardMobile from "../../ErrorCard/ErrorCardMobile/ErrorCardMobile";
 import theme from "../../../../../styles/theme";
 
 const TwitterCardMobile = ({ twitter, twitterSectionRef }) => {
-  const hasData = twitter?.current?.record?.trends?.length && twitter.current.record.trends.length > 0;
+  const hasData =
+    twitter?.current?.record?.trends?.length &&
+    twitter.current.record.trends.length > 0;
 
   return (
     <Flex
@@ -110,7 +112,10 @@ const TwitterCardMobile = ({ twitter, twitterSectionRef }) => {
                       </a>
 
                       <Menu maxW="162px">
-                        <MenuButton isolation="isolate">
+                        <MenuButton
+                          isolation="isolate"
+                          title="Ver opciones para esta tendencia"
+                        >
                           <ThreeDots />
                         </MenuButton>
                         <MenuList

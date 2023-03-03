@@ -32,7 +32,9 @@ import ErrorCardDesktop from "../../ErrorCard/ErrorCardDesktop/ErrorCardDesktop"
 import theme from "../../../../../styles/theme";
 
 const TwitterCardDesktop = ({ twitter }) => {
-  const hasData = twitter?.current?.record?.trends?.length && twitter.current.record.trends.length > 0;
+  const hasData =
+    twitter?.current?.record?.trends?.length &&
+    twitter.current.record.trends.length > 0;
 
   return (
     <Flex
@@ -132,7 +134,10 @@ const TwitterCardDesktop = ({ twitter }) => {
                   right="16px"
                 >
                   <Menu>
-                    <MenuButton isolation="isolate">
+                    <MenuButton
+                      isolation="isolate"
+                      title="Ver opciones para esta tendencia"
+                    >
                       <Share />
                     </MenuButton>
                     <MenuList

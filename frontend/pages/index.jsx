@@ -110,8 +110,11 @@ export default function Home() {
   return (
     <>
       <Head>
-        <title>Artrends</title>
-        <meta name="description" content="Tus tendencias al instante!" />
+        <title>Artrends | Lo que pasa en Argentina en un sólo lugar</title>
+        <meta
+          name="description"
+          content="Enterate rápido y en un sólo lugar las tendencias de Twitter, lo más buscado en Google, lo más leído en portales de noticias y más."
+        />
         <link rel="icon" href="/favicon.ico" />
       </Head>
 

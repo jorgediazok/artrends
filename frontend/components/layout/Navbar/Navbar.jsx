@@ -85,6 +85,7 @@ const Navbar = ({ activeSectionIndex, hasCarrousel, hasNavItems = true }) => {
                 height={40}
                 width={174}
                 quality={100}
+                priority
               />
             </a>
           </NextLink>

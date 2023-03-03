@@ -34,12 +34,21 @@ import theme from "../../../../../styles/theme";
 import styles from "./NewsPortalsCardDesktop.module.css";
 
 const NewsPortalsCardDesktop = ({ portals }) => {
-  const hasLaNacionData = portals?.current?.laNacion?.record?.trends?.length &&  portals.current.laNacion.record.trends.length > 0;
-  const hasElDestapeData = portals?.current?.elDestape?.record?.trends?.length &&  portals.current.elDestape.record.trends.length > 0;
-  const hasClarinData =  portals?.current?.clarin?.record?.trends?.length && portals.current.clarin.record.trends.length > 0;
-  const hasTelamData =  portals?.current?.telam?.record?.trends?.length && portals.current.telam.record.trends.length > 0;
-  const hasInfobaeData =  portals?.current?.infobae?.record?.trends?.length && portals.current.infobae.record.trends.length > 0;
-
+  const hasLaNacionData =
+    portals?.current?.laNacion?.record?.trends?.length &&
+    portals.current.laNacion.record.trends.length > 0;
+  const hasElDestapeData =
+    portals?.current?.elDestape?.record?.trends?.length &&
+    portals.current.elDestape.record.trends.length > 0;
+  const hasClarinData =
+    portals?.current?.clarin?.record?.trends?.length &&
+    portals.current.clarin.record.trends.length > 0;
+  const hasTelamData =
+    portals?.current?.telam?.record?.trends?.length &&
+    portals.current.telam.record.trends.length > 0;
+  const hasInfobaeData =
+    portals?.current?.infobae?.record?.trends?.length &&
+    portals.current.infobae.record.trends.length > 0;
 
   return (
     <Tabs
@@ -178,7 +187,10 @@ const NewsPortalsCardDesktop = ({ portals }) => {
                         </Box>
                         <Box display="flex" gap={8} alignItems="center">
                           <Menu>
-                            <MenuButton isolation="isolate">
+                            <MenuButton
+                              isolation="isolate"
+                              title="Ver opciones para esta tendencia"
+                            >
                               <Share />
                             </MenuButton>
                             <MenuList
@@ -336,7 +348,10 @@ const NewsPortalsCardDesktop = ({ portals }) => {
                         </Box>
                         <Box display="flex" gap={8} alignItems="center">
                           <Menu>
-                            <MenuButton isolation="isolate">
+                            <MenuButton
+                              isolation="isolate"
+                              title="Ver opciones para esta tendencia"
+                            >
                               <Share />
                             </MenuButton>
                             <MenuList
@@ -494,7 +509,10 @@ const NewsPortalsCardDesktop = ({ portals }) => {
                         </Box>
                         <Box display="flex" gap={8} alignItems="center">
                           <Menu>
-                            <MenuButton isolation="isolate">
+                            <MenuButton
+                              isolation="isolate"
+                              title="Ver opciones para esta tendencia"
+                            >
                               <Share />
                             </MenuButton>
                             <MenuList
@@ -578,150 +596,150 @@ const NewsPortalsCardDesktop = ({ portals }) => {
             {!hasTelamData ? (
               <ErrorCardDesktop />
             ) : (
-              portals.current.telam.record.trends.map(
-                (trend, currentIndex) => {
-                  const elementInPrevious =
-                    portals?.previous?.telam?.record?.trends?.find(
-                      element => element.article === trend.article
-                    );
-                  const prevIndex =
-                    portals?.previous?.telam?.record?.trends?.findIndex(
-                      element => element.article === elementInPrevious?.article
-                    );
-                  return (
+              portals.current.telam.record.trends.map((trend, currentIndex) => {
+                const elementInPrevious =
+                  portals?.previous?.telam?.record?.trends?.find(
+                    element => element.article === trend.article
+                  );
+                const prevIndex =
+                  portals?.previous?.telam?.record?.trends?.findIndex(
+                    element => element.article === elementInPrevious?.article
+                  );
+                return (
+                  <Box
+                    as="article"
+                    color={theme.colors.white[500]}
+                    bg={theme.colors.indigo[800]}
+                    border="1px"
+                    borderColor={theme.colors.cyan[150]}
+                    borderRadius={theme.radius.xl}
+                    paddingX="48px"
+                    paddingY="12px"
+                    width="100%"
+                    height="157px"
+                    mb={2}
+                    display={{ base: "none", lg: "flex" }}
+                    alignItems="center"
+                    key={trend.article}
+                  >
                     <Box
-                      as="article"
-                      color={theme.colors.white[500]}
-                      bg={theme.colors.indigo[800]}
-                      border="1px"
-                      borderColor={theme.colors.cyan[150]}
-                      borderRadius={theme.radius.xl}
-                      paddingX="48px"
-                      paddingY="12px"
-                      width="100%"
-                      height="157px"
-                      mb={2}
-                      display={{ base: "none", lg: "flex" }}
+                      display="flex"
+                      justifyContent="space-between"
                       alignItems="center"
-                      key={trend.article}
+                      w="100%"
                     >
-                      <Box
-                        display="flex"
-                        justifyContent="space-between"
-                        alignItems="center"
-                        w="100%"
-                      >
-                        <Box display="flex" gap={6} alignItems="center">
-                          <Box
-                            display="flex"
-                            justifyContent="space-between"
-                            alignItems="center"
-                            width="80px"
-                          >
-                            <Text fontSize="4xl">{currentIndex + 1}</Text>
-                            {getPosition(currentIndex, prevIndex) === "down" ? (
-                              <ArrowDown />
-                            ) : getPosition(currentIndex, prevIndex) ===
-                              "up" ? (
-                              <ArrowUp />
-                            ) : (
-                              <Same className={styles.same} />
-                            )}
-                          </Box>
-                          <Box
-                            display="flex"
-                            gap={2}
-                            flexDirection="column"
-                            maxW="600px"
-                            ml={2}
-                          >
-                            <a
-                              href={trend.link}
-                              target="_blank"
-                              rel="noopener noreferrer"
-                            >
-                              <Text
-                                fontWeight={600}
-                                fontSize="2xl"
-                                className={calculateLines("leido")}
-                              >
-                                {trend.article}
-                              </Text>
-                            </a>
-                          </Box>
+                      <Box display="flex" gap={6} alignItems="center">
+                        <Box
+                          display="flex"
+                          justifyContent="space-between"
+                          alignItems="center"
+                          width="80px"
+                        >
+                          <Text fontSize="4xl">{currentIndex + 1}</Text>
+                          {getPosition(currentIndex, prevIndex) === "down" ? (
+                            <ArrowDown />
+                          ) : getPosition(currentIndex, prevIndex) === "up" ? (
+                            <ArrowUp />
+                          ) : (
+                            <Same className={styles.same} />
+                          )}
                         </Box>
-                        <Box display="flex" gap={8} alignItems="center">
-                          <Menu>
-                            <MenuButton isolation="isolate">
-                              <Share />
-                            </MenuButton>
-                            <MenuList
-                              maxWidth="162px"
-                              minWidth="162px"
-                              backgroundColor="purple.500"
-                              borderRadius="6px"
-                              padding="6px 0px"
-                              zIndex="10"
-                              boxShadow="75px 75px 43px rgba(0, 0, 0, 0.01), 42px 42px 36px rgba(0, 0, 0, 0.05), 19px 19px 27px rgba(0, 0, 0, 0.09), 5px 5px 15px rgba(0, 0, 0, 0.1), 0px 0px 0px rgba(0, 0, 0, 0.1);"
-                              border="none"
+                        <Box
+                          display="flex"
+                          gap={2}
+                          flexDirection="column"
+                          maxW="600px"
+                          ml={2}
+                        >
+                          <a
+                            href={trend.link}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                          >
+                            <Text
+                              fontWeight={600}
+                              fontSize="2xl"
+                              className={calculateLines("leido")}
                             >
-                              <MenuItem
-                                backgroundColor="purple.500"
-                                color="#FFFFFF"
-                                as="a"
-                                fontSize="md"
-                                href={`https://api.whatsapp.com/send?text=Mirate%20esta%20noticia:%20${
-                                  trend.link
-                                }%20de%20Télam%20que%20está%20en%20el%20puesto%20N°%20${
-                                  currentIndex + 1
-                                }%20en%20tendencias%20en%20noticias%20en%20Argentina.%20Mirá%20más%20en%20Artrends%20%23Artrends`}
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                data-action="share/whatsapp/share"
-                                icon={<Whatsapp />}
-                                iconSpacing="10px"
-                                flexDirection="row-reverse"
-                                display="flex"
-                                alignItems="center"
-                                _active={{
-                                  boxShadow:
-                                    "inset 75px 75px 43px rgba(0, 0, 0, 0.01), inset 42px 42px 36px rgba(0, 0, 0, 0.05), inset 19px 19px 27px rgba(0, 0, 0, 0.09), inset 5px 5px 15px rgba(0, 0, 0, 0.1)",
-                                }}
-                              >
-                                Compartir por
-                              </MenuItem>
-                              <MenuItem
-                                backgroundColor="purple.500"
-                                color="#FFFFFF"
-                                as="a"
-                                fontSize="md"
-                                href={`https://twitter.com/intent/tweet?url=${
-                                  trend.link
-                                }&text=Mirate%20esta%20noticia%20de%20Télam%20que%20está%20en%20el%20puesto%20N°%20${
-                                  currentIndex + 1
-                                }%20en%20tendencias%20en%20noticias%20en%20Argentina.%20Mirá%20más%20en%20Artrends%20%23Artrends`}
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                iconSpacing="10px"
-                                flexDirection="row-reverse"
-                                alignItems="center"
-                                display="flex"
-                                icon={<TwitterCompartir />}
-                                _active={{
-                                  boxShadow:
-                                    "inset 75px 75px 43px rgba(0, 0, 0, 0.01), inset 42px 42px 36px rgba(0, 0, 0, 0.05), inset 19px 19px 27px rgba(0, 0, 0, 0.09), inset 5px 5px 15px rgba(0, 0, 0, 0.1)",
-                                }}
-                              >
-                                Compartir por
-                              </MenuItem>
-                            </MenuList>
-                          </Menu>
+                              {trend.article}
+                            </Text>
+                          </a>
                         </Box>
                       </Box>
+                      <Box display="flex" gap={8} alignItems="center">
+                        <Menu>
+                          <MenuButton
+                            isolation="isolate"
+                            title="Ver opciones para esta tendencia"
+                          >
+                            <Share />
+                          </MenuButton>
+                          <MenuList
+                            maxWidth="162px"
+                            minWidth="162px"
+                            backgroundColor="purple.500"
+                            borderRadius="6px"
+                            padding="6px 0px"
+                            zIndex="10"
+                            boxShadow="75px 75px 43px rgba(0, 0, 0, 0.01), 42px 42px 36px rgba(0, 0, 0, 0.05), 19px 19px 27px rgba(0, 0, 0, 0.09), 5px 5px 15px rgba(0, 0, 0, 0.1), 0px 0px 0px rgba(0, 0, 0, 0.1);"
+                            border="none"
+                          >
+                            <MenuItem
+                              backgroundColor="purple.500"
+                              color="#FFFFFF"
+                              as="a"
+                              fontSize="md"
+                              href={`https://api.whatsapp.com/send?text=Mirate%20esta%20noticia:%20${
+                                trend.link
+                              }%20de%20Télam%20que%20está%20en%20el%20puesto%20N°%20${
+                                currentIndex + 1
+                              }%20en%20tendencias%20en%20noticias%20en%20Argentina.%20Mirá%20más%20en%20Artrends%20%23Artrends`}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              data-action="share/whatsapp/share"
+                              icon={<Whatsapp />}
+                              iconSpacing="10px"
+                              flexDirection="row-reverse"
+                              display="flex"
+                              alignItems="center"
+                              _active={{
+                                boxShadow:
+                                  "inset 75px 75px 43px rgba(0, 0, 0, 0.01), inset 42px 42px 36px rgba(0, 0, 0, 0.05), inset 19px 19px 27px rgba(0, 0, 0, 0.09), inset 5px 5px 15px rgba(0, 0, 0, 0.1)",
+                              }}
+                            >
+                              Compartir por
+                            </MenuItem>
+                            <MenuItem
+                              backgroundColor="purple.500"
+                              color="#FFFFFF"
+                              as="a"
+                              fontSize="md"
+                              href={`https://twitter.com/intent/tweet?url=${
+                                trend.link
+                              }&text=Mirate%20esta%20noticia%20de%20Télam%20que%20está%20en%20el%20puesto%20N°%20${
+                                currentIndex + 1
+                              }%20en%20tendencias%20en%20noticias%20en%20Argentina.%20Mirá%20más%20en%20Artrends%20%23Artrends`}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              iconSpacing="10px"
+                              flexDirection="row-reverse"
+                              alignItems="center"
+                              display="flex"
+                              icon={<TwitterCompartir />}
+                              _active={{
+                                boxShadow:
+                                  "inset 75px 75px 43px rgba(0, 0, 0, 0.01), inset 42px 42px 36px rgba(0, 0, 0, 0.05), inset 19px 19px 27px rgba(0, 0, 0, 0.09), inset 5px 5px 15px rgba(0, 0, 0, 0.1)",
+                              }}
+                            >
+                              Compartir por
+                            </MenuItem>
+                          </MenuList>
+                        </Menu>
+                      </Box>
                     </Box>
-                  );
-                }
-              )
+                  </Box>
+                );
+              })
             )}
           </Box>
         </TabPanel>
@@ -733,7 +751,7 @@ const NewsPortalsCardDesktop = ({ portals }) => {
             paddingX={{ base: "16px", lg: "0" }}
             alignItems="center"
           >
-            {!hasInfobaeData? (
+            {!hasInfobaeData ? (
               <ErrorCardDesktop />
             ) : (
               portals.current.infobae.record.trends.map(
@@ -810,7 +828,10 @@ const NewsPortalsCardDesktop = ({ portals }) => {
                         </Box>
                         <Box display="flex" gap={8} alignItems="center">
                           <Menu>
-                            <MenuButton isolation="isolate">
+                            <MenuButton
+                              isolation="isolate"
+                              title="Ver opciones para esta tendencia"
+                            >
                               <Share />
                             </MenuButton>
                             <MenuList
