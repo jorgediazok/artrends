@@ -106,7 +106,7 @@ const NewsPortalsCardMobile = ({ portals }) => {
         >
           Télam
         </Tab>
-        <Tab
+        {/* <Tab
           color="white"
           paddingX="12px"
           paddingY="6px"
@@ -115,7 +115,7 @@ const NewsPortalsCardMobile = ({ portals }) => {
           whiteSpace="nowrap"
         >
           Infobae
-        </Tab>
+        </Tab> */}
       </TabList>
       <TabPanels>
         <TabPanel>

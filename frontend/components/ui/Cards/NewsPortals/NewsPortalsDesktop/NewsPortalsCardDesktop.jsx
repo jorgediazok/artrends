@@ -93,14 +93,14 @@ const NewsPortalsCardDesktop = ({ portals }) => {
         >
           Télam
         </Tab>
-        <Tab
+        {/* <Tab
           color="white"
           paddingX={{ base: "12px", lg: "16px" }}
           paddingY={{ base: "6px", lg: "8px" }}
           fontSize={{ base: "xs", lg: "md" }}
         >
           Infobae
-        </Tab>
+        </Tab> */}
       </TabList>
       <TabPanels>
         <TabPanel>
