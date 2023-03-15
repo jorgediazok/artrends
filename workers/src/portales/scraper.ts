@@ -7,7 +7,6 @@ import { PortalsData } from "../typings";
 import {
 	PORTAL_EL_DESTAPE_URL,
 	PORTAL_TELAM_URL,
-	PORTAL_INFOBAE_URL,
 	PORTAL_CLARIN_URL,
 	PORTAL_LA_NACION_URL,
 } from "../config";
@@ -85,37 +84,37 @@ export const getPortalsMostRead = async (
 		await telam.close();
 
 		/* Infobae */
-		const infobae = await browser.newPage();
-		await infobae.goto(PORTAL_INFOBAE_URL);
+		// const infobae = await browser.newPage();
+		// await infobae.goto(PORTAL_INFOBAE_URL);
 
-		await infobae.waitForTimeout(3000);
+		// await infobae.waitForTimeout(3000);
 
-		const infobaeArticleTitles = await (
-			await infobae
-				.locator(".most-read-container .most-read-item .most-read-headline")
-				.allInnerTexts()
-		).slice(0, itemLimit);
+		// const infobaeArticleTitles = await (
+		// 	await infobae
+		// 		.locator(".most-read-container .most-read-item .most-read-headline")
+		// 		.allInnerTexts()
+		// ).slice(0, itemLimit);
 
-		const infobaeLinkLocator = await infobae.locator(
-			".most-read-container .most-read-item .headline-link"
-		);
+		// const infobaeLinkLocator = await infobae.locator(
+		// 	".most-read-container .most-read-item .headline-link"
+		// );
 
-		const infobaeArticleLinks = await infobaeLinkLocator.evaluateAll(
-			(list, { itemLimit, PORTAL_INFOBAE_URL }) => {
-				return list
-					.map(
-						linkElement =>
-							`${PORTAL_INFOBAE_URL.replace(
-								"/tendencias",
-								""
-							)}${linkElement.getAttribute("href")}`
-					)
-					.slice(0, itemLimit);
-			},
-			{ PORTAL_INFOBAE_URL, itemLimit }
-		);
+		// const infobaeArticleLinks = await infobaeLinkLocator.evaluateAll(
+		// 	(list, { itemLimit, PORTAL_INFOBAE_URL }) => {
+		// 		return list
+		// 			.map(
+		// 				linkElement =>
+		// 					`${PORTAL_INFOBAE_URL.replace(
+		// 						"/tendencias",
+		// 						""
+		// 					)}${linkElement.getAttribute("href")}`
+		// 			)
+		// 			.slice(0, itemLimit);
+		// 	},
+		// 	{ PORTAL_INFOBAE_URL, itemLimit }
+		// );
 
-		await infobae.close();
+		// await infobae.close();
 
 		/* Clarín */
 		const clarin = await browser.newPage();
@@ -183,10 +182,6 @@ export const getPortalsMostRead = async (
 			telam: {
 				articles: telamArticleTitles,
 				links: telamArticleLinks,
-			},
-			infobae: {
-				articles: infobaeArticleTitles,
-				links: infobaeArticleLinks,
 			},
 			clarin: {
 				articles: clarinArticleTitles,

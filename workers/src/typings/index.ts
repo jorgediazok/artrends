@@ -66,5 +66,4 @@ export interface PortalsData {
 	clarin: PortalData;
 	laNacion: PortalData;
 	telam: PortalData;
-	infobae: PortalData;
 }
