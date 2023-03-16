@@ -24,8 +24,6 @@ export const getTwitterTrendingTopics = async (
 			.allInnerTexts()
 	).slice(0, itemLimit);
 
-	console.log({ trendsTitles });
-
 	/* Links */
 	const trendsLinks = trendsTitles.map(title => {
 		return `https://twitter.com/search?q=${encodeURIComponent(title)}`;
