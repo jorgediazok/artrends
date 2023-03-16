@@ -165,7 +165,6 @@ async function portalsMostReadArticles(db: Db) {
 
 		if (DATABASE_CONNECTION_URI && topArticles) {
 			const date = new Date();
-			console.log({ topArticles });
 			await persistPortalsData(topArticles, date, db);
 		}
 	} catch (error) {
