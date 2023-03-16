@@ -191,18 +191,19 @@ const TwitterCardMobile = ({ twitter, twitterSectionRef }) => {
                   height="100%"
                 >
                   <Box maxWidth="80%" display="revert">
-                    <Badge
-                      className="one-max-line"
-                      w="100%"
-                      fontSize="sm"
-                      textTransform="uppercase"
-                      variant="outline"
-                      colorScheme="#fff"
-                      border="1px solid #fff"
-                      display="revert"
-                    >
-                      {trend.amount + " Tweets"}
-                    </Badge>
+                    {trend.amount && (
+                      <Badge
+                        className="one-max-line"
+                        width="fit-content"
+                        fontSize="xs"
+                        textTransform="uppercase"
+                        variant="outline"
+                        colorScheme="#fff"
+                        border="1px solid #fff"
+                      >
+                        {trend.amount}
+                      </Badge>
+                    )}
                   </Box>
 
                   <Box
