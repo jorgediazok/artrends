@@ -1,12 +1,15 @@
 import { chromium } from "playwright";
 
+// Utils
+import translateTweetsToSpanish from "../utils/translateTweetAmount";
+
 export const getTwitterTrendingTopics = async (
 	url: string,
 	itemLimit: number
 ) => {
 	/* Scraping start */
 	const browser = await chromium.launch({
-		headless: true,
+		headless: false,
 		chromiumSandbox: true,
 	});
 	const page = await browser.newPage();
@@ -16,28 +19,24 @@ export const getTwitterTrendingTopics = async (
 
 	/* Titles */
 	const trendsTitles = await (
-		await page.locator(".trend-card .trend-card__list a").allInnerTexts()
+		await page
+			.locator("div[data-testid='cellInnerDiv'] .r-b88u0q")
+			.allInnerTexts()
 	).slice(0, itemLimit);
 
 	/* Links */
-	const linkLocator = await page.locator(".trend-card .trend-card__list a");
-	const trendsLinks = await linkLocator.evaluateAll(
-		(list, { itemLimit }) => {
-			return list
-				.map(linkElement => `${linkElement.getAttribute("href")}`)
-				.slice(0, itemLimit);
-		},
-		{ url, itemLimit }
-	);
+	const trendsLinks = trendsTitles.map(title => {
+		return `https://twitter.com/search?q=${encodeURIComponent(title)}`;
+	});
 
-	/* Searches */
+	/* Tweets */
 	const tweets = await (
 		await page
-			.locator(".trend-card .trend-card__list .tweet-count")
+			.locator("div[data-testid='trend'] > div > div:nth-child(3)")
 			.allInnerTexts()
 	)
 		.slice(0, itemLimit)
-		.map(tweet => tweet.replace("K", " mil"));
+		.map(twAmount => translateTweetsToSpanish(twAmount));
 
 	await page.close();
 	await browser.close();

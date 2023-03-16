@@ -112,17 +112,19 @@ const TwitterCardDesktop = ({ twitter }) => {
                         {trend.title}
                       </Text>
                     </a>
-                    <Badge
-                      className="one-max-line"
-                      width="fit-content"
-                      fontSize="xs"
-                      textTransform="uppercase"
-                      variant="outline"
-                      colorScheme="#fff"
-                      border="1px solid #fff"
-                    >
-                      {trend.amount + " Tweets"}
-                    </Badge>
+                    {trend.amount && (
+                      <Badge
+                        className="one-max-line"
+                        width="fit-content"
+                        fontSize="xs"
+                        textTransform="uppercase"
+                        variant="outline"
+                        colorScheme="#fff"
+                        border="1px solid #fff"
+                      >
+                        {trend.amount}
+                      </Badge>
+                    )}
                   </Box>
                 </Box>
                 <Box

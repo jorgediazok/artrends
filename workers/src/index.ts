@@ -175,6 +175,7 @@ async function portalsMostReadArticles(db: Db) {
 
 async function bootstrap() {
 	const db = await connection();
+	await twitterTrendingTopicsScraper(db);
 
 	/* Get Google trends cron - At 11 mins of every hour */
 	schedule("11 * * * *", () => googleTrendsScraper(db));
