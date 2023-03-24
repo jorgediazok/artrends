@@ -12,12 +12,12 @@ services:
       - "traefik.enable=true"
       - "traefik.port=3000"
       # HTTP
-      - "traefik.http.routers.artrends-frontend.rule=Host(`artrends.ar`)"
+      - "traefik.http.routers.artrends-frontend.rule=Host(`frontend.artrends.ar`)"
       - "traefik.http.routers.artrends-frontend.entrypoints=web"
       - "traefik.http.routers.artrends-frontend.middlewares=test-redirectscheme"
       # HTTPS
       - "traefik.http.routers.artrends-frontend-secure.entrypoints=websecure"
-      - "traefik.http.routers.artrends-frontend-secure.rule=Host(`artrends.ar`)"
+      - "traefik.http.routers.artrends-frontend-secure.rule=Host(`frontend.artrends.ar`)"
       - "traefik.http.routers.artrends-frontend-secure.tls.certresolver=artrends"
       - "traefik.http.middlewares.test-redirectscheme.redirectscheme.scheme=https"
       - "traefik.http.middlewares.test-redirectscheme.redirectscheme.permanent=true"
