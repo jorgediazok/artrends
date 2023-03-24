@@ -10,6 +10,7 @@ services:
     labels:
       - "traefik.enable=true"
       - "traefik.port=3000"
+      - "traefik.docker.network=proxy"
       # HTTP
       - "traefik.http.routers.artrends-frontend.rule=Host(`frontend.artrends.ar`)"
       - "traefik.http.routers.artrends-frontend.entrypoints=web"
