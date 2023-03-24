@@ -57,7 +57,7 @@ jobs:
           password: ${{ secrets.PROD_PASSWORD }}
           port: ${{ secrets.PROD_PORT }}
           script: |
-            cd /home/root/artrends/workers
+            cd /root/artrends/workers
             echo -e "${{secrets.WORKERS_PROD_ENV}}" > .env
             docker login -u ${{ secrets.DOCKER_USERNAME }} -p ${{ secrets.DOCKER_PASSWORD }}
             docker pull ${{secrets.WORKERS_DOCKER_IMAGE_TAG}}
@@ -111,7 +111,7 @@ jobs:
           password: ${{ secrets.PROD_PASSWORD }}
           port: ${{ secrets.PROD_PORT }}
           script: |
-            cd /home/root/artrends/backend
+            cd /root/artrends/backend
             echo -e "${{secrets.BACKEND_PROD_ENV}}" > .env
             docker login -u ${{ secrets.DOCKER_USERNAME }} -p ${{ secrets.DOCKER_PASSWORD }}
             docker pull ${{secrets.BACKEND_DOCKER_IMAGE_TAG}}
@@ -165,7 +165,7 @@ jobs:
           password: ${{ secrets.PROD_PASSWORD }}
           port: ${{ secrets.PROD_PORT }}
           script: |
-            cd /home/root/artrends/frontend
+            cd /root/artrends/frontend
             echo -e "${{secrets.FRONTEND_PROD_ENV}}" > .env
             docker login -u ${{ secrets.DOCKER_USERNAME }} -p ${{ secrets.DOCKER_PASSWORD }}
             docker pull ${{secrets.FRONTEND_DOCKER_IMAGE_TAG}}
