@@ -4,7 +4,6 @@ name: artrends
 services:
   artrends_frontend:
     container_name: frontend
-    env_file: ".env"
     image: greatpop/artrends-frontend:latest
     ports:
       - 3000
