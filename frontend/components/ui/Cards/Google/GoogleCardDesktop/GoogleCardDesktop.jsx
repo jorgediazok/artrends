@@ -64,10 +64,11 @@ const GoogleCardDesktop = ({ google }) => {
               key={trend.title}
               as="article"
               color={theme.colors.white[500]}
-              bg={theme.colors.indigo[800]}
-              border="1px"
-              borderColor={theme.colors.cyan[200]}
+              bg={theme.colors.gradients["grad-cards"]}
+              border="0.5px solid"
+              borderColor="rgba(255, 255, 255, 0.1);"
               borderRadius={theme.radius.xl}
+              boxShadow={theme.shadows["inner-card"]}
               paddingX="20px"
               paddingY="12px"
               width="440px"
@@ -97,11 +98,16 @@ const GoogleCardDesktop = ({ google }) => {
                       <Same className={styles.same} />
                     )}
                   </Box>
-                  <Box display="flex" gap="12px" flexDirection="column" ml={0}>
-                    <a
-                      href={trend.link}
-                      target="_blank"
-                      rel="noopener noreferrer"
+                  <a
+                    href={trend.link}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    <Box
+                      display="flex"
+                      gap="12px"
+                      flexDirection="column"
+                      ml={0}
                     >
                       <Text
                         fontWeight={600}
@@ -110,19 +116,19 @@ const GoogleCardDesktop = ({ google }) => {
                       >
                         {trend.title}
                       </Text>
-                    </a>
-                    <Badge
-                      className="one-max-line"
-                      width="fit-content"
-                      fontSize="xs"
-                      textTransform="uppercase"
-                      variant="outline"
-                      colorScheme="#fff"
-                      border="1px solid #fff"
-                    >
-                      {"más de " + trend.amount + " mil búsquedas"}
-                    </Badge>
-                  </Box>
+                      <Badge
+                        className="one-max-line"
+                        width="fit-content"
+                        fontSize="xs"
+                        textTransform="uppercase"
+                        variant="outline"
+                        colorScheme="#fff"
+                        border="1px solid #fff"
+                      >
+                        {"más de " + trend.amount + " mil búsquedas"}
+                      </Badge>
+                    </Box>
+                  </a>
                 </Box>
                 <Box
                   display="flex"

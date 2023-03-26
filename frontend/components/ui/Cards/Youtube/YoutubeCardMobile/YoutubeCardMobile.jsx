@@ -60,9 +60,9 @@ const YoutubeCardMobile = ({ youtube }) => {
             <Box
               as="article"
               color={theme.colors.white[500]}
-              bg={theme.colors.indigo[800]}
-              border="1px"
-              borderColor={theme.colors.cyan[150]}
+              bg={theme.colors.gradients["grad-cards"]}
+              border="0.5px solid"
+              borderColor="rgba(255, 255, 255, 0.1);"
               borderRadius={theme.radius.md}
               width="100%"
               height="118px"

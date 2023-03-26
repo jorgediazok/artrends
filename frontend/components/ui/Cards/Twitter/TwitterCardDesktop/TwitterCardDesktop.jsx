@@ -63,11 +63,12 @@ const TwitterCardDesktop = ({ twitter }) => {
               key={currentIndex}
               as="article"
               color={theme.colors.white[500]}
-              bg={theme.colors.indigo[800]}
-              border="1px"
-              borderColor={theme.colors.cyan[200]}
+              bg={theme.colors.gradients["grad-cards"]}
+              border="0.5px solid"
+              borderColor="rgba(255, 255, 255, 0.1);"
               borderRadius={theme.radius.xl}
               paddingX="20px"
+              boxShadow={theme.shadows["inner-card"]}
               paddingY="12px"
               width="440px"
               height="100px"
@@ -98,11 +99,16 @@ const TwitterCardDesktop = ({ twitter }) => {
                       <Same className="same" />
                     )}
                   </Box>
-                  <Box display="flex" gap="12px" flexDirection="column" ml={0}>
-                    <a
-                      href={trend.link}
-                      target="_blank"
-                      rel="noopener noreferrer"
+                  <a
+                    href={trend.link}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    <Box
+                      display="flex"
+                      gap="12px"
+                      flexDirection="column"
+                      ml={0}
                     >
                       <Text
                         fontWeight={600}
@@ -111,22 +117,23 @@ const TwitterCardDesktop = ({ twitter }) => {
                       >
                         {trend.title}
                       </Text>
-                    </a>
-                    {trend.amount && (
-                      <Badge
-                        className="one-max-line"
-                        width="fit-content"
-                        fontSize="xs"
-                        textTransform="uppercase"
-                        variant="outline"
-                        colorScheme="#fff"
-                        border="1px solid #fff"
-                      >
-                        {trend.amount}
-                      </Badge>
-                    )}
-                  </Box>
+                      {trend.amount && (
+                        <Badge
+                          className="one-max-line"
+                          width="fit-content"
+                          fontSize="xs"
+                          textTransform="uppercase"
+                          variant="outline"
+                          colorScheme="#fff"
+                          border="1px solid #fff"
+                        >
+                          {trend.amount}
+                        </Badge>
+                      )}
+                    </Box>
+                  </a>
                 </Box>
+
                 <Box
                   display="flex"
                   alignItems="flex-end"

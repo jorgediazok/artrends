@@ -34,7 +34,9 @@ import ErrorCardDesktop from "../../ErrorCard/ErrorCardDesktop/ErrorCardDesktop"
 import styles from "./YoutubeCardDesktop.module.css";
 
 const YoutubeCardDesktop = ({ youtube }) => {
-  const hasData = youtube?.current?.record?.trends?.length && youtube.current.record?.trends.length > 0;
+  const hasData =
+    youtube?.current?.record?.trends?.length &&
+    youtube.current.record?.trends.length > 0;
 
   return (
     <Box
@@ -60,10 +62,11 @@ const YoutubeCardDesktop = ({ youtube }) => {
             <Box
               as="article"
               color={theme.colors.white[500]}
-              bg={theme.colors.indigo[800]}
-              border="1px"
-              borderColor={theme.colors.cyan[150]}
+              bg={theme.colors.gradients["grad-cards"]}
+              border="0.5px solid"
+              borderColor="rgba(255, 255, 255, 0.1);"
               borderRadius={theme.radius.xl}
+              boxShadow={theme.shadows["inner-card"]}
               paddingX="48px"
               paddingY="12px"
               width="100%"

@@ -109,10 +109,11 @@ const SpotifyCardDesktop = ({ spotifyArtist, spotifyPodcast, spotifySong }) => {
                   <Box
                     as="article"
                     color={theme.colors.white[500]}
-                    bg={theme.colors.indigo[800]}
-                    border="1px"
-                    borderColor={theme.colors.cyan[150]}
+                    bg={theme.colors.gradients["grad-cards"]}
+                    border="0.5px solid"
+                    borderColor="rgba(255, 255, 255, 0.1);"
                     borderRadius={theme.radius.xl}
+                    boxShadow={theme.shadows["inner-card"]}
                     paddingX="48px"
                     paddingY="12px"
                     width="100%"
@@ -145,35 +146,35 @@ const SpotifyCardDesktop = ({ spotifyArtist, spotifyPodcast, spotifySong }) => {
                             <Same className={styles.same} />
                           )}
                         </Box>
-                        <Box
-                          display="flex"
-                          gap="20px"
-                          flexDirection="column"
-                          ml={0}
+                        <a
+                          href={trend.link}
+                          target="_blank"
+                          rel="noopener noreferrer"
                         >
-                          <a
-                            href={trend.link}
-                            target="_blank"
-                            rel="noopener noreferrer"
+                          <Box
+                            display="flex"
+                            gap="20px"
+                            flexDirection="column"
+                            ml={0}
                           >
                             <Text fontSize="2xl" fontWeight={600}>
                               {trend.name}
                             </Text>
-                          </a>
-                          <Badge
-                            className="one-max-line"
-                            width="fit-content"
-                            fontSize="xs"
-                            textTransform="uppercase"
-                            variant="outline"
-                            fontWeight={500}
-                            colorScheme="#fff"
-                            border="1px solid #fff"
-                          >
-                            {trend.streak +
-                              " Semanas seguidas en el top 200 de spotify"}
-                          </Badge>
-                        </Box>
+                            <Badge
+                              className="one-max-line"
+                              width="fit-content"
+                              fontSize="xs"
+                              textTransform="uppercase"
+                              variant="outline"
+                              fontWeight={500}
+                              colorScheme="#fff"
+                              border="1px solid #fff"
+                            >
+                              {trend.streak +
+                                " Semanas seguidas en el top 200 de spotify"}
+                            </Badge>
+                          </Box>
+                        </a>
                       </Box>
                       <Box display="flex" gap={8} alignItems="center">
                         <Menu>
@@ -275,10 +276,11 @@ const SpotifyCardDesktop = ({ spotifyArtist, spotifyPodcast, spotifySong }) => {
                   <Box
                     as="article"
                     color={theme.colors.white[500]}
-                    bg={theme.colors.indigo[800]}
-                    border="1px"
-                    borderColor={theme.colors.cyan[150]}
+                    bg={theme.colors.gradients["grad-cards"]}
+                    border="0.5px solid"
+                    borderColor="rgba(255, 255, 255, 0.1);"
                     borderRadius={theme.radius.xl}
+                    boxShadow={theme.shadows["inner-card"]}
                     paddingX="48px"
                     paddingY="12px"
                     width="100%"
@@ -308,42 +310,42 @@ const SpotifyCardDesktop = ({ spotifyArtist, spotifyPodcast, spotifySong }) => {
                             <Same className={styles.same} />
                           )}
                         </Box>
-                        <Box
-                          display="flex"
-                          gap={2}
-                          flexDirection="column"
-                          maxW="600px"
-                          ml={2}
+                        <a
+                          href={trend.link}
+                          target="_blank"
+                          rel="noopener noreferrer"
                         >
-                          <a
-                            href={trend.link}
-                            target="_blank"
-                            rel="noopener noreferrer"
+                          <Box
+                            display="flex"
+                            gap={2}
+                            flexDirection="column"
+                            maxW="600px"
+                            ml={2}
                           >
                             <Text fontSize="2xl" fontWeight={600}>
                               {trend.name}
                             </Text>
-                          </a>
-                          <Text
-                            fontWeight={600}
-                            fontSize="lg"
-                            marginTop="-8px"
-                            className={calculateLines("escuchado")}
-                          >
-                            {trend.author}
-                          </Text>
-                          <Badge
-                            className="one-max-line"
-                            width="fit-content"
-                            fontSize="xs"
-                            textTransform="uppercase"
-                            variant="outline"
-                            colorScheme="#fff"
-                            border="1px solid #fff"
-                          >
-                            {trend.streams + " reproducciones"}
-                          </Badge>
-                        </Box>
+                            <Text
+                              fontWeight={600}
+                              fontSize="lg"
+                              marginTop="-8px"
+                              className={calculateLines("escuchado")}
+                            >
+                              {trend.author}
+                            </Text>
+                            <Badge
+                              className="one-max-line"
+                              width="fit-content"
+                              fontSize="xs"
+                              textTransform="uppercase"
+                              variant="outline"
+                              colorScheme="#fff"
+                              border="1px solid #fff"
+                            >
+                              {trend.streams + " reproducciones"}
+                            </Badge>
+                          </Box>
+                        </a>
                       </Box>
                       <Box display="flex" gap={8} alignItems="center">
                         <Menu>
@@ -446,10 +448,11 @@ const SpotifyCardDesktop = ({ spotifyArtist, spotifyPodcast, spotifySong }) => {
                     <Box
                       as="article"
                       color={theme.colors.white[500]}
-                      bg={theme.colors.indigo[800]}
-                      border="1px"
-                      borderColor={theme.colors.cyan[150]}
+                      bg={theme.colors.gradients["grad-cards"]}
+                      border="0.5px solid"
+                      borderColor="rgba(255, 255, 255, 0.1);"
                       borderRadius={theme.radius.xl}
+                      boxShadow={theme.shadows["inner-card"]}
                       paddingX="48px"
                       paddingY="12px"
                       width="100%"
@@ -482,31 +485,31 @@ const SpotifyCardDesktop = ({ spotifyArtist, spotifyPodcast, spotifySong }) => {
                               <Same className={styles.same} />
                             )}
                           </Box>
-                          <Box
-                            display="flex"
-                            ml={2}
-                            flexDirection="column"
-                            maxW="600px"
-                            gap="20px"
+                          <a
+                            href={trend.link}
+                            target="_blank"
+                            rel="noopener noreferrer"
                           >
-                            <a
-                              href={trend.link}
-                              target="_blank"
-                              rel="noopener noreferrer"
+                            <Box
+                              display="flex"
+                              ml={2}
+                              flexDirection="column"
+                              maxW="600px"
+                              gap="20px"
                             >
                               <Text fontSize="2xl" fontWeight={600}>
                                 {trend.name}
                               </Text>
-                            </a>
-                            <Text
-                              fontWeight={600}
-                              fontSize="lg"
-                              marginTop="-8px"
-                              className={calculateLines("escuchado")}
-                            >
-                              {trend.publisher}
-                            </Text>
-                          </Box>
+                              <Text
+                                fontWeight={600}
+                                fontSize="lg"
+                                marginTop="-8px"
+                                className={calculateLines("escuchado")}
+                              >
+                                {trend.publisher}
+                              </Text>
+                            </Box>
+                          </a>
                         </Box>
                         <Box display="flex" gap={8} alignItems="center">
                           <Menu>
