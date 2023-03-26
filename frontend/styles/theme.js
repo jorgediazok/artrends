@@ -60,8 +60,7 @@ const theme = extendTheme({
       "grad-contacto": `linear-gradient(180deg, #241154 9.83%, #406BAC 100%);`,
       "background-home-mobile": `linear-gradient(180deg, #241154 0%, #2D5899 12.84%, #241154 35.42%, #2D5899 48.96%, #241154 100%);`,
       "background-home-desktop": `linear-gradient(to bottom, #241154 -10%, #2d5899 14.53%, #241154 100%);`,
-      "grad-cards": "#2f336e",
-      "grad-cards-spoty": "#7183a1",
+      "grad-cards": "hsla(242, 78%, 14%, 0.3)",
       "background-mobile-2":
         "linear-gradient(to bottom, #241154 50%, #2D5899 100%);",
     },

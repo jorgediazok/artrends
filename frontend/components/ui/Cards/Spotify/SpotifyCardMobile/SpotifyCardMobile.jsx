@@ -290,7 +290,7 @@ const SpotifyCardMobile = ({ spotifyArtist, spotifySong, spotifyPodcast }) => {
                   <Box
                     as="article"
                     color={theme.colors.white[500]}
-                    bg={theme.colors.gradients["grad-cards-spoty"]}
+                    bg={theme.colors.gradients["grad-cards"]}
                     border="0.5px solid"
                     borderColor="rgba(255, 255, 255, 0.1);"
                     borderRadius={theme.radius.md}
@@ -496,7 +496,7 @@ const SpotifyCardMobile = ({ spotifyArtist, spotifySong, spotifyPodcast }) => {
                     <Box
                       as="article"
                       color={theme.colors.white[500]}
-                      bg={theme.colors.gradients["grad-cards-spoty"]}
+                      bg={theme.colors.gradients["grad-cards"]}
                       border="0.5px solid"
                       borderColor="rgba(255, 255, 255, 0.1);"
                       borderRadius={theme.radius.md}
@@ -505,7 +505,7 @@ const SpotifyCardMobile = ({ spotifyArtist, spotifySong, spotifyPodcast }) => {
                       mb={2}
                       display={{ base: "flex", lg: "none" }}
                       alignItems="center"
-                      p="8px 16px"
+                      p="14px 16px"
                       key={trend.name}
                     >
                       <Box
