@@ -39,7 +39,7 @@ import ErrorCardMobile from "../../ErrorCard/ErrorCardMobile/ErrorCardMobile";
 // Styles
 import styles from "./NewsPortalsCardMobile.module.css";
 
-const NewsPortalsCardMobile = ({ portals }) => {
+const NewsPortalsCardMobile = ({ portals, handleCardClick }) => {
   const hasLaNacionData =
     portals?.current?.laNacion?.record?.trends?.length &&
     portals.current.laNacion.record.trends.length > 0;
@@ -144,9 +144,9 @@ const NewsPortalsCardMobile = ({ portals }) => {
                     <Box
                       as="article"
                       color={theme.colors.white[500]}
-                      bg={theme.colors.indigo[800]}
-                      border="1px"
-                      borderColor={theme.colors.cyan[150]}
+                      bg={theme.colors.gradients["grad-cards"]}
+                      border="0.5px solid"
+                      borderColor="rgba(255, 255, 255, 0.1);"
                       borderRadius={theme.radius.md}
                       width="100%"
                       height="114px"
@@ -155,6 +155,12 @@ const NewsPortalsCardMobile = ({ portals }) => {
                       alignItems="center"
                       p="8px 16px"
                       key={trend.article}
+                      boxShadow={theme.shadows["inner-card"]}
+                      role="link"
+                      data-link={trend.link}
+                      _active={{ boxShadow: "none" }}
+                      transition="300ms all ease"
+                      onClick={handleCardClick}
                     >
                       <Box
                         display="flex"
@@ -180,20 +186,14 @@ const NewsPortalsCardMobile = ({ portals }) => {
                           height="100%"
                         >
                           <Box width="100%" display="revert">
-                            <a
-                              href={trend.link}
-                              target="_blank"
-                              rel="noopener noreferrer"
+                            <Text
+                              maxWidth="80%"
+                              fontWeight={600}
+                              fontSize="16px"
+                              className={calculateLines("leido")}
                             >
-                              <Text
-                                maxWidth="80%"
-                                fontWeight={600}
-                                fontSize="16px"
-                                className={calculateLines("leido")}
-                              >
-                                {trend.article}
-                              </Text>
-                            </a>
+                              {trend.article}
+                            </Text>
                           </Box>
 
                           <Box
@@ -327,9 +327,9 @@ const NewsPortalsCardMobile = ({ portals }) => {
                     <Box
                       as="article"
                       color={theme.colors.white[500]}
-                      bg={theme.colors.indigo[800]}
-                      border="1px"
-                      borderColor={theme.colors.cyan[150]}
+                      bg={theme.colors.gradients["grad-cards"]}
+                      border="0.5px solid"
+                      borderColor="rgba(255, 255, 255, 0.1);"
                       borderRadius={theme.radius.md}
                       width="100%"
                       height="114px"
@@ -338,6 +338,12 @@ const NewsPortalsCardMobile = ({ portals }) => {
                       alignItems="center"
                       p="8px 16px"
                       key={trend.article}
+                      boxShadow={theme.shadows["inner-card"]}
+                      role="link"
+                      data-link={trend.link}
+                      _active={{ boxShadow: "none" }}
+                      transition="300ms all ease"
+                      onClick={handleCardClick}
                     >
                       <Box
                         display="flex"
@@ -363,20 +369,14 @@ const NewsPortalsCardMobile = ({ portals }) => {
                           height="100%"
                         >
                           <Box width="100%" display="revert">
-                            <a
-                              href={trend.link}
-                              target="_blank"
-                              rel="noopener noreferrer"
+                            <Text
+                              maxWidth="80%"
+                              fontWeight={600}
+                              fontSize="16px"
+                              className={calculateLines("leido")}
                             >
-                              <Text
-                                maxWidth="80%"
-                                fontWeight={600}
-                                fontSize="16px"
-                                className={calculateLines("leido")}
-                              >
-                                {trend.article}
-                              </Text>
-                            </a>
+                              {trend.article}
+                            </Text>
                           </Box>
 
                           <Box
@@ -510,9 +510,9 @@ const NewsPortalsCardMobile = ({ portals }) => {
                     <Box
                       as="article"
                       color={theme.colors.white[500]}
-                      bg={theme.colors.indigo[800]}
-                      border="1px"
-                      borderColor={theme.colors.cyan[150]}
+                      bg={theme.colors.gradients["grad-cards"]}
+                      border="0.5px solid"
+                      borderColor="rgba(255, 255, 255, 0.1);"
                       borderRadius={theme.radius.md}
                       width="100%"
                       height="114px"
@@ -521,6 +521,12 @@ const NewsPortalsCardMobile = ({ portals }) => {
                       alignItems="center"
                       p="8px 16px"
                       key={trend.article}
+                      boxShadow={theme.shadows["inner-card"]}
+                      role="link"
+                      data-link={trend.link}
+                      _active={{ boxShadow: "none" }}
+                      transition="300ms all ease"
+                      onClick={handleCardClick}
                     >
                       <Box
                         display="flex"
@@ -546,20 +552,14 @@ const NewsPortalsCardMobile = ({ portals }) => {
                           height="100%"
                         >
                           <Box width="100%" display="revert">
-                            <a
-                              href={trend.link}
-                              target="_blank"
-                              rel="noopener noreferrer"
+                            <Text
+                              maxWidth="80%"
+                              fontWeight={600}
+                              fontSize="16px"
+                              className={calculateLines("leido")}
                             >
-                              <Text
-                                maxWidth="80%"
-                                fontWeight={600}
-                                fontSize="16px"
-                                className={calculateLines("leido")}
-                              >
-                                {trend.article}
-                              </Text>
-                            </a>
+                              {trend.article}
+                            </Text>
                           </Box>
 
                           <Box
@@ -692,9 +692,9 @@ const NewsPortalsCardMobile = ({ portals }) => {
                   <Box
                     as="article"
                     color={theme.colors.white[500]}
-                    bg={theme.colors.indigo[800]}
-                    border="1px"
-                    borderColor={theme.colors.cyan[150]}
+                    bg={theme.colors.gradients["grad-cards"]}
+                    border="0.5px solid"
+                    borderColor="rgba(255, 255, 255, 0.1);"
                     borderRadius={theme.radius.md}
                     width="100%"
                     height="114px"
@@ -703,6 +703,12 @@ const NewsPortalsCardMobile = ({ portals }) => {
                     alignItems="center"
                     p="8px 16px"
                     key={trend.article}
+                    boxShadow={theme.shadows["inner-card"]}
+                    role="link"
+                    data-link={trend.link}
+                    _active={{ boxShadow: "none" }}
+                    transition="300ms all ease"
+                    onClick={handleCardClick}
                   >
                     <Box
                       display="flex"
@@ -728,20 +734,14 @@ const NewsPortalsCardMobile = ({ portals }) => {
                         height="100%"
                       >
                         <Box width="100%" display="revert">
-                          <a
-                            href={trend.link}
-                            target="_blank"
-                            rel="noopener noreferrer"
+                          <Text
+                            maxWidth="80%"
+                            fontWeight={600}
+                            fontSize="16px"
+                            className={calculateLines("leido")}
                           >
-                            <Text
-                              maxWidth="80%"
-                              fontWeight={600}
-                              fontSize="16px"
-                              className={calculateLines("leido")}
-                            >
-                              {trend.article}
-                            </Text>
-                          </a>
+                            {trend.article}
+                          </Text>
                         </Box>
 
                         <Box
@@ -873,9 +873,9 @@ const NewsPortalsCardMobile = ({ portals }) => {
                     <Box
                       as="article"
                       color={theme.colors.white[500]}
-                      bg={theme.colors.indigo[800]}
-                      border="1px"
-                      borderColor={theme.colors.cyan[150]}
+                      bg={theme.colors.gradients["grad-cards"]}
+                      border="0.5px solid"
+                      borderColor="rgba(255, 255, 255, 0.1);"
                       borderRadius={theme.radius.md}
                       width="100%"
                       height="114px"
@@ -884,6 +884,12 @@ const NewsPortalsCardMobile = ({ portals }) => {
                       alignItems="center"
                       p="8px 16px"
                       key={trend.article}
+                      boxShadow={theme.shadows["inner-card"]}
+                      role="link"
+                      data-link={trend.link}
+                      _active={{ boxShadow: "none" }}
+                      transition="300ms all ease"
+                      onClick={handleCardClick}
                     >
                       <Box
                         display="flex"
@@ -909,20 +915,14 @@ const NewsPortalsCardMobile = ({ portals }) => {
                           height="100%"
                         >
                           <Box width="100%" display="revert">
-                            <a
-                              href={trend.link}
-                              target="_blank"
-                              rel="noopener noreferrer"
+                            <Text
+                              maxWidth="80%"
+                              fontWeight={600}
+                              fontSize="16px"
+                              className={calculateLines("leido")}
                             >
-                              <Text
-                                maxWidth="80%"
-                                fontWeight={600}
-                                fontSize="16px"
-                                className={calculateLines("leido")}
-                              >
-                                {trend.article}
-                              </Text>
-                            </a>
+                              {trend.article}
+                            </Text>
                           </Box>
 
                           <Box

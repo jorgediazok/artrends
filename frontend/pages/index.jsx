@@ -68,6 +68,14 @@ export default function Home() {
     queryFn: getTrends,
   });
 
+  // Handlers
+  const handleCardClick = e => {
+    if (e.target.tagName === "BUTTON" || e.target.tagName === "A") {
+      return;
+    }
+    window.open(e.currentTarget.dataset.link, "_blank");
+  };
+
   // Effects
   useEffect(() => {
     if (twitterIsInView) {
@@ -180,8 +188,14 @@ export default function Home() {
             }}
           >
             <SectionTitle title="Lo más discutido en Twitter" />
-            <TwitterCardMobile twitter={trends.twitter} />
-            <TwitterCardDesktop twitter={trends.twitter} />
+            <TwitterCardMobile
+              twitter={trends.twitter}
+              handleCardClick={handleCardClick}
+            />
+            <TwitterCardDesktop
+              twitter={trends.twitter}
+              handleCardClick={handleCardClick}
+            />
           </Box>
 
           {/* SPOTIFY */}
@@ -200,11 +214,13 @@ export default function Home() {
               spotifyArtist={trends.spotifyArtists}
               spotifyPodcast={trends.spotifyPodcasts}
               spotifySong={trends.spotifySongs}
+              handleCardClick={handleCardClick}
             />
             <SpotifyCardDesktop
               spotifyArtist={trends.spotifyArtists}
               spotifyPodcast={trends.spotifyPodcasts}
               spotifySong={trends.spotifySongs}
+              handleCardClick={handleCardClick}
             />
           </Box>
 
@@ -239,10 +255,12 @@ export default function Home() {
             <GoogleCardMobile
               google={trends.google}
               googleSectionRef={googleSectionRef}
+              handleCardClick={handleCardClick}
             />
             <GoogleCardDesktop
               google={trends.google}
               googleSectionRef={googleSectionRef}
+              handleCardClick={handleCardClick}
             />
           </Box>
 
@@ -261,10 +279,12 @@ export default function Home() {
             <NewsPortalsMobile
               portals={trends.portals}
               portalSectionRef={portalSectionRef}
+              handleCardClick={handleCardClick}
             />
             <NewsPortalsDesktop
               portals={trends.portals}
               portalSectionRef={portalSectionRef}
+              handleCardClick={handleCardClick}
             />
           </Box>
         </Container>

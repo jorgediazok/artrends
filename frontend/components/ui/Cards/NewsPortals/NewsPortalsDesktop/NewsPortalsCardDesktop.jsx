@@ -15,6 +15,10 @@ import {
 // Utils
 import { getPosition } from "../../../../../utils/position";
 import { calculateLines } from "../../../../../utils/calculateLines";
+import {
+  getTwitterShareText,
+  getWhatsappShareText,
+} from "../../../../../utils/shareText";
 
 // Icons
 import ArrowDown from "../../../icons/ArrowDown";
@@ -33,7 +37,7 @@ import theme from "../../../../../styles/theme";
 // Styles
 import styles from "./NewsPortalsCardDesktop.module.css";
 
-const NewsPortalsCardDesktop = ({ portals }) => {
+const NewsPortalsCardDesktop = ({ portals, handleCardClick }) => {
   const hasLaNacionData =
     portals?.current?.laNacion?.record?.trends?.length &&
     portals.current.laNacion.record.trends.length > 0;
@@ -127,10 +131,11 @@ const NewsPortalsCardDesktop = ({ portals }) => {
                     <Box
                       as="article"
                       color={theme.colors.white[500]}
-                      bg={theme.colors.indigo[800]}
-                      border="1px"
-                      borderColor={theme.colors.cyan[150]}
+                      bg={theme.colors.gradients["grad-cards"]}
+                      border="0.5px solid"
+                      borderColor="rgba(255, 255, 255, 0.1);"
                       borderRadius={theme.radius.xl}
+                      boxShadow={theme.shadows["inner-card"]}
                       paddingX="48px"
                       paddingY="12px"
                       width="100%"
@@ -139,6 +144,12 @@ const NewsPortalsCardDesktop = ({ portals }) => {
                       display={{ base: "none", lg: "flex" }}
                       alignItems="center"
                       key={trend.article}
+                      role="link"
+                      onClick={handleCardClick}
+                      cursor="pointer"
+                      _active={{ boxShadow: "none" }}
+                      transition="300ms all ease"
+                      data-link={trend.link}
                     >
                       <Box
                         display="flex"
@@ -170,19 +181,13 @@ const NewsPortalsCardDesktop = ({ portals }) => {
                             maxW="600px"
                             ml={2}
                           >
-                            <a
-                              href={trend.link}
-                              target="_blank"
-                              rel="noopener noreferrer"
+                            <Text
+                              fontWeight={600}
+                              fontSize="2xl"
+                              className={calculateLines("leido")}
                             >
-                              <Text
-                                fontWeight={600}
-                                fontSize="2xl"
-                                className={calculateLines("leido")}
-                              >
-                                {trend.article}
-                              </Text>
-                            </a>
+                              {trend.article}
+                            </Text>
                           </Box>
                         </Box>
                         <Box display="flex" gap={8} alignItems="center">
@@ -208,11 +213,11 @@ const NewsPortalsCardDesktop = ({ portals }) => {
                                 color="#FFFFFF"
                                 as="a"
                                 fontSize="md"
-                                href={`https://api.whatsapp.com/send?text=Mirate%20esta%20noticia:%20${
-                                  trend.link
-                                }%20de%20La%20Nación%20que%20está%20en%20el%20puesto%20N°%20${
-                                  currentIndex + 1
-                                }%20en%20tendencias%20en%20noticias%20en%20Argentina.%20Mirá%20más%20en%20Artrends%20%23Artrends`}
+                                href={getWhatsappShareText(
+                                  "portals.laNacion",
+                                  currentIndex,
+                                  trend.article
+                                )}
                                 target="_blank"
                                 rel="noopener noreferrer"
                                 data-action="share/whatsapp/share"
@@ -233,11 +238,11 @@ const NewsPortalsCardDesktop = ({ portals }) => {
                                 color="#FFFFFF"
                                 as="a"
                                 fontSize="md"
-                                href={`https://twitter.com/intent/tweet?url=${
-                                  trend.link
-                                }&text=Mirate%20esta%20noticia%20de%20La%20Nación%20que%20está%20en%20el%20puesto%20N°%20${
-                                  currentIndex + 1
-                                }%20en%20tendencias%20en%20noticias%20en%20Argentina.%20Mirá%20más%20en%20Artrends%20%23Artrends`}
+                                href={getTwitterShareText(
+                                  "portals.laNacion",
+                                  currentIndex,
+                                  trend.article
+                                )}
                                 target="_blank"
                                 rel="noopener noreferrer"
                                 iconSpacing="10px"
@@ -288,10 +293,11 @@ const NewsPortalsCardDesktop = ({ portals }) => {
                     <Box
                       as="article"
                       color={theme.colors.white[500]}
-                      bg={theme.colors.indigo[800]}
-                      border="1px"
-                      borderColor={theme.colors.cyan[150]}
+                      bg={theme.colors.gradients["grad-cards"]}
+                      border="0.5px solid"
+                      borderColor="rgba(255, 255, 255, 0.1);"
                       borderRadius={theme.radius.xl}
+                      boxShadow={theme.shadows["inner-card"]}
                       paddingX="48px"
                       paddingY="12px"
                       width="100%"
@@ -300,6 +306,12 @@ const NewsPortalsCardDesktop = ({ portals }) => {
                       display={{ base: "none", lg: "flex" }}
                       alignItems="center"
                       key={trend.article}
+                      role="link"
+                      onClick={handleCardClick}
+                      cursor="pointer"
+                      _active={{ boxShadow: "none" }}
+                      transition="300ms all ease"
+                      data-link={trend.link}
                     >
                       <Box
                         display="flex"
@@ -331,19 +343,13 @@ const NewsPortalsCardDesktop = ({ portals }) => {
                             maxW="600px"
                             ml={2}
                           >
-                            <a
-                              href={trend.link}
-                              target="_blank"
-                              rel="noopener noreferrer"
+                            <Text
+                              fontWeight={600}
+                              fontSize="2xl"
+                              className={calculateLines("leido")}
                             >
-                              <Text
-                                fontWeight={600}
-                                fontSize="2xl"
-                                className={calculateLines("leido")}
-                              >
-                                {trend.article}
-                              </Text>
-                            </a>
+                              {trend.article}
+                            </Text>
                           </Box>
                         </Box>
                         <Box display="flex" gap={8} alignItems="center">
@@ -369,11 +375,11 @@ const NewsPortalsCardDesktop = ({ portals }) => {
                                 color="#FFFFFF"
                                 as="a"
                                 fontSize="md"
-                                href={`https://api.whatsapp.com/send?text=Mirate%20esta%20noticia:%20${
-                                  trend.link
-                                }%20de%20El%20Destape%20que%20está%20en%20el%20puesto%20N°%20${
-                                  currentIndex + 1
-                                }%20en%20tendencias%20en%20noticias%20en%20Argentina.%20Mirá%20más%20en%20Artrends%20%23Artrends`}
+                                href={getWhatsappShareText(
+                                  "portals.elDestape",
+                                  currentIndex,
+                                  trend.article
+                                )}
                                 target="_blank"
                                 rel="noopener noreferrer"
                                 data-action="share/whatsapp/share"
@@ -394,11 +400,11 @@ const NewsPortalsCardDesktop = ({ portals }) => {
                                 color="#FFFFFF"
                                 as="a"
                                 fontSize="md"
-                                href={`https://twitter.com/intent/tweet?url=${
-                                  trend.link
-                                }&text=Mirate%20esta%20noticia%20de%20El%20Destape%20que%20está%20en%20el%20puesto%20N°%20${
-                                  currentIndex + 1
-                                }%20en%20tendencias%20en%20noticias%20en%20Argentina.%20Mirá%20más%20en%20Artrends%20%23Artrends`}
+                                href={getTwitterShareText(
+                                  "portals.elDestape",
+                                  currentIndex,
+                                  trend.article
+                                )}
                                 target="_blank"
                                 rel="noopener noreferrer"
                                 iconSpacing="10px"
@@ -449,10 +455,11 @@ const NewsPortalsCardDesktop = ({ portals }) => {
                     <Box
                       as="article"
                       color={theme.colors.white[500]}
-                      bg={theme.colors.indigo[800]}
-                      border="1px"
-                      borderColor={theme.colors.cyan[150]}
+                      bg={theme.colors.gradients["grad-cards"]}
+                      border="0.5px solid"
+                      borderColor="rgba(255, 255, 255, 0.1);"
                       borderRadius={theme.radius.xl}
+                      boxShadow={theme.shadows["inner-card"]}
                       paddingX="48px"
                       paddingY="12px"
                       width="100%"
@@ -461,6 +468,12 @@ const NewsPortalsCardDesktop = ({ portals }) => {
                       display={{ base: "none", lg: "flex" }}
                       alignItems="center"
                       key={trend.article}
+                      role="link"
+                      onClick={handleCardClick}
+                      cursor="pointer"
+                      _active={{ boxShadow: "none" }}
+                      transition="300ms all ease"
+                      data-link={trend.link}
                     >
                       <Box
                         display="flex"
@@ -492,19 +505,13 @@ const NewsPortalsCardDesktop = ({ portals }) => {
                             maxW="600px"
                             ml={2}
                           >
-                            <a
-                              href={trend.link}
-                              target="_blank"
-                              rel="noopener noreferrer"
+                            <Text
+                              fontWeight={600}
+                              fontSize="2xl"
+                              className={calculateLines("leido")}
                             >
-                              <Text
-                                fontWeight={600}
-                                fontSize="2xl"
-                                className={calculateLines("leido")}
-                              >
-                                {trend.article}
-                              </Text>
-                            </a>
+                              {trend.article}
+                            </Text>
                           </Box>
                         </Box>
                         <Box display="flex" gap={8} alignItems="center">
@@ -530,11 +537,11 @@ const NewsPortalsCardDesktop = ({ portals }) => {
                                 color="#FFFFFF"
                                 as="a"
                                 fontSize="md"
-                                href={`https://api.whatsapp.com/send?text=Mirate%20esta%20noticia:%20${
-                                  trend.link
-                                }%20de%20Clarín%20que%20está%20en%20el%20puesto%20N°%20${
-                                  currentIndex + 1
-                                }%20en%20tendencias%20en%20noticias%20en%20Argentina.%20Mirá%20más%20en%20Artrends%20%23Artrends`}
+                                href={getWhatsappShareText(
+                                  "portals.clarin",
+                                  currentIndex,
+                                  trend.article
+                                )}
                                 target="_blank"
                                 rel="noopener noreferrer"
                                 data-action="share/whatsapp/share"
@@ -555,11 +562,11 @@ const NewsPortalsCardDesktop = ({ portals }) => {
                                 color="#FFFFFF"
                                 as="a"
                                 fontSize="md"
-                                href={`https://twitter.com/intent/tweet?url=${
-                                  trend.link
-                                }&text=Mirate%20esta%20noticia%20de%20Clarín%20que%20está%20en%20el%20puesto%20N°%20${
-                                  currentIndex + 1
-                                }%20en%20tendencias%20en%20noticias%20en%20Argentina.%20Mirá%20más%20en%20Artrends%20%23Artrends`}
+                                href={getTwitterShareText(
+                                  "portals.clarin",
+                                  currentIndex,
+                                  trend.article
+                                )}
                                 target="_blank"
                                 rel="noopener noreferrer"
                                 iconSpacing="10px"
@@ -609,10 +616,11 @@ const NewsPortalsCardDesktop = ({ portals }) => {
                   <Box
                     as="article"
                     color={theme.colors.white[500]}
-                    bg={theme.colors.indigo[800]}
-                    border="1px"
-                    borderColor={theme.colors.cyan[150]}
+                    bg={theme.colors.gradients["grad-cards"]}
+                    border="0.5px solid"
+                    borderColor="rgba(255, 255, 255, 0.1);"
                     borderRadius={theme.radius.xl}
+                    boxShadow={theme.shadows["inner-card"]}
                     paddingX="48px"
                     paddingY="12px"
                     width="100%"
@@ -621,6 +629,12 @@ const NewsPortalsCardDesktop = ({ portals }) => {
                     display={{ base: "none", lg: "flex" }}
                     alignItems="center"
                     key={trend.article}
+                    role="link"
+                    onClick={handleCardClick}
+                    cursor="pointer"
+                    _active={{ boxShadow: "none" }}
+                    transition="300ms all ease"
+                    data-link={trend.link}
                   >
                     <Box
                       display="flex"
@@ -651,19 +665,13 @@ const NewsPortalsCardDesktop = ({ portals }) => {
                           maxW="600px"
                           ml={2}
                         >
-                          <a
-                            href={trend.link}
-                            target="_blank"
-                            rel="noopener noreferrer"
+                          <Text
+                            fontWeight={600}
+                            fontSize="2xl"
+                            className={calculateLines("leido")}
                           >
-                            <Text
-                              fontWeight={600}
-                              fontSize="2xl"
-                              className={calculateLines("leido")}
-                            >
-                              {trend.article}
-                            </Text>
-                          </a>
+                            {trend.article}
+                          </Text>
                         </Box>
                       </Box>
                       <Box display="flex" gap={8} alignItems="center">
@@ -689,11 +697,11 @@ const NewsPortalsCardDesktop = ({ portals }) => {
                               color="#FFFFFF"
                               as="a"
                               fontSize="md"
-                              href={`https://api.whatsapp.com/send?text=Mirate%20esta%20noticia:%20${
-                                trend.link
-                              }%20de%20Télam%20que%20está%20en%20el%20puesto%20N°%20${
-                                currentIndex + 1
-                              }%20en%20tendencias%20en%20noticias%20en%20Argentina.%20Mirá%20más%20en%20Artrends%20%23Artrends`}
+                              href={getWhatsappShareText(
+                                "portals.telam",
+                                currentIndex,
+                                trend.article
+                              )}
                               target="_blank"
                               rel="noopener noreferrer"
                               data-action="share/whatsapp/share"
@@ -714,11 +722,11 @@ const NewsPortalsCardDesktop = ({ portals }) => {
                               color="#FFFFFF"
                               as="a"
                               fontSize="md"
-                              href={`https://twitter.com/intent/tweet?url=${
-                                trend.link
-                              }&text=Mirate%20esta%20noticia%20de%20Télam%20que%20está%20en%20el%20puesto%20N°%20${
-                                currentIndex + 1
-                              }%20en%20tendencias%20en%20noticias%20en%20Argentina.%20Mirá%20más%20en%20Artrends%20%23Artrends`}
+                              href={getTwitterShareText(
+                                "portals.telam",
+                                currentIndex,
+                                trend.article
+                              )}
                               target="_blank"
                               rel="noopener noreferrer"
                               iconSpacing="10px"
@@ -768,10 +776,11 @@ const NewsPortalsCardDesktop = ({ portals }) => {
                     <Box
                       as="article"
                       color={theme.colors.white[500]}
-                      bg={theme.colors.indigo[800]}
-                      border="1px"
-                      borderColor={theme.colors.cyan[150]}
+                      bg={theme.colors.gradients["grad-cards"]}
+                      border="0.5px solid"
+                      borderColor="rgba(255, 255, 255, 0.1);"
                       borderRadius={theme.radius.xl}
+                      boxShadow={theme.shadows["inner-card"]}
                       paddingX="48px"
                       paddingY="12px"
                       width="100%"

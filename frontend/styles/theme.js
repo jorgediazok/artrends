@@ -60,6 +60,7 @@ const theme = extendTheme({
       "grad-contacto": `linear-gradient(180deg, #241154 9.83%, #406BAC 100%);`,
       "background-home-mobile": `linear-gradient(180deg, #241154 0%, #2D5899 12.84%, #241154 35.42%, #2D5899 48.96%, #241154 100%);`,
       "background-home-desktop": `linear-gradient(to bottom, #241154 -10%, #2d5899 14.53%, #241154 100%);`,
+      "grad-cards": "hsla(242, 78%, 14%, 0.3)",
       "background-mobile-2":
         "linear-gradient(to bottom, #241154 50%, #2D5899 100%);",
     },
@@ -70,6 +71,7 @@ const theme = extendTheme({
     "drop-md": `8px 9px 5px hsla(0, 0, 0, 0.01), 5px 5px 4px hsla(0, 0, 0, 0.05), 2px 2px 3px hsla(0, 0, 0, 0.09), 1px 1px 2px hsla(0, 0, 0, 0.1), 0px 0px 0px hsla(0, 0, 0, 0.1)`,
     "inner-sm": `inset 75px 75px 43px hsla(0, 0, 0, 0.01), inset 42px 42px 36px hsla(0, 0, 0, 0.05), inset 19px 19px 27px hsla(0, 0, 0, 0.09), inset 5px 5px 15px hsla(0, 0, 0, 0.1)`,
     "drop-xl": `75px 75px 43px hsla(0, 0, 0, 0.01), 42px 42px 36px hsla(0, 0, 0, 0.05), 19px 19px 27px hsla(0, 0, 0, 0.09), 5px 5px 15px hsla(0, 0, 0, 0.1), 0px 0px 0px hsla(0, 0, 0, 0.1)`,
+    "inner-card": `8px 9px 5px rgba(0, 0, 0, 0.01), 5px 5px 4px rgba(0, 0, 0, 0.05), 2px 2px 3px rgba(0, 0, 0, 0.09), 1px 1px 2px rgba(0, 0, 0, 0.1), 0px 0px 0px rgba(0, 0, 0, 0.1); 0, 0, 0.16)`,
   },
 
   radius: {

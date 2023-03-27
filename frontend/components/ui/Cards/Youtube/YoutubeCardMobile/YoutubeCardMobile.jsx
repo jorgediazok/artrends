@@ -31,6 +31,18 @@ import styles from "./YoutubeCardMobile.module.css";
 import theme from "../../../../../styles/theme";
 
 const YoutubeCardMobile = ({ youtube }) => {
+  const handleCardClick = (e, link) => {
+    if (e.target.tagName === "BUTTON" || e.target.tagName === "A") {
+      return;
+    }
+
+    window.open(link, "_blank");
+
+    if (e.target.dataset.link === "channel") {
+      e.stopPropagation();
+    }
+  };
+
   const hasData =
     youtube?.current?.record?.trends?.length &&
     youtube.current.record.trends.length > 0;
@@ -60,9 +72,9 @@ const YoutubeCardMobile = ({ youtube }) => {
             <Box
               as="article"
               color={theme.colors.white[500]}
-              bg={theme.colors.indigo[800]}
-              border="1px"
-              borderColor={theme.colors.cyan[150]}
+              bg={theme.colors.gradients["grad-cards"]}
+              border="0.5px solid"
+              borderColor="rgba(255, 255, 255, 0.1);"
               borderRadius={theme.radius.md}
               width="100%"
               height="118px"
@@ -71,6 +83,11 @@ const YoutubeCardMobile = ({ youtube }) => {
               alignItems="center"
               p="8px 16px"
               key={trend.title}
+              role="link"
+              onClick={e => handleCardClick(e, trend.link)}
+              cursor="pointer"
+              _active={{ boxShadow: "none" }}
+              transition="300ms all ease"
             >
               <Box
                 display="flex"
@@ -92,20 +109,14 @@ const YoutubeCardMobile = ({ youtube }) => {
                       alignItems="center"
                       flexDirection="row"
                     >
-                      <a
-                        href={trend.link}
-                        target="_blank"
-                        rel="noopener noreferrer"
+                      <Text
+                        width="90%"
+                        fontWeight={600}
+                        fontSize="16px"
+                        className={calculateLines("visto")}
                       >
-                        <Text
-                          width="90%"
-                          fontWeight={600}
-                          fontSize="16px"
-                          className={calculateLines("visto")}
-                        >
-                          {trend.title}
-                        </Text>
-                      </a>
+                        {trend.title}
+                      </Text>
                       <Menu maxW="162px">
                         <MenuButton
                           isolation="isolate"
@@ -178,13 +189,15 @@ const YoutubeCardMobile = ({ youtube }) => {
                       </Menu>
                     </Flex>
 
-                    <a
-                      href={trend.channelLink}
-                      target="_blank"
-                      rel="noopener noreferrer"
+                    <Text
+                      fontSize="md"
+                      data-link="channel"
+                      onClick={e => {
+                        handleCardClick(e, trend.channelLink);
+                      }}
                     >
-                      <Text fontSize="md">{trend.channel}</Text>
-                    </a>
+                      {trend.channel}
+                    </Text>
                   </Box>
                 </Box>
 
