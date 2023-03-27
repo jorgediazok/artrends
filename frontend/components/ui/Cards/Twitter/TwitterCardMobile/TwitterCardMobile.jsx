@@ -32,7 +32,7 @@ import ErrorCardMobile from "../../ErrorCard/ErrorCardMobile/ErrorCardMobile";
 // Styles
 import theme from "../../../../../styles/theme";
 
-const TwitterCardMobile = ({ twitter, twitterSectionRef }) => {
+const TwitterCardMobile = ({ twitter, twitterSectionRef, handleCardClick }) => {
   const hasData =
     twitter?.current?.record?.trends?.length &&
     twitter.current.record.trends.length > 0;
@@ -64,9 +64,9 @@ const TwitterCardMobile = ({ twitter, twitterSectionRef }) => {
               key={currentIndex}
               as="article"
               color={theme.colors.white[500]}
-              bg={theme.colors.indigo[800]}
-              border="1px"
-              borderColor={theme.colors.cyan[150]}
+              bg={theme.colors.gradients["grad-cards"]}
+              border="0.5px solid"
+              borderColor="rgba(255, 255, 255, 0.1);"
               borderRadius={theme.radius.md}
               width="100%"
               height="72px"
@@ -74,6 +74,12 @@ const TwitterCardMobile = ({ twitter, twitterSectionRef }) => {
               display="flex"
               alignItems="center"
               p="8px 16px"
+              boxShadow={theme.shadows["inner-card"]}
+              role="link"
+              data-link={trend.link}
+              _active={{ boxShadow: "none" }}
+              transition="300ms all ease"
+              onClick={handleCardClick}
             >
               <Box
                 display="flex"
@@ -95,21 +101,15 @@ const TwitterCardMobile = ({ twitter, twitterSectionRef }) => {
                       alignItems="center"
                       flexDirection="row"
                     >
-                      <a
-                        href={trend.link}
-                        target="_blank"
-                        rel="noopener noreferrer"
+                      <Text
+                        width="100%"
+                        fontWeight={600}
+                        fontSize="16px"
+                        className={calculateLines("discutido")}
+                        pr="10px"
                       >
-                        <Text
-                          width="100%"
-                          fontWeight={600}
-                          fontSize="16px"
-                          className={calculateLines("discutido")}
-                          pr="10px"
-                        >
-                          {trend.title}
-                        </Text>
-                      </a>
+                        {trend.title}
+                      </Text>
 
                       <Menu maxW="162px">
                         <MenuButton

@@ -32,7 +32,7 @@ import theme from "../../../../../styles/theme";
 // Styles
 import styles from "./GoogleCardDesktop.module.css";
 
-const GoogleCardDesktop = ({ google }) => {
+const GoogleCardDesktop = ({ google, handleCardClick }) => {
   const hasData =
     google?.current?.record?.trends && google.current.record.trends.length > 0;
 
@@ -64,15 +64,23 @@ const GoogleCardDesktop = ({ google }) => {
               key={trend.title}
               as="article"
               color={theme.colors.white[500]}
-              bg={theme.colors.indigo[800]}
-              border="1px"
-              borderColor={theme.colors.cyan[200]}
+              bg={theme.colors.gradients["grad-cards"]}
+              border="0.5px solid"
+              borderColor="rgba(255, 255, 255, 0.1);"
               borderRadius={theme.radius.xl}
+              boxShadow={theme.shadows["inner-card"]}
               paddingX="20px"
               paddingY="12px"
               width="440px"
               height="100px"
               mb={2}
+              alignItems="center"
+              role="link"
+              onClick={handleCardClick}
+              cursor="pointer"
+              _active={{ boxShadow: "none" }}
+              transition="300ms all ease"
+              data-link={trend.link}
             >
               <Box
                 display="flex"
@@ -97,20 +105,15 @@ const GoogleCardDesktop = ({ google }) => {
                       <Same className={styles.same} />
                     )}
                   </Box>
+
                   <Box display="flex" gap="12px" flexDirection="column" ml={0}>
-                    <a
-                      href={trend.link}
-                      target="_blank"
-                      rel="noopener noreferrer"
+                    <Text
+                      fontWeight={600}
+                      fontSize="xl"
+                      className={calculateLines("buscado")}
                     >
-                      <Text
-                        fontWeight={600}
-                        fontSize="xl"
-                        className={calculateLines("buscado")}
-                      >
-                        {trend.title}
-                      </Text>
-                    </a>
+                      {trend.title}
+                    </Text>
                     <Badge
                       className="one-max-line"
                       width="fit-content"

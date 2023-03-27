@@ -28,6 +28,7 @@ import ArrowUpMobile from "../../../icons/ArrowUpMobile";
 import SameMobile from "../../../icons/SameMobile";
 import ThreeDots from "../../../icons/ThreeDots";
 import TwitterCompartir from "../../../icons/TwitterCompartir";
+import Whatsapp from "../../../icons/Whatsapp";
 
 // Components
 import ErrorCardMobile from "../../ErrorCard/ErrorCardMobile/ErrorCardMobile";
@@ -35,9 +36,13 @@ import ErrorCardMobile from "../../ErrorCard/ErrorCardMobile/ErrorCardMobile";
 // Styles
 import theme from "../../../../../styles/theme";
 import styles from "./SpotifyCardMobile.module.css";
-import Whatsapp from "../../../icons/Whatsapp";
 
-const SpotifyCardMobile = ({ spotifyArtist, spotifySong, spotifyPodcast }) => {
+const SpotifyCardMobile = ({
+  spotifyArtist,
+  spotifySong,
+  spotifyPodcast,
+  handleCardClick,
+}) => {
   const hasArtistData =
     spotifyArtist?.current?.record?.trends?.length &&
     spotifyArtist.current.record.trends.length > 0;
@@ -95,15 +100,21 @@ const SpotifyCardMobile = ({ spotifyArtist, spotifySong, spotifyPodcast }) => {
                     as="article"
                     key={trend.name}
                     color={theme.colors.white[500]}
-                    bg={theme.colors.indigo[800]}
-                    border="1px"
-                    borderColor={theme.colors.cyan[150]}
+                    bg={theme.colors.gradients["grad-cards"]}
+                    border="0.5px solid"
+                    borderColor="rgba(255, 255, 255, 0.1);"
                     borderRadius={theme.radius.md}
                     width="100%"
                     height="100px"
                     mb={2}
                     display={{ base: "flex", lg: "none" }}
                     p="8px 16px"
+                    boxShadow={theme.shadows["inner-card"]}
+                    role="link"
+                    data-link={trend.link}
+                    _active={{ boxShadow: "none" }}
+                    transition="300ms all ease"
+                    onClick={handleCardClick}
                   >
                     <Box
                       display="flex"
@@ -290,9 +301,9 @@ const SpotifyCardMobile = ({ spotifyArtist, spotifySong, spotifyPodcast }) => {
                   <Box
                     as="article"
                     color={theme.colors.white[500]}
-                    bg={theme.colors.indigo[800]}
-                    border="1px"
-                    borderColor={theme.colors.cyan[150]}
+                    bg={theme.colors.gradients["grad-cards"]}
+                    border="0.5px solid"
+                    borderColor="rgba(255, 255, 255, 0.1);"
                     borderRadius={theme.radius.md}
                     width="100%"
                     height="100px"
@@ -301,6 +312,12 @@ const SpotifyCardMobile = ({ spotifyArtist, spotifySong, spotifyPodcast }) => {
                     alignItems="center"
                     p="8px 16px"
                     key={trend.name}
+                    boxShadow={theme.shadows["inner-card"]}
+                    role="link"
+                    data-link={trend.link}
+                    _active={{ boxShadow: "none" }}
+                    transition="300ms all ease"
+                    onClick={handleCardClick}
                   >
                     <Box
                       display="flex"
@@ -496,17 +513,23 @@ const SpotifyCardMobile = ({ spotifyArtist, spotifySong, spotifyPodcast }) => {
                     <Box
                       as="article"
                       color={theme.colors.white[500]}
-                      bg={theme.colors.indigo[800]}
-                      border="1px"
-                      borderColor={theme.colors.cyan[150]}
+                      bg={theme.colors.gradients["grad-cards"]}
+                      border="0.5px solid"
+                      borderColor="rgba(255, 255, 255, 0.1);"
                       borderRadius={theme.radius.md}
                       width="100%"
                       height="100px"
                       mb={2}
                       display={{ base: "flex", lg: "none" }}
                       alignItems="center"
-                      p="8px 16px"
+                      p="14px 16px"
                       key={trend.name}
+                      boxShadow={theme.shadows["inner-card"]}
+                      role="link"
+                      data-link={trend.link}
+                      _active={{ boxShadow: "none" }}
+                      transition="300ms all ease"
+                      onClick={handleCardClick}
                     >
                       <Box
                         display="flex"
@@ -528,22 +551,17 @@ const SpotifyCardMobile = ({ spotifyArtist, spotifySong, spotifyPodcast }) => {
                               alignItems="center"
                               flexDirection="row"
                             >
-                              <a
-                                href={trend.link}
-                                target="_blank"
-                                rel="noopener noreferrer"
+                              <Text
+                                width="100%"
+                                maxW="248px"
+                                fontWeight={600}
+                                fontSize="16px"
+                                className={calculateLines("escuchado")}
+                                pr="10px"
                               >
-                                <Text
-                                  width="100%"
-                                  maxW="248px"
-                                  fontWeight={600}
-                                  fontSize="16px"
-                                  className={calculateLines("escuchado")}
-                                  pr="10px"
-                                >
-                                  {trend.name}
-                                </Text>
-                              </a>
+                                {trend.name}
+                              </Text>
+
                               <Menu maxW="162px">
                                 <MenuButton
                                   isolation="isolate"
