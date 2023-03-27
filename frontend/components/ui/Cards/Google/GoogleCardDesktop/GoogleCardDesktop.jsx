@@ -32,7 +32,7 @@ import theme from "../../../../../styles/theme";
 // Styles
 import styles from "./GoogleCardDesktop.module.css";
 
-const GoogleCardDesktop = ({ google }) => {
+const GoogleCardDesktop = ({ google, handleCardClick }) => {
   const hasData =
     google?.current?.record?.trends && google.current.record.trends.length > 0;
 
@@ -74,6 +74,13 @@ const GoogleCardDesktop = ({ google }) => {
               width="440px"
               height="100px"
               mb={2}
+              alignItems="center"
+              role="link"
+              onClick={handleCardClick}
+              cursor="pointer"
+              _active={{ boxShadow: "none" }}
+              transition="300ms all ease"
+              data-link={trend.link}
             >
               <Box
                 display="flex"
@@ -98,37 +105,27 @@ const GoogleCardDesktop = ({ google }) => {
                       <Same className={styles.same} />
                     )}
                   </Box>
-                  <a
-                    href={trend.link}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
-                    <Box
-                      display="flex"
-                      gap="12px"
-                      flexDirection="column"
-                      ml={0}
+
+                  <Box display="flex" gap="12px" flexDirection="column" ml={0}>
+                    <Text
+                      fontWeight={600}
+                      fontSize="xl"
+                      className={calculateLines("buscado")}
                     >
-                      <Text
-                        fontWeight={600}
-                        fontSize="xl"
-                        className={calculateLines("buscado")}
-                      >
-                        {trend.title}
-                      </Text>
-                      <Badge
-                        className="one-max-line"
-                        width="fit-content"
-                        fontSize="xs"
-                        textTransform="uppercase"
-                        variant="outline"
-                        colorScheme="#fff"
-                        border="1px solid #fff"
-                      >
-                        {"más de " + trend.amount + " mil búsquedas"}
-                      </Badge>
-                    </Box>
-                  </a>
+                      {trend.title}
+                    </Text>
+                    <Badge
+                      className="one-max-line"
+                      width="fit-content"
+                      fontSize="xs"
+                      textTransform="uppercase"
+                      variant="outline"
+                      colorScheme="#fff"
+                      border="1px solid #fff"
+                    >
+                      {"más de " + trend.amount + " mil búsquedas"}
+                    </Badge>
+                  </Box>
                 </Box>
                 <Box
                   display="flex"

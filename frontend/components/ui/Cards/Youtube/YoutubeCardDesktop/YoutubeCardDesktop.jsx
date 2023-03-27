@@ -34,6 +34,18 @@ import ErrorCardDesktop from "../../ErrorCard/ErrorCardDesktop/ErrorCardDesktop"
 import styles from "./YoutubeCardDesktop.module.css";
 
 const YoutubeCardDesktop = ({ youtube }) => {
+  const handleCardClick = (e, link) => {
+    if (e.target.tagName === "BUTTON" || e.target.tagName === "A") {
+      return;
+    }
+
+    window.open(link, "_blank");
+
+    if (e.target.dataset.link === "channel") {
+      e.stopPropagation();
+    }
+  };
+
   const hasData =
     youtube?.current?.record?.trends?.length &&
     youtube.current.record?.trends.length > 0;
@@ -75,6 +87,11 @@ const YoutubeCardDesktop = ({ youtube }) => {
               display="flex"
               alignItems="center"
               key={trend.title}
+              role="link"
+              onClick={e => handleCardClick(e, trend.link)}
+              cursor="pointer"
+              _active={{ boxShadow: "none" }}
+              transition="300ms all ease"
             >
               <Box
                 display="flex"
@@ -106,26 +123,23 @@ const YoutubeCardDesktop = ({ youtube }) => {
                     ml={0}
                     maxW="80%"
                   >
-                    <a
-                      href={trend.link}
-                      target="_blank"
-                      rel="noopener noreferrer"
+                    <Text
+                      fontWeight={600}
+                      fontSize="xl"
+                      className={calculateLines("visto")}
                     >
-                      <Text
-                        fontWeight={600}
-                        fontSize="xl"
-                        className={calculateLines("visto")}
-                      >
-                        {trend.title}
-                      </Text>
-                    </a>
-                    <a
-                      href={trend.channelLink}
-                      target="_blank"
-                      rel="noopener noreferrer"
+                      {trend.title}
+                    </Text>
+
+                    <Text
+                      fontSize="xl"
+                      data-link="channel"
+                      onClick={e => {
+                        handleCardClick(e, trend.channelLink);
+                      }}
                     >
-                      <Text fontSize="xl">{trend.channel}</Text>
-                    </a>
+                      {trend.channel}
+                    </Text>
 
                     <Badge
                       className="one-max-line"

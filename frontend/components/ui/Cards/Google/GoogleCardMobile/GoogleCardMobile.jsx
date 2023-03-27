@@ -30,7 +30,7 @@ import ErrorCardMobile from "../../ErrorCard/ErrorCardMobile/ErrorCardMobile";
 import styles from "./GoogleCardMobile.module.css";
 import theme from "../../../../../styles/theme";
 
-const GoogleCardMobile = ({ google }) => {
+const GoogleCardMobile = ({ google, handleCardClick }) => {
   const hasData =
     google?.current?.record?.trends &&
     google?.current?.record?.trends.length > 0;
@@ -71,6 +71,12 @@ const GoogleCardMobile = ({ google }) => {
               alignItems="center"
               p="8px 16px"
               key={trend.title}
+              role="link"
+              onClick={handleCardClick}
+              cursor="pointer"
+              _active={{ boxShadow: "none" }}
+              transition="300ms all ease"
+              data-link={trend.link}
             >
               <Box
                 display="flex"
@@ -92,21 +98,15 @@ const GoogleCardMobile = ({ google }) => {
                       alignItems="center"
                       flexDirection="row"
                     >
-                      <a
-                        href={trend.link}
-                        target="_blank"
-                        rel="noopener noreferrer"
+                      <Text
+                        width="100%"
+                        fontWeight={600}
+                        fontSize="16px"
+                        className={calculateLines("buscado")}
+                        pr="10px"
                       >
-                        <Text
-                          width="100%"
-                          fontWeight={600}
-                          fontSize="16px"
-                          className={calculateLines("buscado")}
-                          pr="10px"
-                        >
-                          {trend.title}
-                        </Text>
-                      </a>
+                        {trend.title}
+                      </Text>
                       <Menu maxW="162px">
                         <MenuButton
                           isolation="isolate"

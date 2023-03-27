@@ -38,7 +38,12 @@ import theme from "../../../../../styles/theme";
 // Styles
 import styles from "./SpotifyCardDesktop.module.css";
 
-const SpotifyCardDesktop = ({ spotifyArtist, spotifyPodcast, spotifySong }) => {
+const SpotifyCardDesktop = ({
+  spotifyArtist,
+  spotifyPodcast,
+  spotifySong,
+  handleCardClick,
+}) => {
   const hasArtistData =
     spotifyArtist?.current?.record?.trends?.length &&
     spotifyArtist.current.record.trends.length > 0;
@@ -122,6 +127,12 @@ const SpotifyCardDesktop = ({ spotifyArtist, spotifyPodcast, spotifySong }) => {
                     display="flex"
                     alignItems="center"
                     key={trend.name}
+                    role="link"
+                    onClick={handleCardClick}
+                    cursor="pointer"
+                    _active={{ boxShadow: "none" }}
+                    transition="300ms all ease"
+                    data-link={trend.link}
                   >
                     <Box
                       display="flex"
@@ -146,35 +157,30 @@ const SpotifyCardDesktop = ({ spotifyArtist, spotifyPodcast, spotifySong }) => {
                             <Same className={styles.same} />
                           )}
                         </Box>
-                        <a
-                          href={trend.link}
-                          target="_blank"
-                          rel="noopener noreferrer"
+
+                        <Box
+                          display="flex"
+                          gap="20px"
+                          flexDirection="column"
+                          ml={0}
                         >
-                          <Box
-                            display="flex"
-                            gap="20px"
-                            flexDirection="column"
-                            ml={0}
+                          <Text fontSize="2xl" fontWeight={600}>
+                            {trend.name}
+                          </Text>
+                          <Badge
+                            className="one-max-line"
+                            width="fit-content"
+                            fontSize="xs"
+                            textTransform="uppercase"
+                            variant="outline"
+                            fontWeight={500}
+                            colorScheme="#fff"
+                            border="1px solid #fff"
                           >
-                            <Text fontSize="2xl" fontWeight={600}>
-                              {trend.name}
-                            </Text>
-                            <Badge
-                              className="one-max-line"
-                              width="fit-content"
-                              fontSize="xs"
-                              textTransform="uppercase"
-                              variant="outline"
-                              fontWeight={500}
-                              colorScheme="#fff"
-                              border="1px solid #fff"
-                            >
-                              {trend.streak +
-                                " Semanas seguidas en el top 200 de spotify"}
-                            </Badge>
-                          </Box>
-                        </a>
+                            {trend.streak +
+                              " Semanas seguidas en el top 200 de spotify"}
+                          </Badge>
+                        </Box>
                       </Box>
                       <Box display="flex" gap={8} alignItems="center">
                         <Menu>

@@ -31,7 +31,7 @@ import ErrorCardDesktop from "../../ErrorCard/ErrorCardDesktop/ErrorCardDesktop"
 // Theme
 import theme from "../../../../../styles/theme";
 
-const TwitterCardDesktop = ({ twitter }) => {
+const TwitterCardDesktop = ({ twitter, handleCardClick }) => {
   const hasData =
     twitter?.current?.record?.trends?.length &&
     twitter.current.record.trends.length > 0;
@@ -74,6 +74,12 @@ const TwitterCardDesktop = ({ twitter }) => {
               height="100px"
               mb={2}
               alignItems="center"
+              role="link"
+              onClick={handleCardClick}
+              cursor="pointer"
+              _hover={{ boxShadow: "none" }}
+              transition="300ms all ease"
+              data-link={trend.link}
             >
               <Box
                 display="flex"
@@ -99,39 +105,29 @@ const TwitterCardDesktop = ({ twitter }) => {
                       <Same className="same" />
                     )}
                   </Box>
-                  <a
-                    href={trend.link}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
-                    <Box
-                      display="flex"
-                      gap="12px"
-                      flexDirection="column"
-                      ml={0}
+
+                  <Box display="flex" gap="12px" flexDirection="column" ml={0}>
+                    <Text
+                      fontWeight={600}
+                      fontSize="xl"
+                      className={calculateLines("discutido")}
                     >
-                      <Text
-                        fontWeight={600}
-                        fontSize="xl"
-                        className={calculateLines("discutido")}
+                      {trend.title}
+                    </Text>
+                    {trend.amount && (
+                      <Badge
+                        className="one-max-line"
+                        width="fit-content"
+                        fontSize="xs"
+                        textTransform="uppercase"
+                        variant="outline"
+                        colorScheme="#fff"
+                        border="1px solid #fff"
                       >
-                        {trend.title}
-                      </Text>
-                      {trend.amount && (
-                        <Badge
-                          className="one-max-line"
-                          width="fit-content"
-                          fontSize="xs"
-                          textTransform="uppercase"
-                          variant="outline"
-                          colorScheme="#fff"
-                          border="1px solid #fff"
-                        >
-                          {trend.amount}
-                        </Badge>
-                      )}
-                    </Box>
-                  </a>
+                        {trend.amount}
+                      </Badge>
+                    )}
+                  </Box>
                 </Box>
 
                 <Box
@@ -142,7 +138,7 @@ const TwitterCardDesktop = ({ twitter }) => {
                   bottom={0}
                   right="16px"
                 >
-                  <Menu>
+                  <Menu role="button">
                     <MenuButton
                       isolation="isolate"
                       title="Ver opciones para esta tendencia"
