@@ -76,6 +76,7 @@ const GoogleCardDesktop = ({ google, handleCardClick }) => {
               mb={2}
               alignItems="center"
               role="link"
+              tabIndex={0}
               onClick={handleCardClick}
               cursor="pointer"
               _active={{ boxShadow: "none" }}

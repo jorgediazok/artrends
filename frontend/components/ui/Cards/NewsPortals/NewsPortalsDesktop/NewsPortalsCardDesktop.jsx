@@ -144,6 +144,7 @@ const NewsPortalsCardDesktop = ({ portals, handleCardClick }) => {
                       display={{ base: "none", lg: "flex" }}
                       alignItems="center"
                       key={trend.article}
+                      tabIndex={0}
                       role="link"
                       onClick={handleCardClick}
                       cursor="pointer"
@@ -306,6 +307,7 @@ const NewsPortalsCardDesktop = ({ portals, handleCardClick }) => {
                       display={{ base: "none", lg: "flex" }}
                       alignItems="center"
                       key={trend.article}
+                      tabIndex={0}
                       role="link"
                       onClick={handleCardClick}
                       cursor="pointer"
@@ -469,6 +471,7 @@ const NewsPortalsCardDesktop = ({ portals, handleCardClick }) => {
                       alignItems="center"
                       key={trend.article}
                       role="link"
+                      tabIndex={0}
                       onClick={handleCardClick}
                       cursor="pointer"
                       _active={{ boxShadow: "none" }}
@@ -630,6 +633,7 @@ const NewsPortalsCardDesktop = ({ portals, handleCardClick }) => {
                     alignItems="center"
                     key={trend.article}
                     role="link"
+                    tabIndex={0}
                     onClick={handleCardClick}
                     cursor="pointer"
                     _active={{ boxShadow: "none" }}

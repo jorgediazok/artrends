@@ -75,6 +75,7 @@ const TwitterCardDesktop = ({ twitter, handleCardClick }) => {
               mb={2}
               alignItems="center"
               role="link"
+              tabIndex={0}
               onClick={handleCardClick}
               cursor="pointer"
               _hover={{ boxShadow: "none" }}

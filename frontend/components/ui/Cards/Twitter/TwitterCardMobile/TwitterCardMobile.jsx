@@ -76,6 +76,7 @@ const TwitterCardMobile = ({ twitter, twitterSectionRef, handleCardClick }) => {
               p="8px 16px"
               boxShadow={theme.shadows["inner-card"]}
               role="link"
+              tabIndex={0}
               data-link={trend.link}
               _active={{ boxShadow: "none" }}
               transition="300ms all ease"

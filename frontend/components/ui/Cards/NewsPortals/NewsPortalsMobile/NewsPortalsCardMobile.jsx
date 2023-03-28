@@ -157,7 +157,7 @@ const NewsPortalsCardMobile = ({ portals, handleCardClick }) => {
                       key={trend.article}
                       boxShadow={theme.shadows["inner-card"]}
                       role="link"
-                      data-link={trend.link}
+                      tabIndex={0}
                       _active={{ boxShadow: "none" }}
                       transition="300ms all ease"
                       onClick={handleCardClick}
@@ -340,6 +340,7 @@ const NewsPortalsCardMobile = ({ portals, handleCardClick }) => {
                       key={trend.article}
                       boxShadow={theme.shadows["inner-card"]}
                       role="link"
+                      tabIndex={0}
                       data-link={trend.link}
                       _active={{ boxShadow: "none" }}
                       transition="300ms all ease"
@@ -523,6 +524,7 @@ const NewsPortalsCardMobile = ({ portals, handleCardClick }) => {
                       key={trend.article}
                       boxShadow={theme.shadows["inner-card"]}
                       role="link"
+                      tabIndex={0}
                       data-link={trend.link}
                       _active={{ boxShadow: "none" }}
                       transition="300ms all ease"
@@ -705,6 +707,7 @@ const NewsPortalsCardMobile = ({ portals, handleCardClick }) => {
                     key={trend.article}
                     boxShadow={theme.shadows["inner-card"]}
                     role="link"
+                    tabIndex={0}
                     data-link={trend.link}
                     _active={{ boxShadow: "none" }}
                     transition="300ms all ease"
@@ -886,6 +889,7 @@ const NewsPortalsCardMobile = ({ portals, handleCardClick }) => {
                       key={trend.article}
                       boxShadow={theme.shadows["inner-card"]}
                       role="link"
+                      tabIndex={0}
                       data-link={trend.link}
                       _active={{ boxShadow: "none" }}
                       transition="300ms all ease"
