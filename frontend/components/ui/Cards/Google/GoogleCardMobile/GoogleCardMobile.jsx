@@ -72,6 +72,7 @@ const GoogleCardMobile = ({ google, handleCardClick }) => {
               p="8px 16px"
               key={trend.title}
               role="link"
+              tabIndex={0}
               onClick={handleCardClick}
               cursor="pointer"
               _active={{ boxShadow: "none" }}

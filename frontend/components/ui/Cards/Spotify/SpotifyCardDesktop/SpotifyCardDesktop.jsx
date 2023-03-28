@@ -128,6 +128,7 @@ const SpotifyCardDesktop = ({
                     alignItems="center"
                     key={trend.name}
                     role="link"
+                    tabIndex={0}
                     onClick={handleCardClick}
                     cursor="pointer"
                     _active={{ boxShadow: "none" }}

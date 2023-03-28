@@ -88,6 +88,7 @@ const YoutubeCardDesktop = ({ youtube }) => {
               alignItems="center"
               key={trend.title}
               role="link"
+              tabIndex={0}
               onClick={e => handleCardClick(e, trend.link)}
               cursor="pointer"
               _active={{ boxShadow: "none" }}
