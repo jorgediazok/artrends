@@ -27,7 +27,7 @@ const SobreLasTendencias = () => {
           name="keywords"
           content="trends, tendencias, argentina, tt, trending topics, google, qué buscan argentinos en google, ranking de canciones, ranking de artistas, ranking de podcasts, intereses de los argentinos, portales de noticias, twitter argentina, noticias de Argentina, intereses de argentinos, spotify argentina, youtubers argentinos, youtube argentina, lo más leído, lo más buscado, lo más escuchado, lo más visto."
         />
-        <meta name="canonical" content="https://frontend.artrends.ar" />
+        <meta name="canonical" content="https://artrends.ar" />
         <meta name="robots" content="index follow" />
         <meta
           property="og:title"
@@ -37,12 +37,9 @@ const SobreLasTendencias = () => {
           property="og:description"
           content="Enterate rápido y en un sólo lugar qué les interesa ahora a los argentinos. Tendencias de Twitter, lo más buscado en Google, lo más visto en Youtube, lo más escuchado en Spotify, lo más leído en portales de noticias y más."
         />
-        <meta property="og:url" content="https://frontend.artrends.ar" />
+        <meta property="og:url" content="https://artrends.ar" />
         <meta property="og:site_name" content="Artrends" />
-        <meta
-          property="og:image"
-          content="https://frontend.artrends.ar/og_image.png"
-        />
+        <meta property="og:image" content="https://artrends.ar/og_image.png" />
         <link rel="icon" href="/favicon.ico" />
       </NextHead>
 
