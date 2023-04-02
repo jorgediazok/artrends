@@ -124,7 +124,7 @@ export default function Home() {
         <title>
           Artrends | Lo que nos interesa a los argentinos en un sólo lugar
         </title>
-        <Partytown debug={true} forward={["dataLayer.push"]} />
+        <Partytown forward={["dataLayer.push"]} />
 
         <NextScript
           strategy="worker"

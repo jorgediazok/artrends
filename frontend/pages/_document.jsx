@@ -7,7 +7,6 @@ class MyDocument extends Document {
         <Head />
         <body>
           <Main />
-          <NextScript />
           <script
             data-partytown-config
             dangerouslySetInnerHTML={{
@@ -20,6 +19,7 @@ class MyDocument extends Document {
             }}
           />
         </body>
+        <NextScript />
       </Html>
     );
   }
