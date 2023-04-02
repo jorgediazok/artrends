@@ -4,6 +4,7 @@ const nextConfig = {
   experimental: {
     images: {
       allowFutureImage: true,
+      nextScriptWorkers: true,
     },
   },
 };

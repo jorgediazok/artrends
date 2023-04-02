@@ -1,7 +1,10 @@
 import { useEffect, useState } from "react";
 import NextHead from "next/head";
+import NextScript from "next/script";
+
 import { useQuery, QueryClient, dehydrate } from "@tanstack/react-query";
 import { useInView } from "react-intersection-observer";
+import { Partytown } from "@builder.io/partytown/react";
 
 // Charka UI
 import { Box, Container } from "@chakra-ui/react";
@@ -121,6 +124,26 @@ export default function Home() {
         <title>
           Artrends | Lo que nos interesa a los argentinos en un sólo lugar
         </title>
+        <Partytown debug={true} forward={["dataLayer.push"]} />
+
+        <NextScript
+          strategy="worker"
+          src="https://www.googletagmanager.com/gtag/js?id=G-QBCR84SD6G"
+        ></NextScript>
+        <script
+          type="text/partytown"
+          dangerouslySetInnerHTML={{
+            __html: `
+            window.dataLayer = window.dataLayer || [];
+            window.gtag = function gtag(){window.dataLayer.push(arguments);}
+            gtag('js', new Date());
+
+            gtag('config', 'G-QBCR84SD6G', { 
+                page_path: window.location.pathname,
+            });
+        `,
+          }}
+        />
         <meta
           name="description"
           content="Enterate rápido y en un sólo lugar qué les interesa ahora a los argentinos. Tendencias de Twitter, lo más buscado en Google, lo más visto en Youtube, lo más escuchado en Spotify, lo más leído en portales de noticias y más."
