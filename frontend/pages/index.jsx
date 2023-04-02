@@ -1,10 +1,10 @@
 import { useEffect, useState } from "react";
+import { Partytown } from "@builder.io/partytown/react";
 import NextHead from "next/head";
 import NextScript from "next/script";
 
 import { useQuery, QueryClient, dehydrate } from "@tanstack/react-query";
 import { useInView } from "react-intersection-observer";
-import { Partytown } from "@builder.io/partytown/react";
 
 // Charka UI
 import { Box, Container } from "@chakra-ui/react";
@@ -124,12 +124,12 @@ export default function Home() {
         <title>
           Artrends | Lo que nos interesa a los argentinos en un sólo lugar
         </title>
-        <Partytown forward={["dataLayer.push"]} />
+        <Partytown debug={true} forward={["dataLayer.push"]} />
 
-        <NextScript
-          strategy="worker"
+        <script
+          type="text/partytown"
           src="https://www.googletagmanager.com/gtag/js?id=G-QBCR84SD6G"
-        ></NextScript>
+        ></script>
         <script
           type="text/partytown"
           dangerouslySetInnerHTML={{
