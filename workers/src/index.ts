@@ -187,11 +187,11 @@ async function bootstrap() {
 	/* Get portals top articles cron - At 44 every hour */
 	schedule("44 * * * *", () => portalsMostReadArticles(db));
 
-	/* Get Spotify top songs and artists cron - At 3:30 every sunday */
-	schedule("30 3 * * Sun", () => spotifyTopSongsAndArtistsScraper(db));
+	/* Get Spotify top songs and artists cron - At 3:30 every Wednesay */
+	schedule("30 3 * * Wed", () => spotifyTopSongsAndArtistsScraper(db));
 
-	/* Get Spotify top pocasts cron - At 3:50 every sunday */
-	schedule("50 3 * * Sun", () => spotifyTopPodcasts(db));
+	/* Get Spotify top pocasts cron - At 3:50 every Wednesday */
+	schedule("50 3 * * Wed", () => spotifyTopPodcasts(db));
 
 	console.log("Worker started succesfully, waiting for jobs...");
 }
