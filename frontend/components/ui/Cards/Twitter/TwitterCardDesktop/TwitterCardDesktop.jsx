@@ -125,7 +125,7 @@ const TwitterCardDesktop = ({ twitter, handleCardClick }) => {
                         colorScheme="#fff"
                         border="1px solid #fff"
                       >
-                        {trend.amount}
+                        {trend.amount.replace(",", ".")}
                       </Badge>
                     )}
                   </Box>

@@ -202,7 +202,7 @@ const TwitterCardMobile = ({ twitter, twitterSectionRef, handleCardClick }) => {
                         colorScheme="#fff"
                         border="1px solid #fff"
                       >
-                        {trend.amount}
+                        {trend.amount.replace(",", ".")}
                       </Badge>
                     )}
                   </Box>
