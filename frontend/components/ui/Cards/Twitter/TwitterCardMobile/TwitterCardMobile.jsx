@@ -192,20 +192,19 @@ const TwitterCardMobile = ({ twitter, twitterSectionRef, handleCardClick }) => {
                   height="100%"
                 >
                   <Box maxWidth="80%" display="revert">
-                    {trend.amount &&
-                      !trend.amount.includes("with Argentina") && (
-                        <Badge
-                          className="one-max-line"
-                          width="fit-content"
-                          fontSize="xs"
-                          textTransform="uppercase"
-                          variant="outline"
-                          colorScheme="#fff"
-                          border="1px solid #fff"
-                        >
-                          {trend.amount}
-                        </Badge>
-                      )}
+                    {trend.amount && !trend.amount.includes("trending") && (
+                      <Badge
+                        className="one-max-line"
+                        width="fit-content"
+                        fontSize="xs"
+                        textTransform="uppercase"
+                        variant="outline"
+                        colorScheme="#fff"
+                        border="1px solid #fff"
+                      >
+                        {trend.amount}
+                      </Badge>
+                    )}
                   </Box>
 
                   <Box
