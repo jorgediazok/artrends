@@ -17,9 +17,10 @@ const ErrorCardMobile = () => {
       <Box
         color={theme.colors.white[500]}
         bg={theme.colors.gradients["grad-cards"]}
-        border="1px"
-        borderColor={theme.colors.cyan[150]}
-        borderRadius={theme.radius.md}
+        border="0.5px solid"
+        borderColor="rgba(255, 255, 255, 0.1);"
+        borderRadius={theme.radius.xl}
+        boxShadow={theme.shadows["inner-card"]}
         width="100%"
         height="114px"
         display="flex"

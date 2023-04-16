@@ -26,9 +26,10 @@ const ErrorCardDesktop = () => {
       <Box
         color={theme.colors.white[500]}
         bg={theme.colors.gradients["grad-cards"]}
-        border="1px"
-        borderColor={theme.colors.cyan[200]}
+        border="0.5px solid"
+        borderColor="rgba(255, 255, 255, 0.1);"
         borderRadius={theme.radius.xl}
+        boxShadow={theme.shadows["inner-card"]}
         paddingX="20px"
         paddingY="12px"
         width="920px"

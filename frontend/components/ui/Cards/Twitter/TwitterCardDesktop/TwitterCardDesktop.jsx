@@ -31,7 +31,7 @@ import ErrorCardDesktop from "../../ErrorCard/ErrorCardDesktop/ErrorCardDesktop"
 // Theme
 import theme from "../../../../../styles/theme";
 
-const TwitterCardDesktop = ({ twitter, handleCardClick }) => {
+const TwitterCardDesktop = ({ handleCardClick }) => {
   const hasData =
     twitter?.current?.record?.trends?.length &&
     twitter.current.record.trends.length > 0;
