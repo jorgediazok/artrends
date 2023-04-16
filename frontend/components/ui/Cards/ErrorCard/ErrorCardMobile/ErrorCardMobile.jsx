@@ -11,13 +11,12 @@ import FolderSixMobile from "../../../icons/FolderSixMobile";
 // Theme
 import theme from "../../../../../styles/theme";
 
-
 const ErrorCardMobile = () => {
   return (
     <Flex width="100%" alignContent="space-between" alignItems="center">
       <Box
         color={theme.colors.white[500]}
-        bg={theme.colors.indigo[800]}
+        bg={theme.colors.gradients["grad-cards"]}
         border="1px"
         borderColor={theme.colors.cyan[150]}
         borderRadius={theme.radius.md}

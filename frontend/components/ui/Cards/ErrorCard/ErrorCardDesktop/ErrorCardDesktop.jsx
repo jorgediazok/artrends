@@ -25,7 +25,7 @@ const ErrorCardDesktop = () => {
     >
       <Box
         color={theme.colors.white[500]}
-        bg={theme.colors.indigo[800]}
+        bg={theme.colors.gradients["grad-cards"]}
         border="1px"
         borderColor={theme.colors.cyan[200]}
         borderRadius={theme.radius.xl}
