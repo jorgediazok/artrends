@@ -15,10 +15,7 @@ const SobreLasTendencias = () => {
   return (
     <>
       <NextHead>
-        <title>
-          Artrends | Contacto | Lo que nos interesa a los argentinos en un sólo
-          lugar
-        </title>
+        <title>Artrends | Sobre la tendencias</title>
         <meta
           name="description"
           content="Enterate rápido y en un sólo lugar qué les interesa ahora a los argentinos. Tendencias de Twitter, lo más buscado en Google, lo más visto en Youtube, lo más escuchado en Spotify, lo más leído en portales de noticias y más."
@@ -29,10 +26,7 @@ const SobreLasTendencias = () => {
         />
         <meta name="canonical" content="https://artrends.ar" />
         <meta name="robots" content="index follow" />
-        <meta
-          property="og:title"
-          content="Artrends | Contacto | Lo que nos interesa a los argentinos en un sólo lugar"
-        />
+        <meta property="og:title" content="Artrends | Sobre las tendencias" />
         <meta
           property="og:description"
           content="Enterate rápido y en un sólo lugar qué les interesa ahora a los argentinos. Tendencias de Twitter, lo más buscado en Google, lo más visto en Youtube, lo más escuchado en Spotify, lo más leído en portales de noticias y más."
