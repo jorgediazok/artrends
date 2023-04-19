@@ -1,4 +1,4 @@
-import { useLayoutEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { Partytown } from "@builder.io/partytown/react";
 import NextHead from "next/head";
 
