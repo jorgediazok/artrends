@@ -184,7 +184,7 @@ export default function Home() {
           base: theme.colors.gradients["background-home-mobile"],
           lg: theme.colors.gradients["background-home-desktop"],
         }}
-        pt={{ base: "220px", lg: "128px" }}
+        pt={{ base: "16px", lg: "64px" }}
       >
         <Container
           maxW="container.lg"

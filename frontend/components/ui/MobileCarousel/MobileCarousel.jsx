@@ -1,5 +1,3 @@
-//Utils
-
 // Icons
 import Discutido from "../icons/CarouselDiscutido";
 import Escuchado from "../icons/CarouselEscuchado";
@@ -50,8 +48,8 @@ export default function MobileCarousel({ activeSectionIndex }) {
     <Box
       display={{ base: "flex", lg: "none" }}
       position="relative"
-      top="16px"
       pt="16px"
+      pb="32px"
       maxWidth="100%"
       className={styles.container}
       as="ul"
