@@ -174,7 +174,7 @@ ul {
 }
 
 @media screen and (min-width: 1110px) {
-  body {
+  html {
     scroll-behavior: smooth;
   }
 
