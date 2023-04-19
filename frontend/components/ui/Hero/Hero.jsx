@@ -20,6 +20,7 @@ export default function Hero() {
       overflow="hidden"
       w="100%"
       height="70%"
+      maxHeight="620px"
     >
       <Flex
         direction="column"

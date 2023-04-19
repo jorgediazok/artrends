@@ -58,6 +58,18 @@ const Navbar = ({ activeSectionIndex, hasCarrousel, hasNavItems = true }) => {
         </Flex>
 
         {hasCarrousel && (
+          <Text
+            display={{ base: "block", lg: "none" }}
+            fontSize="18px"
+            color="#fff"
+            fontWeight="bold"
+            pt="16px"
+          >
+            Lista de Tendencias en Argentina
+          </Text>
+        )}
+
+        {hasCarrousel && (
           <MobileCarousel activeSectionIndex={activeSectionIndex} />
         )}
       </Flex>
