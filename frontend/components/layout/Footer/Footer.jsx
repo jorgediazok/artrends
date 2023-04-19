@@ -37,7 +37,7 @@ const Footer = () => {
         />
         <Box
           marginTop="31px"
-          gap="26px"
+          gap="20px"
           display="flex"
           justifyContent="center"
           flexDirection="column"

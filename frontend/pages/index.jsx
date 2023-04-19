@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react";
 import { Partytown } from "@builder.io/partytown/react";
 import NextHead from "next/head";
-import NextScript from "next/script";
 
 import { useQuery, QueryClient, dehydrate } from "@tanstack/react-query";
 import { useInView } from "react-intersection-observer";

@@ -21,7 +21,6 @@
 html,
 body {
   height: 100%;
-  scroll-behavior: smooth;
   font-family: var(--chakra-fonts-body) !important;
 }
 /*
@@ -175,6 +174,10 @@ ul {
 }
 
 @media screen and (min-width: 1110px) {
+  body {
+    scroll-behavior: smooth;
+  }
+
   .same {
     right: 12px;
   }
