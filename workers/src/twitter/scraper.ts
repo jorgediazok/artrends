@@ -12,10 +12,13 @@ export const getTwitterTrendingTopics = async (
 		headless: true,
 		chromiumSandbox: true,
 	});
-	const page = await browser.newPage();
+	const page = await browser.newPage({
+		userAgent:
+			"Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_6) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/14.1 Safari/605.1.15",
+	});
 	await page.goto(url);
 
-	await page.waitForTimeout(3000);
+	await page.waitForTimeout(5000);
 
 	/* Titles */
 	const trendsTitles = await (

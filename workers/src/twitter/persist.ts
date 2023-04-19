@@ -8,7 +8,7 @@ export default async function persistTwitterTrends(
 	db: Db
 ) {
 	try {
-		console.log("Trying to persist Twitter data...");
+		console.log("Trying to persist Twitter data...", { dataToPersist });
 
 		const res = await db
 			.collection<{
