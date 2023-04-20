@@ -179,7 +179,7 @@ async function bootstrap() {
 	schedule("11 * * * *", () => googleTrendsScraper(db));
 
 	/* Get Twitter trends cron - At 22 mins of every hour */
-	schedule("22 * * * *", () => twitterTrendingTopicsScraper(db));
+	schedule("21 * * * *", () => twitterTrendingTopicsScraper(db));
 
 	/* Get Youtube trends cron - At 33 mins every two hours */
 	schedule("0 33 */2 * * *", () => youtubeTopVideos(db));
