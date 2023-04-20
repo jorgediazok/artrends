@@ -1,8 +1,5 @@
 import { chromium } from "playwright";
 
-// Utils
-import translateTweetsToSpanish from "../utils/translateTweetAmount";
-
 export const getTwitterTrendingTopics = async (
 	url: string,
 	itemLimit: number
@@ -19,24 +16,28 @@ export const getTwitterTrendingTopics = async (
 
 	/* Titles */
 	const trendsTitles = await (
-		await page
-			.locator("div[data-testid='cellInnerDiv'] .r-b88u0q")
-			.allInnerTexts()
+		await page.locator(".trend-card .trend-card__list a").allInnerTexts()
 	).slice(0, itemLimit);
 
 	/* Links */
-	const trendsLinks = trendsTitles.map(title => {
-		return `https://twitter.com/search?q=${encodeURIComponent(title)}`;
-	});
+	const linkLocator = await page.locator(".trend-card .trend-card__list a");
+	const trendsLinks = await linkLocator.evaluateAll(
+		(list, { itemLimit }) => {
+			return list
+				.map(linkElement => `${linkElement.getAttribute("href")}`)
+				.slice(0, itemLimit);
+		},
+		{ url, itemLimit }
+	);
 
-	/* Tweets */
+	/* Searches */
 	const tweets = await (
 		await page
-			.locator("div[data-testid='trend'] > div > div:nth-child(3)")
+			.locator(".trend-card .trend-card__list .tweet-count")
 			.allInnerTexts()
 	)
 		.slice(0, itemLimit)
-		.map(twAmount => translateTweetsToSpanish(twAmount));
+		.map(tweet => tweet.replace("K", " mil"));
 
 	await page.close();
 	await browser.close();
