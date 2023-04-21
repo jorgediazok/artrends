@@ -224,8 +224,8 @@ export default function Home() {
             ref={spotifySectionRef}
             paddingY={{ base: `${offset.mobile}px`, lg: `${offset.desktop}px` }}
             marginY={{
-              base: `${-offset.mobile}px`,
-              lg: `${-offset.desktop}px`,
+              base: `${-offset.mobile + 24}px`,
+              lg: `${-offset.desktop + 24}px`,
             }}
           >
             <SectionTitle title="Lo más escuchado en Spotify" />
@@ -250,8 +250,8 @@ export default function Home() {
             id="youtube"
             paddingY={{ base: `${offset.mobile}px`, lg: `${offset.desktop}px` }}
             marginY={{
-              base: `${-offset.mobile}px`,
-              lg: `${-offset.desktop}px`,
+              base: `${-offset.mobile + 24}px`,
+              lg: `${-offset.desktop + 24}px`,
             }}
           >
             <SectionTitle title="Lo más visto en Youtube" />
@@ -266,8 +266,8 @@ export default function Home() {
             id="google"
             paddingY={{ base: `${offset.mobile}px`, lg: `${offset.desktop}px` }}
             marginY={{
-              base: `${-offset.mobile}px`,
-              lg: `${-offset.desktop}px`,
+              base: `${-offset.mobile + 24}px`,
+              lg: `${-offset.desktop + 24}px`,
             }}
           >
             <SectionTitle title="Lo más buscado en Google" />
@@ -290,8 +290,8 @@ export default function Home() {
             id="portals"
             paddingY={{ base: `${offset.mobile}px`, lg: `${offset.desktop}px` }}
             marginY={{
-              base: `${-offset.mobile}px`,
-              lg: `${-offset.desktop}px`,
+              base: `${-offset.mobile + 24}px`,
+              lg: `${-offset.desktop + 24}px`,
             }}
           >
             <SectionTitle title="Las noticias más leídas" id="portals" />
