@@ -157,7 +157,7 @@ export const getPortalsMostRead = async (
 		).slice(0, itemLimit);
 
 		const laNacionLinkLocator = await laNacion.locator(
-			'[data-module="tema_ranking"] article section.mod-description a'
+			'[data-module="tema_ranking"] article a'
 		);
 
 		const laNacionArticleLinks = await laNacionLinkLocator.evaluateAll(
