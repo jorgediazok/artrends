@@ -122,7 +122,7 @@ const TwitterCardMobile = ({ twitter, twitterSectionRef, handleCardClick }) => {
                         <MenuList
                           maxWidth="162px"
                           minWidth="162px"
-                          backgroundColor="purple.500"
+                          backgroundColor="indigo.600"
                           borderRadius="6px"
                           padding="6px 0px"
                           zIndex="10"
@@ -130,7 +130,7 @@ const TwitterCardMobile = ({ twitter, twitterSectionRef, handleCardClick }) => {
                           border="none"
                         >
                           <MenuItem
-                            backgroundColor="purple.500"
+                            backgroundColor="indigo.600"
                             color="#FFFFFF"
                             as="a"
                             fontSize="md"
@@ -155,7 +155,7 @@ const TwitterCardMobile = ({ twitter, twitterSectionRef, handleCardClick }) => {
                             Compartir por
                           </MenuItem>
                           <MenuItem
-                            backgroundColor="purple.500"
+                            backgroundColor="indigo.600"
                             color="#FFFFFF"
                             as="a"
                             fontSize="md"

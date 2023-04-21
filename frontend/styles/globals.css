@@ -89,10 +89,14 @@ ul {
 }
 
 /*
-10. Remove unwanted Chakra default
+10. Remove unwanted Chakra defaults
 */
 .chakra-tabs__tab-panels > * {
   padding: 0 !important;
+}
+
+a span {
+  margin-inline-end: 0 !important;
 }
 
 /*

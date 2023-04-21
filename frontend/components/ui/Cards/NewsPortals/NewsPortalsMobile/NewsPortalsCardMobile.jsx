@@ -215,7 +215,7 @@ const NewsPortalsCardMobile = ({ portals, handleCardClick }) => {
                               <MenuList
                                 maxWidth="162px"
                                 minWidth="162px"
-                                backgroundColor="purple.500"
+                                backgroundColor="indigo.600"
                                 borderRadius="6px"
                                 padding="6px 0px"
                                 zIndex="10"
@@ -223,7 +223,7 @@ const NewsPortalsCardMobile = ({ portals, handleCardClick }) => {
                                 border="none"
                               >
                                 <MenuItem
-                                  backgroundColor="purple.500"
+                                  backgroundColor="indigo.600"
                                   color="#FFFFFF"
                                   as="a"
                                   fontSize="md"
@@ -248,7 +248,7 @@ const NewsPortalsCardMobile = ({ portals, handleCardClick }) => {
                                   Compartir por
                                 </MenuItem>
                                 <MenuItem
-                                  backgroundColor="purple.500"
+                                  backgroundColor="indigo.600"
                                   color="#FFFFFF"
                                   as="a"
                                   fontSize="md"
@@ -399,7 +399,7 @@ const NewsPortalsCardMobile = ({ portals, handleCardClick }) => {
                               <MenuList
                                 maxWidth="162px"
                                 minWidth="162px"
-                                backgroundColor="purple.500"
+                                backgroundColor="indigo.600"
                                 borderRadius="6px"
                                 padding="6px 0px"
                                 zIndex="10"
@@ -407,7 +407,7 @@ const NewsPortalsCardMobile = ({ portals, handleCardClick }) => {
                                 border="none"
                               >
                                 <MenuItem
-                                  backgroundColor="purple.500"
+                                  backgroundColor="indigo.600"
                                   color="#FFFFFF"
                                   as="a"
                                   fontSize="md"
@@ -432,7 +432,7 @@ const NewsPortalsCardMobile = ({ portals, handleCardClick }) => {
                                   Compartir por
                                 </MenuItem>
                                 <MenuItem
-                                  backgroundColor="purple.500"
+                                  backgroundColor="indigo.600"
                                   color="#FFFFFF"
                                   as="a"
                                   fontSize="md"
@@ -583,7 +583,7 @@ const NewsPortalsCardMobile = ({ portals, handleCardClick }) => {
                               <MenuList
                                 maxWidth="162px"
                                 minWidth="162px"
-                                backgroundColor="purple.500"
+                                backgroundColor="indigo.600"
                                 borderRadius="6px"
                                 padding="6px 0px"
                                 zIndex="10"
@@ -591,7 +591,7 @@ const NewsPortalsCardMobile = ({ portals, handleCardClick }) => {
                                 border="none"
                               >
                                 <MenuItem
-                                  backgroundColor="purple.500"
+                                  backgroundColor="indigo.600"
                                   color="#FFFFFF"
                                   as="a"
                                   fontSize="md"
@@ -616,7 +616,7 @@ const NewsPortalsCardMobile = ({ portals, handleCardClick }) => {
                                   Compartir por
                                 </MenuItem>
                                 <MenuItem
-                                  backgroundColor="purple.500"
+                                  backgroundColor="indigo.600"
                                   color="#FFFFFF"
                                   as="a"
                                   fontSize="md"
@@ -766,7 +766,7 @@ const NewsPortalsCardMobile = ({ portals, handleCardClick }) => {
                             <MenuList
                               maxWidth="162px"
                               minWidth="162px"
-                              backgroundColor="purple.500"
+                              backgroundColor="indigo.600"
                               borderRadius="6px"
                               padding="6px 0px"
                               zIndex="10"
@@ -774,7 +774,7 @@ const NewsPortalsCardMobile = ({ portals, handleCardClick }) => {
                               border="none"
                             >
                               <MenuItem
-                                backgroundColor="purple.500"
+                                backgroundColor="indigo.600"
                                 color="#FFFFFF"
                                 as="a"
                                 fontSize="md"
@@ -799,7 +799,7 @@ const NewsPortalsCardMobile = ({ portals, handleCardClick }) => {
                                 Compartir por
                               </MenuItem>
                               <MenuItem
-                                backgroundColor="purple.500"
+                                backgroundColor="indigo.600"
                                 color="#FFFFFF"
                                 as="a"
                                 fontSize="md"
@@ -948,7 +948,7 @@ const NewsPortalsCardMobile = ({ portals, handleCardClick }) => {
                               <MenuList
                                 maxWidth="162px"
                                 minWidth="162px"
-                                backgroundColor="purple.500"
+                                backgroundColor="indigo.600"
                                 borderRadius="6px"
                                 padding="6px 0px"
                                 zIndex="10"
@@ -956,7 +956,7 @@ const NewsPortalsCardMobile = ({ portals, handleCardClick }) => {
                                 border="none"
                               >
                                 <MenuItem
-                                  backgroundColor="purple.500"
+                                  backgroundColor="indigo.600"
                                   color="#FFFFFF"
                                   as="a"
                                   fontSize="md"
@@ -981,7 +981,7 @@ const NewsPortalsCardMobile = ({ portals, handleCardClick }) => {
                                   Compartir por
                                 </MenuItem>
                                 <MenuItem
-                                  backgroundColor="purple.500"
+                                  backgroundColor="indigo.600"
                                   color="#FFFFFF"
                                   as="a"
                                   fontSize="md"

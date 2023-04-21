@@ -145,7 +145,7 @@ const GoogleCardDesktop = ({ google, handleCardClick }) => {
                     <MenuList
                       maxWidth="162px"
                       minWidth="162px"
-                      backgroundColor="purple.500"
+                      backgroundColor="indigo.600"
                       borderRadius="6px"
                       padding="6px 0px"
                       zIndex="10"
@@ -153,7 +153,7 @@ const GoogleCardDesktop = ({ google, handleCardClick }) => {
                       border="none"
                     >
                       <MenuItem
-                        backgroundColor="purple.500"
+                        backgroundColor="indigo.600"
                         color="#FFFFFF"
                         as="a"
                         fontSize="md"
@@ -177,7 +177,7 @@ const GoogleCardDesktop = ({ google, handleCardClick }) => {
                         Compartir por
                       </MenuItem>
                       <MenuItem
-                        backgroundColor="purple.500"
+                        backgroundColor="indigo.600"
                         color="#FFFFFF"
                         as="a"
                         fontSize="md"

@@ -163,7 +163,7 @@ const YoutubeCardDesktop = ({ youtube }) => {
                     <MenuList
                       maxWidth="162px"
                       minWidth="162px"
-                      backgroundColor="purple.500"
+                      backgroundColor="indigo.600"
                       borderRadius="6px"
                       padding="6px 0px"
                       zIndex="10"
@@ -171,7 +171,7 @@ const YoutubeCardDesktop = ({ youtube }) => {
                       border="none"
                     >
                       <MenuItem
-                        backgroundColor="purple.500"
+                        backgroundColor="indigo.600"
                         color="#FFFFFF"
                         as="a"
                         fontSize="md"
@@ -195,7 +195,7 @@ const YoutubeCardDesktop = ({ youtube }) => {
                         Compartir por
                       </MenuItem>
                       <MenuItem
-                        backgroundColor="purple.500"
+                        backgroundColor="indigo.600"
                         color="#FFFFFF"
                         as="a"
                         fontSize="md"

@@ -161,7 +161,7 @@ const SpotifyCardMobile = ({
                               <MenuList
                                 maxWidth="162px"
                                 minWidth="162px"
-                                backgroundColor="purple.500"
+                                backgroundColor="indigo.600"
                                 borderRadius="6px"
                                 padding="6px 0px"
                                 zIndex="10"
@@ -169,7 +169,7 @@ const SpotifyCardMobile = ({
                                 border="none"
                               >
                                 <MenuItem
-                                  backgroundColor="purple.500"
+                                  backgroundColor="indigo.600"
                                   color="#FFFFFF"
                                   as="a"
                                   fontSize="md"
@@ -193,7 +193,7 @@ const SpotifyCardMobile = ({
                                   Compartir por
                                 </MenuItem>
                                 <MenuItem
-                                  backgroundColor="purple.500"
+                                  backgroundColor="indigo.600"
                                   color="#FFFFFF"
                                   as="a"
                                   fontSize="md"
@@ -367,7 +367,7 @@ const SpotifyCardMobile = ({
                               <MenuList
                                 maxWidth="162px"
                                 minWidth="162px"
-                                backgroundColor="purple.500"
+                                backgroundColor="indigo.600"
                                 borderRadius="6px"
                                 padding="6px 0px"
                                 zIndex="10"
@@ -375,7 +375,7 @@ const SpotifyCardMobile = ({
                                 border="none"
                               >
                                 <MenuItem
-                                  backgroundColor="purple.500"
+                                  backgroundColor="indigo.600"
                                   color="#FFFFFF"
                                   as="a"
                                   fontSize="md"
@@ -399,7 +399,7 @@ const SpotifyCardMobile = ({
                                   Compartir por
                                 </MenuItem>
                                 <MenuItem
-                                  backgroundColor="purple.500"
+                                  backgroundColor="indigo.600"
                                   color="#FFFFFF"
                                   as="a"
                                   fontSize="md"
@@ -575,7 +575,7 @@ const SpotifyCardMobile = ({
                                 <MenuList
                                   maxWidth="162px"
                                   minWidth="162px"
-                                  backgroundColor="purple.500"
+                                  backgroundColor="indigo.600"
                                   borderRadius="6px"
                                   padding="6px 0px"
                                   zIndex="10"
@@ -583,7 +583,7 @@ const SpotifyCardMobile = ({
                                   border="none"
                                 >
                                   <MenuItem
-                                    backgroundColor="purple.500"
+                                    backgroundColor="indigo.600"
                                     color="#FFFFFF"
                                     as="a"
                                     fontSize="md"
@@ -607,7 +607,7 @@ const SpotifyCardMobile = ({
                                     Compartir por
                                   </MenuItem>
                                   <MenuItem
-                                    backgroundColor="purple.500"
+                                    backgroundColor="indigo.600"
                                     color="#FFFFFF"
                                     as="a"
                                     fontSize="md"
