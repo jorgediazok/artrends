@@ -2,80 +2,93 @@
 import { Box, Flex, Text } from "@chakra-ui/react";
 import Image from "next/future/image";
 
+// Images
+import FlagMobile from "/public/images/flag-mobile.webp";
+import FlagDesktop from "/public/images/flag-desktop.webp";
+import Argentino from "/public/images/argentino.gif";
+
 // Styles
 import styles from "./Hero.module.css";
 
 export default function Hero() {
   return (
-    <Box
-      pt="132px"
-      justifyContent="center"
-      alignItems="center"
-      display={{ base: "none", lg: "flex" }}
-      bg="#241154"
-      position="relative"
-      width="100%"
-      as="header"
-      id="Hero"
-      overflow="hidden"
-      w="100%"
-      height="70%"
-      maxHeight="620px"
-    >
-      <Flex
-        direction="column"
-        w="70%"
-        h="100%"
-        position="relative"
+    <Box className={styles.hero}>
+      <Box
+        id="flag"
+        className={styles["flag-container"]}
+        p={{ base: "16px", md: "32px" }}
+        display="flex"
+        flexDirection="column"
         justifyContent="center"
-        alignItems="center"
       >
         <Image
-          src="/images/chart.png"
-          alt="Imágen de fondo"
-          aria-hidden
-          layout="fill"
-          width={1095}
-          height={792}
-          className={styles.chart}
+          className={styles["flag-image-mobile"]}
+          src={FlagMobile.src}
+          alt=""
+          width={FlagMobile.width}
+          height={FlagMobile.height}
+          display={{ base: "block", lg: "none" }}
         />
-        <div className={styles.layer} aria-hidden />{" "}
-        <Text
-          as="h1"
-          fontSize="64px"
-          color="white"
-          fontWeight="black"
-          maxW="648px"
-          textAlign="left"
-          position="relative"
-          className={styles.shadow}
-        >
-          ¿En qué piensan los argentinos?
-        </Text>
-        <Text
-          as="p"
-          fontSize="2xl"
-          color="white"
-          maxWidth="552px"
-          fontWeight="semibold"
-          textAlign="left"
-          mt="48px"
-          maxW="648px"
-          position="relative"
-          className={styles.shadow}
-        >
-          Artrends te brinda las listas de tendencias dentro de Argentina en las
-          plataformas más populares.
-        </Text>
-      </Flex>
-
-      <Flex w="30%">
-        <img
-          src="images/argentino.gif"
-          alt="argentino"
-          className={styles.argentino}
+        <Image
+          className={styles["flag-image-desktop"]}
+          src={FlagDesktop.src}
+          alt=""
+          width={FlagDesktop.width}
+          height={FlagDesktop.height}
+          display={{ base: "none", lg: "block" }}
         />
-      </Flex>
+        <Box aria-hidden className={styles.gradient} />
+        <Image
+          src={Argentino.src}
+          alt=""
+          width={Argentino.width}
+          height={Argentino.height}
+          className={styles.argie}
+        />
+        <Box
+          maxW="1280px"
+          as="header"
+          margin="auto"
+          height="100%"
+          display="flex"
+          flexDirection="column"
+          justifyContent="center"
+          gap={{ base: "24px", md: "64px" }}
+        >
+          <Text
+            as="p"
+            fontFamily="montserrat"
+            fontWeight="bold"
+            fontSize={{ base: "24px", md: "48px", lg: "64px" }}
+            color="#fff"
+            position="relative"
+            lineHeight={1.5}
+            zIndex={100}
+            textShadow={{
+              base: "1px 2px 2px #0A0840",
+              md: "2px 3px 3px #0A0840",
+            }}
+            maxW={{ base: "80%", md: "50%", lg: "75%", xl: "50%" }}
+          >
+            DESCUBRÍ EL SENTIR ARGENTINO
+          </Text>
+          <Text
+            as="p"
+            fontFamily="Inter"
+            fontSize={{ base: "14px", md: "20px", lg: "24px" }}
+            color="#fff"
+            position="relative"
+            lineHeight={1.5}
+            zIndex={100}
+            textShadow="1px 2px 2px #0A0840"
+            className={styles.subtitle}
+            fontStyle="italic"
+          >
+            Artrends te acerca lo que expresan y consumen en los medios
+            digitales en este momento.
+          </Text>
+        </Box>
+      </Box>
     </Box>
   );
 }

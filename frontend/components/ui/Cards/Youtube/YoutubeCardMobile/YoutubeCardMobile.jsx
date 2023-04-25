@@ -53,7 +53,7 @@ const YoutubeCardMobile = ({ youtube }) => {
       flexWrap={{ base: "nowrap", lg: "wrap" }}
       flexDirection="column"
       alignContent="space-between"
-      paddingX={{ base: "16px", lg: "0" }}
+      paddingX={{ base: "16px", md: "32px", lg: "0" }}
       maxHeight={{ base: "none", lg: "540px" }}
       alignItems="center"
       display={{ base: "flex", lg: "none" }}

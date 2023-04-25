@@ -65,7 +65,7 @@ const NewsPortalsCardMobile = ({ portals, handleCardClick }) => {
       className="no-padding"
       display={{ base: "block", lg: "none" }}
     >
-      <TabList mb="24px" pl="16px" overflow="auto">
+      <TabList mb="24px" pl={{ base: "16px", md: "32px" }} overflow="auto">
         <Tab
           color="white"
           paddingX="12px"
@@ -123,7 +123,7 @@ const NewsPortalsCardMobile = ({ portals, handleCardClick }) => {
             width="100%"
             flexDirection="column"
             alignContent="space-between"
-            paddingX="16px"
+            paddingX={{ base: "16px", md: "32px" }}
             alignItems="center"
             overflow="auto"
           >
@@ -307,7 +307,7 @@ const NewsPortalsCardMobile = ({ portals, handleCardClick }) => {
             width="100%"
             flexDirection="column"
             alignContent="space-between"
-            paddingX="16px"
+            paddingX={{ base: "16px", md: "32px", lg: 0 }}
             alignItems="center"
           >
             {!hasElDestapeData ? (
@@ -491,7 +491,7 @@ const NewsPortalsCardMobile = ({ portals, handleCardClick }) => {
             width="100%"
             flexDirection="column"
             alignContent="space-between"
-            paddingX={{ base: "16px", lg: "0" }}
+            paddingX={{ base: "16px", md: "32px", lg: 0 }}
             alignItems="center"
           >
             {!hasClarinData ? (
@@ -675,7 +675,7 @@ const NewsPortalsCardMobile = ({ portals, handleCardClick }) => {
             width="100%"
             flexDirection="column"
             alignContent="space-between"
-            paddingX={{ base: "16px", lg: "0" }}
+            paddingX={{ base: "16px", md: "32px", lg: 0 }}
             alignItems="center"
           >
             {!hasTelamData ? (
@@ -856,7 +856,7 @@ const NewsPortalsCardMobile = ({ portals, handleCardClick }) => {
             width="100%"
             flexDirection="column"
             alignContent="space-between"
-            paddingX={{ base: "16px", lg: "0" }}
+            paddingX={{ base: "16px", md: "32px", lg: "0" }}
             alignItems="center"
           >
             {!hasInfobaeData ? (

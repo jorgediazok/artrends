@@ -16,7 +16,7 @@ const SectionTitle = ({ title, id }) => {
       color="white"
       fontWeight="bold"
       alignItems={{ base: "flex-start", lg: "center" }}
-      paddingX={{ base: "16px", lg: "0" }}
+      paddingX={{ base: "16px", md: "32px", lg: "0" }}
       justifyContent={{ base: "flex-start", lg: "space-between" }}
       width="100%"
       flexDirection={{ base: "column", lg: "row" }}
