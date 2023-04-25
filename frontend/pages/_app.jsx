@@ -8,6 +8,7 @@ import { ChakraProvider } from "@chakra-ui/react";
 
 // Assets
 import "@fontsource/inter";
+import "@fontsource/montserrat";
 
 // Styles
 import "../styles/globals.css";

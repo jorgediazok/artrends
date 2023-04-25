@@ -43,7 +43,7 @@ const TwitterCardMobile = ({ twitter, twitterSectionRef, handleCardClick }) => {
       flexWrap={{ base: "nowrap", lg: "wrap" }}
       flexDirection="column"
       alignContent="space-between"
-      paddingX={{ base: "16px", lg: "0" }}
+      paddingX={{ base: "16px", md: "32px" }}
       maxHeight={{ base: "none", lg: "540px" }}
       alignItems="center"
       ref={twitterSectionRef}

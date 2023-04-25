@@ -62,7 +62,7 @@ const SpotifyCardMobile = ({
       className="no-padding"
       display={{ base: "block", lg: "none" }}
     >
-      <TabList mb="24px" pl="16px">
+      <TabList mb="24px" pl={{ base: "16px", md: "32px" }}>
         <Tab color="white" paddingX="12px" paddingY="6px" fontSize="sm">
           Artista
         </Tab>
@@ -79,7 +79,7 @@ const SpotifyCardMobile = ({
             width="100%"
             flexDirection="column"
             alignContent="space-between"
-            paddingX="16px"
+            paddingX={{ base: "16px", md: "32px" }}
             alignItems="center"
             overflow="auto"
           >

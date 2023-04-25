@@ -183,7 +183,7 @@ export default function Home() {
           base: theme.colors.gradients["background-home-mobile"],
           lg: theme.colors.gradients["background-home-desktop"],
         }}
-        pt={{ base: "220px", lg: "128px" }}
+        pt={{ base: "0px", lg: "128px" }}
       >
         <Container
           maxW="container.lg"
@@ -200,8 +200,11 @@ export default function Home() {
             as="section"
             ref={twitterSectionRef}
             id="twitter"
-            paddingY={{ base: `${offset.mobile}px`, lg: `${offset.desktop}px` }}
-            marginY={{
+            paddingBottom={{
+              base: `${offset.mobile}px`,
+              lg: `${offset.desktop}px`,
+            }}
+            marginBottom={{
               base: `${-offset.mobile}px`,
               lg: `${-offset.desktop}px`,
             }}
