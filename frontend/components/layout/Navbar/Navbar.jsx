@@ -16,7 +16,12 @@ import styles from "./Navbar.module.css";
 // Components
 import MobileCarousel from "../../ui/MobileCarousel/MobileCarousel";
 
-const Navbar = ({ activeSectionIndex, hasCarrousel, hasNavItems = true }) => {
+const Navbar = ({
+  activeSectionIndex,
+  hasCarrousel,
+  hasNavItems = true,
+  onCarouselItemPressed,
+}) => {
   return (
     <>
       {/* MOBILE */}
@@ -52,7 +57,7 @@ const Navbar = ({ activeSectionIndex, hasCarrousel, hasNavItems = true }) => {
                 alt="Volver al Inicio"
                 height={27}
                 width={120}
-                quality={100}
+                priority
               />
             </a>
           </NextLink>
@@ -71,7 +76,10 @@ const Navbar = ({ activeSectionIndex, hasCarrousel, hasNavItems = true }) => {
         )}
 
         {hasCarrousel && (
-          <MobileCarousel activeSectionIndex={activeSectionIndex} />
+          <MobileCarousel
+            activeSectionIndex={activeSectionIndex}
+            onCarouselItemPressed={onCarouselItemPressed}
+          />
         )}
       </Flex>
 

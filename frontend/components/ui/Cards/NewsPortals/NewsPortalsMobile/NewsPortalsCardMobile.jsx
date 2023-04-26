@@ -1,5 +1,6 @@
+import React from "react";
+
 import {
-  Badge,
   Box,
   Flex,
   Menu,
@@ -1040,4 +1041,4 @@ const NewsPortalsCardMobile = ({ portals, handleCardClick }) => {
   );
 };
 
-export default NewsPortalsCardMobile;
+export default React.memo(NewsPortalsCardMobile);

@@ -1,3 +1,5 @@
+import React from "react";
+
 import {
   Badge,
   Box,
@@ -691,4 +693,4 @@ const SpotifyCardMobile = ({
   );
 };
 
-export default SpotifyCardMobile;
+export default React.memo(SpotifyCardMobile);

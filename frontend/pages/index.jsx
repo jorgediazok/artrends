@@ -61,6 +61,7 @@ export default function Home() {
 
   const { ref: twitterSectionRef, inView: twitterIsInView } = useInView({
     ...intersectionObserverOptions,
+
     skip: typeof window !== "undefined" && window.innerWidth > 1100,
   });
 
@@ -172,6 +173,7 @@ export default function Home() {
         activeSectionIndex={activeSectionIndex}
         hasSearch={true}
         hasCarrousel={true}
+        onCarouselItemPressed={setActiveSectionIndex}
       />
 
       {/* HERO */}
@@ -200,14 +202,15 @@ export default function Home() {
             as="section"
             ref={twitterSectionRef}
             id="twitter"
-            paddingBottom={{
+            paddingY={{
               base: `${offset.mobile}px`,
               lg: `${offset.desktop}px`,
             }}
-            marginBottom={{
-              base: `${-offset.mobile}px`,
-              lg: `${-offset.desktop}px`,
+            marginY={{
+              base: `${-offset.mobile + 24}px`,
+              lg: `${-offset.desktop + 24}px`,
             }}
+            marginTop={"-164px"}
           >
             <SectionTitle title="Lo más discutido en Twitter" />
             <TwitterCardMobile
