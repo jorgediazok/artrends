@@ -45,7 +45,10 @@ const items = [
   },
 ];
 
-export default function MobileCarousel({ activeSectionIndex }) {
+export default function MobileCarousel({
+  activeSectionIndex,
+  onCarouselItemPressed,
+}) {
   return (
     <Box
       display={{ base: "flex", lg: "none" }}
@@ -58,32 +61,33 @@ export default function MobileCarousel({ activeSectionIndex }) {
     >
       {items.map(({ nombre, to, Icon }, index) => {
         return (
-          <Box
-            as="li"
-            key={nombre}
-            shadow="sm"
-            lineHeight={1.5}
-            textAlign="center"
-            flexDir="column"
-            background={
-              index === activeSectionIndex
-                ? "cyan.200"
-                : theme.colors.gradients["grad-ind-purple-2"]
-            }
-            height="86px"
-            minW="86px"
-            display="flex"
-            justifyContent="center"
-            alignItems="center"
-            px="11px"
-            py="4px"
-            width="max-content"
-            borderRadius="6px"
-            className={index === activeSectionIndex && styles.active}
-            fontWeight={600}
-          >
-            <Icon />
-            <Link href={to}>
+          <Link href={to} key={nombre}>
+            <Box
+              as="li"
+              shadow="sm"
+              lineHeight={1.5}
+              textAlign="center"
+              flexDir="column"
+              background={
+                index === activeSectionIndex
+                  ? "cyan.200"
+                  : theme.colors.gradients["grad-ind-purple-2"]
+              }
+              height="86px"
+              minW="86px"
+              display="flex"
+              justifyContent="center"
+              alignItems="center"
+              px="11px"
+              py="4px"
+              width="max-content"
+              borderRadius="6px"
+              className={index === activeSectionIndex && styles.active}
+              fontWeight={600}
+              onClick={() => onCarouselItemPressed(index)}
+            >
+              <Icon />
+
               <Text
                 as="p"
                 fontSize="sm"
@@ -92,8 +96,8 @@ export default function MobileCarousel({ activeSectionIndex }) {
               >
                 {nombre}
               </Text>
-            </Link>
-          </Box>
+            </Box>
+          </Link>
         );
       })}
     </Box>

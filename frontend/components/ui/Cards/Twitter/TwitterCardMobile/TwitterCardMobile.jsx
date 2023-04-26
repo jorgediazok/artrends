@@ -1,3 +1,5 @@
+import React from "react";
+
 // Chakra
 import {
   Badge,
@@ -235,4 +237,4 @@ const TwitterCardMobile = ({ twitter, twitterSectionRef, handleCardClick }) => {
   );
 };
 
-export default TwitterCardMobile;
+export default React.memo(TwitterCardMobile);

@@ -1,3 +1,5 @@
+import React from "react";
+
 import {
   Badge,
   Box,
@@ -229,4 +231,4 @@ const GoogleCardMobile = ({ google, handleCardClick }) => {
   );
 };
 
-export default GoogleCardMobile;
+export default React.memo(GoogleCardMobile);

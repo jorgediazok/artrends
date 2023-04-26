@@ -1,3 +1,5 @@
+import React from "react";
+
 import {
   Badge,
   Box,
@@ -252,4 +254,4 @@ const YoutubeCardMobile = ({ youtube }) => {
   );
 };
 
-export default YoutubeCardMobile;
+export default React.memo(YoutubeCardMobile);
