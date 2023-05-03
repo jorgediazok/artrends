@@ -1,6 +1,5 @@
 // Chakra
 import { Badge, Box, Text } from "@chakra-ui/react";
-import { scrollOffset } from "../../../utils/scrollOffset";
 
 // Icons
 import Chat from "../icons/Chat";
@@ -16,15 +15,18 @@ const SectionTitle = ({ title, id }) => {
       color="white"
       fontWeight="bold"
       alignItems={{ base: "flex-start", lg: "center" }}
-      paddingX={{ base: "16px", md: "32px", lg: "0" }}
       justifyContent={{ base: "flex-start", lg: "space-between" }}
       width="100%"
       flexDirection={{ base: "column", lg: "row" }}
       id={id}
-      mt="24px"
     >
-      <Box display="flex" gap={3} alignItems="center">
-        <Text fontSize={{ base: "xl", lg: "3xl" }} fontWeight={700} as="h2">
+      <Box display="flex" alignItems="center">
+        <Text
+          fontSize={{ base: "xl", lg: "3xl" }}
+          fontWeight={700}
+          as="h2"
+          mr="24px"
+        >
           {title}
         </Text>
         <Box display={{ base: "none", lg: "initial" }}>
@@ -51,7 +53,7 @@ const SectionTitle = ({ title, id }) => {
         marginBottom={{ base: "24px", lg: "12px" }}
         p="2px 4px"
         fontSize="xs"
-        fontWeight={700}
+        fontWeight="700"
       >
         {title === "Lo más discutido en Twitter" && "Actualizado cada hora"}
         {title === "Lo más escuchado en Spotify" && "Actualizado cada semana"}

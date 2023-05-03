@@ -6,7 +6,7 @@ import { useQuery, QueryClient, dehydrate } from "@tanstack/react-query";
 import { useInView } from "react-intersection-observer";
 
 // Charka UI
-import { Box, Container } from "@chakra-ui/react";
+import { Box, Text } from "@chakra-ui/react";
 
 // API
 import { getTrends } from "../services/services";
@@ -22,6 +22,7 @@ import theme from "../styles/theme";
 import { intersectionObserverOptions } from "../utils/position";
 
 // Components
+import Container from "../components/layout/Container";
 import Hero from "../components/ui/Hero";
 import TwitterCardDesktop from "../components/ui/Cards/Twitter/TwitterCardDesktop/";
 import YoutubeCardDesktop from "../components/ui/Cards/Youtube/YoutubeCardDesktop/";
@@ -179,39 +180,36 @@ export default function Home() {
       {/* HERO */}
       <Hero />
 
-      <Box
-        as="main"
-        background={{
-          base: theme.colors.gradients["background-home-mobile"],
-          lg: theme.colors.gradients["background-home-desktop"],
-        }}
-        pt={{ base: "0px", lg: "128px" }}
-      >
-        <Container
-          maxW="container.lg"
-          display="flex"
-          justifyContent="center"
-          alignItems="center"
-          flexDirection="column"
-          color="white"
-          width="100%"
-          p={0}
+      <Container isContentCentered={false}>
+        <Text
+          as="h1"
+          color="#fff"
+          fontSize="40px"
+          fontWeight="bold"
+          textAlign="left"
+          display={{ base: "none", lg: "block" }}
+          fontFamily="Montserrat"
+          pt="64px"
         >
-          {/* TWITTER */}
-          <Box
-            as="section"
-            ref={twitterSectionRef}
-            id="twitter"
-            paddingY={{
-              base: `${offset.mobile}px`,
-              lg: `${offset.desktop}px`,
-            }}
-            marginY={{
-              base: `${-offset.mobile + 24}px`,
-              lg: `${-offset.desktop + 24}px`,
-            }}
-            marginTop={"-164px"}
-          >
+          Lista de Tendencias en Argentina
+        </Text>
+      </Container>
+
+      <Box as="main">
+        {/* TWITTER */}
+        <Box
+          as="section"
+          ref={twitterSectionRef}
+          id="twitter"
+          background="blue.500"
+          paddingTop={{ base: `${offset.mobile}px`, lg: `${offset.desktop}px` }}
+          marginTop={{
+            base: `${-offset.mobile + 24}px`,
+            lg: `${-offset.desktop + 24}px`,
+          }}
+          bg={theme.colors.gradients["background-gradient-top"]}
+        >
+          <Container>
             <SectionTitle title="Lo más discutido en Twitter" />
             <TwitterCardMobile
               twitter={trends.twitter}
@@ -221,19 +219,22 @@ export default function Home() {
               twitter={trends.twitter}
               handleCardClick={handleCardClick}
             />
-          </Box>
+          </Container>
+        </Box>
 
-          {/* SPOTIFY */}
-          <Box
-            as="section"
-            id="spotify"
-            ref={spotifySectionRef}
-            paddingY={{ base: `${offset.mobile}px`, lg: `${offset.desktop}px` }}
-            marginY={{
-              base: `${-offset.mobile + 24}px`,
-              lg: `${-offset.desktop + 24}px`,
-            }}
-          >
+        {/* SPOTIFY */}
+        <Box
+          as="section"
+          id="spotify"
+          ref={spotifySectionRef}
+          paddingTop={{ base: `${offset.mobile}px`, lg: `${offset.desktop}px` }}
+          marginTop={{
+            base: `${-offset.mobile + 24}px`,
+            lg: `${-offset.desktop + 24}px`,
+          }}
+          background="blue.500"
+        >
+          <Container>
             <SectionTitle title="Lo más escuchado en Spotify" />
             <SpotifyCardMobile
               spotifyArtist={trends.spotifyArtists}
@@ -247,35 +248,42 @@ export default function Home() {
               spotifySong={trends.spotifySongs}
               handleCardClick={handleCardClick}
             />
-          </Box>
+          </Container>
+        </Box>
 
-          {/* YOUTUBE */}
-          <Box
-            as="section"
-            ref={youtubeSectionRef}
-            id="youtube"
-            paddingY={{ base: `${offset.mobile}px`, lg: `${offset.desktop}px` }}
-            marginY={{
-              base: `${-offset.mobile + 24}px`,
-              lg: `${-offset.desktop + 24}px`,
-            }}
-          >
+        {/* YOUTUBE */}
+        <Box
+          as="section"
+          ref={youtubeSectionRef}
+          id="youtube"
+          background="blue.500"
+          paddingTop={{ base: `${offset.mobile}px`, lg: `${offset.desktop}px` }}
+          marginTop={{
+            base: `${-offset.mobile}px`,
+            lg: `${-offset.desktop + 24}px`,
+          }}
+        >
+          <Container>
             <SectionTitle title="Lo más visto en Youtube" />
             <YoutubeCardMobile youtube={trends.youtube} />
             <YoutubeCardDesktop youtube={trends.youtube} />
-          </Box>
+          </Container>
+        </Box>
 
-          {/* GOOGLE */}
-          <Box
-            as="section"
-            ref={googleSectionRef}
-            id="google"
-            paddingY={{ base: `${offset.mobile}px`, lg: `${offset.desktop}px` }}
-            marginY={{
-              base: `${-offset.mobile + 24}px`,
-              lg: `${-offset.desktop + 24}px`,
-            }}
-          >
+        {/* GOOGLE */}
+        <Box
+          as="section"
+          ref={googleSectionRef}
+          id="google"
+          py="32px"
+          background="blue.500"
+          paddingTop={{ base: `${offset.mobile}px`, lg: `${offset.desktop}px` }}
+          marginTop={{
+            base: `${-offset.mobile}px`,
+            lg: `${-offset.desktop + 24}px`,
+          }}
+        >
+          <Container>
             <SectionTitle title="Lo más buscado en Google" />
             <GoogleCardMobile
               google={trends.google}
@@ -287,19 +295,22 @@ export default function Home() {
               googleSectionRef={googleSectionRef}
               handleCardClick={handleCardClick}
             />
-          </Box>
+          </Container>
+        </Box>
 
-          {/* PORTALS */}
-          <Box
-            as="section"
-            ref={portalSectionRef}
-            id="portals"
-            paddingY={{ base: `${offset.mobile}px`, lg: `${offset.desktop}px` }}
-            marginY={{
-              base: `${-offset.mobile + 24}px`,
-              lg: `${-offset.desktop + 24}px`,
-            }}
-          >
+        {/* PORTALS */}
+        <Box
+          as="section"
+          ref={portalSectionRef}
+          id="portals"
+          paddingTop={{ base: `${offset.mobile}px`, lg: `${offset.desktop}px` }}
+          marginTop={{
+            base: `${-offset.mobile}px`,
+            lg: `${-offset.desktop + 24}px`,
+          }}
+          bg={theme.colors.gradients["background-gradient-bottom"]}
+        >
+          <Container>
             <SectionTitle title="Las noticias más leídas" id="portals" />
             <NewsPortalsMobile
               portals={trends.portals}
@@ -311,10 +322,9 @@ export default function Home() {
               portalSectionRef={portalSectionRef}
               handleCardClick={handleCardClick}
             />
-          </Box>
-        </Container>
+          </Container>
+        </Box>
       </Box>
-
       {/* Footer */}
       <Footer />
     </>

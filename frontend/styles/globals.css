@@ -22,6 +22,7 @@ html,
 body {
   height: 100%;
   font-family: var(--chakra-fonts-body) !important;
+  background: #406bac;
 }
 /*
 Typographic tweaks!
@@ -106,10 +107,6 @@ a span {
 :host,
 #root,
 [data-theme] {
-  --chakra-sizes-container-sm: 100% !important;
-  --chakra-sizes-container-md: 920px !important;
-  --chakra-sizes-container-lg: 920px !important;
-  --chakra-sizes-container-xl: 920px !important;
   --chakra-fonts-body: "Inter", sans-serif !important;
 }
 

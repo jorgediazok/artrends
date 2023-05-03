@@ -39,14 +39,16 @@ const TwitterCardDesktop = ({ twitter, handleCardClick }) => {
   return (
     <Flex
       width="100%"
-      flexWrap={{ base: "nowrap", lg: "wrap" }}
+      flexWrap="wrap"
       flexDirection="column"
-      alignContent="space-between"
-      paddingX={{ base: "16px", lg: "0" }}
       mt="24px"
-      maxHeight={{ base: "none", lg: "540px" }}
       alignItems="center"
+      justifyContent="space-between"
+      alignContent="space-between"
       display={{ base: "none", lg: "flex" }}
+      gap="8px"
+      as="ul"
+      maxH="600px"
     >
       {!hasData ? (
         <ErrorCardDesktop />
@@ -61,7 +63,7 @@ const TwitterCardDesktop = ({ twitter, handleCardClick }) => {
           return (
             <Box
               key={currentIndex}
-              as="article"
+              as="li"
               color={theme.colors.white[500]}
               bg={theme.colors.gradients["grad-cards"]}
               border="0.5px solid"
@@ -70,7 +72,7 @@ const TwitterCardDesktop = ({ twitter, handleCardClick }) => {
               paddingX="20px"
               boxShadow={theme.shadows["inner-card"]}
               paddingY="12px"
-              width="440px"
+              width="calc(50% - 14px)"
               height="100px"
               mb={2}
               alignItems="center"

@@ -39,14 +39,16 @@ const GoogleCardDesktop = ({ google, handleCardClick }) => {
   return (
     <Flex
       width="100%"
-      flexWrap={{ base: "nowrap", lg: "wrap" }}
+      flexWrap="wrap"
       flexDirection="column"
-      alignContent="space-between"
-      paddingX={{ base: "16px", lg: "0" }}
       mt="24px"
-      maxHeight={{ base: "none", lg: "540px" }}
       alignItems="center"
+      justifyContent="space-between"
+      alignContent="space-between"
       display={{ base: "none", lg: "flex" }}
+      gap="8px"
+      as="ul"
+      maxH="600px"
     >
       {!hasData ? (
         <ErrorCardDesktop />
@@ -62,7 +64,7 @@ const GoogleCardDesktop = ({ google, handleCardClick }) => {
           return (
             <Box
               key={trend.title}
-              as="article"
+              as="li"
               color={theme.colors.white[500]}
               bg={theme.colors.gradients["grad-cards"]}
               border="0.5px solid"
@@ -71,7 +73,7 @@ const GoogleCardDesktop = ({ google, handleCardClick }) => {
               boxShadow={theme.shadows["inner-card"]}
               paddingX="20px"
               paddingY="12px"
-              width="440px"
+              width="calc(50% - 14px)"
               height="100px"
               mb={2}
               alignItems="center"

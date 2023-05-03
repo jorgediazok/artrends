@@ -45,11 +45,11 @@ const TwitterCardMobile = ({ twitter, twitterSectionRef, handleCardClick }) => {
       flexWrap={{ base: "nowrap", lg: "wrap" }}
       flexDirection="column"
       alignContent="space-between"
-      paddingX={{ base: "16px", md: "32px" }}
       maxHeight={{ base: "none", lg: "540px" }}
       alignItems="center"
       ref={twitterSectionRef}
       display={{ base: "flex", lg: "none" }}
+      as="ul"
     >
       {!hasData ? (
         <ErrorCardMobile />
@@ -64,7 +64,7 @@ const TwitterCardMobile = ({ twitter, twitterSectionRef, handleCardClick }) => {
           return (
             <Box
               key={currentIndex}
-              as="article"
+              as="li"
               color={theme.colors.white[500]}
               bg={theme.colors.gradients["grad-cards"]}
               border="0.5px solid"

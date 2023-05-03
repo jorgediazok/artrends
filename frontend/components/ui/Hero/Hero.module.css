@@ -70,7 +70,7 @@
 
 @media screen and (min-width: 768px) {
   .argie {
-    right: 5%;
+    right: 0;
   }
 
   .subtitle {
@@ -84,7 +84,7 @@
   }
 }
 
-@media screen and (min-width: 1100px) {
+@media screen and (min-width: 1000px) {
   .hero {
     padding-top: 0;
     height: 70%;
@@ -103,13 +103,17 @@
   }
 
   .argie {
-    right: 18%;
     height: 62%;
+    right: 13%;
   }
 }
 
-@media screen and (min-width: 1500px) {
+@media screen and (min-width: 1700px) {
   .hero {
     height: 70%;
+  }
+
+  .argie {
+    right: 20%;
   }
 }
