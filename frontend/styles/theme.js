@@ -1,4 +1,4 @@
-import { extendTheme } from "@chakra-ui/react";
+import { defineStyleConfig, defineStyle, extendTheme } from "@chakra-ui/react";
 
 const theme = extendTheme({
   breakpoints: {
@@ -30,6 +30,9 @@ const theme = extendTheme({
       600: "hsl(242, 61%, 35%)",
       800: "hsl(242, 78%, 14%)",
     },
+    blue: {
+      500: "#406BAC",
+    },
 
     gradients: {
       "grad-purple-2": `linear-gradient(180deg, #7F6BB3 0%, #241154 100%);`,
@@ -45,7 +48,8 @@ const theme = extendTheme({
       "grad-white": `linear-gradient(135deg, rgba(255, 255, 255, 0.4) 0%, rgba(255, 255, 255, 0) 100%);`,
       "grad-footer": `linear-gradient(180deg, #241154 0%, #7F6BB3 100%);`,
       "grad-contacto": `linear-gradient(180deg, #241154 9.83%, #406BAC 100%);`,
-      "background-home-mobile": `linear-gradient(180deg, #241154 0%, #2D5899 12.84%, #241154 35.42%, #2D5899 48.96%, #241154 100%);`,
+      "background-gradient-top": `linear-gradient(to top, #406BAC 15%, #241154 100%);`,
+      "background-gradient-bottom": `linear-gradient(to bottom, #406BAC 0%, #241154 100%);`,
       "background-home-desktop": `linear-gradient(to bottom, #241154 -10%, #2d5899 14.53%, #241154 100%);`,
       "grad-cards": "hsla(242, 78%, 14%, 0.3)",
       "background-mobile-2":

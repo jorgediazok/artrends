@@ -64,7 +64,7 @@ const SpotifyCardMobile = ({
       className="no-padding"
       display={{ base: "block", lg: "none" }}
     >
-      <TabList mb="24px" pl={{ base: "16px", md: "32px" }}>
+      <TabList mb="24px" pl={0}>
         <Tab color="white" paddingX="12px" paddingY="6px" fontSize="sm">
           Artista
         </Tab>
@@ -81,9 +81,9 @@ const SpotifyCardMobile = ({
             width="100%"
             flexDirection="column"
             alignContent="space-between"
-            paddingX={{ base: "16px", md: "32px" }}
             alignItems="center"
             overflow="auto"
+            as="ul"
           >
             {!hasArtistData ? (
               <ErrorCardMobile />
@@ -99,7 +99,7 @@ const SpotifyCardMobile = ({
                   );
                 return (
                   <Box
-                    as="article"
+                    as="li"
                     key={trend.name}
                     color={theme.colors.white[500]}
                     bg={theme.colors.gradients["grad-cards"]}
@@ -285,8 +285,8 @@ const SpotifyCardMobile = ({
             width="100%"
             flexDirection="column"
             alignContent="space-between"
-            paddingX="16px"
             alignItems="center"
+            as="ul"
           >
             {!hasSongData ? (
               <ErrorCardMobile />
@@ -302,7 +302,7 @@ const SpotifyCardMobile = ({
                   );
                 return (
                   <Box
-                    as="article"
+                    as="li"
                     color={theme.colors.white[500]}
                     bg={theme.colors.gradients["grad-cards"]}
                     border="0.5px solid"
@@ -497,8 +497,9 @@ const SpotifyCardMobile = ({
             width="100%"
             flexDirection="column"
             alignContent="space-between"
-            paddingX={{ base: "16px", lg: "0" }}
             alignItems="center"
+            overflow="auto"
+            as="ul"
           >
             {!hasPodcastData ? (
               <ErrorCardMobile />
@@ -515,7 +516,7 @@ const SpotifyCardMobile = ({
                     );
                   return (
                     <Box
-                      as="article"
+                      as="li"
                       color={theme.colors.white[500]}
                       bg={theme.colors.gradients["grad-cards"]}
                       border="0.5px solid"

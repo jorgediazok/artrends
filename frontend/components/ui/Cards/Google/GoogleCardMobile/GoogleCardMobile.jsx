@@ -43,10 +43,10 @@ const GoogleCardMobile = ({ google, handleCardClick }) => {
       flexWrap={{ base: "nowrap", lg: "wrap" }}
       flexDirection="column"
       alignContent="space-between"
-      paddingX={{ base: "16px", md: "32px", lg: "0" }}
       maxHeight={{ base: "none", lg: "540px" }}
       alignItems="center"
       display={{ base: "flex", lg: "none" }}
+      as="ul"
     >
       {!hasData ? (
         <ErrorCardMobile />
@@ -60,7 +60,7 @@ const GoogleCardMobile = ({ google, handleCardClick }) => {
           );
           return (
             <Box
-              as="article"
+              as="li"
               color={theme.colors.white[500]}
               bg={theme.colors.gradients["grad-cards"]}
               border="0.5px solid"

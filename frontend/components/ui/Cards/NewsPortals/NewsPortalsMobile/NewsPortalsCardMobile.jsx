@@ -66,7 +66,7 @@ const NewsPortalsCardMobile = ({ portals, handleCardClick }) => {
       className="no-padding"
       display={{ base: "block", lg: "none" }}
     >
-      <TabList mb="24px" pl={{ base: "16px", md: "32px" }} overflow="auto">
+      <TabList mb="24px" pl={0}>
         <Tab
           color="white"
           paddingX="12px"
@@ -124,9 +124,9 @@ const NewsPortalsCardMobile = ({ portals, handleCardClick }) => {
             width="100%"
             flexDirection="column"
             alignContent="space-between"
-            paddingX={{ base: "16px", md: "32px" }}
             alignItems="center"
             overflow="auto"
+            as="ul"
           >
             {!hasLaNacionData ? (
               <ErrorCardMobile />
@@ -143,7 +143,7 @@ const NewsPortalsCardMobile = ({ portals, handleCardClick }) => {
                     );
                   return (
                     <Box
-                      as="article"
+                      as="li"
                       color={theme.colors.white[500]}
                       bg={theme.colors.gradients["grad-cards"]}
                       border="0.5px solid"
@@ -308,8 +308,9 @@ const NewsPortalsCardMobile = ({ portals, handleCardClick }) => {
             width="100%"
             flexDirection="column"
             alignContent="space-between"
-            paddingX={{ base: "16px", md: "32px", lg: 0 }}
             alignItems="center"
+            overflow="auto"
+            as="ul"
           >
             {!hasElDestapeData ? (
               <ErrorCardMobile />
@@ -326,7 +327,7 @@ const NewsPortalsCardMobile = ({ portals, handleCardClick }) => {
                     );
                   return (
                     <Box
-                      as="article"
+                      as="li"
                       color={theme.colors.white[500]}
                       bg={theme.colors.gradients["grad-cards"]}
                       border="0.5px solid"
@@ -492,8 +493,9 @@ const NewsPortalsCardMobile = ({ portals, handleCardClick }) => {
             width="100%"
             flexDirection="column"
             alignContent="space-between"
-            paddingX={{ base: "16px", md: "32px", lg: 0 }}
             alignItems="center"
+            overflow="auto"
+            as="ul"
           >
             {!hasClarinData ? (
               <ErrorCardMobile />
@@ -510,7 +512,7 @@ const NewsPortalsCardMobile = ({ portals, handleCardClick }) => {
                     );
                   return (
                     <Box
-                      as="article"
+                      as="li"
                       color={theme.colors.white[500]}
                       bg={theme.colors.gradients["grad-cards"]}
                       border="0.5px solid"
@@ -676,8 +678,9 @@ const NewsPortalsCardMobile = ({ portals, handleCardClick }) => {
             width="100%"
             flexDirection="column"
             alignContent="space-between"
-            paddingX={{ base: "16px", md: "32px", lg: 0 }}
             alignItems="center"
+            overflow="auto"
+            as="ul"
           >
             {!hasTelamData ? (
               <ErrorCardMobile />
@@ -693,7 +696,7 @@ const NewsPortalsCardMobile = ({ portals, handleCardClick }) => {
                   );
                 return (
                   <Box
-                    as="article"
+                    as="li"
                     color={theme.colors.white[500]}
                     bg={theme.colors.gradients["grad-cards"]}
                     border="0.5px solid"
@@ -857,8 +860,9 @@ const NewsPortalsCardMobile = ({ portals, handleCardClick }) => {
             width="100%"
             flexDirection="column"
             alignContent="space-between"
-            paddingX={{ base: "16px", md: "32px", lg: "0" }}
             alignItems="center"
+            overflow="auto"
+            as="ul"
           >
             {!hasInfobaeData ? (
               <ErrorCardMobile />
@@ -875,7 +879,7 @@ const NewsPortalsCardMobile = ({ portals, handleCardClick }) => {
                     );
                   return (
                     <Box
-                      as="article"
+                      as="li"
                       color={theme.colors.white[500]}
                       bg={theme.colors.gradients["grad-cards"]}
                       border="0.5px solid"

@@ -32,7 +32,7 @@ const ErrorCardDesktop = () => {
         boxShadow={theme.shadows["inner-card"]}
         paddingX="20px"
         paddingY="12px"
-        width="920px"
+        width="100%"
         height="157px"
         mb={2}
         display={{ base: "none", lg: "flex" }}

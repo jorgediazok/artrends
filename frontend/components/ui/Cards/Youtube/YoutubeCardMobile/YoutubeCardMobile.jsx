@@ -55,10 +55,10 @@ const YoutubeCardMobile = ({ youtube }) => {
       flexWrap={{ base: "nowrap", lg: "wrap" }}
       flexDirection="column"
       alignContent="space-between"
-      paddingX={{ base: "16px", md: "32px", lg: "0" }}
       maxHeight={{ base: "none", lg: "540px" }}
       alignItems="center"
       display={{ base: "flex", lg: "none" }}
+      as="ul"
     >
       {!hasData ? (
         <ErrorCardMobile />
@@ -72,7 +72,7 @@ const YoutubeCardMobile = ({ youtube }) => {
           );
           return (
             <Box
-              as="article"
+              as="li"
               color={theme.colors.white[500]}
               bg={theme.colors.gradients["grad-cards"]}
               border="0.5px solid"
@@ -222,7 +222,7 @@ const YoutubeCardMobile = ({ youtube }) => {
                       border="1px solid #fff"
                       display="revert"
                     >
-                      {trend.amount + " reproducciones"}
+                      {trend.amount}
                     </Badge>
                   </Box>
 
