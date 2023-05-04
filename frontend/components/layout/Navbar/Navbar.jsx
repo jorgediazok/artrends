@@ -15,6 +15,7 @@ import styles from "./Navbar.module.css";
 
 // Components
 import MobileCarousel from "../../ui/MobileCarousel/MobileCarousel";
+import Container from "../Container/Container";
 
 const Navbar = ({
   activeSectionIndex,
@@ -92,55 +93,55 @@ const Navbar = ({
         justifyContent="center"
         shadow="md"
       >
-        <Box
-          display="flex"
-          alignItems="center"
-          width={hasNavItems ? "20%" : "100%"}
-          marginRight={hasNavItems ? "none" : "none"}
-        >
-          <NextLink href="/">
-            <a>
-              <Image
-                src="/images/logo-desktop.png"
-                alt="Volver al Inicio"
-                height={40}
-                width={174}
-                quality={100}
-                priority
-              />
-            </a>
-          </NextLink>
-        </Box>
-        <Box
-          as="ul"
-          justifyContent="center"
-          flex="1"
-          gap={12}
-          display={{ base: "none", lg: hasNavItems ? "flex" : "none" }}
-        >
-          {navItems.map(item => (
-            <Box
-              key={item.id}
-              display="flex"
-              as="li"
-              className={styles["nav-item"]}
-            >
-              <Link href={item.to}>
-                <Text
-                  color="white.500"
-                  fontSize="18px"
-                  lineHeight="28px"
-                  fontWeight={600}
-                  cursor="pointer"
-                >
-                  {item.label}
-                </Text>
-              </Link>
-            </Box>
-          ))}
-        </Box>
-
-        <Box width="20%" display={{ base: "none", lg: "flex" }} />
+        <Container flexDirection="row">
+          <Box
+            display="flex"
+            alignItems="center"
+            width={hasNavItems ? "20%" : "100%"}
+            marginRight={hasNavItems ? "none" : "none"}
+          >
+            <NextLink href="/">
+              <a>
+                <Image
+                  src="/images/logo-desktop.png"
+                  alt="Volver al Inicio"
+                  height={40}
+                  width={174}
+                  quality={100}
+                  priority
+                />
+              </a>
+            </NextLink>
+          </Box>
+          <Box
+            as="ul"
+            justifyContent="center"
+            ml="auto"
+            gap={12}
+            display={{ base: "none", lg: hasNavItems ? "flex" : "none" }}
+          >
+            {navItems.map(item => (
+              <Box
+                key={item.id}
+                display="flex"
+                as="li"
+                className={styles["nav-item"]}
+              >
+                <Link href={item.to}>
+                  <Text
+                    color="white.500"
+                    fontSize="18px"
+                    lineHeight="28px"
+                    fontWeight={600}
+                    cursor="pointer"
+                  >
+                    {item.label}
+                  </Text>
+                </Link>
+              </Box>
+            ))}
+          </Box>
+        </Container>
       </Flex>
     </>
   );

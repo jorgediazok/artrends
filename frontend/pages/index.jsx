@@ -204,7 +204,7 @@ export default function Home() {
           background="blue.500"
           paddingTop={{ base: `${offset.mobile}px`, lg: `${offset.desktop}px` }}
           marginTop={{
-            base: `${-offset.mobile + 24}px`,
+            base: `${-offset.mobile + 2}px`,
             lg: `${-offset.desktop + 24}px`,
           }}
           bg={theme.colors.gradients["background-gradient-top"]}

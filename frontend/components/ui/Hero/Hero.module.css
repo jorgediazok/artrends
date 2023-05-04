@@ -23,7 +23,7 @@
   display: none;
   position: absolute;
   object-fit: contain;
-  top: 40px;
+  top: 0;
   left: 0;
   height: 70%;
   width: 100%;
@@ -104,6 +104,11 @@
 
   .argie {
     height: 62%;
+  }
+}
+
+@media screen and (min-width: 1300px) {
+  .argie {
     right: 13%;
   }
 }

@@ -55,7 +55,8 @@ export default function Hero() {
             display="flex"
             flexDirection="column"
             justifyContent="center"
-            gap={{ base: "24px", md: "64px" }}
+            pt={{ lg: "5rem" }}
+            gap={{ base: "24px", md: "48px" }}
           >
             <Text
               as="p"
@@ -84,7 +85,6 @@ export default function Hero() {
               zIndex={100}
               textShadow="1px 2px 2px #0A0840"
               className={styles.subtitle}
-              fontStyle="italic"
             >
               Artrends te acerca lo que expresan y consumen en los medios
               digitales en este momento.
