@@ -75,7 +75,7 @@ export default function MobileCarousel({
               }
               height="86px"
               width="25vw"
-              maxW="100px"
+              maxW="120px"
               display="flex"
               justifyContent="center"
               alignItems="center"
