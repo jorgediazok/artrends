@@ -80,8 +80,9 @@ const TwitterCardDesktop = ({ twitter, handleCardClick }) => {
               tabIndex={0}
               onClick={handleCardClick}
               cursor="pointer"
-              _active={{ boxShadow: "none" }}
-              transition="300ms all ease"
+              _hover={{ transform: "translateY(-2.5px)" }}
+              _active={{ boxShadow: "none", transform: "translateY(0)" }}
+              transition="200ms all ease-out"
               data-link={trend.link}
             >
               <Box

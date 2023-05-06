@@ -148,7 +148,11 @@ const NewsPortalsCardDesktop = ({ portals, handleCardClick }) => {
                       role="link"
                       onClick={handleCardClick}
                       cursor="pointer"
-                      _active={{ boxShadow: "none" }}
+                      _hover={{ transform: "translateY(-2.5px)" }}
+                      _active={{
+                        boxShadow: "none",
+                        transform: "translateY(0)",
+                      }}
                       transition="300ms all ease"
                       data-link={trend.link}
                     >
@@ -311,7 +315,11 @@ const NewsPortalsCardDesktop = ({ portals, handleCardClick }) => {
                       role="link"
                       onClick={handleCardClick}
                       cursor="pointer"
-                      _active={{ boxShadow: "none" }}
+                      _hover={{ transform: "translateY(-2.5px)" }}
+                      _active={{
+                        boxShadow: "none",
+                        transform: "translateY(0)",
+                      }}
                       transition="300ms all ease"
                       data-link={trend.link}
                     >
@@ -474,7 +482,11 @@ const NewsPortalsCardDesktop = ({ portals, handleCardClick }) => {
                       tabIndex={0}
                       onClick={handleCardClick}
                       cursor="pointer"
-                      _active={{ boxShadow: "none" }}
+                      _hover={{ transform: "translateY(-2.5px)" }}
+                      _active={{
+                        boxShadow: "none",
+                        transform: "translateY(0)",
+                      }}
                       transition="300ms all ease"
                       data-link={trend.link}
                     >
@@ -636,7 +648,8 @@ const NewsPortalsCardDesktop = ({ portals, handleCardClick }) => {
                     tabIndex={0}
                     onClick={handleCardClick}
                     cursor="pointer"
-                    _active={{ boxShadow: "none" }}
+                    _hover={{ transform: "translateY(-2.5px)" }}
+                    _active={{ boxShadow: "none", transform: "translateY(0)" }}
                     transition="300ms all ease"
                     data-link={trend.link}
                   >
@@ -793,6 +806,12 @@ const NewsPortalsCardDesktop = ({ portals, handleCardClick }) => {
                       display={{ base: "none", lg: "flex" }}
                       alignItems="center"
                       key={trend.article}
+                      _hover={{ transform: "translateY(-2.5px)" }}
+                      _active={{
+                        boxShadow: "none",
+                        transform: "translateY(0)",
+                      }}
+                      transition="300ms all ease"
                     >
                       <Box
                         display="flex"
