@@ -74,13 +74,13 @@ export default function MobileCarousel({
                   : theme.colors.gradients["grad-ind-purple-2"]
               }
               height="86px"
-              minW="86px"
+              width="25vw"
+              maxW="100px"
               display="flex"
               justifyContent="center"
               alignItems="center"
               px="11px"
               py="4px"
-              width="max-content"
               borderRadius="6px"
               className={index === activeSectionIndex && styles.active}
               fontWeight={600}
