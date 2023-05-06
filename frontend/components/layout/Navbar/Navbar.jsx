@@ -29,7 +29,7 @@ const Navbar = ({
       <Flex
         display={{ base: "flex", lg: "none" }}
         as="nav"
-        bg={theme.colors.gradients["background-mobile-2"]}
+        bg="#241154"
         align="center"
         justifyContent="center"
         position="fixed"
