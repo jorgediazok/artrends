@@ -191,7 +191,7 @@ export default function Home() {
           fontFamily="Montserrat"
           pt="64px"
         >
-          Lista de Tendencias en Argentina
+          Listas de Tendencias en Argentina
         </Text>
       </Container>
 

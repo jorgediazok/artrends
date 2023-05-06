@@ -91,7 +91,8 @@ const YoutubeCardDesktop = ({ youtube }) => {
               tabIndex={0}
               onClick={e => handleCardClick(e, trend.link)}
               cursor="pointer"
-              _active={{ boxShadow: "none" }}
+              _hover={{ transform: "translateY(-2.5px)" }}
+              _active={{ boxShadow: "none", transform: "translateY(0)" }}
               transition="300ms all ease"
             >
               <Box

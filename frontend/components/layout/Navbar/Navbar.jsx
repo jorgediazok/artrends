@@ -72,7 +72,7 @@ const Navbar = ({
             fontWeight="bold"
             pt="16px"
           >
-            Lista de Tendencias en Argentina
+            Listas de Tendencias en Argentina
           </Text>
         )}
 

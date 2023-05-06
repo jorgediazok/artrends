@@ -131,7 +131,8 @@ const SpotifyCardDesktop = ({
                     tabIndex={0}
                     onClick={handleCardClick}
                     cursor="pointer"
-                    _active={{ boxShadow: "none" }}
+                    _hover={{ transform: "translateY(-2.5px)" }}
+                    _active={{ boxShadow: "none", transform: "translateY(0)" }}
                     transition="300ms all ease"
                     data-link={trend.link}
                   >
@@ -294,6 +295,9 @@ const SpotifyCardDesktop = ({
                     height="131px"
                     mb={2}
                     key={trend.name}
+                    _hover={{ transform: "translateY(-2.5px)" }}
+                    _active={{ boxShadow: "none", transform: "translateY(0)" }}
+                    transition="300ms all ease"
                   >
                     <Box
                       display="flex"
@@ -468,6 +472,12 @@ const SpotifyCardDesktop = ({
                       display={{ base: "none", lg: "flex" }}
                       alignItems="center"
                       key={trend.name}
+                      _hover={{ transform: "translateY(-2.5px)" }}
+                      _active={{
+                        boxShadow: "none",
+                        transform: "translateY(0)",
+                      }}
+                      transition="300ms all ease"
                     >
                       <Box
                         display="flex"
