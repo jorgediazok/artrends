@@ -7,6 +7,7 @@ import NextLink from "next/link";
 // Components
 import Footer from "../../components/layout/Footer";
 import Navbar from "../../components/layout/Navbar";
+import Container from "../../components/layout/Container";
 
 // Icons
 import ArrowRight from "../../components/ui/icons/ArrowRight";
@@ -39,15 +40,7 @@ const TerminosYCondiciones = () => {
 
       <Navbar hasCarrousel={false} hasNavItems={false} />
       <Box background="#241154">
-        <Box
-          display="flex"
-          alignItems="center"
-          justifyContent="flex-start"
-          margin="auto"
-          as="header"
-          padding={{ base: "16px", lg: "32px" }}
-          maxW="1080px"
-        >
+        <Container isContentCentered={false}>
           <Breadcrumb
             marginTop={{ base: "82px", lg: "152px" }}
             fontSize="text-sm"
@@ -69,14 +62,9 @@ const TerminosYCondiciones = () => {
               <Text fontWeight="600">Términos y condiciones</Text>
             </BreadcrumbItem>
           </Breadcrumb>
-        </Box>
+        </Container>
 
-        <Box
-          as="article"
-          padding={{ base: "16px", lg: "32px" }}
-          maxW="1080px"
-          margin="auto"
-        >
+        <Container isContentCentered={false}>
           <Text
             fontSize={{ base: "20px", lg: "30px" }}
             color="#FFFFFF"
@@ -218,7 +206,7 @@ const TerminosYCondiciones = () => {
               tribunales competentes del país.
             </Text>
           </Box>
-        </Box>
+        </Container>
       </Box>
       <Footer />
     </>
