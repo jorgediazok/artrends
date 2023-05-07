@@ -46,21 +46,31 @@ const Footer = () => {
           color="#FFFFFF"
           fontSize="sm"
         >
-          <NextLink href="/sobre-las-tendencias">
-            <Text as="button">Sobre las tendencias</Text>
-          </NextLink>
-
           <NextLink href="/contacto">
             <Text as="button">Contacto</Text>
           </NextLink>
 
-          <NextLink href="/politicas-de-privacidad">
-            <Text as="button">Políticas de privacidad</Text>
-          </NextLink>
+          <Box
+            display="flex"
+            flexDirection={{ base: "column", md: "row", lg: "row" }}
+            gap={{ base: "20px", md: "32px", lg: "32px" }}
+            marginTop={{ base: "0px", md: "15px", lg: "15px" }}
+          >
+            <NextLink href="/sobre-las-tendencias">
+              <Text as="button">Sobre las tendencias</Text>
+            </NextLink>
+
+            <NextLink href="/politicas-de-privacidad">
+              <Text as="button">Políticas de privacidad</Text>
+            </NextLink>
+
+            <NextLink href="/terminos-y-condiciones">
+              <Text as="button">Términos y condiciones</Text>
+            </NextLink>
+          </Box>
         </Box>
-        <Box display="flex" marginTop="36px" gap="62px">
+        <Box display="flex" marginTop="38px" gap="62px">
           <Twitter />
-          <Email />
         </Box>
       </Box>
     </Box>
