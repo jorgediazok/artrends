@@ -12,11 +12,11 @@ import Container from "../../components/layout/Container";
 // Icons
 import ArrowRight from "../../components/ui/icons/ArrowRight";
 
-const SobreLasTendencias = () => {
+const PoliticasDePrivacidad = () => {
   return (
     <>
       <NextHead>
-        <title>Artrends | Sobre la tendencias</title>
+        <title>Artrends | Políticas de privacidad</title>
         <meta
           name="description"
           content="Enterate rápido y en un sólo lugar qué les interesa ahora a los argentinos. Tendencias de Twitter, lo más buscado en Google, lo más visto en Youtube, lo más escuchado en Spotify, lo más leído en portales de noticias y más."
@@ -59,7 +59,7 @@ const SobreLasTendencias = () => {
             </BreadcrumbItem>
 
             <BreadcrumbItem>
-              <Text fontWeight="600">Sobre las tendencias</Text>
+              <Text fontWeight="600">Políticas de privacidad</Text>
             </BreadcrumbItem>
           </Breadcrumb>
         </Container>
@@ -73,8 +73,9 @@ const SobreLasTendencias = () => {
             marginBottom="40px"
             textAlign={{ base: "center", lg: "left" }}
             as="h1"
+            textTransform="uppercase"
           >
-            ¿Cómo se determinan las tendencias?
+            Políticas de privacidad
           </Text>
 
           <Box
@@ -83,70 +84,34 @@ const SobreLasTendencias = () => {
             textAlign="left"
           >
             <Text as="p" fontFamily="body">
-              Cada plataforma determina sus tendencias mediante el uso de
-              algoritmos. Estos se van según el cambio de políticas o modelo de
-              negocio que consideren necesario. Si bien estas empresas no
-              brindan mucha información sobre los criterios que emplean para
-              establecer qué es y qué no es una tendencia, existen muchos
-              factores que influyen en su disposición.
+              La presente Política de Privacidad establece los términos en que
+              Artrends.ar utiliza y protege la información proporcionada por sus
+              usuarios al utilizar su sitio web. Artrends está comprometido con
+              la seguridad de los datos de sus usuarios y se rige por las leyes
+              y regulaciones aplicables a la protección de la privacidad y la
+              seguridad de los datos personales.
             </Text>
-            <Box
-              display={{ base: "flex", lg: "none" }}
-              flexDirection="column"
-              marginTop="20px"
-              gap="12px"
-              textDecoration="underline"
-              justifyContent="center"
-              alignItems="left"
-              as="nav"
-            >
-              <Link href="#twitter">Twitter</Link>
-              <Link href="#spotify">Spotify</Link>
-              <Link href="#youtube">Youtube</Link>
-              <Link href="#google">Google</Link>
-              <Link href="#portals">Portales de noticias</Link>
-            </Box>
             <Text
-              id="twitter"
+              id="recopilacion"
               marginTop={{ base: 6, lg: "40px" }}
               fontWeight="bold"
               as="h2"
             >
-              Twitter
-            </Text>
-            Brinda información de principales tendencias por ubicación
-            geográfica. En nuestro caso, tomamos las de Argentina. <br />
-            Para armar el ranking de tendencias son varios los elementos que se
-            toman en cuenta. Algunos de ellos son:
-            <Text className="italics" as="h3" mt={4}>
-              Novedad
+              Recopilación de la información
             </Text>
             <p>
-              Se jerarquiza la etiqueta o palabras que emergen en popularidad en
-              un tiempo reciente o que no hayan aparecido en interacciones
-              anteriores.
-            </p>
-            <Text className="italics" as="h3" mt={4}>
-              Cantidad de menciones
-            </Text>
-            <p>
-              Se siguen las palabras claves o <i>hashtags</i> usados. Si existe
-              repetición de frases similares o que se relacionan con un mismo
-              tema el algoritmo las detecta y agrupa.
-            </p>
-            <Text className="italics" as="h3" mt={4}>
-              Nivel de influencia
-            </Text>
-            <p>
-              Las cuentas con más llegada y cantidad de seguidores son más
-              relevantes a la hora de establecer tendencias.
-            </p>
-            <Text className="italics" as="h3" mt={4}>
-              Interacciones
-            </Text>
-            <p>
-              El volúmen de conversaciones creadas a partir de las palabras
-              claves o hashtags.
+              Artrends no utiliza cookies ni recopila ni almacena ningún tipo de
+              información personal sobre los usuarios cuando visitan el sitio
+              web. Sin embargo, se utiliza el servicio de Google Analytics para
+              analizar el tráfico y el comportamiento de los usuarios en el
+              sitio web. Google Analytics recopila datos mediante un
+              identificador único asociado al navegador, la aplicación o el
+              dispositivo del usuario, los cuales pueden incluir la dirección
+              IP, la ubicación geográfica, el tipo de dispositivo, el sistema
+              operativo, el navegador, el tiempo en cada página, las fuentes de
+              referencia y otros datos estadísticos. Estos datos se utilizan
+              para mejorar el sitio web y ofrecer una mejor experiencia de
+              usuario.
             </p>
             <Text
               id="spotify"
@@ -154,15 +119,30 @@ const SobreLasTendencias = () => {
               fontWeight="bold"
               as="h2"
             >
-              Spotify
+              Uso de la información
+            </Text>
+            <p>
+              Artrends no comparte ni vende la información personal de los
+              usuarios a terceros ni la utiliza para fines publicitarios, de
+              análisis o de personalización. Solo se utiliza la información
+              recopilada por Google Analytics para fines estadísticos y de
+              mejora del sitio web.
+            </p>
+            <Text
+              id="spotify"
+              marginTop={{ base: 6, lg: "40px" }}
+              fontWeight="bold"
+              as="h2"
+            >
+              Protección de la información
             </Text>
             <Text as="p">
-              Por lo poco que se sabe sobre cómo realizan los cálculos se
-              presume que en sus métricas de interacción se valoran la cantidad
-              de escuchas, repeticiones de escuchas, seguidores por oyente,
-              guardado de canciones para reproducir más tarde, canciones
-              añadidas a las playlists e, incluso, apariciones en la prensa
-              musical y redes sociales. En el caso de los podcasts es similar.
+              Artrends no almacena ningún tipo de información personal de los
+              usuarios en sus servidores. La información recopilada por Google
+              Analytics se almacena en los servidores de Google y se rige por su
+              propia política de privacidad y sus términos de servicios. Los
+              usuarios pueden revisar estos documentos para conocer cómo Google
+              protege y procesa sus datos.
             </Text>
             <Text
               id="youtube"
@@ -170,21 +150,17 @@ const SobreLasTendencias = () => {
               fontWeight="bold"
               as="h2"
             >
-              Youtube
+              Control de la información personal
             </Text>
             <Text as="p">
-              Considera factores como las vistas, la velocidad en que se
-              alcanzan esas vistas, la antigüedad del video, el nivel de
-              rendimiento en comparación con los videos subidos recientemente en
-              el mismo canal, entre otros.
-              <br />
-              Otro dato a tomar en cuenta es que los rankings de tendencias en
-              Youtube tienen como fin ser listas representativas de lo que se
-              puede encontrar en la plataforma. Por consiguiente analizan el
-              tipo de contenido valorando lo novedoso, lo atrayente que pueda
-              resultar el contenido para una amplia variedad de personas
-              usuarias. De esta forma jerarquiza el más original, entre otros
-              puntos.
+              Los usuarios tienen derecho a acceder, rectificar, cancelar u
+              oponerse al tratamiento de sus datos personales por parte de
+              Google Analytics. Para ello, pueden utilizar las herramientas que
+              Google pone a su disposición, como el complemento de
+              inhabilitación para navegadores de Google Analytics o la
+              configuración de anuncios de Google. También pueden configurar las
+              opciones de su navegador, aplicación o dispositivo para rechazar o
+              limitar el uso de identificadores únicos.
             </Text>
             <Text
               id="google"
@@ -192,12 +168,16 @@ const SobreLasTendencias = () => {
               fontWeight="bold"
               as="h2"
             >
-              Google
+              Enlaces a terceros
             </Text>
             <Text as="p">
-              Las tendencias que se muestran en Artrends son las del tipo
-              &quot;Búsqueda diarias en Google&quot;, las cuales son las
-              consultas con más aumento de tráfico en un período de 24 horas.
+              El sitio web de Artrends.ar puede contener enlaces a otros sitios
+              que puedan ser de interés de los usuarios. Artrends no tiene
+              control sobre el sitio al que se redirige y no es responsable de
+              los términos o privacidad ni de la protección de los datos en esos
+              sitios terceros. Dichos sitios están sujetos a sus propias
+              políticas de privacidad, por lo que se recomienda a los usuarios
+              que las consulten para confirmar que están de acuerdo con ellas.
             </Text>
             <Text
               id="portals"
@@ -205,11 +185,13 @@ const SobreLasTendencias = () => {
               fontWeight="bold"
               as="h2"
             >
-              Portales de Noticias
+              Modificaciones a la Política de Privacidad
             </Text>
             <Text as="p">
-              Se muestran los cuatro artículos más leídos según informan cada
-              uno de los portales en las secciones dedicadas a tal fin.
+              Artrends puede modificar esta Política de Privacidad en cualquier
+              momento y sin previo aviso. Se recomienda a los usuarios que
+              revisen continuamente esta página para asegurarse de estar de
+              acuerdo con los cambios realizados.
             </Text>
           </Box>
         </Container>
@@ -219,4 +201,4 @@ const SobreLasTendencias = () => {
   );
 };
 
-export default SobreLasTendencias;
+export default PoliticasDePrivacidad;
