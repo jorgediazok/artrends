@@ -123,7 +123,7 @@ const YoutubeCardDesktop = ({ youtube }) => {
                     gap="4px"
                     flexDirection="column"
                     ml={0}
-                    maxW="80%"
+                    maxW="85%"
                   >
                     <Text
                       fontWeight={600}
