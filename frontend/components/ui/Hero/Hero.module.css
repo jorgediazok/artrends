@@ -10,7 +10,7 @@
   height: 100%;
 }
 
-.flag-image-mobile {
+.bg-mobile {
   position: absolute;
   object-fit: contain;
   object-position: left;
@@ -19,13 +19,23 @@
   width: 100%;
 }
 
-.flag-image-desktop {
+.bg-tablet {
   display: none;
   position: absolute;
-  object-fit: contain;
-  top: 0;
-  left: 0;
-  height: 70%;
+  object-position: middle;
+  object-fit: cover;
+  z-index: 0;
+  height: 100%;
+  width: 100%;
+}
+
+.bg-desktop {
+  display: none;
+  position: absolute;
+  object-position: middle;
+  object-fit: cover;
+  z-index: 0;
+  height: 100%;
   width: 100%;
 }
 
@@ -60,6 +70,14 @@
   .subtitle {
     max-width: 50%;
   }
+
+  .bg-mobile  {
+    display: none !important;
+  }
+
+  .bg-tablet {
+    display: initial;
+  }
 }
 
 @media screen and (max-width: 768px) and (min-height: 700px) {
@@ -90,14 +108,17 @@
     height: 70%;
   }
 
-  .flag-image-mobile {
+  .bg-mobile {
     display: none;
   }
 
-  .flag-image-desktop {
-    display: initial;
+  .bg-tablet {
+    display: none;
   }
 
+  .bg-desktop {
+    display: initial;
+  }
   .subtitle {
     max-width: 60%;
   }

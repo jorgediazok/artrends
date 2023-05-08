@@ -3,8 +3,9 @@ import { Box, Text } from "@chakra-ui/react";
 import Image from "next/future/image";
 
 // Images
-import FlagMobile from "/public/images/flag-mobile.webp";
-import FlagDesktop from "/public/images/flag-desktop.webp";
+import FlagMobile from "/public/images/bg-mobile.webp";
+import FlagTablet from "/public/images/bg-tablet.webp";
+import FlagDesktop from "/public/images/bg-desktop.webp";
 import Argentino from "/public/images/argentino.gif";
 
 // Components
@@ -25,20 +26,28 @@ export default function Hero() {
       >
         <Container>
           <Image
-            className={styles["flag-image-mobile"]}
+            className={styles["bg-mobile"]}
             src={FlagMobile.src}
             alt=""
             width={FlagMobile.width}
             height={FlagMobile.height}
-            display={{ base: "block", lg: "none" }}
+            quality={100}
           />
           <Image
-            className={styles["flag-image-desktop"]}
+            className={styles["bg-tablet"]}
+            src={FlagMobile.src}
+            alt=""
+            width={FlagMobile.width}
+            height={FlagMobile.height}
+            quality={100}
+          />
+          <Image
+            className={styles["bg-desktop"]}
             src={FlagDesktop.src}
             alt=""
             width={FlagDesktop.width}
             height={FlagDesktop.height}
-            display={{ base: "none", lg: "block" }}
+            quality={100}
           />
           <Box aria-hidden className={styles.gradient} />
           <Image
