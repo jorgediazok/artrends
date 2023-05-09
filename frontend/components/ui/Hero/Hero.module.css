@@ -96,18 +96,7 @@
   }
 }
 
-@media screen and (min-width: 1024px) and (max-height: 768px) {
-  .hero {
-    height: 100%;
-  }
-}
-
 @media screen and (min-width: 1000px) {
-  .hero {
-    padding-top: 0;
-    height: 70%;
-  }
-
   .bg-mobile {
     display: none;
   }
@@ -128,7 +117,21 @@
   }
 }
 
-@media screen and (min-width: 1300px) {
+@media screen and (min-width: 1024px) and (min-height: 768px) and (orientation: landscape) {
+  .hero {
+    height: 85vh;
+    padding-top: 200px;
+  }
+}
+
+@media screen and (min-width: 1280px) and (min-height: 768px) and (orientation: landscape) {
+  .hero {
+    height: 65vh;
+    padding-top: 0;
+  }
+}
+
+@media screen and (min-width: 1280px) {
   .argie {
     right: 13%;
   }
@@ -136,7 +139,7 @@
 
 @media screen and (min-width: 1700px) {
   .hero {
-    height: 70%;
+    height: 70vh;
   }
 
   .argie {
