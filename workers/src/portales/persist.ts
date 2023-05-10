@@ -18,7 +18,12 @@ export async function persistPortalsData(
 		for (const portalDataEntry of portalsDataEntries) {
 			const [portalName, portalData] = portalDataEntry;
 
-			if (!portalData.articles.length) return;
+			if (
+				!portalData.articles.length ||
+				portalData.links.some((link: string) => link === "")
+			) {
+				return;
+			}
 
 			await db.collection(`portal.${portalName}`).insertOne({
 				record: {
