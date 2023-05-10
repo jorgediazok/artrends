@@ -43,28 +43,28 @@ export default function Home() {
   const [activeSectionIndex, setActiveSectionIndex] = useState();
 
   // Hooks
-  const { ref: spotifySectionRef, inView: spotifyIsInView } = useInView({
-    ...intersectionObserverOptions,
-    skip: typeof window !== "undefined" && window.innerWidth > 1100,
-  });
-  const { ref: googleSectionRef, inView: googleIsInView } = useInView({
-    ...intersectionObserverOptions,
-    skip: typeof window !== "undefined" && window.innerWidth > 1100,
-  });
-  const { ref: youtubeSectionRef, inView: youtubeIsInView } = useInView({
-    ...intersectionObserverOptions,
-    skip: typeof window !== "undefined" && window.innerWidth > 1100,
-  });
-  const { ref: portalSectionRef, inView: portalsIsInView } = useInView({
-    ...intersectionObserverOptions,
-    skip: typeof window !== "undefined" && window.innerWidth > 1100,
-  });
+  // const { ref: spotifySectionRef, inView: spotifyIsInView } = useInView({
+  //   ...intersectionObserverOptions,
+  //   skip: typeof window !== "undefined" && window.innerWidth > 1100,
+  // });
+  // const { ref: googleSectionRef, inView: googleIsInView } = useInView({
+  //   ...intersectionObserverOptions,
+  //   skip: typeof window !== "undefined" && window.innerWidth > 1100,
+  // });
+  // const { ref: youtubeSectionRef, inView: youtubeIsInView } = useInView({
+  //   ...intersectionObserverOptions,
+  //   skip: typeof window !== "undefined" && window.innerWidth > 1100,
+  // });
+  // const { ref: portalSectionRef, inView: portalsIsInView } = useInView({
+  //   ...intersectionObserverOptions,
+  //   skip: typeof window !== "undefined" && window.innerWidth > 1100,
+  // });
 
-  const { ref: twitterSectionRef, inView: twitterIsInView } = useInView({
-    ...intersectionObserverOptions,
+  // const { ref: twitterSectionRef, inView: twitterIsInView } = useInView({
+  //   ...intersectionObserverOptions,
 
-    skip: typeof window !== "undefined" && window.innerWidth > 1100,
-  });
+  //   skip: typeof window !== "undefined" && window.innerWidth > 1100,
+  // });
 
   // Queries
   const { data: trends } = useQuery({
@@ -81,34 +81,34 @@ export default function Home() {
   };
 
   // Effects
-  useEffect(() => {
-    if (twitterIsInView) {
-      setActiveSectionIndex(0);
-      return;
-    }
-    if (spotifyIsInView) {
-      setActiveSectionIndex(1);
-      return;
-    }
-    if (youtubeIsInView) {
-      setActiveSectionIndex(2);
-      return;
-    }
-    if (googleIsInView) {
-      setActiveSectionIndex(3);
-      return;
-    }
-    if (portalsIsInView) {
-      setActiveSectionIndex(4);
-      return;
-    }
-  }, [
-    googleIsInView,
-    portalsIsInView,
-    spotifyIsInView,
-    twitterIsInView,
-    youtubeIsInView,
-  ]);
+  // useEffect(() => {
+  //   if (twitterIsInView) {
+  //     setActiveSectionIndex(0);
+  //     return;
+  //   }
+  //   if (spotifyIsInView) {
+  //     setActiveSectionIndex(1);
+  //     return;
+  //   }
+  //   if (youtubeIsInView) {
+  //     setActiveSectionIndex(2);
+  //     return;
+  //   }
+  //   if (googleIsInView) {
+  //     setActiveSectionIndex(3);
+  //     return;
+  //   }
+  //   if (portalsIsInView) {
+  //     setActiveSectionIndex(4);
+  //     return;
+  //   }
+  // }, [
+  //   googleIsInView,
+  //   portalsIsInView,
+  //   spotifyIsInView,
+  //   twitterIsInView,
+  //   youtubeIsInView,
+  // ]);
 
   if (!trends) {
     return (
@@ -199,7 +199,7 @@ export default function Home() {
         {/* TWITTER */}
         <Box
           as="section"
-          ref={twitterSectionRef}
+          //    ref={twitterSectionRef}
           id="twitter"
           background="blue.500"
           paddingTop={{ base: `${offset.mobile}px`, lg: `${offset.desktop}px` }}
@@ -226,7 +226,7 @@ export default function Home() {
         <Box
           as="section"
           id="spotify"
-          ref={spotifySectionRef}
+          //        ref={spotifySectionRef}
           paddingTop={{ base: `${offset.mobile}px`, lg: `${offset.desktop}px` }}
           marginTop={{
             base: `${-offset.mobile + 24}px`,
@@ -254,7 +254,7 @@ export default function Home() {
         {/* YOUTUBE */}
         <Box
           as="section"
-          ref={youtubeSectionRef}
+          //   ref={youtubeSectionRef}
           id="youtube"
           background="blue.500"
           paddingTop={{ base: `${offset.mobile}px`, lg: `${offset.desktop}px` }}
@@ -273,7 +273,7 @@ export default function Home() {
         {/* GOOGLE */}
         <Box
           as="section"
-          ref={googleSectionRef}
+          //  ref={googleSectionRef}
           id="google"
           py="32px"
           background="blue.500"
@@ -287,12 +287,12 @@ export default function Home() {
             <SectionTitle title="Lo más buscado en Google" />
             <GoogleCardMobile
               google={trends.google}
-              googleSectionRef={googleSectionRef}
+              //   googleSectionRef={googleSectionRef}
               handleCardClick={handleCardClick}
             />
             <GoogleCardDesktop
               google={trends.google}
-              googleSectionRef={googleSectionRef}
+              // googleSectionRef={googleSectionRef}
               handleCardClick={handleCardClick}
             />
           </Container>
@@ -301,7 +301,7 @@ export default function Home() {
         {/* PORTALS */}
         <Box
           as="section"
-          ref={portalSectionRef}
+          // ref={portalSectionRef}
           id="portals"
           paddingTop={{ base: `${offset.mobile}px`, lg: `${offset.desktop}px` }}
           marginTop={{
@@ -314,12 +314,12 @@ export default function Home() {
             <SectionTitle title="Las noticias más leídas" id="portals" />
             <NewsPortalsMobile
               portals={trends.portals}
-              portalSectionRef={portalSectionRef}
+              //  portalSectionRef={portalSectionRef}
               handleCardClick={handleCardClick}
             />
             <NewsPortalsDesktop
               portals={trends.portals}
-              portalSectionRef={portalSectionRef}
+              //portalSectionRef={portalSectionRef}
               handleCardClick={handleCardClick}
             />
           </Container>
