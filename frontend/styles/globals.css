@@ -24,6 +24,11 @@ body {
   font-family: var(--chakra-fonts-body) !important;
   background: #406bac;
 }
+
+html {
+  scroll-behavior: smooth;
+}
+
 /*
 Typographic tweaks!
 5. Set a base line height
@@ -175,10 +180,6 @@ a span {
 }
 
 @media screen and (min-width: 1110px) {
-  html {
-    scroll-behavior: smooth;
-  }
-
   .same {
     right: 12px;
   }
