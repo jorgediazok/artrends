@@ -75,7 +75,7 @@ const NewsPortalsCardMobile = ({ portals, handleCardClick }) => {
           width="max-content"
           whiteSpace="nowrap"
         >
-          La Nación
+          Clarín
         </Tab>
         <Tab
           color="white"
@@ -95,7 +95,7 @@ const NewsPortalsCardMobile = ({ portals, handleCardClick }) => {
           width="max-content"
           whiteSpace="nowrap"
         >
-          Clarín
+          La Nación
         </Tab>
         <Tab
           color="white"
@@ -128,17 +128,17 @@ const NewsPortalsCardMobile = ({ portals, handleCardClick }) => {
             overflow="auto"
             as="ul"
           >
-            {!hasLaNacionData ? (
+            {!hasClarinData ? (
               <ErrorCardMobile />
             ) : (
-              portals.current.laNacion.record.trends.map(
+              portals.current.clarin.record.trends.map(
                 (trend, currentIndex) => {
                   const elementInPrevious =
-                    portals?.previous?.laNacion?.record?.trends?.find(
+                    portals?.previous?.clarin?.record?.trends?.find(
                       element => element.article === trend.article
                     );
                   const prevIndex =
-                    portals?.previous?.laNacion?.record?.trends?.findIndex(
+                    portals?.previous?.clarin?.record?.trends?.findIndex(
                       element => element.article === elementInPrevious?.article
                     );
                   return (
@@ -159,6 +159,7 @@ const NewsPortalsCardMobile = ({ portals, handleCardClick }) => {
                       boxShadow={theme.shadows["inner-card"]}
                       role="link"
                       tabIndex={0}
+                      data-link={trend.link}
                       _active={{ boxShadow: "none" }}
                       transition="300ms all ease"
                       onClick={handleCardClick}
@@ -229,18 +230,18 @@ const NewsPortalsCardMobile = ({ portals, handleCardClick }) => {
                                   as="a"
                                   fontSize="md"
                                   href={getWhatsappShareText(
-                                    "portals.laNacion",
+                                    "portals.clarin",
                                     currentIndex,
                                     trend.article
                                   )}
                                   target="_blank"
                                   rel="noopener noreferrer"
                                   data-action="share/whatsapp/share"
+                                  icon={<Whatsapp />}
                                   iconSpacing="10px"
                                   flexDirection="row-reverse"
                                   display="flex"
                                   alignItems="center"
-                                  icon={<Whatsapp />}
                                   _active={{
                                     boxShadow:
                                       "inset 75px 75px 43px rgba(0, 0, 0, 0.01), inset 42px 42px 36px rgba(0, 0, 0, 0.05), inset 19px 19px 27px rgba(0, 0, 0, 0.09), inset 5px 5px 15px rgba(0, 0, 0, 0.1)",
@@ -254,7 +255,7 @@ const NewsPortalsCardMobile = ({ portals, handleCardClick }) => {
                                   as="a"
                                   fontSize="md"
                                   href={getTwitterShareText(
-                                    "portals.laNacion",
+                                    "portals.clarin",
                                     currentIndex,
                                     trend.article
                                   )}
@@ -497,17 +498,17 @@ const NewsPortalsCardMobile = ({ portals, handleCardClick }) => {
             overflow="auto"
             as="ul"
           >
-            {!hasClarinData ? (
+            {!hasLaNacionData ? (
               <ErrorCardMobile />
             ) : (
-              portals.current.clarin.record.trends.map(
+              portals.current.laNacion.record.trends.map(
                 (trend, currentIndex) => {
                   const elementInPrevious =
-                    portals?.previous?.clarin?.record?.trends?.find(
+                    portals?.previous?.laNacion?.record?.trends?.find(
                       element => element.article === trend.article
                     );
                   const prevIndex =
-                    portals?.previous?.clarin?.record?.trends?.findIndex(
+                    portals?.previous?.laNacion?.record?.trends?.findIndex(
                       element => element.article === elementInPrevious?.article
                     );
                   return (
@@ -528,7 +529,6 @@ const NewsPortalsCardMobile = ({ portals, handleCardClick }) => {
                       boxShadow={theme.shadows["inner-card"]}
                       role="link"
                       tabIndex={0}
-                      data-link={trend.link}
                       _active={{ boxShadow: "none" }}
                       transition="300ms all ease"
                       onClick={handleCardClick}
@@ -599,18 +599,18 @@ const NewsPortalsCardMobile = ({ portals, handleCardClick }) => {
                                   as="a"
                                   fontSize="md"
                                   href={getWhatsappShareText(
-                                    "portals.clarin",
+                                    "portals.laNacion",
                                     currentIndex,
                                     trend.article
                                   )}
                                   target="_blank"
                                   rel="noopener noreferrer"
                                   data-action="share/whatsapp/share"
-                                  icon={<Whatsapp />}
                                   iconSpacing="10px"
                                   flexDirection="row-reverse"
                                   display="flex"
                                   alignItems="center"
+                                  icon={<Whatsapp />}
                                   _active={{
                                     boxShadow:
                                       "inset 75px 75px 43px rgba(0, 0, 0, 0.01), inset 42px 42px 36px rgba(0, 0, 0, 0.05), inset 19px 19px 27px rgba(0, 0, 0, 0.09), inset 5px 5px 15px rgba(0, 0, 0, 0.1)",
@@ -624,7 +624,7 @@ const NewsPortalsCardMobile = ({ portals, handleCardClick }) => {
                                   as="a"
                                   fontSize="md"
                                   href={getTwitterShareText(
-                                    "portals.clarin",
+                                    "portals.laNacion",
                                     currentIndex,
                                     trend.article
                                   )}
@@ -673,6 +673,7 @@ const NewsPortalsCardMobile = ({ portals, handleCardClick }) => {
             )}
           </Box>
         </TabPanel>
+
         <TabPanel>
           <Box
             width="100%"
