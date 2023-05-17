@@ -8,7 +8,6 @@ import {
   Breadcrumb,
   BreadcrumbItem,
   Button,
-  Container,
   FormControl,
   FormErrorMessage,
   Input,
@@ -20,6 +19,7 @@ import {
 } from "@chakra-ui/react";
 
 // Components
+import Container from "../../components/layout/Container";
 import Footer from "../../components/layout/Footer";
 import Navbar from "../../components/layout/Navbar";
 import Agenda from "../../components/ui/icons/Agenda";
@@ -115,7 +115,7 @@ const Contacto = () => {
 
       <Box background="#241154">
         <Navbar hasCarrousel={false} hasNavItems={false} />
-        <Container paddingX={{ base: "16px" }} maxW="container.lg">
+        <Container>
           <Box
             display="flex"
             alignItems="center"
@@ -154,6 +154,7 @@ const Contacto = () => {
               flexDirection={{ base: "column", lg: "row" }}
               as="form"
               onSubmit={handleFormSubmit}
+              width="100%"
             >
               {/* LEFT */}
               <Box
@@ -239,7 +240,7 @@ const Contacto = () => {
                           marginTop="6px"
                         >
                           Por favor completá el campo para poder enviar el
-                          mensaje
+                          mensaje.
                         </FormErrorMessage>
                       )}
                     </FormControl>
@@ -265,6 +266,7 @@ const Contacto = () => {
                         borderColor="rgba(255,255,255,0.5)"
                         color="#FFFFFF"
                         variant="flushed"
+                        type="email"
                         placeholder="Ingresá tu correo electrónico"
                         _placeholder={{
                           opacity: 1,
@@ -278,8 +280,7 @@ const Contacto = () => {
                           fontSize="sm"
                           marginTop="6px"
                         >
-                          Por favor completá el campo para poder enviar el
-                          mensaje
+                          Por favor ingresá un coreo electrónico válido.
                         </FormErrorMessage>
                       )}
                     </FormControl>
@@ -344,10 +345,10 @@ const Contacto = () => {
                     <Textarea
                       placeholder="Ingresá tu mensaje"
                       height={{ base: "132px", lg: "217px" }}
-                      background={theme.colors.gradients["grad-ind-purple"]}
                       color="#FFFFFF"
                       marginTop={{ base: "24px", lg: "50px" }}
                       onInput={event => setMessage(event.currentTarget.value)}
+                      _focus={{ borderColor: "cyan.500" }}
                     />
                     {messageHasError && (
                       <FormErrorMessage

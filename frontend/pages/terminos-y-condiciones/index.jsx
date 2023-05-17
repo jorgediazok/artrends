@@ -1,7 +1,7 @@
 import NextHead from "next/head";
 
 // Chakra
-import { Box, Breadcrumb, BreadcrumbItem, Link, Text } from "@chakra-ui/react";
+import { Box, Breadcrumb, BreadcrumbItem, Text } from "@chakra-ui/react";
 import NextLink from "next/link";
 
 // Components
