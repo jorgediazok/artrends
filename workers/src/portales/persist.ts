@@ -18,6 +18,8 @@ export async function persistPortalsData(
 		for (const portalDataEntry of portalsDataEntries) {
 			const [portalName, portalData] = portalDataEntry;
 
+			console.log(portalsData.laNacion);
+
 			if (
 				!portalData.articles.length ||
 				portalData.links.some((link: string) => link === "")
