@@ -6,7 +6,7 @@
     "dev": "next dev",
     "build": "npm run partytown && next build",
     "partytown": "partytown copylib public/~partytown",
-    "start": "next start",
+    "start": "next start --port 3100",
     "lint": "next lint"
   },
   "dependencies": {
