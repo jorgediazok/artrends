@@ -223,11 +223,13 @@ const YoutubeCardMobile = ({ youtube }) => {
                       fontSize="sm"
                       textTransform="uppercase"
                       variant="outline"
+                      paddingX="8px"
+                      paddingY="2px"
                       color="#fff"
                       border="1px solid #fff"
                       display="revert"
                     >
-                      {trend.amount}
+                      {trend.amount && `${trend.amount} reproducciones semanales`}
                     </Badge>
                   </Box>
 

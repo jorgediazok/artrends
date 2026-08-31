@@ -93,6 +93,16 @@ export function getWhatsappShareText(trend, currentIndex, title) {
     )}
     `;
   }
+  if (trend === "portals.tn") {
+    return `https://api.whatsapp.com/send?text=[${encodeURI(
+      title
+    )}] está en el puesto N° ${
+      currentIndex + 1
+    } de lo más leído en TN. Seguí todas las tendencias en Artrends ${encodeURIComponent(
+      "https://artrends.ar"
+    )}
+    `;
+  }
 }
 
 export function getTwitterShareText(trend, currentIndex, title) {
@@ -165,5 +175,12 @@ export function getTwitterShareText(trend, currentIndex, title) {
     )}]%20está%20en%20el%20puesto%20N°%20${
       currentIndex + 1
     }%20de%20lo%20más%20leído%20en%20Infobae.%20Seguí%20todas%20las%20tendencias%20en%20%23Artrends`;
+  }
+  if (trend === "portals.tn") {
+    return `https://twitter.com/intent/tweet?url=artrends.ar&text=[${encodeURIComponent(
+      title
+    )}]%20está%20en%20el%20puesto%20N°%20${
+      currentIndex + 1
+    }%20de%20lo%20más%20leído%20en%20TN.%20Seguí%20todas%20las%20tendencias%20en%20%23Artrends`;
   }
 }

@@ -206,6 +206,8 @@ const TwitterCardMobile = ({ twitter, twitterSectionRef, handleCardClick }) => {
                         fontSize="xs"
                         textTransform="uppercase"
                         variant="outline"
+                        paddingX="8px"
+                        paddingY="2px"
                         color="#fff"
                         border="1px solid #fff"
                       >

@@ -38,6 +38,9 @@ const NewsPortalsCardDesktop = ({ portals, handleCardClick }) => {
   const hasInfobaeData =
     portals?.current?.infobae?.record?.trends?.length &&
     portals.current.infobae.record.trends.length > 0;
+  const hasTnData =
+    portals?.current?.tn?.record?.trends?.length &&
+    portals.current.tn.record.trends.length > 0;
 
   return (
     <Tabs.Root
@@ -90,6 +93,16 @@ const NewsPortalsCardDesktop = ({ portals, handleCardClick }) => {
           borderRadius="full"
         >
           Infobae
+        </Tabs.Trigger>
+        <Tabs.Trigger
+          value="tn"
+          color="white"
+          paddingX={{ base: "12px", lg: "16px" }}
+          paddingY={{ base: "6px", lg: "8px" }}
+          fontSize={{ base: "xs", lg: "md" }}
+          borderRadius="full"
+        >
+          TN
         </Tabs.Trigger>
       </Tabs.List>
       <Tabs.Content value="clarin">
@@ -783,6 +796,178 @@ const NewsPortalsCardDesktop = ({ portals, handleCardClick }) => {
                 );
               }
             )
+          )}
+        </Box>
+      </Tabs.Content>
+      <Tabs.Content value="tn">
+        <Box
+          width="100%"
+          flexDirection="column"
+          alignContent="space-between"
+          paddingX={{ base: "16px", lg: "0" }}
+          alignItems="center"
+        >
+          {!hasTnData ? (
+            <ErrorCardDesktop />
+          ) : (
+            portals.current.tn.record.trends.map((trend, currentIndex) => {
+              const elementInPrevious =
+                portals?.previous?.tn?.record?.trends?.find(
+                  element => element.article === trend.article
+                );
+              const prevIndex =
+                portals?.previous?.tn?.record?.trends?.findIndex(
+                  element => element.article === elementInPrevious?.article
+                );
+              return (
+                <Box
+                  as="article"
+                  color={theme.colors.white[500]}
+                  bg={theme.colors.gradients["grad-cards"]}
+                  border="0.5px solid"
+                  borderColor="rgba(255, 255, 255, 0.1);"
+                  borderRadius={theme.radius.xl}
+                  boxShadow={theme.shadows["inner-card"]}
+                  paddingX="48px"
+                  paddingY="12px"
+                  width="100%"
+                  height="157px"
+                  mb={2}
+                  display={{ base: "none", lg: "flex" }}
+                  alignItems="center"
+                  key={trend.article}
+                  _hover={{ transform: "translateY(-2.5px)" }}
+                  _active={{
+                    boxShadow: "none",
+                    transform: "translateY(0)",
+                  }}
+                  transition="300ms all ease"
+                >
+                  <Box
+                    display="flex"
+                    justifyContent="space-between"
+                    alignItems="center"
+                    w="100%"
+                  >
+                    <Box display="flex" gap={6} alignItems="center">
+                      <Box
+                        display="flex"
+                        justifyContent="space-between"
+                        alignItems="center"
+                        width="80px"
+                      >
+                        <Text fontSize="4xl">{currentIndex + 1}</Text>
+                        {getPosition(currentIndex, prevIndex) === "down" ? (
+                          <ArrowDown />
+                        ) : getPosition(currentIndex, prevIndex) ===
+                          "up" ? (
+                          <ArrowUp />
+                        ) : (
+                          <Same className={styles.same} />
+                        )}
+                      </Box>
+                      <Box
+                        display="flex"
+                        gap={2}
+                        flexDirection="column"
+                        maxW="600px"
+                        ml={2}
+                      >
+                        <a
+                          href={trend.link}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                        >
+                          <Text
+                            fontWeight={600}
+                            fontSize="2xl"
+                            className={calculateLines("leido")}
+                          >
+                            {trend.article}
+                          </Text>
+                        </a>
+                      </Box>
+                    </Box>
+                    <Box display="flex" gap={8} alignItems="center">
+                      <Menu.Root>
+                        <Menu.Trigger
+                          isolation="isolate"
+                          title="Ver opciones para esta tendencia"
+                        >
+                          <Share />
+                        </Menu.Trigger>
+                        <Portal>
+                          <Menu.Positioner>
+                            <Menu.Content
+                              maxWidth="162px"
+                              minWidth="162px"
+                              backgroundColor="indigo.600"
+                              borderRadius="6px"
+                              padding="6px 0px"
+                              zIndex="10"
+                              boxShadow="75px 75px 43px rgba(0, 0, 0, 0.01), 42px 42px 36px rgba(0, 0, 0, 0.05), 19px 19px 27px rgba(0, 0, 0, 0.09), 5px 5px 15px rgba(0, 0, 0, 0.1), 0px 0px 0px rgba(0, 0, 0, 0.1);"
+                              border="none"
+                            >
+                              <Menu.Item value="whatsapp" asChild>
+                                <Link
+                                  backgroundColor="indigo.600"
+                                  color="#FFFFFF"
+                                  fontSize="md"
+                                  href={`https://api.whatsapp.com/send?text=Mirate%20esta%20noticia:%20${
+                                    trend.link
+                                  }%20de%20TN%20que%20está%20en%20el%20puesto%20N°%20${
+                                    currentIndex + 1
+                                  }%20en%20tendencias%20en%20noticias%20en%20Argentina.%20Mirá%20más%20en%20Artrends%20%23Artrends`}
+                                  target="_blank"
+                                  rel="noopener noreferrer"
+                                  data-action="share/whatsapp/share"
+                                  display="flex"
+                                  flexDirection="row-reverse"
+                                  alignItems="center"
+                                  gap="10px"
+                                  _active={{
+                                    boxShadow:
+                                      "inset 75px 75px 43px rgba(0, 0, 0, 0.01), inset 42px 42px 36px rgba(0, 0, 0, 0.05), inset 19px 19px 27px rgba(0, 0, 0, 0.09), inset 5px 5px 15px rgba(0, 0, 0, 0.1)",
+                                  }}
+                                >
+                                  <Whatsapp />
+                                  Compartir por
+                                </Link>
+                              </Menu.Item>
+                              <Menu.Item value="twitter" asChild>
+                                <Link
+                                  backgroundColor="indigo.600"
+                                  color="#FFFFFF"
+                                  fontSize="md"
+                                  href={`https://twitter.com/intent/tweet?url=${
+                                    trend.link
+                                  }&text=Mirate%20esta%20noticia%20de%20TN%20que%20está%20en%20el%20puesto%20N°%20${
+                                    currentIndex + 1
+                                  }%20en%20tendencias%20en%20noticias%20en%20Argentina.%20Mirá%20más%20en%20Artrends%20%23Artrends`}
+                                  target="_blank"
+                                  rel="noopener noreferrer"
+                                  display="flex"
+                                  flexDirection="row-reverse"
+                                  alignItems="center"
+                                  gap="10px"
+                                  _active={{
+                                    boxShadow:
+                                      "inset 75px 75px 43px rgba(0, 0, 0, 0.01), inset 42px 42px 36px rgba(0, 0, 0, 0.05), inset 19px 19px 27px rgba(0, 0, 0, 0.09), inset 5px 5px 15px rgba(0, 0, 0, 0.1)",
+                                  }}
+                                >
+                                  <TwitterCompartir />
+                                  Compartir por
+                                </Link>
+                              </Menu.Item>
+                            </Menu.Content>
+                          </Menu.Positioner>
+                        </Portal>
+                      </Menu.Root>
+                    </Box>
+                  </Box>
+                </Box>
+              );
+            })
           )}
         </Box>
       </Tabs.Content>

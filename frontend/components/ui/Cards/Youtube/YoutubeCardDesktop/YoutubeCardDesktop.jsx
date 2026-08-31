@@ -148,11 +148,15 @@ const YoutubeCardDesktop = ({ youtube }) => {
                       fontSize="xs"
                       textTransform="uppercase"
                       variant="outline"
+                      paddingX="8px"
+                      paddingY="2px"
                       color="#fff"
                       border="1px solid #fff"
                     >
-                      {!trend.amount.includes("hace") &&
-                        trend.amount.replace("K", "") + " reproducciones"}
+                      {trend.amount &&
+                        !trend.amount.includes("hace") &&
+                        trend.amount.replace("K", "") +
+                          " reproducciones semanales"}
                     </Badge>
                   </Box>
                 </Box>

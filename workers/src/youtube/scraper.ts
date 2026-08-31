@@ -10,76 +10,75 @@ export const getYoutubeTrendingVideos = async (
 		chromiumSandbox: true,
 	});
 	const page = await browser.newPage({ locale: "es-AR" });
-	await page.goto(url);
+	await page.goto(url, { waitUntil: "domcontentloaded" });
 
-	await page.waitForTimeout(3000);
+	await page.waitForSelector("ytmc-entry-row", { timeout: 15000 });
+	await page.waitForTimeout(2000);
 
-	/* Titles */
-	const trendsTitles = await (
-		await page.locator("#grid-container #video-title").allInnerTexts()
-	).slice(0, itemLimit);
+	const rowLocator = page.locator("ytmc-entry-row");
+	const rowCount = await rowLocator.count();
 
-	/* Views */
-	const views = await (
-		await page
-			.locator("#grid-container #metadata-line > span:nth-child(odd)")
-			.allInnerTexts()
-	)
-		.slice(0, itemLimit)
-		.map(e => e.replace("de vistas", "").replace("vistas", "").trimEnd())
-		.map(e => {
-			if (e.includes(".")) {
-				return e;
-			} else {
-				return `${e} K`.replace(",", ".");
+	const trendsTitles: string[] = [];
+	const trendsLinks: string[] = [];
+	const channels: string[] = [];
+	const channelsLinks: string[] = [];
+	const views: string[] = [];
+
+	for (let i = 0; i < rowCount && trendsTitles.length < itemLimit; i++) {
+		const row = rowLocator.nth(i);
+
+		const titleEl = row.locator("#entity-title");
+		const title = await titleEl
+			.innerText()
+			.catch(() => "");
+		if (!title.trim()) continue;
+
+		/* The video URL isn't a plain <a href> (this is a client-rendered
+		 * chart), it's tucked inside a JSON "endpoint" attribute. */
+		const endpointAttr = await titleEl.getAttribute("endpoint").catch(() => null);
+		let link = "";
+		if (endpointAttr) {
+			try {
+				link = JSON.parse(endpointAttr)?.urlEndpoint?.url ?? "";
+			} catch {
+				link = "";
 			}
-		});
+		}
 
-	/* Video Links */
-	const linkLocator = await page.locator("#grid-container #video-title");
-	const trendsLinks = await linkLocator.evaluateAll(
-		(list, { itemLimit }) => {
-			return list
-				.map(
-					linkElement =>
-						`https://www.youtube.com${linkElement.getAttribute("href")}`
-				)
-				.slice(0, itemLimit);
-		},
-		{ url, itemLimit }
-	);
+		const artist = await row
+			.locator(".artistName")
+			.first()
+			.innerText()
+			.catch(() => "");
+		const artistName = artist.trim();
 
-	/* Channel */
-	const channels = await (
-		await page
-			.locator("#grid-container #metadata #channel-name")
-			.allInnerTexts()
-	).slice(0, itemLimit);
+		/* Weekly view count: it's the last of 4 "metric" columns rendered per
+		 * row (date / yesterday's rank / days on chart / weekly views), in the
+		 * same order as the table header. It's present in the DOM even though
+		 * the column itself is hidden by default in this chart view. */
+		const viewsText = await row
+			.locator(".metric")
+			.nth(3)
+			.innerText()
+			.catch(() => "");
 
-	/* Channel Link */
-	const channelsLinkLocator = await page.locator(
-		"#grid-container #metadata #channel-name a"
-	);
-	const channelsLinks = await channelsLinkLocator.evaluateAll(
-		(list, { itemLimit }) => {
-			return list
-				.map(
-					linkElement =>
-						`https://www.youtube.com${linkElement.getAttribute("href")}`
-				)
-				.slice(0, itemLimit);
-		},
-		{ url, itemLimit }
-	);
+		trendsTitles.push(title.trim());
+		trendsLinks.push(link);
+		channels.push(artistName);
+		views.push(viewsText.trim());
+		/* The artist's own endpoint is an internal YT Music browse id, not a
+		 * real URL, so we synthesize a search link like the Google scraper does. */
+		channelsLinks.push(
+			artistName
+				? `https://www.youtube.com/results?search_query=${encodeURIComponent(
+						artistName
+				  )}`
+				: ""
+		);
+	}
 
 	await page.close();
 	await browser.close();
 
-	return {
-		trendsTitles,
-		trendsLinks,
-		channels,
-		channelsLinks,
-		amount: views,
-	};
+	return { trendsTitles, trendsLinks, channels, channelsLinks, amount: views };
 };

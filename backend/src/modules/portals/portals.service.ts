@@ -86,6 +86,23 @@ export async function getPortalTrends(db: Db) {
 			}
 		}
 
+		const tnTrends = await db
+			.collection<TrendRecord<PortalTrends>>("portal.tn")
+			.find()
+			.limit(2)
+			.sort({ "record.date": -1 })
+			.toArray();
+
+		if (tnTrends?.length > 0) {
+			if (tnTrends.length > 1) {
+				const [current, previous] = tnTrends;
+				trends.current.tn = current;
+				trends.previous.tn = previous;
+			} else {
+				trends.current.tn = tnTrends[0];
+			}
+		}
+
 		return trends;
 	} catch (e) {
 		console.log({ e });

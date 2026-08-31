@@ -9,6 +9,7 @@ import {
 	PORTAL_CLARIN_URL,
 	PORTAL_LA_NACION_URL,
 	PORTAL_INFOBAE_URL,
+	PORTAL_TN_URL,
 } from "../config";
 
 export const getPortalsMostRead = async (
@@ -67,7 +68,7 @@ export const getPortalsMostRead = async (
 		const infobaeArticleLinks = await infobaeLinkLocator.evaluateAll(
 			(list, { itemLimit }) => {
 				return list
-					.map(linkElement => linkElement.getAttribute("data-mrf-link"))
+					.map(linkElement => linkElement.getAttribute("data-mrf-link") ?? "")
 					.slice(0, itemLimit);
 			},
 			{ itemLimit }
@@ -97,7 +98,7 @@ export const getPortalsMostRead = async (
 		const clarinArticleLinks = await clarinLinkLocator.evaluateAll(
 			(list, { itemLimit }) => {
 				return list
-					.map(linkElement => linkElement.getAttribute("data-mrf-link"))
+					.map(linkElement => linkElement.getAttribute("data-mrf-link") ?? "")
 					.slice(0, itemLimit);
 			},
 			{ itemLimit }
@@ -135,6 +136,48 @@ export const getPortalsMostRead = async (
 
 		await laNacion.close();
 
+		/* TN — doesn't have a "most read" widget either, but has a "Temas de
+		 * hoy" (topics of the day) widget on the homepage, which fits the
+		 * same article/link shape and is arguably closer to "trending". The
+		 * widget only shows short topic labels (e.g. "Lionel Messi"), not the
+		 * actual headline, so we visit each linked article to grab its real
+		 * title from the page's <h1>. */
+		const tn = await browser.newPage();
+		await tn.goto(PORTAL_TN_URL);
+
+		await tn.waitForSelector(".secondary-nav__ul li.dropdown a", {
+			timeout: 15000,
+		});
+		await tn.waitForTimeout(1000);
+
+		const tnLinkLocator = tn.locator(".secondary-nav__ul li.dropdown a");
+
+		const tnArticleLinks = await tnLinkLocator.evaluateAll(
+			(list, { itemLimit }) => {
+				return list
+					.map(linkElement => linkElement.getAttribute("href") ?? "")
+					.slice(0, itemLimit);
+			},
+			{ itemLimit }
+		);
+
+		await tn.close();
+
+		const tnArticleTitles: string[] = [];
+		for (const link of tnArticleLinks) {
+			const article = await browser.newPage();
+			try {
+				await article.goto(link, { waitUntil: "domcontentloaded", timeout: 15000 });
+				const headline = await article.locator("h1").first().innerText();
+				tnArticleTitles.push(headline.trim());
+			} catch (e) {
+				console.log(`[getPortalsMostRead][tn][${link}]:`, e);
+				tnArticleTitles.push("");
+			} finally {
+				await article.close();
+			}
+		}
+
 		return {
 			elDestape: {
 				articles: elDestapeArticleTitles,
@@ -151,6 +194,10 @@ export const getPortalsMostRead = async (
 			laNacion: {
 				articles: laNacionArticleTitles,
 				links: laNacionArticleLinks,
+			},
+			tn: {
+				articles: tnArticleTitles,
+				links: tnArticleLinks,
 			},
 		};
 	} catch (e) {

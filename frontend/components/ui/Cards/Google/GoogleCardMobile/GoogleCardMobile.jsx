@@ -200,6 +200,8 @@ const GoogleCardMobile = ({ google, handleCardClick }) => {
                       fontSize="sm"
                       textTransform="uppercase"
                       variant="outline"
+                      paddingX="8px"
+                      paddingY="2px"
                       color="#fff"
                       border="1px solid #fff"
                       display="revert"
