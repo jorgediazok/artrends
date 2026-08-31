@@ -30,7 +30,7 @@ const SectionTitle = ({ title, id }) => {
           {title}
         </Text>
         <Box display={{ base: "none", lg: "initial" }}>
-          {title === "Lo más discutido en Twitter" && <Chat />}
+          {title === "Lo más discutido en X" && <Chat />}
         </Box>
         <Box display={{ base: "none", lg: "initial" }}>
           {title === "Lo más escuchado en Spotify" && <Escuchado />}
@@ -55,7 +55,7 @@ const SectionTitle = ({ title, id }) => {
         fontSize="xs"
         fontWeight="700"
       >
-        {title === "Lo más discutido en Twitter" && "Actualizado cada hora"}
+        {title === "Lo más discutido en X" && "Actualizado cada hora"}
         {title === "Lo más escuchado en Spotify" && "Actualizado cada semana"}
         {title === "Lo más visto en Youtube" && "Actualizado cada dos horas"}
         {title === "Lo más buscado en Google" && "Actualizado cada hora"}

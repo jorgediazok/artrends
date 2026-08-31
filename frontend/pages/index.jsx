@@ -130,7 +130,7 @@ export default function Home() {
 
         <meta
           name="description"
-          content="Enterate rápido y en un sólo lugar qué les interesa ahora a los argentinos. Tendencias de Twitter, lo más buscado en Google, lo más visto en Youtube, lo más escuchado en Spotify, lo más leído en portales de noticias y más."
+          content="Enterate rápido y en un sólo lugar qué les interesa ahora a los argentinos. Tendencias de X, lo más buscado en Google, lo más visto en Youtube, lo más escuchado en Spotify, lo más leído en portales de noticias y más."
         />
         <meta
           name="keywords"
@@ -144,7 +144,7 @@ export default function Home() {
         />
         <meta
           property="og:description"
-          content="Enterate rápido y en un sólo lugar qué les interesa ahora a los argentinos. Tendencias de Twitter, lo más buscado en Google, lo más visto en Youtube, lo más escuchado en Spotify, lo más leído en portales de noticias y más."
+          content="Enterate rápido y en un sólo lugar qué les interesa ahora a los argentinos. Tendencias de X, lo más buscado en Google, lo más visto en Youtube, lo más escuchado en Spotify, lo más leído en portales de noticias y más."
         />
         <meta property="og:url" content="https://artrends.ar" />
         <meta property="og:site_name" content="Artrends" />
@@ -209,7 +209,7 @@ export default function Home() {
           bg={theme.colors.gradients["background-gradient-top"]}
         >
           <Container>
-            <SectionTitle title="Lo más discutido en Twitter" />
+            <SectionTitle title="Lo más discutido en X" />
             <TwitterCardMobile
               twitter={trends.twitter}
               handleCardClick={handleCardClick}

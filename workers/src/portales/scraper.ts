@@ -6,9 +6,9 @@ import { PortalsData } from "../typings";
 // Config
 import {
 	PORTAL_EL_DESTAPE_URL,
-	PORTAL_TELAM_URL,
 	PORTAL_CLARIN_URL,
 	PORTAL_LA_NACION_URL,
+	PORTAL_INFOBAE_URL,
 } from "../config";
 
 export const getPortalsMostRead = async (
@@ -48,98 +48,59 @@ export const getPortalsMostRead = async (
 
 		await elDestape.close();
 
-		/* Telam */
-		const telam = await browser.newPage();
-		await telam.goto(PORTAL_TELAM_URL);
+		/* Infobae — no longer has a "most read" widget, so we use their
+		 * "Tendencias" section feed instead (same article/link shape). */
+		const infobae = await browser.newPage();
+		await infobae.goto(PORTAL_INFOBAE_URL);
 
-		await telam.waitForTimeout(3000);
-		await telam.mouse.wheel(0, 6000);
-		await telam.waitForTimeout(3000);
+		await infobae.waitForSelector("a.story-card-ctn", { timeout: 15000 });
+		await infobae.waitForTimeout(1000);
 
-		const telamArticleTitles = await (
-			await telam.locator(".moreread .img-content > h5 > a").allInnerTexts()
+		const infobaeArticleTitles = await (
+			await infobae.locator("a.story-card-ctn h2.story-card-hl").allInnerTexts()
 		).slice(0, itemLimit);
 
-		/* Reordenar  artículos */
-		const itemMasLeido = telamArticleTitles.splice(3, 1)[0];
-		telamArticleTitles.unshift(itemMasLeido);
-
-		const telamLinkLocator = await telam.locator(
-			".moreread .img-content > h5 > a"
+		const infobaeLinkLocator = await infobae.locator(
+			"a.story-card-ctn[data-mrf-link]"
 		);
 
-		const telamArticleLinks = await telamLinkLocator.evaluateAll(
+		const infobaeArticleLinks = await infobaeLinkLocator.evaluateAll(
 			(list, { itemLimit }) => {
 				return list
-					.map(linkElement => linkElement.getAttribute("href"))
+					.map(linkElement => linkElement.getAttribute("data-mrf-link"))
 					.slice(0, itemLimit);
 			},
-			{ PORTAL_TELAM_URL, itemLimit }
+			{ itemLimit }
 		);
 
-		/* Reordenar links artículos */
-		const itemLinkMasLeido = telamArticleLinks.splice(3, 1)[0];
-		telamArticleLinks.unshift(itemLinkMasLeido);
-
-		await telam.close();
-
-		/* Infobae */
-		// const infobae = await browser.newPage();
-		// await infobae.goto(PORTAL_INFOBAE_URL);
-
-		// await infobae.waitForTimeout(3000);
-
-		// const infobaeArticleTitles = await (
-		// 	await infobae
-		// 		.locator(".most-read-container .most-read-item .most-read-headline")
-		// 		.allInnerTexts()
-		// ).slice(0, itemLimit);
-
-		// const infobaeLinkLocator = await infobae.locator(
-		// 	".most-read-container .most-read-item .headline-link"
-		// );
-
-		// const infobaeArticleLinks = await infobaeLinkLocator.evaluateAll(
-		// 	(list, { itemLimit, PORTAL_INFOBAE_URL }) => {
-		// 		return list
-		// 			.map(
-		// 				linkElement =>
-		// 					`${PORTAL_INFOBAE_URL.replace(
-		// 						"/tendencias",
-		// 						""
-		// 					)}${linkElement.getAttribute("href")}`
-		// 			)
-		// 			.slice(0, itemLimit);
-		// 	},
-		// 	{ PORTAL_INFOBAE_URL, itemLimit }
-		// );
-
-		// await infobae.close();
+		await infobae.close();
 
 		/* Clarín */
 		const clarin = await browser.newPage();
 		await clarin.goto(PORTAL_CLARIN_URL);
 
-		await clarin.waitForTimeout(3000);
+		await clarin.waitForSelector("#lo-mas-visto-por-suscriptores", {
+			timeout: 15000,
+		});
+		await clarin.waitForTimeout(1000);
 
-		const clarinArticleTitles = await (
-			await clarin.locator(".The__most__seen .box-container h2").allInnerTexts()
-		).slice(0, itemLimit);
-
-		const clarinLinkLocator = await clarin.locator(
-			".The__most__seen article a"
+		const clarinListLocator = clarin.locator(
+			'ul[data-mrf-recirculation^="ContainerLoMasVistoSus"] li.box-items'
 		);
 
+		const clarinArticleTitles = await (
+			await clarinListLocator.locator("h2").allInnerTexts()
+		).slice(0, itemLimit);
+
+		const clarinLinkLocator = clarinListLocator.locator("a[data-mrf-link]");
+
 		const clarinArticleLinks = await clarinLinkLocator.evaluateAll(
-			(list, { itemLimit, PORTAL_CLARIN_URL }) => {
+			(list, { itemLimit }) => {
 				return list
-					.map(
-						linkElement =>
-							`${PORTAL_CLARIN_URL}${linkElement.getAttribute("href")}`
-					)
+					.map(linkElement => linkElement.getAttribute("data-mrf-link"))
 					.slice(0, itemLimit);
 			},
-			{ PORTAL_CLARIN_URL, itemLimit }
+			{ itemLimit }
 		);
 
 		await clarin.close();
@@ -179,9 +140,9 @@ export const getPortalsMostRead = async (
 				articles: elDestapeArticleTitles,
 				links: elDestapeArticleLinks,
 			},
-			telam: {
-				articles: telamArticleTitles,
-				links: telamArticleLinks,
+			infobae: {
+				articles: infobaeArticleTitles,
+				links: infobaeArticleLinks,
 			},
 			clarin: {
 				articles: clarinArticleTitles,

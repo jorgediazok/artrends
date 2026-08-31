@@ -19,7 +19,7 @@ const SobreLasTendencias = () => {
         <title>Artrends | Sobre la tendencias</title>
         <meta
           name="description"
-          content="Enterate rápido y en un sólo lugar qué les interesa ahora a los argentinos. Tendencias de Twitter, lo más buscado en Google, lo más visto en Youtube, lo más escuchado en Spotify, lo más leído en portales de noticias y más."
+          content="Enterate rápido y en un sólo lugar qué les interesa ahora a los argentinos. Tendencias de X, lo más buscado en Google, lo más visto en Youtube, lo más escuchado en Spotify, lo más leído en portales de noticias y más."
         />
         <meta
           name="keywords"
@@ -30,7 +30,7 @@ const SobreLasTendencias = () => {
         <meta property="og:title" content="Artrends | Sobre las tendencias" />
         <meta
           property="og:description"
-          content="Enterate rápido y en un sólo lugar qué les interesa ahora a los argentinos. Tendencias de Twitter, lo más buscado en Google, lo más visto en Youtube, lo más escuchado en Spotify, lo más leído en portales de noticias y más."
+          content="Enterate rápido y en un sólo lugar qué les interesa ahora a los argentinos. Tendencias de X, lo más buscado en Google, lo más visto en Youtube, lo más escuchado en Spotify, lo más leído en portales de noticias y más."
         />
         <meta property="og:url" content="https://artrends.ar" />
         <meta property="og:site_name" content="Artrends" />
@@ -104,7 +104,7 @@ const SobreLasTendencias = () => {
               alignItems="left"
               as="nav"
             >
-              <Link href="#twitter">Twitter</Link>
+              <Link href="#twitter">X</Link>
               <Link href="#spotify">Spotify</Link>
               <Link href="#youtube">Youtube</Link>
               <Link href="#google">Google</Link>
@@ -116,7 +116,7 @@ const SobreLasTendencias = () => {
               fontWeight="bold"
               as="h2"
             >
-              Twitter
+              X
             </Text>
             Brinda información de principales tendencias por ubicación
             geográfica. En nuestro caso, tomamos las de Argentina. <br />

@@ -4,7 +4,7 @@ export function getWhatsappShareText(trend, currentIndex, title) {
       title
     )} está en el puesto N° ${
       currentIndex + 1
-    } en Twitter Argentina. Seguí todas las tendencias en Artrends ${encodeURIComponent(
+    } en X Argentina. Seguí todas las tendencias en Artrends ${encodeURIComponent(
       "https://artrends.ar"
     )}`;
   }
@@ -83,16 +83,6 @@ export function getWhatsappShareText(trend, currentIndex, title) {
     )}
     `;
   }
-  if (trend === "portals.telam") {
-    return `https://api.whatsapp.com/send?text=[${encodeURI(
-      title
-    )}] está en el puesto N° ${
-      currentIndex + 1
-    } de lo más leído en Télam. Seguí todas las tendencias en Artrends ${encodeURIComponent(
-      "https://artrends.ar"
-    )}
-    `;
-  }
   if (trend === "portals.infobae") {
     return `https://api.whatsapp.com/send?text=[${encodeURI(
       title
@@ -111,7 +101,7 @@ export function getTwitterShareText(trend, currentIndex, title) {
       title
     )}%20está%20en%20el%20puesto%20N°%20${
       currentIndex + 1
-    }%20en%20Twitter%20Argentina.%20Seguí%20todas%20las%20tendencias%20en%20%23Artrends`;
+    }%20en%20X%20Argentina.%20Seguí%20todas%20las%20tendencias%20en%20%23Artrends`;
   }
   if (trend === "spotify.artist") {
     return `https://twitter.com/intent/tweet?url=artrends.ar&text=En%20este%20momento%20${encodeURIComponent(
@@ -168,13 +158,6 @@ export function getTwitterShareText(trend, currentIndex, title) {
     )}]%20está%20en%20el%20puesto%20N°%20${
       currentIndex + 1
     }%20de%20lo%20más%20leído%20en%20Clarín.%20Seguí%20todas%20las%20tendencias%20en%20%23Artrends`;
-  }
-  if (trend === "portals.telam") {
-    return `https://twitter.com/intent/tweet?url=artrends.ar&text=[${encodeURIComponent(
-      title
-    )}]%20está%20en%20el%20puesto%20N°%20${
-      currentIndex + 1
-    }%20de%20lo%20más%20leído%20en%20Télam.%20Seguí%20todas%20las%20tendencias%20en%20%23Artrends`;
   }
   if (trend === "portals.infobae") {
     return `https://twitter.com/intent/tweet?url=artrends.ar&text=[${encodeURIComponent(

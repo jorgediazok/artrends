@@ -19,7 +19,7 @@ const TerminosYCondiciones = () => {
         <title>Artrends | Términos y condiciones</title>
         <meta
           name="description"
-          content="Enterate rápido y en un sólo lugar qué les interesa ahora a los argentinos. Tendencias de Twitter, lo más buscado en Google, lo más visto en Youtube, lo más escuchado en Spotify, lo más leído en portales de noticias y más."
+          content="Enterate rápido y en un sólo lugar qué les interesa ahora a los argentinos. Tendencias de X, lo más buscado en Google, lo más visto en Youtube, lo más escuchado en Spotify, lo más leído en portales de noticias y más."
         />
         <meta
           name="keywords"
@@ -30,7 +30,7 @@ const TerminosYCondiciones = () => {
         <meta property="og:title" content="Artrends | Sobre las tendencias" />
         <meta
           property="og:description"
-          content="Enterate rápido y en un sólo lugar qué les interesa ahora a los argentinos. Tendencias de Twitter, lo más buscado en Google, lo más visto en Youtube, lo más escuchado en Spotify, lo más leído en portales de noticias y más."
+          content="Enterate rápido y en un sólo lugar qué les interesa ahora a los argentinos. Tendencias de X, lo más buscado en Google, lo más visto en Youtube, lo más escuchado en Spotify, lo más leído en portales de noticias y más."
         />
         <meta property="og:url" content="https://artrends.ar" />
         <meta property="og:site_name" content="Artrends" />
@@ -119,7 +119,7 @@ const TerminosYCondiciones = () => {
             <p>
               Este sitio web proporciona información relacionada con las
               tendencias en las plataformas más populares de Argentina,
-              incluyendo Twitter, Spotify, Youtube, Google y medios de
+              incluyendo X, Spotify, Youtube, Google y medios de
               comunicación. El acceso y consulta de esta información es gratuito
               y no requiere registro. Su uso se encuentra limitado a fines
               personales y no comerciales. No está permitida la modificación,

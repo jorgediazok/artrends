@@ -69,23 +69,6 @@ export async function getPortalTrends(db: Db) {
 			}
 		}
 
-		const telamTrends = await db
-			.collection<TrendRecord<PortalTrends>>("portal.telam")
-			.find()
-			.limit(2)
-			.sort({ "record.date": -1 })
-			.toArray();
-
-		if (telamTrends?.length > 0) {
-			if (telamTrends.length > 1) {
-				const [current, previous] = telamTrends;
-				trends.current.telam = current;
-				trends.previous.telam = previous;
-			} else {
-				trends.current.telam = telamTrends[0];
-			}
-		}
-
 		const laNacionTrends = await db
 			.collection<TrendRecord<PortalTrends>>("portal.laNacion")
 			.find()
