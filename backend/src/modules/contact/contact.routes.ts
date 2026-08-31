@@ -26,12 +26,12 @@ export default function contactRoutes(app: AppInstance) {
 		{
 			schema: {
 				tags: ["Contact"],
-				body: {
+				body: Type.Object({
 					fullName: Type.String({}),
 					email: Type.String({}),
 					subject: Type.Enum(Subject),
 					message: Type.String(),
-				},
+				}),
 			},
 		},
 		async (

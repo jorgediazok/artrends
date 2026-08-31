@@ -55,12 +55,12 @@ async function bootstrap() {
 
 	/* Handle errors */
 	process.on("uncaughtException", error => {
-		app.log.error("uncaughtException:", error);
+		app.log.error(error, "uncaughtException");
 		process.exit(1);
 	});
 
 	process.on("unhandledRejection", error => {
-		app.log.error("unhandledRejection:", error);
+		app.log.error({ err: error }, "unhandledRejection");
 		process.exit(1);
 	});
 
