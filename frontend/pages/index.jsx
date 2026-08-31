@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { Partytown } from "@builder.io/partytown/react";
 import NextHead from "next/head";
+import Script from "next/script";
 
 import { useQuery, QueryClient, dehydrate } from "@tanstack/react-query";
 import { useInView } from "react-intersection-observer";
@@ -127,24 +128,6 @@ export default function Home() {
         </title>
         <Partytown debug={true} forward={["dataLayer.push"]} />
 
-        <script
-          type="text/partytown"
-          src="https://www.googletagmanager.com/gtag/js?id=G-QBCR84SD6G"
-        ></script>
-        <script
-          type="text/partytown"
-          dangerouslySetInnerHTML={{
-            __html: `
-            window.dataLayer = window.dataLayer || [];
-            window.gtag = function gtag(){window.dataLayer.push(arguments);}
-            gtag('js', new Date());
-
-            gtag('config', 'G-QBCR84SD6G', { 
-                page_path: window.location.pathname,
-            });
-        `,
-          }}
-        />
         <meta
           name="description"
           content="Enterate rápido y en un sólo lugar qué les interesa ahora a los argentinos. Tendencias de Twitter, lo más buscado en Google, lo más visto en Youtube, lo más escuchado en Spotify, lo más leído en portales de noticias y más."
@@ -168,6 +151,22 @@ export default function Home() {
         <meta property="og:image" content="https://artrends.ar/og_image.png" />
         <link rel="icon" href="/favicon.ico" />
       </NextHead>
+
+      <Script
+        strategy="worker"
+        src="https://www.googletagmanager.com/gtag/js?id=G-QBCR84SD6G"
+      />
+      <Script id="ga-init" strategy="worker">
+        {`
+          window.dataLayer = window.dataLayer || [];
+          window.gtag = function gtag(){window.dataLayer.push(arguments);}
+          gtag('js', new Date());
+
+          gtag('config', 'G-QBCR84SD6G', {
+              page_path: window.location.pathname,
+          });
+        `}
+      </Script>
 
       {/* NAV */}
       <Navbar
@@ -334,7 +333,7 @@ export default function Home() {
 export async function getServerSideProps() {
   const queryClient = new QueryClient();
 
-  await queryClient.prefetchQuery(["trends"], getTrends);
+  await queryClient.prefetchQuery({ queryKey: ["trends"], queryFn: getTrends });
 
   return {
     props: {

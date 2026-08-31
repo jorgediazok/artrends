@@ -4,10 +4,9 @@ import {
   Badge,
   Box,
   Flex,
+  Link,
   Menu,
-  MenuButton,
-  MenuItem,
-  MenuList,
+  Portal,
   Text,
 } from "@chakra-ui/react";
 
@@ -110,73 +109,79 @@ const GoogleCardMobile = ({ google, handleCardClick }) => {
                       >
                         {trend.title}
                       </Text>
-                      <Menu maxW="162px">
-                        <MenuButton
+                      <Menu.Root maxW="162px">
+                        <Menu.Trigger
                           isolation="isolate"
                           title="Ver opciones para esta tendencia"
                         >
                           <ThreeDots />
-                        </MenuButton>
-                        <MenuList
-                          maxWidth="162px"
-                          minWidth="162px"
-                          backgroundColor="indigo.600"
-                          borderRadius="6px"
-                          padding="6px 0px"
-                          zIndex="10"
-                          boxShadow="75px 75px 43px rgba(0, 0, 0, 0.01), 42px 42px 36px rgba(0, 0, 0, 0.05), 19px 19px 27px rgba(0, 0, 0, 0.09), 5px 5px 15px rgba(0, 0, 0, 0.1), 0px 0px 0px rgba(0, 0, 0, 0.1);"
-                          border="none"
-                        >
-                          <MenuItem
-                            backgroundColor="indigo.600"
-                            color="#FFFFFF"
-                            as="a"
-                            fontSize="md"
-                            href={getWhatsappShareText(
-                              "google",
-                              currentIndex,
-                              trend.title
-                            )}
-                            data-action="share/whatsapp/share"
-                            target="_blank"
-                            icon={<Whatsapp />}
-                            iconSpacing="10px"
-                            flexDirection="row-reverse"
-                            display="flex"
-                            alignItems="center"
-                            _active={{
-                              boxShadow:
-                                "inset 75px 75px 43px rgba(0, 0, 0, 0.01), inset 42px 42px 36px rgba(0, 0, 0, 0.05), inset 19px 19px 27px rgba(0, 0, 0, 0.09), inset 5px 5px 15px rgba(0, 0, 0, 0.1)",
-                            }}
-                          >
-                            Compartir por
-                          </MenuItem>
-                          <MenuItem
-                            backgroundColor="indigo.600"
-                            color="#FFFFFF"
-                            as="a"
-                            fontSize="md"
-                            href={getTwitterShareText(
-                              "google",
-                              currentIndex,
-                              trend.title
-                            )}
-                            target="_blank"
-                            rel="noreferrer"
-                            iconSpacing="10px"
-                            flexDirection="row-reverse"
-                            alignItems="center"
-                            display="flex"
-                            icon={<TwitterCompartir />}
-                            _active={{
-                              boxShadow:
-                                "inset 75px 75px 43px rgba(0, 0, 0, 0.01), inset 42px 42px 36px rgba(0, 0, 0, 0.05), inset 19px 19px 27px rgba(0, 0, 0, 0.09), inset 5px 5px 15px rgba(0, 0, 0, 0.1)",
-                            }}
-                          >
-                            Compartir por
-                          </MenuItem>
-                        </MenuList>
-                      </Menu>
+                        </Menu.Trigger>
+                        <Portal>
+                          <Menu.Positioner>
+                            <Menu.Content
+                              maxWidth="162px"
+                              minWidth="162px"
+                              backgroundColor="indigo.600"
+                              borderRadius="6px"
+                              padding="6px 0px"
+                              zIndex="10"
+                              boxShadow="75px 75px 43px rgba(0, 0, 0, 0.01), 42px 42px 36px rgba(0, 0, 0, 0.05), 19px 19px 27px rgba(0, 0, 0, 0.09), 5px 5px 15px rgba(0, 0, 0, 0.1), 0px 0px 0px rgba(0, 0, 0, 0.1);"
+                              border="none"
+                            >
+                              <Menu.Item value="whatsapp" asChild>
+                                <Link
+                                  backgroundColor="indigo.600"
+                                  color="#FFFFFF"
+                                  fontSize="md"
+                                  href={getWhatsappShareText(
+                                    "google",
+                                    currentIndex,
+                                    trend.title
+                                  )}
+                                  data-action="share/whatsapp/share"
+                                  target="_blank"
+                                  display="flex"
+                                  flexDirection="row-reverse"
+                                  alignItems="center"
+                                  gap="10px"
+                                  _active={{
+                                    boxShadow:
+                                      "inset 75px 75px 43px rgba(0, 0, 0, 0.01), inset 42px 42px 36px rgba(0, 0, 0, 0.05), inset 19px 19px 27px rgba(0, 0, 0, 0.09), inset 5px 5px 15px rgba(0, 0, 0, 0.1)",
+                                  }}
+                                >
+                                  <Whatsapp />
+                                  Compartir por
+                                </Link>
+                              </Menu.Item>
+                              <Menu.Item value="twitter" asChild>
+                                <Link
+                                  backgroundColor="indigo.600"
+                                  color="#FFFFFF"
+                                  fontSize="md"
+                                  href={getTwitterShareText(
+                                    "google",
+                                    currentIndex,
+                                    trend.title
+                                  )}
+                                  target="_blank"
+                                  rel="noreferrer"
+                                  display="flex"
+                                  flexDirection="row-reverse"
+                                  alignItems="center"
+                                  gap="10px"
+                                  _active={{
+                                    boxShadow:
+                                      "inset 75px 75px 43px rgba(0, 0, 0, 0.01), inset 42px 42px 36px rgba(0, 0, 0, 0.05), inset 19px 19px 27px rgba(0, 0, 0, 0.09), inset 5px 5px 15px rgba(0, 0, 0, 0.1)",
+                                  }}
+                                >
+                                  <TwitterCompartir />
+                                  Compartir por
+                                </Link>
+                              </Menu.Item>
+                            </Menu.Content>
+                          </Menu.Positioner>
+                        </Portal>
+                      </Menu.Root>
                     </Flex>
                   </Box>
                 </Box>
@@ -195,7 +200,7 @@ const GoogleCardMobile = ({ google, handleCardClick }) => {
                       fontSize="sm"
                       textTransform="uppercase"
                       variant="outline"
-                      colorScheme="#fff"
+                      color="#fff"
                       border="1px solid #fff"
                       display="revert"
                     >

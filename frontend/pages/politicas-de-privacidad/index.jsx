@@ -1,7 +1,7 @@
 import NextHead from "next/head";
 
 // Chakra
-import { Box, Breadcrumb, BreadcrumbItem, Link, Text } from "@chakra-ui/react";
+import { Box, Breadcrumb, Link, Text } from "@chakra-ui/react";
 import NextLink from "next/link";
 
 // Components
@@ -41,27 +41,31 @@ const PoliticasDePrivacidad = () => {
       <Navbar hasCarrousel={false} hasNavItems={false} />
       <Box background="#241154">
         <Container isContentCentered={false}>
-          <Breadcrumb
+          <Breadcrumb.Root
             marginTop={{ base: "82px", lg: "152px" }}
             fontSize="text-sm"
             color="#FFFFFF"
-            spacing="16px"
-            separator={<ArrowRight color="#FFFFFF" />}
             marginRight="auto"
             marginLeft="0"
           >
-            <BreadcrumbItem>
-              <NextLink href="/">
-                <Text as="button" fontSize="text-sm">
-                  Home
-                </Text>
-              </NextLink>
-            </BreadcrumbItem>
+            <Breadcrumb.List gap="16px">
+              <Breadcrumb.Item>
+                <NextLink href="/">
+                  <Text as="button" fontSize="text-sm">
+                    Home
+                  </Text>
+                </NextLink>
+              </Breadcrumb.Item>
 
-            <BreadcrumbItem>
-              <Text fontWeight="600">Políticas de privacidad</Text>
-            </BreadcrumbItem>
-          </Breadcrumb>
+              <Breadcrumb.Separator>
+                <ArrowRight color="#FFFFFF" />
+              </Breadcrumb.Separator>
+
+              <Breadcrumb.Item>
+                <Text fontWeight="600">Políticas de privacidad</Text>
+              </Breadcrumb.Item>
+            </Breadcrumb.List>
+          </Breadcrumb.Root>
         </Container>
 
         <Container isContentCentered={false}>

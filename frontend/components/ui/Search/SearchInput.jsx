@@ -1,7 +1,7 @@
 import { useState } from "react";
 
 // Chakra
-import { Input, IconButton, Box, Collapse } from "@chakra-ui/react";
+import { Input, IconButton, Box, Collapsible } from "@chakra-ui/react";
 
 // Icons
 import Search from "../../ui/icons/Search";
@@ -26,19 +26,20 @@ const SearchInput = () => {
       width={{ base: "100%", lg: "20%" }}
     >
       {showInput ? (
-        <>
-          <Collapse in={showInput} animateOpacity>
+        <Collapsible.Root open={showInput}>
+          <Collapsible.Content>
             <IconButton
               onClick={() => setShowInput(true)}
               name="close"
-              icon={<Search onClick={() => setShowInput(true)} />}
-              colorScheme={theme.colors.gradients["grad-ind-purple"]}
+              colorPalette={theme.colors.gradients["grad-ind-purple"]}
               position="absolute"
               width="20px"
               zIndex={999}
-            />
+            >
+              <Search onClick={() => setShowInput(true)} />
+            </IconButton>
             <Input
-              focusBorderColor={theme.colors["cyan-500"]}
+              _focusVisible={{ borderColor: theme.colors["cyan-500"] }}
               transition="width 0.5s ease-in-out"
               _focus={{
                 width: "288px",
@@ -53,18 +54,19 @@ const SearchInput = () => {
               paddingLeft="40px"
               onBlur={handleInputClose}
             />
-          </Collapse>
-        </>
+          </Collapsible.Content>
+        </Collapsible.Root>
       ) : (
         <IconButton
           onClick={() => setShowInput(true)}
           name="close"
-          icon={<Search />}
-          colorScheme={theme.colors.gradients["grad-white"]}
+          colorPalette={theme.colors.gradients["grad-white"]}
           _hover={{
             background: theme.colors.gradients["grad-purp-transp"],
           }}
-        />
+        >
+          <Search />
+        </IconButton>
       )}
     </Box>
   );

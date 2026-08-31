@@ -123,7 +123,7 @@ const CardMobile = ({
               fontSize="sm"
               textTransform="uppercase"
               variant="outline"
-              colorScheme="#fff"
+              color="#fff"
               border="1px solid #fff"
               display={
                 type === "podcast" || type === "leido" ? "none" : "revert"
