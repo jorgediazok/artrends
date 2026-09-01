@@ -175,16 +175,16 @@ export default function Home() {
       </NextHead>
 
       <Script
-        strategy="worker"
-        src="https://www.googletagmanager.com/gtag/js?id=G-QBCR84SD6G"
+        strategy="afterInteractive"
+        src="https://www.googletagmanager.com/gtag/js?id=G-6G64M8FYKB"
       />
-      <Script id="ga-init" strategy="worker">
+      <Script id="ga-init" strategy="afterInteractive">
         {`
           window.dataLayer = window.dataLayer || [];
           window.gtag = function gtag(){window.dataLayer.push(arguments);}
           gtag('js', new Date());
 
-          gtag('config', 'G-QBCR84SD6G', {
+          gtag('config', 'G-6G64M8FYKB', {
               page_path: window.location.pathname,
           });
         `}
