@@ -8,7 +8,7 @@ import {
 	TWITTER_TRENDS_URL,
 	SPOTIFY_TRENDS_STARTING_URL,
 	SPOTIFY_TOP_PODCASTS_URL,
-	YOUTUBE_TRENDS_URL,
+	YOUTUBE_API_KEY,
 } from "./config";
 
 /* DB Connection */
@@ -136,9 +136,16 @@ async function spotifyTopPodcasts(db: Db) {
 }
 
 async function youtubeTopVideos(db: Db) {
+	if (!YOUTUBE_API_KEY) {
+		console.error(
+			"[youtubeTopVideos]: skipped, YOUTUBE_API_KEY is not set"
+		);
+		return;
+	}
+
 	try {
 		const topVideos = await getYoutubeTrendingVideos(
-			YOUTUBE_TRENDS_URL,
+			YOUTUBE_API_KEY,
 			TRENDS_ITEM_LIMIT
 		);
 
