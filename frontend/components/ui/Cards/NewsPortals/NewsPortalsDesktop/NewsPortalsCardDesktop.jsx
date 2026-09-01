@@ -57,6 +57,7 @@ const NewsPortalsCardDesktop = ({ portals, handleCardClick }) => {
         <Tabs.Trigger
           value="clarin"
           color="white"
+          _selected={{ color: "green.700" }}
           paddingX={{ base: "12px", lg: "16px" }}
           paddingY={{ base: "6px", lg: "8px" }}
           fontSize={{ base: "xs", lg: "md" }}
@@ -67,6 +68,7 @@ const NewsPortalsCardDesktop = ({ portals, handleCardClick }) => {
         <Tabs.Trigger
           value="el-destape"
           color="white"
+          _selected={{ color: "green.700" }}
           paddingX={{ base: "12px", lg: "16px" }}
           paddingY={{ base: "6px", lg: "8px" }}
           fontSize={{ base: "xs", lg: "md" }}
@@ -77,6 +79,7 @@ const NewsPortalsCardDesktop = ({ portals, handleCardClick }) => {
         <Tabs.Trigger
           value="la-nacion"
           color="white"
+          _selected={{ color: "green.700" }}
           paddingX={{ base: "12px", lg: "16px" }}
           paddingY={{ base: "6px", lg: "8px" }}
           fontSize={{ base: "xs", lg: "md" }}
@@ -87,6 +90,7 @@ const NewsPortalsCardDesktop = ({ portals, handleCardClick }) => {
         <Tabs.Trigger
           value="infobae"
           color="white"
+          _selected={{ color: "green.700" }}
           paddingX={{ base: "12px", lg: "16px" }}
           paddingY={{ base: "6px", lg: "8px" }}
           fontSize={{ base: "xs", lg: "md" }}
@@ -97,6 +101,7 @@ const NewsPortalsCardDesktop = ({ portals, handleCardClick }) => {
         <Tabs.Trigger
           value="tn"
           color="white"
+          _selected={{ color: "green.700" }}
           paddingX={{ base: "12px", lg: "16px" }}
           paddingY={{ base: "6px", lg: "8px" }}
           fontSize={{ base: "xs", lg: "md" }}
@@ -205,11 +210,11 @@ const NewsPortalsCardDesktop = ({ portals, handleCardClick }) => {
                           <Portal>
                             <Menu.Positioner>
                               <Menu.Content
-                                maxWidth="162px"
-                                minWidth="162px"
+                                maxWidth="190px"
+                                minWidth="190px"
                                 backgroundColor="indigo.600"
                                 borderRadius="6px"
-                                padding="6px 0px"
+                                padding="6px"
                                 zIndex="10"
                                 boxShadow="75px 75px 43px rgba(0, 0, 0, 0.01), 42px 42px 36px rgba(0, 0, 0, 0.05), 19px 19px 27px rgba(0, 0, 0, 0.09), 5px 5px 15px rgba(0, 0, 0, 0.1), 0px 0px 0px rgba(0, 0, 0, 0.1);"
                                 border="none"
@@ -226,11 +231,17 @@ const NewsPortalsCardDesktop = ({ portals, handleCardClick }) => {
                                     )}
                                     target="_blank"
                                     rel="noopener noreferrer"
+                                    aria-label="Compartir en WhatsApp"
                                     data-action="share/whatsapp/share"
                                     display="flex"
                                     flexDirection="row-reverse"
                                     alignItems="center"
                                     gap="10px"
+                                    width="100%"
+                                    paddingX="10px"
+                                    paddingY="8px"
+                                    borderRadius="4px"
+                                    _hover={{ backgroundColor: "indigo.300" }}
                                     _active={{
                                       boxShadow:
                                         "inset 75px 75px 43px rgba(0, 0, 0, 0.01), inset 42px 42px 36px rgba(0, 0, 0, 0.05), inset 19px 19px 27px rgba(0, 0, 0, 0.09), inset 5px 5px 15px rgba(0, 0, 0, 0.1)",
@@ -252,10 +263,16 @@ const NewsPortalsCardDesktop = ({ portals, handleCardClick }) => {
                                     )}
                                     target="_blank"
                                     rel="noopener noreferrer"
+                                    aria-label="Compartir en X"
                                     display="flex"
                                     flexDirection="row-reverse"
                                     alignItems="center"
                                     gap="10px"
+                                    width="100%"
+                                    paddingX="10px"
+                                    paddingY="8px"
+                                    borderRadius="4px"
+                                    _hover={{ backgroundColor: "indigo.300" }}
                                     _active={{
                                       boxShadow:
                                         "inset 75px 75px 43px rgba(0, 0, 0, 0.01), inset 42px 42px 36px rgba(0, 0, 0, 0.05), inset 19px 19px 27px rgba(0, 0, 0, 0.09), inset 5px 5px 15px rgba(0, 0, 0, 0.1)",
@@ -379,11 +396,11 @@ const NewsPortalsCardDesktop = ({ portals, handleCardClick }) => {
                           <Portal>
                             <Menu.Positioner>
                               <Menu.Content
-                                maxWidth="162px"
-                                minWidth="162px"
+                                maxWidth="190px"
+                                minWidth="190px"
                                 backgroundColor="indigo.600"
                                 borderRadius="6px"
-                                padding="6px 0px"
+                                padding="6px"
                                 zIndex="10"
                                 boxShadow="75px 75px 43px rgba(0, 0, 0, 0.01), 42px 42px 36px rgba(0, 0, 0, 0.05), 19px 19px 27px rgba(0, 0, 0, 0.09), 5px 5px 15px rgba(0, 0, 0, 0.1), 0px 0px 0px rgba(0, 0, 0, 0.1);"
                                 border="none"
@@ -400,11 +417,17 @@ const NewsPortalsCardDesktop = ({ portals, handleCardClick }) => {
                                     )}
                                     target="_blank"
                                     rel="noopener noreferrer"
+                                    aria-label="Compartir en WhatsApp"
                                     data-action="share/whatsapp/share"
                                     display="flex"
                                     flexDirection="row-reverse"
                                     alignItems="center"
                                     gap="10px"
+                                    width="100%"
+                                    paddingX="10px"
+                                    paddingY="8px"
+                                    borderRadius="4px"
+                                    _hover={{ backgroundColor: "indigo.300" }}
                                     _active={{
                                       boxShadow:
                                         "inset 75px 75px 43px rgba(0, 0, 0, 0.01), inset 42px 42px 36px rgba(0, 0, 0, 0.05), inset 19px 19px 27px rgba(0, 0, 0, 0.09), inset 5px 5px 15px rgba(0, 0, 0, 0.1)",
@@ -426,10 +449,16 @@ const NewsPortalsCardDesktop = ({ portals, handleCardClick }) => {
                                     )}
                                     target="_blank"
                                     rel="noopener noreferrer"
+                                    aria-label="Compartir en X"
                                     display="flex"
                                     flexDirection="row-reverse"
                                     alignItems="center"
                                     gap="10px"
+                                    width="100%"
+                                    paddingX="10px"
+                                    paddingY="8px"
+                                    borderRadius="4px"
+                                    _hover={{ backgroundColor: "indigo.300" }}
                                     _active={{
                                       boxShadow:
                                         "inset 75px 75px 43px rgba(0, 0, 0, 0.01), inset 42px 42px 36px rgba(0, 0, 0, 0.05), inset 19px 19px 27px rgba(0, 0, 0, 0.09), inset 5px 5px 15px rgba(0, 0, 0, 0.1)",
@@ -552,11 +581,11 @@ const NewsPortalsCardDesktop = ({ portals, handleCardClick }) => {
                           <Portal>
                             <Menu.Positioner>
                               <Menu.Content
-                                maxWidth="162px"
-                                minWidth="162px"
+                                maxWidth="190px"
+                                minWidth="190px"
                                 backgroundColor="indigo.600"
                                 borderRadius="6px"
-                                padding="6px 0px"
+                                padding="6px"
                                 zIndex="10"
                                 boxShadow="75px 75px 43px rgba(0, 0, 0, 0.01), 42px 42px 36px rgba(0, 0, 0, 0.05), 19px 19px 27px rgba(0, 0, 0, 0.09), 5px 5px 15px rgba(0, 0, 0, 0.1), 0px 0px 0px rgba(0, 0, 0, 0.1);"
                                 border="none"
@@ -573,11 +602,17 @@ const NewsPortalsCardDesktop = ({ portals, handleCardClick }) => {
                                     )}
                                     target="_blank"
                                     rel="noopener noreferrer"
+                                    aria-label="Compartir en WhatsApp"
                                     data-action="share/whatsapp/share"
                                     display="flex"
                                     flexDirection="row-reverse"
                                     alignItems="center"
                                     gap="10px"
+                                    width="100%"
+                                    paddingX="10px"
+                                    paddingY="8px"
+                                    borderRadius="4px"
+                                    _hover={{ backgroundColor: "indigo.300" }}
                                     _active={{
                                       boxShadow:
                                         "inset 75px 75px 43px rgba(0, 0, 0, 0.01), inset 42px 42px 36px rgba(0, 0, 0, 0.05), inset 19px 19px 27px rgba(0, 0, 0, 0.09), inset 5px 5px 15px rgba(0, 0, 0, 0.1)",
@@ -599,10 +634,16 @@ const NewsPortalsCardDesktop = ({ portals, handleCardClick }) => {
                                     )}
                                     target="_blank"
                                     rel="noopener noreferrer"
+                                    aria-label="Compartir en X"
                                     display="flex"
                                     flexDirection="row-reverse"
                                     alignItems="center"
                                     gap="10px"
+                                    width="100%"
+                                    paddingX="10px"
+                                    paddingY="8px"
+                                    borderRadius="4px"
+                                    _hover={{ backgroundColor: "indigo.300" }}
                                     _active={{
                                       boxShadow:
                                         "inset 75px 75px 43px rgba(0, 0, 0, 0.01), inset 42px 42px 36px rgba(0, 0, 0, 0.05), inset 19px 19px 27px rgba(0, 0, 0, 0.09), inset 5px 5px 15px rgba(0, 0, 0, 0.1)",
@@ -726,11 +767,11 @@ const NewsPortalsCardDesktop = ({ portals, handleCardClick }) => {
                           <Portal>
                             <Menu.Positioner>
                               <Menu.Content
-                                maxWidth="162px"
-                                minWidth="162px"
+                                maxWidth="190px"
+                                minWidth="190px"
                                 backgroundColor="indigo.600"
                                 borderRadius="6px"
-                                padding="6px 0px"
+                                padding="6px"
                                 zIndex="10"
                                 boxShadow="75px 75px 43px rgba(0, 0, 0, 0.01), 42px 42px 36px rgba(0, 0, 0, 0.05), 19px 19px 27px rgba(0, 0, 0, 0.09), 5px 5px 15px rgba(0, 0, 0, 0.1), 0px 0px 0px rgba(0, 0, 0, 0.1);"
                                 border="none"
@@ -747,11 +788,17 @@ const NewsPortalsCardDesktop = ({ portals, handleCardClick }) => {
                                     }%20en%20tendencias%20en%20noticias%20en%20Argentina.%20Mirá%20más%20en%20Artrends%20%23Artrends`}
                                     target="_blank"
                                     rel="noopener noreferrer"
+                                    aria-label="Compartir en WhatsApp"
                                     data-action="share/whatsapp/share"
                                     display="flex"
                                     flexDirection="row-reverse"
                                     alignItems="center"
                                     gap="10px"
+                                    width="100%"
+                                    paddingX="10px"
+                                    paddingY="8px"
+                                    borderRadius="4px"
+                                    _hover={{ backgroundColor: "indigo.300" }}
                                     _active={{
                                       boxShadow:
                                         "inset 75px 75px 43px rgba(0, 0, 0, 0.01), inset 42px 42px 36px rgba(0, 0, 0, 0.05), inset 19px 19px 27px rgba(0, 0, 0, 0.09), inset 5px 5px 15px rgba(0, 0, 0, 0.1)",
@@ -773,10 +820,16 @@ const NewsPortalsCardDesktop = ({ portals, handleCardClick }) => {
                                     }%20en%20tendencias%20en%20noticias%20en%20Argentina.%20Mirá%20más%20en%20Artrends%20%23Artrends`}
                                     target="_blank"
                                     rel="noopener noreferrer"
+                                    aria-label="Compartir en X"
                                     display="flex"
                                     flexDirection="row-reverse"
                                     alignItems="center"
                                     gap="10px"
+                                    width="100%"
+                                    paddingX="10px"
+                                    paddingY="8px"
+                                    borderRadius="4px"
+                                    _hover={{ backgroundColor: "indigo.300" }}
                                     _active={{
                                       boxShadow:
                                         "inset 75px 75px 43px rgba(0, 0, 0, 0.01), inset 42px 42px 36px rgba(0, 0, 0, 0.05), inset 19px 19px 27px rgba(0, 0, 0, 0.09), inset 5px 5px 15px rgba(0, 0, 0, 0.1)",
@@ -899,11 +952,11 @@ const NewsPortalsCardDesktop = ({ portals, handleCardClick }) => {
                         <Portal>
                           <Menu.Positioner>
                             <Menu.Content
-                              maxWidth="162px"
-                              minWidth="162px"
+                              maxWidth="190px"
+                              minWidth="190px"
                               backgroundColor="indigo.600"
                               borderRadius="6px"
-                              padding="6px 0px"
+                              padding="6px"
                               zIndex="10"
                               boxShadow="75px 75px 43px rgba(0, 0, 0, 0.01), 42px 42px 36px rgba(0, 0, 0, 0.05), 19px 19px 27px rgba(0, 0, 0, 0.09), 5px 5px 15px rgba(0, 0, 0, 0.1), 0px 0px 0px rgba(0, 0, 0, 0.1);"
                               border="none"
@@ -920,11 +973,17 @@ const NewsPortalsCardDesktop = ({ portals, handleCardClick }) => {
                                   }%20en%20tendencias%20en%20noticias%20en%20Argentina.%20Mirá%20más%20en%20Artrends%20%23Artrends`}
                                   target="_blank"
                                   rel="noopener noreferrer"
+                                  aria-label="Compartir en WhatsApp"
                                   data-action="share/whatsapp/share"
                                   display="flex"
                                   flexDirection="row-reverse"
                                   alignItems="center"
                                   gap="10px"
+                                  width="100%"
+                                  paddingX="10px"
+                                  paddingY="8px"
+                                  borderRadius="4px"
+                                  _hover={{ backgroundColor: "indigo.300" }}
                                   _active={{
                                     boxShadow:
                                       "inset 75px 75px 43px rgba(0, 0, 0, 0.01), inset 42px 42px 36px rgba(0, 0, 0, 0.05), inset 19px 19px 27px rgba(0, 0, 0, 0.09), inset 5px 5px 15px rgba(0, 0, 0, 0.1)",
@@ -946,10 +1005,16 @@ const NewsPortalsCardDesktop = ({ portals, handleCardClick }) => {
                                   }%20en%20tendencias%20en%20noticias%20en%20Argentina.%20Mirá%20más%20en%20Artrends%20%23Artrends`}
                                   target="_blank"
                                   rel="noopener noreferrer"
+                                  aria-label="Compartir en X"
                                   display="flex"
                                   flexDirection="row-reverse"
                                   alignItems="center"
                                   gap="10px"
+                                  width="100%"
+                                  paddingX="10px"
+                                  paddingY="8px"
+                                  borderRadius="4px"
+                                  _hover={{ backgroundColor: "indigo.300" }}
                                   _active={{
                                     boxShadow:
                                       "inset 75px 75px 43px rgba(0, 0, 0, 0.01), inset 42px 42px 36px rgba(0, 0, 0, 0.05), inset 19px 19px 27px rgba(0, 0, 0, 0.09), inset 5px 5px 15px rgba(0, 0, 0, 0.1)",

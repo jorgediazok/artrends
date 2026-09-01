@@ -64,6 +64,7 @@ const SpotifyCardMobile = ({
         <Tabs.Trigger
           value="song"
           color="white"
+          _selected={{ color: "green.700" }}
           paddingX="12px"
           paddingY="6px"
           fontSize="sm"
@@ -74,6 +75,7 @@ const SpotifyCardMobile = ({
         <Tabs.Trigger
           value="artist"
           color="white"
+          _selected={{ color: "green.700" }}
           paddingX="12px"
           paddingY="6px"
           fontSize="sm"
@@ -84,6 +86,7 @@ const SpotifyCardMobile = ({
         <Tabs.Trigger
           value="podcast"
           color="white"
+          _selected={{ color: "green.700" }}
           paddingX="12px"
           paddingY="6px"
           fontSize="sm"
@@ -181,11 +184,11 @@ const SpotifyCardMobile = ({
                             <Portal>
                               <Menu.Positioner>
                                 <Menu.Content
-                                  maxWidth="162px"
-                                  minWidth="162px"
+                                  maxWidth="190px"
+                                  minWidth="190px"
                                   backgroundColor="indigo.600"
                                   borderRadius="6px"
-                                  padding="6px 0px"
+                                  padding="6px"
                                   zIndex="10"
                                   boxShadow="75px 75px 43px rgba(0, 0, 0, 0.01), 42px 42px 36px rgba(0, 0, 0, 0.05), 19px 19px 27px rgba(0, 0, 0, 0.09), 5px 5px 15px rgba(0, 0, 0, 0.1), 0px 0px 0px rgba(0, 0, 0, 0.1);"
                                   border="none"
@@ -202,10 +205,16 @@ const SpotifyCardMobile = ({
                                       )}
                                       data-action="share/whatsapp/share"
                                       target="_blank"
+                                      aria-label="Compartir en WhatsApp"
                                       display="flex"
                                       flexDirection="row-reverse"
                                       alignItems="center"
                                       gap="10px"
+                                      width="100%"
+                                      paddingX="10px"
+                                      paddingY="8px"
+                                      borderRadius="4px"
+                                      _hover={{ backgroundColor: "indigo.300" }}
                                       _active={{
                                         boxShadow:
                                           "inset 75px 75px 43px rgba(0, 0, 0, 0.01), inset 42px 42px 36px rgba(0, 0, 0, 0.05), inset 19px 19px 27px rgba(0, 0, 0, 0.09), inset 5px 5px 15px rgba(0, 0, 0, 0.1)",
@@ -227,10 +236,16 @@ const SpotifyCardMobile = ({
                                       )}
                                       target="_blank"
                                       rel="noopener noreferrer"
+                                      aria-label="Compartir en X"
                                       display="flex"
                                       flexDirection="row-reverse"
                                       alignItems="center"
                                       gap="10px"
+                                      width="100%"
+                                      paddingX="10px"
+                                      paddingY="8px"
+                                      borderRadius="4px"
+                                      _hover={{ backgroundColor: "indigo.300" }}
                                       _active={{
                                         boxShadow:
                                           "inset 75px 75px 43px rgba(0, 0, 0, 0.01), inset 42px 42px 36px rgba(0, 0, 0, 0.05), inset 19px 19px 27px rgba(0, 0, 0, 0.09), inset 5px 5px 15px rgba(0, 0, 0, 0.1)",
@@ -400,11 +415,11 @@ const SpotifyCardMobile = ({
                             <Portal>
                               <Menu.Positioner>
                                 <Menu.Content
-                                  maxWidth="162px"
-                                  minWidth="162px"
+                                  maxWidth="190px"
+                                  minWidth="190px"
                                   backgroundColor="indigo.600"
                                   borderRadius="6px"
-                                  padding="6px 0px"
+                                  padding="6px"
                                   zIndex="10"
                                   boxShadow="75px 75px 43px rgba(0, 0, 0, 0.01), 42px 42px 36px rgba(0, 0, 0, 0.05), 19px 19px 27px rgba(0, 0, 0, 0.09), 5px 5px 15px rgba(0, 0, 0, 0.1), 0px 0px 0px rgba(0, 0, 0, 0.1);"
                                   border="none"
@@ -421,10 +436,16 @@ const SpotifyCardMobile = ({
                                       )}
                                       data-action="share/whatsapp/share"
                                       target="_blank"
+                                      aria-label="Compartir en WhatsApp"
                                       display="flex"
                                       flexDirection="row-reverse"
                                       alignItems="center"
                                       gap="10px"
+                                      width="100%"
+                                      paddingX="10px"
+                                      paddingY="8px"
+                                      borderRadius="4px"
+                                      _hover={{ backgroundColor: "indigo.300" }}
                                       _active={{
                                         boxShadow:
                                           "inset 75px 75px 43px rgba(0, 0, 0, 0.01), inset 42px 42px 36px rgba(0, 0, 0, 0.05), inset 19px 19px 27px rgba(0, 0, 0, 0.09), inset 5px 5px 15px rgba(0, 0, 0, 0.1)",
@@ -446,10 +467,16 @@ const SpotifyCardMobile = ({
                                       )}
                                       target="_blank"
                                       rel="noopener noreferrer"
+                                      aria-label="Compartir en X"
                                       display="flex"
                                       flexDirection="row-reverse"
                                       alignItems="center"
                                       gap="10px"
+                                      width="100%"
+                                      paddingX="10px"
+                                      paddingY="8px"
+                                      borderRadius="4px"
+                                      _hover={{ backgroundColor: "indigo.300" }}
                                       _active={{
                                         boxShadow:
                                           "inset 75px 75px 43px rgba(0, 0, 0, 0.01), inset 42px 42px 36px rgba(0, 0, 0, 0.05), inset 19px 19px 27px rgba(0, 0, 0, 0.09), inset 5px 5px 15px rgba(0, 0, 0, 0.1)",
@@ -612,11 +639,11 @@ const SpotifyCardMobile = ({
                               <Portal>
                                 <Menu.Positioner>
                                   <Menu.Content
-                                    maxWidth="162px"
-                                    minWidth="162px"
+                                    maxWidth="190px"
+                                    minWidth="190px"
                                     backgroundColor="indigo.600"
                                     borderRadius="6px"
-                                    padding="6px 0px"
+                                    padding="6px"
                                     zIndex="10"
                                     boxShadow="75px 75px 43px rgba(0, 0, 0, 0.01), 42px 42px 36px rgba(0, 0, 0, 0.05), 19px 19px 27px rgba(0, 0, 0, 0.09), 5px 5px 15px rgba(0, 0, 0, 0.1), 0px 0px 0px rgba(0, 0, 0, 0.1);"
                                     border="none"
@@ -633,10 +660,16 @@ const SpotifyCardMobile = ({
                                         )}
                                         data-action="share/whatsapp/share"
                                         target="_blank"
+                                        aria-label="Compartir en WhatsApp"
                                         display="flex"
                                         flexDirection="row-reverse"
                                         alignItems="center"
                                         gap="10px"
+                                        width="100%"
+                                        paddingX="10px"
+                                        paddingY="8px"
+                                        borderRadius="4px"
+                                        _hover={{ backgroundColor: "indigo.300" }}
                                         _active={{
                                           boxShadow:
                                             "inset 75px 75px 43px rgba(0, 0, 0, 0.01), inset 42px 42px 36px rgba(0, 0, 0, 0.05), inset 19px 19px 27px rgba(0, 0, 0, 0.09), inset 5px 5px 15px rgba(0, 0, 0, 0.1)",
@@ -658,10 +691,16 @@ const SpotifyCardMobile = ({
                                         )}
                                         target="_blank"
                                         rel="noopener noreferrer"
+                                        aria-label="Compartir en X"
                                         display="flex"
                                         flexDirection="row-reverse"
                                         alignItems="center"
                                         gap="10px"
+                                        width="100%"
+                                        paddingX="10px"
+                                        paddingY="8px"
+                                        borderRadius="4px"
+                                        _hover={{ backgroundColor: "indigo.300" }}
                                         _active={{
                                           boxShadow:
                                             "inset 75px 75px 43px rgba(0, 0, 0, 0.01), inset 42px 42px 36px rgba(0, 0, 0, 0.05), inset 19px 19px 27px rgba(0, 0, 0, 0.09), inset 5px 5px 15px rgba(0, 0, 0, 0.1)",
