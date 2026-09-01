@@ -30,3 +30,19 @@ export async function getTwitterTrends(db: Db) {
 		return { e };
 	}
 }
+
+export async function getTwitterTrendsHistory(db: Db, limit = 12) {
+	try {
+		const history = await db
+			.collection<TrendRecord<TwitterTrend>>("twitter")
+			.find()
+			.limit(limit)
+			.sort({ "record.date": -1 })
+			.toArray();
+
+		return { history };
+	} catch (e) {
+		console.log({ e });
+		return { e };
+	}
+}

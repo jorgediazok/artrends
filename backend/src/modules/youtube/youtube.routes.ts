@@ -1,5 +1,5 @@
 /* Services */
-import { getYoutubeTrends } from "./youtube.service";
+import { getYoutubeTrends, getYoutubeTrendsHistory } from "./youtube.service";
 
 // Schema
 import { Type } from "@sinclair/typebox";
@@ -12,7 +12,7 @@ import { AppInstance } from "../../types/appInstance";
 import { isCacheResult } from "../../types/cache";
 
 export default function youtubeRoutes(app: AppInstance, db: Db) {
-	return app.get(
+	app.get(
 		"/api/youtube-trends",
 		{
 			schema: {
@@ -58,4 +58,53 @@ export default function youtubeRoutes(app: AppInstance, db: Db) {
 			});
 		}
 	);
+
+	app.get(
+		"/api/youtube-trends/history",
+		{
+			schema: {
+				tags: ["Youtube"],
+				summary: "Historial de posiciones",
+				response: {
+					500: Type.Optional(Type.String()),
+				},
+			},
+		},
+		(_req: FastifyRequest, reply: FastifyReply) => {
+			app.cache.get("youtube-trends-history", async (error, cacheHit) => {
+				if (error) {
+					console.log("Error", error);
+					reply.status(500).send(error);
+					return;
+				}
+				if (isCacheResult(cacheHit)) {
+					if (cacheHit.stored) {
+						reply.status(200).send({ ...cacheHit.item, fromCache: true });
+						return;
+					}
+				}
+
+				if (!cacheHit) {
+					const result = await getYoutubeTrendsHistory(db);
+
+					if (result.e) {
+						app.log.error(result.e);
+						return reply.status(500).send();
+					}
+
+					app.cache.set("youtube-trends-history", result, 360000, err => {
+						if (err) {
+							console.log({ err });
+							return err;
+						}
+
+						reply.status(200).send({ ...result, fromCache: false });
+						return;
+					});
+				}
+			});
+		}
+	);
+
+	return app;
 }

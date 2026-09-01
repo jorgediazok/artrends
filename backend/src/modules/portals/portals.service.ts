@@ -109,3 +109,34 @@ export async function getPortalTrends(db: Db) {
 		return { e };
 	}
 }
+
+export async function getPortalsHistory(db: Db, limit = 12) {
+	try {
+		const collections = {
+			elDestape: "portal.elDestape",
+			clarin: "portal.clarin",
+			infobae: "portal.infobae",
+			laNacion: "portal.laNacion",
+			tn: "portal.tn",
+		} as const;
+
+		const history: Record<
+			string,
+			WithId<TrendRecord<PortalTrends>>[]
+		> = {};
+
+		for (const [key, collectionName] of Object.entries(collections)) {
+			history[key] = await db
+				.collection<TrendRecord<PortalTrends>>(collectionName)
+				.find()
+				.limit(limit)
+				.sort({ "record.date": -1 })
+				.toArray();
+		}
+
+		return { history };
+	} catch (e) {
+		console.log({ e });
+		return { e };
+	}
+}

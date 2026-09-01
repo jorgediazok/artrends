@@ -98,3 +98,51 @@ export async function getPodcastsTrends(db: Db) {
 		return { e };
 	}
 }
+
+export async function getArtistTrendsHistory(db: Db, limit = 12) {
+	try {
+		const history = await db
+			.collection<TrendRecord<SpotifyArtistTrends>>("spotify.artists")
+			.find()
+			.limit(limit)
+			.sort({ "record.date": -1 })
+			.toArray();
+
+		return { history };
+	} catch (e) {
+		console.log({ e });
+		return { e };
+	}
+}
+
+export async function getSongsTrendsHistory(db: Db, limit = 12) {
+	try {
+		const history = await db
+			.collection<TrendRecord<SpotifySongTrends>>("spotify.songs")
+			.find()
+			.limit(limit)
+			.sort({ "record.date": -1 })
+			.toArray();
+
+		return { history };
+	} catch (e) {
+		console.log({ e });
+		return { e };
+	}
+}
+
+export async function getPodcastsTrendsHistory(db: Db, limit = 12) {
+	try {
+		const history = await db
+			.collection<TrendRecord<SpotifySongTrends>>("spotify.podcasts")
+			.find()
+			.limit(limit)
+			.sort({ "record.date": -1 })
+			.toArray();
+
+		return { history };
+	} catch (e) {
+		console.log({ e });
+		return { e };
+	}
+}
