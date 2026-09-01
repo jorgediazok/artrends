@@ -42,7 +42,7 @@ export default function twitterRoutes(app: AppInstance, db: Db) {
 
 					if (result.e) {
 						app.log.error(result.e);
-						return reply.status(500);
+						return reply.status(500).send();
 					}
 
 					app.cache.set("twitter-trends", result, 360000, err => {

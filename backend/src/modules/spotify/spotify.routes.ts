@@ -57,7 +57,7 @@ export default function spotifyRoutes(app: AppInstance, db: Db) {
 
 					if (result?.e) {
 						app.log.error(result.e);
-						return reply.status(500);
+						return reply.status(500).send();
 					}
 
 					app.cache.set("spotify/artists-trends", result, 360000, err => {
@@ -117,7 +117,7 @@ export default function spotifyRoutes(app: AppInstance, db: Db) {
 
 					if (result?.e) {
 						app.log.error(result.e);
-						return reply.status(500);
+						return reply.status(500).send();
 					}
 
 					app.cache.set("spotify/songs-trends", result, 360000, err => {
@@ -177,7 +177,7 @@ export default function spotifyRoutes(app: AppInstance, db: Db) {
 
 					if (result?.e) {
 						app.log.error(result.e);
-						return reply.status(500);
+						return reply.status(500).send();
 					}
 
 					app.cache.set("spotify/podcasts-trends", result, 360000, err => {
