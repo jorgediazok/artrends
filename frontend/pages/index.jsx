@@ -75,7 +75,7 @@ export default function Home() {
 
   // Handlers
   const handleCardClick = e => {
-    if (e.target.tagName === "BUTTON" || e.target.tagName === "A") {
+    if (e.target.closest("a, button")) {
       return;
     }
     window.open(e.currentTarget.dataset.link, "_blank");
