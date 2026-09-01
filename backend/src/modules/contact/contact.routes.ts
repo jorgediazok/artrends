@@ -1,6 +1,6 @@
 // Types
 import { Type } from "@sinclair/typebox";
-import { Events, TextChannel } from "discord.js";
+import { TextChannel } from "discord.js";
 import { FastifyRequest, FastifyReply } from "fastify";
 import { AppInstance } from "types/appInstance";
 
@@ -40,12 +40,10 @@ export default function contactRoutes(app: AppInstance) {
 		) => {
 			const discord = await Discord();
 
-			discord.once(Events.ClientReady, async client => {
-				if (!req.body) return;
-
-				const channel = (await client.channels.cache.get(
-					"1068357846774853643"
-				)) as TextChannel;
+			if (req.body) {
+				const channel = discord.channels.cache.get(
+					"1544481070311940118"
+				) as TextChannel;
 
 				channel.send(`
 \`\`${req.body.fullName}
@@ -53,7 +51,7 @@ ${req.body.email}
 ${req.body.subject}
 ${req.body.message} \`\`
 				`);
-			});
+			}
 
 			return reply.send({});
 		}
