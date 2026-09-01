@@ -17,6 +17,7 @@ import {
   getTwitterShareText,
   getWhatsappShareText,
 } from "../../../../../utils/shareText";
+import { getCrossPlatformLabel } from "../../../../../utils/crossPlatform";
 
 //ICONS & COMPONENTS
 import ArrowDownMobile from "../../../icons/ArrowDownMobile";
@@ -26,12 +27,14 @@ import ThreeDots from "../../../icons/ThreeDots";
 import TwitterCompartir from "../../../icons/TwitterCompartir";
 import Whatsapp from "../../../icons/Whatsapp";
 import ErrorCardMobile from "../../ErrorCard/ErrorCardMobile/ErrorCardMobile";
+import CrossPlatformBadge from "../../../CrossPlatformBadge/CrossPlatformBadge";
+import TrendHistoryPopover from "../../../TrendHistoryPopover/TrendHistoryPopover";
 
 //STYLES
 import styles from "./GoogleCardMobile.module.css";
 import theme from "../../../../../styles/theme";
 
-const GoogleCardMobile = ({ google, handleCardClick }) => {
+const GoogleCardMobile = ({ google, handleCardClick, crossMatches }) => {
   const hasData =
     google?.current?.record?.trends &&
     google?.current?.record?.trends.length > 0;
@@ -57,6 +60,11 @@ const GoogleCardMobile = ({ google, handleCardClick }) => {
           const prevIndex = google?.previous?.record?.trends?.findIndex(
             element => element.title === elementInPrevious?.title
           );
+          const crossLabel = getCrossPlatformLabel(
+            crossMatches,
+            trend.title,
+            "Google"
+          );
           return (
             <Box
               as="li"
@@ -66,7 +74,7 @@ const GoogleCardMobile = ({ google, handleCardClick }) => {
               borderColor="rgba(255, 255, 255, 0.1);"
               borderRadius={theme.radius.md}
               width="100%"
-              height="72px"
+              minHeight="72px"
               mb={2}
               display="flex"
               alignItems="center"
@@ -109,6 +117,12 @@ const GoogleCardMobile = ({ google, handleCardClick }) => {
                       >
                         {trend.title}
                       </Text>
+                      <Flex alignItems="center" gap="2px" flexShrink={0}>
+                      <TrendHistoryPopover
+                        historyPath="/api/google-trends/history"
+                        matchValue={trend.title}
+                        field="title"
+                      />
                       <Menu.Root maxW="162px">
                         <Menu.Trigger
                           isolation="isolate"
@@ -194,6 +208,7 @@ const GoogleCardMobile = ({ google, handleCardClick }) => {
                           </Menu.Positioner>
                         </Portal>
                       </Menu.Root>
+                      </Flex>
                     </Flex>
                   </Box>
                 </Box>
@@ -206,6 +221,7 @@ const GoogleCardMobile = ({ google, handleCardClick }) => {
                   height="100%"
                 >
                   <Box maxWidth="80%" display="revert">
+                    {crossLabel && <CrossPlatformBadge label={crossLabel} />}
                     <Badge
                       className="one-max-line"
                       w="100%"

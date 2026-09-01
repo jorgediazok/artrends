@@ -24,6 +24,7 @@ import Share from "../../../icons/Share";
 import TwitterCompartir from "../../../icons/TwitterCompartir";
 import Whatsapp from "../../../icons/Whatsapp";
 import ErrorCardDesktop from "../../ErrorCard/ErrorCardDesktop/ErrorCardDesktop";
+import TrendHistoryPopover from "../../../TrendHistoryPopover/TrendHistoryPopover";
 
 // Theme
 import theme from "../../../../../styles/theme";
@@ -31,7 +32,7 @@ import theme from "../../../../../styles/theme";
 // Styles
 import styles from "./GoogleCardDesktop.module.css";
 
-const GoogleCardDesktop = ({ google, handleCardClick }) => {
+const GoogleCardDesktop = ({ google, handleCardClick, crossMatches }) => {
   const hasData =
     google?.current?.record?.trends && google.current.record.trends.length > 0;
 
@@ -139,6 +140,11 @@ const GoogleCardDesktop = ({ google, handleCardClick }) => {
                   justifyContent="flex-end"
                   marginTop="40px"
                 >
+                  <TrendHistoryPopover
+                    historyPath="/api/google-trends/history"
+                    matchValue={trend.title}
+                    field="title"
+                  />
                   <Menu.Root>
                     <Menu.Trigger
                       isolation="isolate"

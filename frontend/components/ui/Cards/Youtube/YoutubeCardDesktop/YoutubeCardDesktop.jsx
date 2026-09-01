@@ -17,6 +17,7 @@ import {
   getTwitterShareText,
   getWhatsappShareText,
 } from "../../../../../utils/shareText";
+import { getCrossPlatformLabel } from "../../../../../utils/crossPlatform";
 
 // Icons
 import ArrowDown from "../../../icons/ArrowDown";
@@ -28,13 +29,15 @@ import Whatsapp from "../../../icons/Whatsapp";
 
 // Components
 import ErrorCardDesktop from "../../ErrorCard/ErrorCardDesktop/ErrorCardDesktop";
+import CrossPlatformBadge from "../../../CrossPlatformBadge/CrossPlatformBadge";
+import TrendHistoryPopover from "../../../TrendHistoryPopover/TrendHistoryPopover";
 
 // Styles
 import styles from "./YoutubeCardDesktop.module.css";
 
-const YoutubeCardDesktop = ({ youtube }) => {
+const YoutubeCardDesktop = ({ youtube, crossMatches }) => {
   const handleCardClick = (e, link) => {
-    if (e.target.tagName === "BUTTON" || e.target.tagName === "A") {
+    if (e.target.closest("a, button")) {
       return;
     }
 
@@ -69,6 +72,11 @@ const YoutubeCardDesktop = ({ youtube }) => {
           const prevIndex = youtube?.previous?.record?.trends?.findIndex(
             element => element.title === elementInPrevious?.title
           );
+          const crossLabel = getCrossPlatformLabel(
+            crossMatches,
+            trend.title,
+            "YouTube"
+          );
           return (
             <Box
               as="article"
@@ -81,7 +89,7 @@ const YoutubeCardDesktop = ({ youtube }) => {
               paddingX="48px"
               paddingY="12px"
               width="100%"
-              height="161px"
+              minHeight="161px"
               mb={2}
               display="flex"
               alignItems="center"
@@ -142,6 +150,8 @@ const YoutubeCardDesktop = ({ youtube }) => {
                       {trend.channel}
                     </Text>
 
+                    {crossLabel && <CrossPlatformBadge label={crossLabel} />}
+
                     <Badge
                       className="one-max-line"
                       width="fit-content"
@@ -153,14 +163,16 @@ const YoutubeCardDesktop = ({ youtube }) => {
                       color="#fff"
                       border="1px solid #fff"
                     >
-                      {trend.amount &&
-                        !trend.amount.includes("hace") &&
-                        trend.amount.replace("K", "") +
-                          " reproducciones semanales"}
+                      {trend.amount && `${trend.amount} reproducciones`}
                     </Badge>
                   </Box>
                 </Box>
                 <Box display="flex" gap={8} alignItems="center">
+                  <TrendHistoryPopover
+                    historyPath="/api/youtube-trends/history"
+                    matchValue={trend.title}
+                    field="title"
+                  />
                   <Menu.Root maxW="162px">
                     <Menu.Trigger minW="40px" isolation="isolate">
                       <Share />

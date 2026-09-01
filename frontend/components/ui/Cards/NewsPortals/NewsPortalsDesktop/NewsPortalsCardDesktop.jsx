@@ -7,6 +7,7 @@ import {
   getTwitterShareText,
   getWhatsappShareText,
 } from "../../../../../utils/shareText";
+import { getCrossPlatformLabel } from "../../../../../utils/crossPlatform";
 
 // Icons
 import ArrowDown from "../../../icons/ArrowDown";
@@ -18,6 +19,8 @@ import Whatsapp from "../../../icons/Whatsapp";
 
 // Components
 import ErrorCardDesktop from "../../ErrorCard/ErrorCardDesktop/ErrorCardDesktop";
+import CrossPlatformBadge from "../../../CrossPlatformBadge/CrossPlatformBadge";
+import TrendHistoryPopover from "../../../TrendHistoryPopover/TrendHistoryPopover";
 
 // Theme
 import theme from "../../../../../styles/theme";
@@ -25,7 +28,7 @@ import theme from "../../../../../styles/theme";
 // Styles
 import styles from "./NewsPortalsCardDesktop.module.css";
 
-const NewsPortalsCardDesktop = ({ portals, handleCardClick }) => {
+const NewsPortalsCardDesktop = ({ portals, handleCardClick, crossMatches }) => {
   const hasLaNacionData =
     portals?.current?.laNacion?.record?.trends?.length &&
     portals.current.laNacion.record.trends.length > 0;
@@ -131,6 +134,11 @@ const NewsPortalsCardDesktop = ({ portals, handleCardClick }) => {
                   portals?.previous?.clarin?.record?.trends?.findIndex(
                     element => element.article === elementInPrevious?.article
                   );
+                const crossLabel = getCrossPlatformLabel(
+                  crossMatches,
+                  trend.article,
+                  "Portales"
+                );
                 return (
                   <Box
                     as="article"
@@ -143,7 +151,7 @@ const NewsPortalsCardDesktop = ({ portals, handleCardClick }) => {
                     paddingX="48px"
                     paddingY="12px"
                     width="100%"
-                    height="157px"
+                    minHeight="157px"
                     mb={2}
                     display={{ base: "none", lg: "flex" }}
                     alignItems="center"
@@ -197,9 +205,18 @@ const NewsPortalsCardDesktop = ({ portals, handleCardClick }) => {
                           >
                             {trend.article}
                           </Text>
+                          {crossLabel && (
+                            <CrossPlatformBadge label={crossLabel} />
+                          )}
                         </Box>
                       </Box>
                       <Box display="flex" gap={8} alignItems="center">
+                        <TrendHistoryPopover
+                          historyPath="/api/portals/history"
+                          historyKey="clarin"
+                          matchValue={trend.article}
+                          field="article"
+                        />
                         <Menu.Root>
                           <Menu.Trigger
                             isolation="isolate"
@@ -317,6 +334,11 @@ const NewsPortalsCardDesktop = ({ portals, handleCardClick }) => {
                   portals?.previous?.elDestape?.record?.trends?.findIndex(
                     element => element.article === elementInPrevious?.article
                   );
+                const crossLabel = getCrossPlatformLabel(
+                  crossMatches,
+                  trend.article,
+                  "Portales"
+                );
                 return (
                   <Box
                     as="article"
@@ -329,7 +351,7 @@ const NewsPortalsCardDesktop = ({ portals, handleCardClick }) => {
                     paddingX="48px"
                     paddingY="12px"
                     width="100%"
-                    height="157px"
+                    minHeight="157px"
                     mb={2}
                     display={{ base: "none", lg: "flex" }}
                     alignItems="center"
@@ -383,9 +405,18 @@ const NewsPortalsCardDesktop = ({ portals, handleCardClick }) => {
                           >
                             {trend.article}
                           </Text>
+                          {crossLabel && (
+                            <CrossPlatformBadge label={crossLabel} />
+                          )}
                         </Box>
                       </Box>
                       <Box display="flex" gap={8} alignItems="center">
+                        <TrendHistoryPopover
+                          historyPath="/api/portals/history"
+                          historyKey="elDestape"
+                          matchValue={trend.article}
+                          field="article"
+                        />
                         <Menu.Root>
                           <Menu.Trigger
                             isolation="isolate"
@@ -502,6 +533,11 @@ const NewsPortalsCardDesktop = ({ portals, handleCardClick }) => {
                   portals?.previous?.laNacion?.record?.trends?.findIndex(
                     element => element.article === elementInPrevious?.article
                   );
+                const crossLabel = getCrossPlatformLabel(
+                  crossMatches,
+                  trend.article,
+                  "Portales"
+                );
                 return (
                   <Box
                     as="article"
@@ -514,7 +550,7 @@ const NewsPortalsCardDesktop = ({ portals, handleCardClick }) => {
                     paddingX="48px"
                     paddingY="12px"
                     width="100%"
-                    height="157px"
+                    minHeight="157px"
                     mb={2}
                     display={{ base: "none", lg: "flex" }}
                     alignItems="center"
@@ -568,9 +604,18 @@ const NewsPortalsCardDesktop = ({ portals, handleCardClick }) => {
                           >
                             {trend.article}
                           </Text>
+                          {crossLabel && (
+                            <CrossPlatformBadge label={crossLabel} />
+                          )}
                         </Box>
                       </Box>
                       <Box display="flex" gap={8} alignItems="center">
+                        <TrendHistoryPopover
+                          historyPath="/api/portals/history"
+                          historyKey="laNacion"
+                          matchValue={trend.article}
+                          field="article"
+                        />
                         <Menu.Root>
                           <Menu.Trigger
                             isolation="isolate"
@@ -687,6 +732,11 @@ const NewsPortalsCardDesktop = ({ portals, handleCardClick }) => {
                   portals?.previous?.infobae?.record?.trends?.findIndex(
                     element => element.article === elementInPrevious?.article
                   );
+                const crossLabel = getCrossPlatformLabel(
+                  crossMatches,
+                  trend.article,
+                  "Portales"
+                );
                 return (
                   <Box
                     as="article"
@@ -699,7 +749,7 @@ const NewsPortalsCardDesktop = ({ portals, handleCardClick }) => {
                     paddingX="48px"
                     paddingY="12px"
                     width="100%"
-                    height="157px"
+                    minHeight="157px"
                     mb={2}
                     display={{ base: "none", lg: "flex" }}
                     alignItems="center"
@@ -754,9 +804,18 @@ const NewsPortalsCardDesktop = ({ portals, handleCardClick }) => {
                               {trend.article}
                             </Text>
                           </a>
+                          {crossLabel && (
+                            <CrossPlatformBadge label={crossLabel} />
+                          )}
                         </Box>
                       </Box>
                       <Box display="flex" gap={8} alignItems="center">
+                        <TrendHistoryPopover
+                          historyPath="/api/portals/history"
+                          historyKey="infobae"
+                          matchValue={trend.article}
+                          field="article"
+                        />
                         <Menu.Root>
                           <Menu.Trigger
                             isolation="isolate"
@@ -872,6 +931,11 @@ const NewsPortalsCardDesktop = ({ portals, handleCardClick }) => {
                 portals?.previous?.tn?.record?.trends?.findIndex(
                   element => element.article === elementInPrevious?.article
                 );
+              const crossLabel = getCrossPlatformLabel(
+                crossMatches,
+                trend.article,
+                "Portales"
+              );
               return (
                 <Box
                   as="article"
@@ -884,7 +948,7 @@ const NewsPortalsCardDesktop = ({ portals, handleCardClick }) => {
                   paddingX="48px"
                   paddingY="12px"
                   width="100%"
-                  height="157px"
+                  minHeight="157px"
                   mb={2}
                   display={{ base: "none", lg: "flex" }}
                   alignItems="center"
@@ -939,9 +1003,18 @@ const NewsPortalsCardDesktop = ({ portals, handleCardClick }) => {
                             {trend.article}
                           </Text>
                         </a>
+                        {crossLabel && (
+                          <CrossPlatformBadge label={crossLabel} />
+                        )}
                       </Box>
                     </Box>
                     <Box display="flex" gap={8} alignItems="center">
+                      <TrendHistoryPopover
+                        historyPath="/api/portals/history"
+                        historyKey="tn"
+                        matchValue={trend.article}
+                        field="article"
+                      />
                       <Menu.Root>
                         <Menu.Trigger
                           isolation="isolate"

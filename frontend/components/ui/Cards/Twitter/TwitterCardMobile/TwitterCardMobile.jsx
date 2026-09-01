@@ -18,6 +18,7 @@ import {
   getWhatsappShareText,
   getTwitterShareText,
 } from "../../../../../utils/shareText";
+import { getCrossPlatformLabel } from "../../../../../utils/crossPlatform";
 
 // Icons & Components
 import ArrowDownMobile from "../../../icons/ArrowDownMobile";
@@ -29,11 +30,18 @@ import TwitterCompartir from "../../../icons/TwitterCompartir";
 
 // Components
 import ErrorCardMobile from "../../ErrorCard/ErrorCardMobile/ErrorCardMobile";
+import TrendHistoryPopover from "../../../TrendHistoryPopover/TrendHistoryPopover";
+import CrossPlatformBadge from "../../../CrossPlatformBadge/CrossPlatformBadge";
 
 // Styles
 import theme from "../../../../../styles/theme";
 
-const TwitterCardMobile = ({ twitter, twitterSectionRef, handleCardClick }) => {
+const TwitterCardMobile = ({
+  twitter,
+  twitterSectionRef,
+  handleCardClick,
+  crossMatches,
+}) => {
   const hasData =
     twitter?.current?.record?.trends?.length &&
     twitter.current.record.trends.length > 0;
@@ -60,6 +68,11 @@ const TwitterCardMobile = ({ twitter, twitterSectionRef, handleCardClick }) => {
           const prevIndex = twitter?.previous?.record?.trends?.findIndex(
             element => element.title === elementInPrevious?.title
           );
+          const crossLabel = getCrossPlatformLabel(
+            crossMatches,
+            trend.title,
+            "X"
+          );
           return (
             <Box
               key={currentIndex}
@@ -70,7 +83,7 @@ const TwitterCardMobile = ({ twitter, twitterSectionRef, handleCardClick }) => {
               borderColor="rgba(255, 255, 255, 0.1);"
               borderRadius={theme.radius.md}
               width="100%"
-              height="72px"
+              minHeight="72px"
               mb={2}
               display="flex"
               alignItems="center"
@@ -113,6 +126,12 @@ const TwitterCardMobile = ({ twitter, twitterSectionRef, handleCardClick }) => {
                         {trend.title}
                       </Text>
 
+                      <Flex alignItems="center" gap="2px" flexShrink={0}>
+                      <TrendHistoryPopover
+                        historyPath="/api/twitter-trends/history"
+                        matchValue={trend.title}
+                        field="title"
+                      />
                       <Menu.Root maxW="162px">
                         <Menu.Trigger
                           isolation="isolate"
@@ -199,6 +218,7 @@ const TwitterCardMobile = ({ twitter, twitterSectionRef, handleCardClick }) => {
                           </Menu.Positioner>
                         </Portal>
                       </Menu.Root>
+                      </Flex>
                     </Flex>
                   </Box>
                 </Box>
@@ -211,6 +231,7 @@ const TwitterCardMobile = ({ twitter, twitterSectionRef, handleCardClick }) => {
                   height="100%"
                 >
                   <Box maxWidth="80%" display="revert">
+                    {crossLabel && <CrossPlatformBadge label={crossLabel} />}
                     {trend.amount && !trend.amount.includes("trending") && (
                       <Badge
                         className="one-max-line"

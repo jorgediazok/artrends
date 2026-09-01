@@ -17,6 +17,7 @@ import {
   getTwitterShareText,
   getWhatsappShareText,
 } from "../../../../../utils/shareText";
+import { getCrossPlatformLabel } from "../../../../../utils/crossPlatform";
 
 //ICONS AND COMPONENTS
 import ArrowDownMobile from "../../../icons/ArrowDownMobile";
@@ -26,14 +27,16 @@ import ThreeDots from "../../../icons/ThreeDots";
 import TwitterCompartir from "../../../icons/TwitterCompartir";
 import Whatsapp from "../../../icons/Whatsapp";
 import ErrorCardMobile from "../../ErrorCard/ErrorCardMobile/ErrorCardMobile";
+import CrossPlatformBadge from "../../../CrossPlatformBadge/CrossPlatformBadge";
+import TrendHistoryPopover from "../../../TrendHistoryPopover/TrendHistoryPopover";
 
 //STYLES
 import styles from "./YoutubeCardMobile.module.css";
 import theme from "../../../../../styles/theme";
 
-const YoutubeCardMobile = ({ youtube }) => {
+const YoutubeCardMobile = ({ youtube, crossMatches }) => {
   const handleCardClick = (e, link) => {
-    if (e.target.tagName === "BUTTON" || e.target.tagName === "A") {
+    if (e.target.closest("a, button")) {
       return;
     }
 
@@ -69,6 +72,11 @@ const YoutubeCardMobile = ({ youtube }) => {
           const prevIndex = youtube?.previous?.record?.trends?.findIndex(
             element => element.title === elementInPrevious?.title
           );
+          const crossLabel = getCrossPlatformLabel(
+            crossMatches,
+            trend.title,
+            "YouTube"
+          );
           return (
             <Box
               as="li"
@@ -78,7 +86,7 @@ const YoutubeCardMobile = ({ youtube }) => {
               borderColor="rgba(255, 255, 255, 0.1);"
               borderRadius={theme.radius.md}
               width="100%"
-              height="118px"
+              minHeight="118px"
               mb={2}
               display={{ base: "flex", lg: "none" }}
               alignItems="center"
@@ -119,6 +127,12 @@ const YoutubeCardMobile = ({ youtube }) => {
                       >
                         {trend.title}
                       </Text>
+                      <Flex alignItems="center" gap="2px" flexShrink={0}>
+                      <TrendHistoryPopover
+                        historyPath="/api/youtube-trends/history"
+                        matchValue={trend.title}
+                        field="title"
+                      />
                       <Menu.Root maxW="162px">
                         <Menu.Trigger
                           isolation="isolate"
@@ -207,6 +221,7 @@ const YoutubeCardMobile = ({ youtube }) => {
                           </Menu.Positioner>
                         </Portal>
                       </Menu.Root>
+                      </Flex>
                     </Flex>
 
                     <Text
@@ -229,6 +244,7 @@ const YoutubeCardMobile = ({ youtube }) => {
                   height="100%"
                 >
                   <Box maxWidth="80%" display="revert">
+                    {crossLabel && <CrossPlatformBadge label={crossLabel} />}
                     <Badge
                       className="one-max-line"
                       w="100%"
@@ -241,7 +257,7 @@ const YoutubeCardMobile = ({ youtube }) => {
                       border="1px solid #fff"
                       display="revert"
                     >
-                      {trend.amount && `${trend.amount} reproducciones semanales`}
+                      {trend.amount && `${trend.amount} reproducciones`}
                     </Badge>
                   </Box>
 

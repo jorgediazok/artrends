@@ -26,11 +26,12 @@ import Whatsapp from "../../../icons/Whatsapp";
 
 // Components
 import ErrorCardDesktop from "../../ErrorCard/ErrorCardDesktop/ErrorCardDesktop";
+import TrendHistoryPopover from "../../../TrendHistoryPopover/TrendHistoryPopover";
 
 // Theme
 import theme from "../../../../../styles/theme";
 
-const TwitterCardDesktop = ({ twitter, handleCardClick }) => {
+const TwitterCardDesktop = ({ twitter, handleCardClick, crossMatches }) => {
   const hasData =
     twitter?.current?.record?.trends?.length &&
     twitter.current.record.trends.length > 0;
@@ -137,12 +138,18 @@ const TwitterCardDesktop = ({ twitter, handleCardClick }) => {
 
                 <Box
                   display="flex"
-                  alignItems="flex-end"
+                  alignItems="center"
                   justifyContent="flex-end"
+                  gap="4px"
                   position="absolute"
                   bottom={0}
                   right="16px"
                 >
+                  <TrendHistoryPopover
+                    historyPath="/api/twitter-trends/history"
+                    matchValue={trend.title}
+                    field="title"
+                  />
                   <Menu.Root role="button">
                     <Menu.Trigger
                       isolation="isolate"

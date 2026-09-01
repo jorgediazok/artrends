@@ -15,6 +15,7 @@ import {
   getTwitterShareText,
   getWhatsappShareText,
 } from "../../../../../utils/shareText";
+import { getCrossPlatformLabel } from "../../../../../utils/crossPlatform";
 
 // Icons
 import ArrowDown from "../../../icons/ArrowDown";
@@ -26,6 +27,8 @@ import TwitterCompartir from "../../../icons/TwitterCompartir";
 
 // Components
 import ErrorCardDesktop from "../../ErrorCard/ErrorCardDesktop/ErrorCardDesktop";
+import CrossPlatformBadge from "../../../CrossPlatformBadge/CrossPlatformBadge";
+import TrendHistoryPopover from "../../../TrendHistoryPopover/TrendHistoryPopover";
 
 // Theme
 import theme from "../../../../../styles/theme";
@@ -38,6 +41,7 @@ const SpotifyCardDesktop = ({
   spotifyPodcast,
   spotifySong,
   handleCardClick,
+  crossMatches,
 }) => {
   const hasArtistData =
     spotifyArtist?.current?.record?.trends?.length &&
@@ -113,6 +117,11 @@ const SpotifyCardDesktop = ({
                 spotifySong?.previous?.record?.trends?.findIndex(
                   element => element.name === elementInPrevious?.name
                 );
+              const crossLabel = getCrossPlatformLabel(
+                crossMatches,
+                trend.name,
+                "Spotify"
+              );
               return (
                 <Box
                   as="article"
@@ -125,7 +134,7 @@ const SpotifyCardDesktop = ({
                   paddingX="48px"
                   paddingY="12px"
                   width="100%"
-                  height="131px"
+                  minHeight="131px"
                   mb={2}
                   key={trend.name}
                   _hover={{ transform: "translateY(-2.5px)" }}
@@ -177,6 +186,9 @@ const SpotifyCardDesktop = ({
                           >
                             {trend.author}
                           </Text>
+                          {crossLabel && (
+                            <CrossPlatformBadge label={crossLabel} />
+                          )}
                           <Badge
                             className="one-max-line"
                             width="fit-content"
@@ -194,6 +206,11 @@ const SpotifyCardDesktop = ({
                       </a>
                     </Box>
                     <Box display="flex" gap={8} alignItems="center">
+                      <TrendHistoryPopover
+                        historyPath="/api/spotify/song-trends/history"
+                        matchValue={trend.name}
+                        field="name"
+                      />
                       <Menu.Root>
                         <Menu.Trigger
                           isolation="isolate"
@@ -309,6 +326,11 @@ const SpotifyCardDesktop = ({
                 spotifyArtist?.previous?.record?.trends?.findIndex(
                   element => element.name === elementInPrevious?.name
                 );
+              const crossLabel = getCrossPlatformLabel(
+                crossMatches,
+                trend.name,
+                "Spotify"
+              );
               return (
                 <Box
                   as="article"
@@ -321,7 +343,7 @@ const SpotifyCardDesktop = ({
                   paddingX="48px"
                   paddingY="12px"
                   width="100%"
-                  height="131px"
+                  minHeight="131px"
                   mb={2}
                   display="flex"
                   alignItems="center"
@@ -368,6 +390,9 @@ const SpotifyCardDesktop = ({
                         <Text fontSize="2xl" fontWeight={600}>
                           {trend.name}
                         </Text>
+                        {crossLabel && (
+                          <CrossPlatformBadge label={crossLabel} />
+                        )}
                         <Badge
                           className="one-max-line"
                           width="fit-content"
@@ -386,6 +411,11 @@ const SpotifyCardDesktop = ({
                       </Box>
                     </Box>
                     <Box display="flex" gap={8} alignItems="center">
+                      <TrendHistoryPopover
+                        historyPath="/api/spotify/artist-trends/history"
+                        matchValue={trend.name}
+                        field="name"
+                      />
                       <Menu.Root>
                         <Menu.Trigger
                           isolation="isolate"
@@ -501,6 +531,11 @@ const SpotifyCardDesktop = ({
                   spotifyPodcast?.previous?.record?.trends?.findIndex(
                     element => element.name === elementInPrevious?.name
                   );
+                const crossLabel = getCrossPlatformLabel(
+                  crossMatches,
+                  trend.name,
+                  "Spotify"
+                );
                 return (
                   <Box
                     as="article"
@@ -513,7 +548,7 @@ const SpotifyCardDesktop = ({
                     paddingX="48px"
                     paddingY="12px"
                     width="100%"
-                    height="131px"
+                    minHeight="131px"
                     mb={2}
                     display={{ base: "none", lg: "flex" }}
                     alignItems="center"
@@ -571,10 +606,18 @@ const SpotifyCardDesktop = ({
                             >
                               {trend.publisher}
                             </Text>
+                            {crossLabel && (
+                              <CrossPlatformBadge label={crossLabel} />
+                            )}
                           </Box>
                         </a>
                       </Box>
                       <Box display="flex" gap={8} alignItems="center">
+                        <TrendHistoryPopover
+                          historyPath="/api/spotify/podcast-trends/history"
+                          matchValue={trend.name}
+                          field="name"
+                        />
                         <Menu.Root>
                           <Menu.Trigger
                             isolation="isolate"

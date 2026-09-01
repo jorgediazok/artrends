@@ -36,7 +36,7 @@ const SectionTitle = ({ title, id }) => {
           {title === "Lo más escuchado en Spotify" && <Escuchado />}
         </Box>
         <Box display={{ base: "none", lg: "block" }}>
-          {title === "Lo más visto en Youtube" && <Visto />}
+          {title === "Lo más visto en YouTube" && <Visto />}
         </Box>
         <Box display={{ base: "none", lg: "block" }}>
           {title === "Lo más buscado en Google" && <Search />}
@@ -57,7 +57,7 @@ const SectionTitle = ({ title, id }) => {
       >
         {title === "Lo más discutido en X" && "Actualizado cada hora"}
         {title === "Lo más escuchado en Spotify" && "Actualizado cada semana"}
-        {title === "Lo más visto en Youtube" && "Actualizado cada dos horas"}
+        {title === "Lo más visto en YouTube" && "Actualizado cada dos horas"}
         {title === "Lo más buscado en Google" && "Actualizado cada hora"}
         {title === "Las noticias más leídas" && "Actualizado cada hora"}
       </Badge>

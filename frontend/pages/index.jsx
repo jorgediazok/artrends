@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { Partytown } from "@builder.io/partytown/react";
 import NextHead from "next/head";
 import Script from "next/script";
@@ -21,6 +21,7 @@ import theme from "../styles/theme";
 
 // Utils
 import { intersectionObserverOptions } from "../utils/position";
+import { findCrossPlatformMatches } from "../utils/crossPlatform";
 
 // Components
 import Container from "../components/layout/Container";
@@ -36,6 +37,7 @@ import SpotifyCardMobile from "../components/ui/Cards/Spotify/SpotifyCardMobile/
 import NewsPortalsMobile from "../components/ui/Cards/NewsPortals/NewsPortalsMobile";
 import NewsPortalsDesktop from "../components/ui/Cards/NewsPortals/NewsPortalsDesktop";
 import SectionTitle from "../components/ui/SectionTitle";
+import TrendListSkeleton from "../components/ui/TrendListSkeleton/TrendListSkeleton";
 
 // Utils
 import { scrollOffset as offset } from "../utils/scrollOffset";
@@ -68,10 +70,16 @@ export default function Home() {
   // });
 
   // Queries
-  const { data: trends } = useQuery({
+  const {
+    data: trends,
+    isPending: trendsArePending,
+    isError: trendsHaveError,
+  } = useQuery({
     queryKey: ["trends"],
     queryFn: getTrends,
   });
+
+  const crossMatches = useMemo(() => findCrossPlatformMatches(trends), [trends]);
 
   // Handlers
   const handleCardClick = e => {
@@ -111,7 +119,21 @@ export default function Home() {
   //   youtubeIsInView,
   // ]);
 
-  if (!trends) {
+  if (trendsArePending) {
+    return (
+      <>
+        <Navbar hasSearch={true} hasCarrousel={false} />
+        <Hero />
+        <Container isContentCentered={false}>
+          <TrendListSkeleton rows={10} columns={2} />
+          <TrendListSkeleton rows={10} columns={1} />
+          <TrendListSkeleton rows={10} columns={1} />
+        </Container>
+      </>
+    );
+  }
+
+  if (trendsHaveError || !trends) {
     return (
       <strong>
         No pudimos conectarnos con nuestros servidores. Estamos trabajando para
@@ -130,7 +152,7 @@ export default function Home() {
 
         <meta
           name="description"
-          content="Enterate rápido y en un sólo lugar qué les interesa ahora a los argentinos. Tendencias de X, lo más buscado en Google, lo más visto en Youtube, lo más escuchado en Spotify, lo más leído en portales de noticias y más."
+          content="Enterate rápido y en un sólo lugar qué les interesa ahora a los argentinos. Tendencias de X, lo más buscado en Google, lo más visto en YouTube, lo más escuchado en Spotify, lo más leído en portales de noticias y más."
         />
         <meta
           name="keywords"
@@ -144,7 +166,7 @@ export default function Home() {
         />
         <meta
           property="og:description"
-          content="Enterate rápido y en un sólo lugar qué les interesa ahora a los argentinos. Tendencias de X, lo más buscado en Google, lo más visto en Youtube, lo más escuchado en Spotify, lo más leído en portales de noticias y más."
+          content="Enterate rápido y en un sólo lugar qué les interesa ahora a los argentinos. Tendencias de X, lo más buscado en Google, lo más visto en YouTube, lo más escuchado en Spotify, lo más leído en portales de noticias y más."
         />
         <meta property="og:url" content="https://artrends.ar/" />
         <meta property="og:site_name" content="Artrends" />
@@ -213,10 +235,12 @@ export default function Home() {
             <TwitterCardMobile
               twitter={trends.twitter}
               handleCardClick={handleCardClick}
+              crossMatches={crossMatches}
             />
             <TwitterCardDesktop
               twitter={trends.twitter}
               handleCardClick={handleCardClick}
+              crossMatches={crossMatches}
             />
           </Container>
         </Box>
@@ -240,12 +264,14 @@ export default function Home() {
               spotifyPodcast={trends.spotifyPodcasts}
               spotifySong={trends.spotifySongs}
               handleCardClick={handleCardClick}
+              crossMatches={crossMatches}
             />
             <SpotifyCardDesktop
               spotifyArtist={trends.spotifyArtists}
               spotifyPodcast={trends.spotifyPodcasts}
               spotifySong={trends.spotifySongs}
               handleCardClick={handleCardClick}
+              crossMatches={crossMatches}
             />
           </Container>
         </Box>
@@ -263,9 +289,15 @@ export default function Home() {
           }}
         >
           <Container>
-            <SectionTitle title="Lo más visto en Youtube" />
-            <YoutubeCardMobile youtube={trends.youtube} />
-            <YoutubeCardDesktop youtube={trends.youtube} />
+            <SectionTitle title="Lo más visto en YouTube" />
+            <YoutubeCardMobile
+              youtube={trends.youtube}
+              crossMatches={crossMatches}
+            />
+            <YoutubeCardDesktop
+              youtube={trends.youtube}
+              crossMatches={crossMatches}
+            />
           </Container>
         </Box>
 
@@ -288,11 +320,13 @@ export default function Home() {
               google={trends.google}
               //   googleSectionRef={googleSectionRef}
               handleCardClick={handleCardClick}
+              crossMatches={crossMatches}
             />
             <GoogleCardDesktop
               google={trends.google}
               // googleSectionRef={googleSectionRef}
               handleCardClick={handleCardClick}
+              crossMatches={crossMatches}
             />
           </Container>
         </Box>
@@ -315,11 +349,13 @@ export default function Home() {
               portals={trends.portals}
               //  portalSectionRef={portalSectionRef}
               handleCardClick={handleCardClick}
+              crossMatches={crossMatches}
             />
             <NewsPortalsDesktop
               portals={trends.portals}
               //portalSectionRef={portalSectionRef}
               handleCardClick={handleCardClick}
+              crossMatches={crossMatches}
             />
           </Container>
         </Box>

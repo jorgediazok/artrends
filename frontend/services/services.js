@@ -4,3 +4,8 @@ export const getTrends = async () => {
   const result = await fetch(`${API_URL}/api/trends`);
   return result.json();
 };
+
+export const getTrendHistory = async path => {
+  const result = await fetch(`${API_URL}${path}`);
+  return result.json();
+};

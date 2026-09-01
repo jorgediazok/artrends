@@ -18,6 +18,7 @@ import {
   getTwitterShareText,
   getWhatsappShareText,
 } from "../../../../../utils/shareText";
+import { getCrossPlatformLabel } from "../../../../../utils/crossPlatform";
 
 // Icons
 import ArrowDownMobile from "../../../icons/ArrowDownMobile";
@@ -29,6 +30,8 @@ import Whatsapp from "../../../icons/Whatsapp";
 
 // Components
 import ErrorCardMobile from "../../ErrorCard/ErrorCardMobile/ErrorCardMobile";
+import CrossPlatformBadge from "../../../CrossPlatformBadge/CrossPlatformBadge";
+import TrendHistoryPopover from "../../../TrendHistoryPopover/TrendHistoryPopover";
 
 // Styles
 import theme from "../../../../../styles/theme";
@@ -39,6 +42,7 @@ const SpotifyCardMobile = ({
   spotifySong,
   spotifyPodcast,
   handleCardClick,
+  crossMatches,
 }) => {
   const hasArtistData =
     spotifyArtist?.current?.record?.trends?.length &&
@@ -115,6 +119,11 @@ const SpotifyCardMobile = ({
                 spotifySong?.previous?.record?.trends?.findIndex(
                   element => element.name === elementInPrevious?.name
                 );
+              const crossLabel = getCrossPlatformLabel(
+                crossMatches,
+                trend.name,
+                "Spotify"
+              );
               return (
                 <Box
                   as="li"
@@ -124,7 +133,7 @@ const SpotifyCardMobile = ({
                   borderColor="rgba(255, 255, 255, 0.1);"
                   borderRadius={theme.radius.md}
                   width="100%"
-                  height="100px"
+                  minHeight="100px"
                   mb={2}
                   display={{ base: "flex", lg: "none" }}
                   alignItems="center"
@@ -174,6 +183,12 @@ const SpotifyCardMobile = ({
                               {trend.name}
                             </Text>
                           </a>
+                          <Flex alignItems="center" gap="2px" flexShrink={0}>
+                          <TrendHistoryPopover
+                            historyPath="/api/spotify/song-trends/history"
+                            matchValue={trend.name}
+                            field="name"
+                          />
                           <Menu.Root maxW="162px">
                             <Menu.Trigger
                               isolation="isolate"
@@ -259,6 +274,7 @@ const SpotifyCardMobile = ({
                               </Menu.Positioner>
                             </Portal>
                           </Menu.Root>
+                          </Flex>
                         </Flex>
                       </Box>
                     </Box>
@@ -281,6 +297,9 @@ const SpotifyCardMobile = ({
                         >
                           {trend.author}
                         </Text>
+                        {crossLabel && (
+                          <CrossPlatformBadge label={crossLabel} />
+                        )}
                         <Badge
                           className="one-max-line"
                           w="100%"
@@ -349,6 +368,11 @@ const SpotifyCardMobile = ({
                 spotifyArtist?.previous?.record?.trends?.findIndex(
                   element => element.name === elementInPrevious?.name
                 );
+              const crossLabel = getCrossPlatformLabel(
+                crossMatches,
+                trend.name,
+                "Spotify"
+              );
               return (
                 <Box
                   as="li"
@@ -359,7 +383,7 @@ const SpotifyCardMobile = ({
                   borderColor="rgba(255, 255, 255, 0.1);"
                   borderRadius={theme.radius.md}
                   width="100%"
-                  height="100px"
+                  minHeight="100px"
                   mb={2}
                   display={{ base: "flex", lg: "none" }}
                   p="8px 16px"
@@ -405,6 +429,12 @@ const SpotifyCardMobile = ({
                               {trend.name}
                             </Text>
                           </a>
+                          <Flex alignItems="center" gap="2px" flexShrink={0}>
+                          <TrendHistoryPopover
+                            historyPath="/api/spotify/artist-trends/history"
+                            matchValue={trend.name}
+                            field="name"
+                          />
                           <Menu.Root maxW="162px">
                             <Menu.Trigger
                               isolation="isolate"
@@ -490,6 +520,7 @@ const SpotifyCardMobile = ({
                               </Menu.Positioner>
                             </Portal>
                           </Menu.Root>
+                          </Flex>
                         </Flex>
                       </Box>
                     </Box>
@@ -504,6 +535,9 @@ const SpotifyCardMobile = ({
                       position="relative"
                     >
                       <Box maxWidth="80%" display="revert">
+                        {crossLabel && (
+                          <CrossPlatformBadge label={crossLabel} />
+                        )}
                         <Badge
                           h="100%"
                           fontSize="xs"
@@ -575,6 +609,11 @@ const SpotifyCardMobile = ({
                   spotifyPodcast?.previous?.record?.trends?.findIndex(
                     element => element.name === elementInPrevious?.name
                   );
+                const crossLabel = getCrossPlatformLabel(
+                  crossMatches,
+                  trend.name,
+                  "Spotify"
+                );
                 return (
                   <Box
                     as="li"
@@ -584,7 +623,7 @@ const SpotifyCardMobile = ({
                     borderColor="rgba(255, 255, 255, 0.1);"
                     borderRadius={theme.radius.md}
                     width="100%"
-                    height="100px"
+                    minHeight="100px"
                     mb={2}
                     display={{ base: "flex", lg: "none" }}
                     alignItems="center"
@@ -629,6 +668,12 @@ const SpotifyCardMobile = ({
                               {trend.name}
                             </Text>
 
+                            <Flex alignItems="center" gap="2px" flexShrink={0}>
+                            <TrendHistoryPopover
+                              historyPath="/api/spotify/podcast-trends/history"
+                              matchValue={trend.name}
+                              field="name"
+                            />
                             <Menu.Root maxW="162px">
                               <Menu.Trigger
                                 isolation="isolate"
@@ -714,6 +759,7 @@ const SpotifyCardMobile = ({
                                 </Menu.Positioner>
                               </Portal>
                             </Menu.Root>
+                            </Flex>
                           </Flex>
                         </Box>
                       </Box>
@@ -735,6 +781,9 @@ const SpotifyCardMobile = ({
                           >
                             {trend.publisher}
                           </Text>
+                          {crossLabel && (
+                            <CrossPlatformBadge label={crossLabel} />
+                          )}
                         </Box>
 
                         <Box
