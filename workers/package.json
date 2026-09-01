@@ -4,7 +4,7 @@
   "description": "Scraper de Google Trends en Argentina",
   "main": "index.ts",
   "scripts": {
-    "dev": "NODE_ENV=development node-dev ./src/index.ts --respawn --notify=false",
+    "dev": "NODE_ENV=development ../dev-infra/node20/bin/node node_modules/.bin/node-dev ./src/index.ts --respawn --notify=false",
     "build": "npx playwright install-deps && tsc",
     "start": "node build/index.js"
   },
