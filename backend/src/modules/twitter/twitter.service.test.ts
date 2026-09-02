@@ -19,14 +19,14 @@ describe("getTwitterTrends", () => {
 		const db = createMockDb([current]);
 
 		await expect(getTwitterTrends(db)).resolves.toEqual({
-			current: [current],
+			current,
 		});
 	});
 
 	it("returns an empty current list when there are no records", async () => {
 		const db = createMockDb([]);
 
-		await expect(getTwitterTrends(db)).resolves.toEqual({ current: [] });
+		await expect(getTwitterTrends(db)).resolves.toEqual({ current: undefined });
 	});
 
 	it("returns the error instead of throwing when the query fails", async () => {

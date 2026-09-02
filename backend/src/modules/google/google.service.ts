@@ -24,7 +24,7 @@ export async function getGoogleTrends(db: Db) {
 		}
 
 		return {
-			current: trends,
+			current: trends[0],
 		};
 	} catch (e) {
 		console.log({ e });

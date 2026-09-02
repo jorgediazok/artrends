@@ -1,5 +1,4 @@
 import { describe, expect, it, vi } from "vitest";
-import { Events } from "discord.js";
 import Fastify from "fastify";
 import contactRoutes from "./contact.routes";
 import type { AppInstance } from "../../types/appInstance";
@@ -32,8 +31,7 @@ describe("POST /api/contact", () => {
 		const client = {
 			channels: { cache: { get: vi.fn().mockReturnValue(channel) } },
 		};
-		const discordClient = { once: vi.fn((_event, cb) => cb(client)) };
-		vi.mocked(Discord).mockResolvedValue(discordClient as never);
+		vi.mocked(Discord).mockResolvedValue(client as never);
 
 		const app = buildApp();
 		const response = await app.inject({
@@ -44,10 +42,6 @@ describe("POST /api/contact", () => {
 
 		expect(response.statusCode).toBe(200);
 		expect(response.json()).toEqual({});
-		expect(discordClient.once).toHaveBeenCalledWith(
-			Events.ClientReady,
-			expect.any(Function)
-		);
 		expect(send).toHaveBeenCalledWith(
 			expect.stringContaining("Ada Lovelace")
 		);

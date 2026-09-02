@@ -36,12 +36,14 @@ describe("GET /api/trends", () => {
 		expect(response.statusCode).toBe(200);
 		expect(response.json()).toEqual({
 			twitter: { current, previous },
-			google: { current: [current] },
-			youtube: { current: [] },
-			spotifySongs: { current: [current] },
+			google: { current },
+			youtube: {},
+			spotifySongs: { current },
 			portals: { current: {}, previous: {} },
 			fromCache: false,
-			// spotifyArtists/spotifyPodcasts are absent: their services
+			// youtube's "current" comes back undefined (empty collection) and
+			// JSON.stringify drops undefined-valued keys, hence {} over the wire.
+			// spotifyArtists/spotifyPodcasts are absent entirely: their services
 			// return null on an empty collection, and trends.routes.ts
 			// only adds a key to the response when the service result is truthy
 		});

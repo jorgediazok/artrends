@@ -23,7 +23,7 @@ describe.each([
 	it("returns only current when a single record exists", async () => {
 		const db = createMockDb([current]);
 
-		await expect(fn(db)).resolves.toEqual({ current: [current] });
+		await expect(fn(db)).resolves.toEqual({ current });
 	});
 
 	it("returns null when there are no records, unlike the other trend services", async () => {

@@ -37,7 +37,7 @@ export async function getArtistTrends(db: Db) {
 		}
 
 		return {
-			current: trends,
+			current: trends[0],
 		};
 	} catch (e) {
 		console.log({ e });
@@ -64,7 +64,7 @@ export async function getSongsTrends(db: Db) {
 		}
 
 		return {
-			current: trends,
+			current: trends[0],
 		};
 	} catch (e) {
 		console.log({ e });
@@ -91,7 +91,7 @@ export async function getPodcastsTrends(db: Db) {
 		}
 
 		return {
-			current: trends,
+			current: trends[0],
 		};
 	} catch (e) {
 		console.log({ e });
