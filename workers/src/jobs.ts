@@ -56,7 +56,7 @@ export async function googleTrendsScraper(db: Db) {
 		const trendDate = new Date();
 
 		if (DATABASE_CONNECTION_URI) {
-			persistGoogleTrends(trendData, trendDate, db);
+			await persistGoogleTrends(trendData, trendDate, db);
 		}
 	} catch (e) {
 		console.error(`[googleTrendsScraper]: ${e}`);
@@ -73,7 +73,7 @@ export async function twitterTrendingTopicsScraper(db: Db) {
 		const trendDate = new Date();
 
 		if (DATABASE_CONNECTION_URI) {
-			persistTwitterTrends(trendData, trendDate, db);
+			await persistTwitterTrends(trendData, trendDate, db);
 		}
 	} catch (e) {
 		console.error(`[twitterTrendingTopicsScraper]: ${e}`);
