@@ -8,6 +8,8 @@ RUN npm install && npm cache clean --force
 
 COPY . ./
 
+RUN npm run build
+
 EXPOSE 3500
 
-CMD ["npm", "run", "start"]
+CMD ["node", "build/index.js"]
