@@ -119,7 +119,7 @@ const TrendHistoryPopover = ({ historyPath, historyKey, matchValue, field = "tit
               </Text>
             ) : (
               <>
-                <Box as="svg" width="100%" height="52" viewBox="0 0 258 52" mb="8px">
+                <Box as="svg" width="100%" height="52px" viewBox="0 0 258 52" mb="8px">
                   <defs>
                     <linearGradient
                       id={gradientId}

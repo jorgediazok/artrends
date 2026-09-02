@@ -117,7 +117,7 @@ const GoogleCardMobile = ({ google, handleCardClick, crossMatches }) => {
                       >
                         {trend.title}
                       </Text>
-                      <Flex alignItems="center" gap="2px" flexShrink={0}>
+                      <Flex alignItems="center" gap="8px" flexShrink={0}>
                       <TrendHistoryPopover
                         historyPath="/api/google-trends/history"
                         matchValue={trend.title}

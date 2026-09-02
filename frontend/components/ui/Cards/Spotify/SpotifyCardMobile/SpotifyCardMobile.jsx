@@ -183,7 +183,7 @@ const SpotifyCardMobile = ({
                               {trend.name}
                             </Text>
                           </a>
-                          <Flex alignItems="center" gap="2px" flexShrink={0}>
+                          <Flex alignItems="center" gap="8px" flexShrink={0}>
                           <TrendHistoryPopover
                             historyPath="/api/spotify/song-trends/history"
                             matchValue={trend.name}
@@ -286,7 +286,6 @@ const SpotifyCardMobile = ({
                       alignItems="center"
                       height="100%"
                       marginTop="10px"
-                      position="relative"
                     >
                       <Box maxWidth="80%" display="revert">
                         <Text
@@ -323,9 +322,6 @@ const SpotifyCardMobile = ({
                         alignItems="center"
                         width="50px"
                         ml="revert"
-                        position="absolute"
-                        bottom={0}
-                        right={0}
                       >
                         <Text fontSize="2xl" mr="4px" lineHeight={1}>
                           {currentIndex + 1}
@@ -429,7 +425,7 @@ const SpotifyCardMobile = ({
                               {trend.name}
                             </Text>
                           </a>
-                          <Flex alignItems="center" gap="2px" flexShrink={0}>
+                          <Flex alignItems="center" gap="8px" flexShrink={0}>
                           <TrendHistoryPopover
                             historyPath="/api/spotify/artist-trends/history"
                             matchValue={trend.name}
@@ -532,7 +528,6 @@ const SpotifyCardMobile = ({
                       alignItems="center"
                       height="100%"
                       marginTop="10px"
-                      position="relative"
                     >
                       <Box maxWidth="80%" display="revert">
                         {crossLabel && (
@@ -563,9 +558,6 @@ const SpotifyCardMobile = ({
                         alignItems="center"
                         width="50px"
                         ml="revert"
-                        position="absolute"
-                        bottom={0}
-                        right={0}
                       >
                         <Text fontSize="2xl" mr="4px" lineHeight={1}>
                           {currentIndex + 1}
@@ -668,7 +660,7 @@ const SpotifyCardMobile = ({
                               {trend.name}
                             </Text>
 
-                            <Flex alignItems="center" gap="2px" flexShrink={0}>
+                            <Flex alignItems="center" gap="8px" flexShrink={0}>
                             <TrendHistoryPopover
                               historyPath="/api/spotify/podcast-trends/history"
                               matchValue={trend.name}
@@ -770,7 +762,6 @@ const SpotifyCardMobile = ({
                         justifyContent="space-between"
                         alignItems="center"
                         height="100%"
-                        position="relative"
                       >
                         <Box maxWidth="80%" display="revert">
                           <Text
@@ -792,9 +783,6 @@ const SpotifyCardMobile = ({
                           alignItems="center"
                           width="50px"
                           ml="revert"
-                          position="absolute"
-                          bottom={0}
-                          right={0}
                         >
                           <Text fontSize="2xl" mr="4px" lineHeight={1}>
                             {currentIndex + 1}

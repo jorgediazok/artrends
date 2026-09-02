@@ -220,7 +220,7 @@ const NewsPortalsCardMobile = ({ portals, handleCardClick, crossMatches }) => {
                           flexDirection="column"
                           py="8px"
                         >
-                          <Flex alignItems="center" gap="2px">
+                          <Flex alignItems="center" gap="12px">
                           <TrendHistoryPopover
                             historyPath="/api/portals/history"
                             historyKey="clarin"
@@ -439,7 +439,7 @@ const NewsPortalsCardMobile = ({ portals, handleCardClick, crossMatches }) => {
                           flexDirection="column"
                           py="8px"
                         >
-                          <Flex alignItems="center" gap="2px">
+                          <Flex alignItems="center" gap="12px">
                           <TrendHistoryPopover
                             historyPath="/api/portals/history"
                             historyKey="elDestape"
@@ -657,7 +657,7 @@ const NewsPortalsCardMobile = ({ portals, handleCardClick, crossMatches }) => {
                           flexDirection="column"
                           py="8px"
                         >
-                          <Flex alignItems="center" gap="2px">
+                          <Flex alignItems="center" gap="12px">
                           <TrendHistoryPopover
                             historyPath="/api/portals/history"
                             historyKey="laNacion"
@@ -876,7 +876,7 @@ const NewsPortalsCardMobile = ({ portals, handleCardClick, crossMatches }) => {
                           flexDirection="column"
                           py="8px"
                         >
-                          <Flex alignItems="center" gap="2px">
+                          <Flex alignItems="center" gap="12px">
                           <TrendHistoryPopover
                             historyPath="/api/portals/history"
                             historyKey="infobae"
@@ -1094,7 +1094,7 @@ const NewsPortalsCardMobile = ({ portals, handleCardClick, crossMatches }) => {
                         flexDirection="column"
                         py="8px"
                       >
-                        <Flex alignItems="center" gap="2px">
+                        <Flex alignItems="center" gap="12px">
                         <TrendHistoryPopover
                           historyPath="/api/portals/history"
                           historyKey="tn"

@@ -127,7 +127,7 @@ const YoutubeCardMobile = ({ youtube, crossMatches }) => {
                       >
                         {trend.title}
                       </Text>
-                      <Flex alignItems="center" gap="2px" flexShrink={0}>
+                      <Flex alignItems="center" gap="8px" flexShrink={0}>
                       <TrendHistoryPopover
                         historyPath="/api/youtube-trends/history"
                         matchValue={trend.title}
@@ -136,9 +136,6 @@ const YoutubeCardMobile = ({ youtube, crossMatches }) => {
                       <Menu.Root maxW="162px">
                         <Menu.Trigger
                           isolation="isolate"
-                          width="10%"
-                          minW="10%"
-                          pl={3}
                           title="Ver más opciones para esta tendencia"
                         >
                           <ThreeDots />
@@ -242,6 +239,7 @@ const YoutubeCardMobile = ({ youtube, crossMatches }) => {
                   justifyContent="space-between"
                   alignItems="center"
                   height="100%"
+                  marginTop="-10px"
                 >
                   <Box maxWidth="80%" display="revert">
                     {crossLabel && <CrossPlatformBadge label={crossLabel} />}

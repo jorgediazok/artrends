@@ -126,7 +126,7 @@ const TwitterCardMobile = ({
                         {trend.title}
                       </Text>
 
-                      <Flex alignItems="center" gap="2px" flexShrink={0}>
+                      <Flex alignItems="center" gap="8px" flexShrink={0}>
                       <TrendHistoryPopover
                         historyPath="/api/twitter-trends/history"
                         matchValue={trend.title}
