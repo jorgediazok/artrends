@@ -27,6 +27,10 @@ import Whatsapp from "../../../icons/Whatsapp";
 // Components
 import ErrorCardDesktop from "../../ErrorCard/ErrorCardDesktop/ErrorCardDesktop";
 import TrendHistoryPopover from "../../../TrendHistoryPopover/TrendHistoryPopover";
+import CrossPlatformBadge from "../../../CrossPlatformBadge/CrossPlatformBadge";
+
+// Utils
+import { getCrossPlatformLabel } from "../../../../../utils/crossPlatform";
 
 // Theme
 import theme from "../../../../../styles/theme";
@@ -60,6 +64,11 @@ const TwitterCardDesktop = ({ twitter, handleCardClick, crossMatches }) => {
           const prevIndex = twitter?.previous?.record?.trends?.findIndex(
             element => element.title === elementInPrevious?.title
           );
+          const crossLabel = getCrossPlatformLabel(
+            crossMatches,
+            trend.title,
+            "X"
+          );
           return (
             <Box
               key={currentIndex}
@@ -91,7 +100,6 @@ const TwitterCardDesktop = ({ twitter, handleCardClick, crossMatches }) => {
                 justifyContent="space-between"
                 alignItems="center"
                 w="100%"
-                position="relative"
               >
                 <Box display="flex" gap="9px" alignItems="center">
                   <Box
@@ -119,7 +127,7 @@ const TwitterCardDesktop = ({ twitter, handleCardClick, crossMatches }) => {
                     >
                       {trend.title}
                     </Text>
-                    {trend.amount && !trend.amount.includes("trending") && (
+                    {trend.amount && !trend.amount.includes("trending") ? (
                       <Badge
                         className="one-max-line"
                         width="fit-content"
@@ -133,6 +141,8 @@ const TwitterCardDesktop = ({ twitter, handleCardClick, crossMatches }) => {
                       >
                         {trend.amount.replace(",", ".")} tweets
                       </Badge>
+                    ) : (
+                      crossLabel && <CrossPlatformBadge label={crossLabel} />
                     )}
                   </Box>
                 </Box>
@@ -142,9 +152,6 @@ const TwitterCardDesktop = ({ twitter, handleCardClick, crossMatches }) => {
                   alignItems="center"
                   justifyContent="flex-end"
                   gap="4px"
-                  position="absolute"
-                  bottom={0}
-                  right="16px"
                 >
                   <TrendHistoryPopover
                     historyPath="/api/twitter-trends/history"
