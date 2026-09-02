@@ -19,7 +19,7 @@ export const getSpotifyTrends = async (chartsUrl: string, itemLimit: number) => 
 	 * derived from the unique primary artists in the songs chart below. */
 	const browser = await chromium.launch({
 		headless: true,
-		chromiumSandbox: true,
+		chromiumSandbox: false,
 	});
 	const page = await browser.newPage();
 	await page.goto(chartsUrl, { waitUntil: "domcontentloaded" });

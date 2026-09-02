@@ -18,7 +18,7 @@ export const getPortalsMostRead = async (
 	/* Scraping start */
 	const browser = await chromium.launch({
 		headless: true,
-		chromiumSandbox: true,
+		chromiumSandbox: false,
 	});
 
 	try {
