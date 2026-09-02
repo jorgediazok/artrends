@@ -76,6 +76,7 @@ const GoogleCardDesktop = ({ google, handleCardClick, crossMatches }) => {
               width="calc(50% - 14px)"
               height="100px"
               mb={2}
+              display="flex"
               alignItems="center"
               role="link"
               tabIndex={0}
@@ -136,9 +137,8 @@ const GoogleCardDesktop = ({ google, handleCardClick, crossMatches }) => {
                 <Box
                   display="flex"
                   gap={8}
-                  alignItems="flex-end"
+                  alignItems="center"
                   justifyContent="flex-end"
-                  marginTop="40px"
                 >
                   <TrendHistoryPopover
                     historyPath="/api/google-trends/history"
