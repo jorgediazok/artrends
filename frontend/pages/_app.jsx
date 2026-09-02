@@ -5,6 +5,7 @@ import {
   HydrationBoundary,
 } from "@tanstack/react-query";
 import { ChakraProvider } from "@chakra-ui/react";
+import { Analytics } from "@vercel/analytics/react";
 
 // Assets
 import "@fontsource/inter";
@@ -22,6 +23,7 @@ function ArtrendsApp({ Component, pageProps }) {
       <HydrationBoundary state={pageProps.dehydratedState}>
         <ChakraProvider value={system}>
           <Component {...pageProps} />
+          <Analytics />
         </ChakraProvider>
       </HydrationBoundary>
     </QueryClientProvider>
