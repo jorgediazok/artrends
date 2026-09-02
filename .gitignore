@@ -3,5 +3,6 @@ node_modules
 .env
 build
 CONTEXT.md
+ARQUITECTURA.md
 dev-infra/
 coverage
