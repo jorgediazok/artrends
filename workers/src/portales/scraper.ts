@@ -23,7 +23,10 @@ export const getPortalsMostRead = async (
 
 	try {
 		const elDestape = await browser.newPage();
-		await elDestape.goto(PORTAL_EL_DESTAPE_URL);
+		await elDestape.goto(PORTAL_EL_DESTAPE_URL, {
+			waitUntil: "domcontentloaded",
+			timeout: 45000,
+		});
 
 		await elDestape.waitForTimeout(8000);
 
@@ -52,7 +55,7 @@ export const getPortalsMostRead = async (
 		/* Infobae — no longer has a "most read" widget, so we use their
 		 * "Tendencias" section feed instead (same article/link shape). */
 		const infobae = await browser.newPage();
-		await infobae.goto(PORTAL_INFOBAE_URL);
+		await infobae.goto(PORTAL_INFOBAE_URL, { waitUntil: "domcontentloaded", timeout: 45000 });
 
 		await infobae.waitForSelector("a.story-card-ctn", { timeout: 15000 });
 		await infobae.waitForTimeout(1000);
@@ -78,7 +81,7 @@ export const getPortalsMostRead = async (
 
 		/* Clarín */
 		const clarin = await browser.newPage();
-		await clarin.goto(PORTAL_CLARIN_URL);
+		await clarin.goto(PORTAL_CLARIN_URL, { waitUntil: "domcontentloaded", timeout: 45000 });
 
 		await clarin.waitForSelector("#lo-mas-visto-por-suscriptores", {
 			timeout: 15000,
@@ -108,7 +111,7 @@ export const getPortalsMostRead = async (
 
 		/* La Nación */
 		const laNacion = await browser.newPage();
-		await laNacion.goto(PORTAL_LA_NACION_URL);
+		await laNacion.goto(PORTAL_LA_NACION_URL, { waitUntil: "domcontentloaded", timeout: 45000 });
 
 		await laNacion.waitForTimeout(3000);
 
@@ -143,7 +146,7 @@ export const getPortalsMostRead = async (
 		 * actual headline, so we visit each linked article to grab its real
 		 * title from the page's <h1>. */
 		const tn = await browser.newPage();
-		await tn.goto(PORTAL_TN_URL);
+		await tn.goto(PORTAL_TN_URL, { waitUntil: "domcontentloaded", timeout: 45000 });
 
 		await tn.waitForSelector(".secondary-nav__ul li.dropdown a", {
 			timeout: 15000,
