@@ -12,6 +12,7 @@ export default function Container({
       alignItems={isContentCentered ? "center" : "flex-start"}
       flexDirection={flexDirection}
       width="100%"
+      mx="auto"
       maxW={{ base: "100%", md: "1140px" }}
       p={{ base: "32px 16px", md: "32px" }}
     >

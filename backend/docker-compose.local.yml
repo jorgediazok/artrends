@@ -4,11 +4,11 @@ name: artrends
 services:
   redis:
     container_name: redis
-    image: redis:7.0.4-alpine
+    image: redis:8-alpine
     restart: always
     ports:
       - 6379:6379
-    command: redis-server --loglevel warning  --appendonly yes --requirepass "***REMOVED_REDIS_PASSWORD***"
+    command: redis-server --loglevel warning  --appendonly yes --requirepass "${REDISPASSWORD}"
     volumes:
       - cache:/data
   backend:

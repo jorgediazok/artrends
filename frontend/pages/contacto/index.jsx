@@ -6,12 +6,9 @@ import { useState } from "react";
 import {
   Box,
   Breadcrumb,
-  BreadcrumbItem,
   Button,
-  FormControl,
-  FormErrorMessage,
+  Field,
   Input,
-  Radio,
   RadioGroup,
   Stack,
   Text,
@@ -94,20 +91,20 @@ const Contacto = () => {
         <title>Artrends | Contacto</title>
         <meta
           name="description"
-          content="Enterate rápido y en un sólo lugar qué les interesa ahora a los argentinos. Tendencias de Twitter, lo más buscado en Google, lo más visto en Youtube, lo más escuchado en Spotify, lo más leído en portales de noticias y más."
+          content="Contactate con el equipo de Artrends para consultas, sugerencias o reportar un problema con el sitio."
         />
         <meta
           name="keywords"
-          content="trends, tendencias, argentina, tt, trending topics, google, qué buscan argentinos en google, ranking de canciones, ranking de artistas, ranking de podcasts, intereses de los argentinos, portales de noticias, twitter argentina, noticias de Argentina, intereses de argentinos, spotify argentina, youtubers argentinos, youtube argentina, lo más leído, lo más buscado, lo más escuchado, lo más visto."
+          content="contacto artrends, consultas, sugerencias, soporte artrends"
         />
-        <meta name="canonical" content="https://artrends.ar" />
-        <meta name="robots" content="index follow" />
+        <link rel="canonical" href="https://artrends.ar/contacto" />
+        <meta name="robots" content="index, follow" />
         <meta property="og:title" content="Artrends | Contacto" />
         <meta
           property="og:description"
-          content="Enterate rápido y en un sólo lugar qué les interesa ahora a los argentinos. Tendencias de Twitter, lo más buscado en Google, lo más visto en Youtube, lo más escuchado en Spotify, lo más leído en portales de noticias y más."
+          content="Contactate con el equipo de Artrends para consultas, sugerencias o reportar un problema con el sitio."
         />
-        <meta property="og:url" content="https://artrends.ar" />
+        <meta property="og:url" content="https://artrends.ar/contacto" />
         <meta property="og:site_name" content="Artrends" />
         <meta property="og:image" content="https://artrends.ar/og_image.png" />
         <link rel="icon" href="/favicon.ico" />
@@ -124,25 +121,27 @@ const Contacto = () => {
             as="section"
             id="contacto"
           >
-            <Breadcrumb
+            <Breadcrumb.Root
               marginTop={{ base: "32px", lg: "152px" }}
               fontSize="text-sm"
               color="#FFFFFF"
-              spacing="16px"
-              separator={<ArrowRight color="#FFFFFF" />}
             >
-              <BreadcrumbItem>
-                <NextLink href="/">
-                  <a>
+              <Breadcrumb.List gap="16px">
+                <Breadcrumb.Item>
+                  <NextLink href="/">
                     <Text fontSize="text-sm">Home</Text>
-                  </a>
-                </NextLink>
-              </BreadcrumbItem>
+                  </NextLink>
+                </Breadcrumb.Item>
 
-              <BreadcrumbItem>
-                <Text fontWeight="600">Contacto</Text>
-              </BreadcrumbItem>
-            </Breadcrumb>
+                <Breadcrumb.Separator>
+                  <ArrowRight color="#FFFFFF" />
+                </Breadcrumb.Separator>
+
+                <Breadcrumb.Item>
+                  <Text fontWeight="600">Contacto</Text>
+                </Breadcrumb.Item>
+              </Breadcrumb.List>
+            </Breadcrumb.Root>
           </Box>
 
           {!messageHasBeenSent && (
@@ -217,14 +216,14 @@ const Contacto = () => {
                     <Agenda />
                   </Box>
                   <Box width="100%">
-                    <FormControl isInvalid={nameHasError}>
+                    <Field.Root invalid={nameHasError}>
                       <Input
                         width="100%"
                         color="#FFFFFF"
                         variant="flushed"
                         _hover={{ borderColor: "#C7F0F0" }}
-                        focusBorderColor="#71E9EB"
-                        errorBorderColor="red.300"
+                        _focusVisible={{ borderColor: "#71E9EB" }}
+                        _invalid={{ borderColor: "red.300" }}
                         borderColor="rgba(255,255,255,0.5)"
                         placeholder="Ingresá tu nombre completo"
                         _placeholder={{
@@ -234,16 +233,16 @@ const Contacto = () => {
                         onInput={event => setName(event.currentTarget.value)}
                       />
                       {nameHasError && (
-                        <FormErrorMessage
+                        <Field.ErrorText
                           color="#FFFFFF"
                           fontSize="sm"
                           marginTop="6px"
                         >
                           Por favor completá el campo para poder enviar el
                           mensaje.
-                        </FormErrorMessage>
+                        </Field.ErrorText>
                       )}
-                    </FormControl>
+                    </Field.Root>
                   </Box>
                 </Box>
                 <Box
@@ -257,12 +256,12 @@ const Contacto = () => {
                     <Envelope />
                   </Box>
                   <Box width="100%">
-                    <FormControl isInvalid={emailHasError}>
+                    <Field.Root invalid={emailHasError}>
                       <Input
                         width="100%"
-                        focusBorderColor="#71E9EB"
+                        _focusVisible={{ borderColor: "#71E9EB" }}
                         _hover={{ borderColor: "#C7F0F0" }}
-                        errorBorderColor="red.300"
+                        _invalid={{ borderColor: "red.300" }}
                         borderColor="rgba(255,255,255,0.5)"
                         color="#FFFFFF"
                         variant="flushed"
@@ -275,15 +274,15 @@ const Contacto = () => {
                         onInput={event => setEmail(event.currentTarget.value)}
                       />
                       {emailHasError && (
-                        <FormErrorMessage
+                        <Field.ErrorText
                           color="#FFFFFF"
                           fontSize="sm"
                           marginTop="6px"
                         >
                           Por favor ingresá un coreo electrónico válido.
-                        </FormErrorMessage>
+                        </Field.ErrorText>
                       )}
-                    </FormControl>
+                    </Field.Root>
                   </Box>
                 </Box>
                 <Box
@@ -296,9 +295,12 @@ const Contacto = () => {
                     <Archive />
                   </Box>
                   <Box w="100%">
-                    <RadioGroup
-                      onChange={setTypeOfMessage}
+                    <RadioGroup.Root
+                      onValueChange={details =>
+                        setTypeOfMessage(details.value)
+                      }
                       value={typeOfMessage}
+                      size={{ base: "sm", lg: "lg" }}
                     >
                       <Stack
                         display="flex"
@@ -306,42 +308,49 @@ const Contacto = () => {
                         justifyContent="space-between"
                         color="#FFFFFF"
                       >
-                        <Radio
+                        <RadioGroup.Item
                           value="Consulta"
-                          size={{ base: "sm", lg: "lg" }}
                           bg={theme.colors.gradients["grad-ind-purple-2"]}
-                          colorScheme={
+                          colorPalette={
                             theme.colors.gradients["grad-ind-purple-2"]
                           }
                         >
-                          Consulta
-                        </Radio>
-                        <Radio
+                          <RadioGroup.ItemHiddenInput />
+                          <RadioGroup.ItemIndicator />
+                          <RadioGroup.ItemText>Consulta</RadioGroup.ItemText>
+                        </RadioGroup.Item>
+                        <RadioGroup.Item
                           value="Sugerencia"
-                          size={{ base: "sm", lg: "lg" }}
                           bg={theme.colors.gradients["grad-ind-purple-2"]}
-                          colorScheme={
+                          colorPalette={
                             theme.colors.gradients["grad-ind-purple-2"]
                           }
                         >
-                          Sugerencia
-                        </Radio>
-                        <Radio
+                          <RadioGroup.ItemHiddenInput />
+                          <RadioGroup.ItemIndicator />
+                          <RadioGroup.ItemText>
+                            Sugerencia
+                          </RadioGroup.ItemText>
+                        </RadioGroup.Item>
+                        <RadioGroup.Item
                           value="Comentario"
-                          size={{ base: "sm", lg: "lg" }}
                           bg={theme.colors.gradients["grad-ind-purple-2"]}
-                          colorScheme={
+                          colorPalette={
                             theme.colors.gradients["grad-ind-purple-2"]
                           }
                         >
-                          Comentario
-                        </Radio>
+                          <RadioGroup.ItemHiddenInput />
+                          <RadioGroup.ItemIndicator />
+                          <RadioGroup.ItemText>
+                            Comentario
+                          </RadioGroup.ItemText>
+                        </RadioGroup.Item>
                       </Stack>
-                    </RadioGroup>
+                    </RadioGroup.Root>
                   </Box>
                 </Box>
                 <Box>
-                  <FormControl isInvalid={messageHasError}>
+                  <Field.Root invalid={messageHasError}>
                     <Textarea
                       placeholder="Ingresá tu mensaje"
                       height={{ base: "132px", lg: "217px" }}
@@ -351,15 +360,15 @@ const Contacto = () => {
                       _focus={{ borderColor: "cyan.500" }}
                     />
                     {messageHasError && (
-                      <FormErrorMessage
+                      <Field.ErrorText
                         color="#FFFFFF"
                         fontSize="sm"
                         marginTop="6px"
                       >
                         Por favor completá el campo para poder enviar el mensaje
-                      </FormErrorMessage>
+                      </Field.ErrorText>
                     )}
-                  </FormControl>
+                  </Field.Root>
                 </Box>
                 <Box
                   display="flex"

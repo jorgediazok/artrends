@@ -1,12 +1,12 @@
 // Chakra
 import { Box, Text } from "@chakra-ui/react";
-import Image from "next/future/image";
+import Image from "next/image";
 
 // Images
-import FlagMobile from "/public/images/bg-mobile.webp";
-import FlagTablet from "/public/images/bg-tablet.webp";
-import FlagDesktop from "/public/images/bg-desktop.webp";
-import Argentino from "/public/images/argentino.gif";
+import FlagMobile from "../../../public/images/bg-mobile.webp";
+import FlagTablet from "../../../public/images/bg-tablet.webp";
+import FlagDesktop from "../../../public/images/bg-desktop.webp";
+import Argentino from "../../../public/images/argentino.gif";
 
 // Components
 import Container from "../../layout/Container";
@@ -24,39 +24,39 @@ export default function Hero() {
         flexDirection="column"
         justifyContent="center"
       >
+        <Image
+          className={styles["bg-mobile"]}
+          src={FlagMobile.src}
+          alt=""
+          width={FlagMobile.width}
+          height={FlagMobile.height}
+          quality={100}
+        />
+        <Image
+          className={styles["bg-tablet"]}
+          src={FlagMobile.src}
+          alt=""
+          width={FlagMobile.width}
+          height={FlagMobile.height}
+          quality={100}
+        />
+        <Image
+          className={styles["bg-desktop"]}
+          src={FlagDesktop.src}
+          alt=""
+          width={FlagDesktop.width}
+          height={FlagDesktop.height}
+          quality={100}
+        />
+        <Box aria-hidden className={styles.gradient} />
+        <Image
+          src={Argentino.src}
+          alt=""
+          width={Argentino.width}
+          height={Argentino.height}
+          className={styles.argie}
+        />
         <Container>
-          <Image
-            className={styles["bg-mobile"]}
-            src={FlagMobile.src}
-            alt=""
-            width={FlagMobile.width}
-            height={FlagMobile.height}
-            quality={100}
-          />
-          <Image
-            className={styles["bg-tablet"]}
-            src={FlagMobile.src}
-            alt=""
-            width={FlagMobile.width}
-            height={FlagMobile.height}
-            quality={100}
-          />
-          <Image
-            className={styles["bg-desktop"]}
-            src={FlagDesktop.src}
-            alt=""
-            width={FlagDesktop.width}
-            height={FlagDesktop.height}
-            quality={100}
-          />
-          <Box aria-hidden className={styles.gradient} />
-          <Image
-            src={Argentino.src}
-            alt=""
-            width={Argentino.width}
-            height={Argentino.height}
-            className={styles.argie}
-          />
           <Box
             as="header"
             margin="auto"

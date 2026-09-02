@@ -1,5 +1,5 @@
 // Services
-import { getPortalTrends } from "./portals.service";
+import { getPortalTrends, getPortalsHistory } from "./portals.service";
 
 // Schema
 import { Type } from "@sinclair/typebox";
@@ -57,6 +57,48 @@ export default function portalRoutes(app: AppInstance, db: Db) {
 							return reply
 								.status(200)
 								.send({ current: null, fromCache: false });
+						}
+
+						reply.status(200).send({ ...result, fromCache: false });
+						return;
+					});
+				}
+			});
+		}
+	);
+
+	app.get(
+		"/api/portals/history",
+		{
+			schema: {
+				tags: ["Portals"],
+				summary: "Historial de posiciones de portales",
+				response: {
+					500: Type.Optional(Type.String()),
+				},
+			},
+		},
+		(_req: FastifyRequest, reply: FastifyReply) => {
+			app.cache.get("portal-trends-history", async (error, cacheHit) => {
+				if (error) {
+					console.log("Error", error);
+					reply.status(500).send(error);
+					return;
+				}
+				if (isCacheResult(cacheHit)) {
+					if (cacheHit.stored) {
+						reply.status(200).send({ ...cacheHit.item, fromCache: true });
+						return;
+					}
+				}
+
+				if (!cacheHit) {
+					const result = await getPortalsHistory(db);
+
+					app.cache.set("portal-trends-history", result, 360000, err => {
+						if (err) {
+							console.log({ err });
+							return err;
 						}
 
 						reply.status(200).send({ ...result, fromCache: false });

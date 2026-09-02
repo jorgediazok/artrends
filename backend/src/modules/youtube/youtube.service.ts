@@ -25,8 +25,24 @@ export async function getYoutubeTrends(db: Db) {
 		}
 
 		return {
-			current: trends,
+			current: trends[0],
 		};
+	} catch (e) {
+		console.log({ e });
+		return { e };
+	}
+}
+
+export async function getYoutubeTrendsHistory(db: Db, limit = 12) {
+	try {
+		const history = await db
+			.collection<TrendRecord<YoutubeTrend>>("youtube")
+			.find()
+			.limit(limit)
+			.sort({ "record.date": -1 })
+			.toArray();
+
+		return { history };
 	} catch (e) {
 		console.log({ e });
 		return { e };

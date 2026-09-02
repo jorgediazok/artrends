@@ -1,0 +1,3 @@
+{
+	"typescript.tsdk": "workers/node_modules/typescript/lib"
+}

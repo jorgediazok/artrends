@@ -5,10 +5,9 @@ import {
   Badge,
   Box,
   Flex,
+  Link,
   Menu,
-  MenuButton,
-  MenuItem,
-  MenuList,
+  Portal,
   Text,
 } from "@chakra-ui/react";
 
@@ -19,6 +18,7 @@ import {
   getWhatsappShareText,
   getTwitterShareText,
 } from "../../../../../utils/shareText";
+import { getCrossPlatformLabel } from "../../../../../utils/crossPlatform";
 
 // Icons & Components
 import ArrowDownMobile from "../../../icons/ArrowDownMobile";
@@ -30,11 +30,18 @@ import TwitterCompartir from "../../../icons/TwitterCompartir";
 
 // Components
 import ErrorCardMobile from "../../ErrorCard/ErrorCardMobile/ErrorCardMobile";
+import TrendHistoryPopover from "../../../TrendHistoryPopover/TrendHistoryPopover";
+import CrossPlatformBadge from "../../../CrossPlatformBadge/CrossPlatformBadge";
 
 // Styles
 import theme from "../../../../../styles/theme";
 
-const TwitterCardMobile = ({ twitter, twitterSectionRef, handleCardClick }) => {
+const TwitterCardMobile = ({
+  twitter,
+  twitterSectionRef,
+  handleCardClick,
+  crossMatches,
+}) => {
   const hasData =
     twitter?.current?.record?.trends?.length &&
     twitter.current.record.trends.length > 0;
@@ -61,6 +68,11 @@ const TwitterCardMobile = ({ twitter, twitterSectionRef, handleCardClick }) => {
           const prevIndex = twitter?.previous?.record?.trends?.findIndex(
             element => element.title === elementInPrevious?.title
           );
+          const crossLabel = getCrossPlatformLabel(
+            crossMatches,
+            trend.title,
+            "X"
+          );
           return (
             <Box
               key={currentIndex}
@@ -71,7 +83,7 @@ const TwitterCardMobile = ({ twitter, twitterSectionRef, handleCardClick }) => {
               borderColor="rgba(255, 255, 255, 0.1);"
               borderRadius={theme.radius.md}
               width="100%"
-              height="72px"
+              minHeight="72px"
               mb={2}
               display="flex"
               alignItems="center"
@@ -114,74 +126,99 @@ const TwitterCardMobile = ({ twitter, twitterSectionRef, handleCardClick }) => {
                         {trend.title}
                       </Text>
 
-                      <Menu maxW="162px">
-                        <MenuButton
+                      <Flex alignItems="center" gap="2px" flexShrink={0}>
+                      <TrendHistoryPopover
+                        historyPath="/api/twitter-trends/history"
+                        matchValue={trend.title}
+                        field="title"
+                      />
+                      <Menu.Root maxW="162px">
+                        <Menu.Trigger
                           isolation="isolate"
                           title="Ver opciones para esta tendencia"
                         >
                           <ThreeDots />
-                        </MenuButton>
-                        <MenuList
-                          maxWidth="162px"
-                          minWidth="162px"
-                          backgroundColor="indigo.600"
-                          borderRadius="6px"
-                          padding="6px 0px"
-                          zIndex="10"
-                          boxShadow="75px 75px 43px rgba(0, 0, 0, 0.01), 42px 42px 36px rgba(0, 0, 0, 0.05), 19px 19px 27px rgba(0, 0, 0, 0.09), 5px 5px 15px rgba(0, 0, 0, 0.1), 0px 0px 0px rgba(0, 0, 0, 0.1);"
-                          border="none"
-                        >
-                          <MenuItem
-                            backgroundColor="indigo.600"
-                            color="#FFFFFF"
-                            as="a"
-                            fontSize="md"
-                            href={getWhatsappShareText(
-                              "twitter",
-                              currentIndex,
-                              trend.title
-                            )}
-                            data-action="share/whatsapp/share"
-                            target="_blank"
-                            rel="noreferrer"
-                            icon={<Whatsapp />}
-                            iconSpacing="10px"
-                            flexDirection="row-reverse"
-                            display="flex"
-                            alignItems="center"
-                            _active={{
-                              boxShadow:
-                                "inset 75px 75px 43px rgba(0, 0, 0, 0.01), inset 42px 42px 36px rgba(0, 0, 0, 0.05), inset 19px 19px 27px rgba(0, 0, 0, 0.09), inset 5px 5px 15px rgba(0, 0, 0, 0.1)",
-                            }}
-                          >
-                            Compartir por
-                          </MenuItem>
-                          <MenuItem
-                            backgroundColor="indigo.600"
-                            color="#FFFFFF"
-                            as="a"
-                            fontSize="md"
-                            href={getTwitterShareText(
-                              "twitter",
-                              currentIndex,
-                              trend.title
-                            )}
-                            target="_blank"
-                            rel="noreferrer"
-                            iconSpacing="10px"
-                            flexDirection="row-reverse"
-                            alignItems="center"
-                            display="flex"
-                            icon={<TwitterCompartir />}
-                            _active={{
-                              boxShadow:
-                                "inset 75px 75px 43px rgba(0, 0, 0, 0.01), inset 42px 42px 36px rgba(0, 0, 0, 0.05), inset 19px 19px 27px rgba(0, 0, 0, 0.09), inset 5px 5px 15px rgba(0, 0, 0, 0.1)",
-                            }}
-                          >
-                            Compartir por
-                          </MenuItem>
-                        </MenuList>
-                      </Menu>
+                        </Menu.Trigger>
+                        <Portal>
+                          <Menu.Positioner>
+                            <Menu.Content
+                              maxWidth="190px"
+                              minWidth="190px"
+                              backgroundColor="indigo.600"
+                              borderRadius="6px"
+                              padding="6px"
+                              zIndex="10"
+                              boxShadow="75px 75px 43px rgba(0, 0, 0, 0.01), 42px 42px 36px rgba(0, 0, 0, 0.05), 19px 19px 27px rgba(0, 0, 0, 0.09), 5px 5px 15px rgba(0, 0, 0, 0.1), 0px 0px 0px rgba(0, 0, 0, 0.1);"
+                              border="none"
+                            >
+                              <Menu.Item value="whatsapp" asChild>
+                                <Link
+                                  backgroundColor="indigo.600"
+                                  color="#FFFFFF"
+                                  fontSize="md"
+                                  href={getWhatsappShareText(
+                                    "twitter",
+                                    currentIndex,
+                                    trend.title
+                                  )}
+                                  data-action="share/whatsapp/share"
+                                  target="_blank"
+                                  rel="noreferrer"
+                                  aria-label="Compartir en WhatsApp"
+                                  display="flex"
+                                  flexDirection="row-reverse"
+                                  alignItems="center"
+                                  gap="10px"
+                                  width="100%"
+                                  paddingX="10px"
+                                  paddingY="8px"
+                                  borderRadius="4px"
+                                  _hover={{ backgroundColor: "indigo.300" }}
+                                  _active={{
+                                    boxShadow:
+                                      "inset 75px 75px 43px rgba(0, 0, 0, 0.01), inset 42px 42px 36px rgba(0, 0, 0, 0.05), inset 19px 19px 27px rgba(0, 0, 0, 0.09), inset 5px 5px 15px rgba(0, 0, 0, 0.1)",
+                                  }}
+                                >
+                                  <Whatsapp />
+                                  Compartir por
+                                </Link>
+                              </Menu.Item>
+                              <Menu.Item value="twitter" asChild>
+                                <Link
+                                  backgroundColor="indigo.600"
+                                  color="#FFFFFF"
+                                  fontSize="md"
+                                  href={getTwitterShareText(
+                                    "twitter",
+                                    currentIndex,
+                                    trend.title
+                                  )}
+                                  target="_blank"
+                                  rel="noreferrer"
+                                  aria-label="Compartir en X"
+                                  display="flex"
+                                  flexDirection="row-reverse"
+                                  alignItems="center"
+                                  gap="10px"
+                                  width="100%"
+                                  paddingX="10px"
+                                  paddingY="8px"
+                                  borderRadius="4px"
+                                  _hover={{ backgroundColor: "indigo.300" }}
+                                  _active={{
+                                    boxShadow:
+                                      "inset 75px 75px 43px rgba(0, 0, 0, 0.01), inset 42px 42px 36px rgba(0, 0, 0, 0.05), inset 19px 19px 27px rgba(0, 0, 0, 0.09), inset 5px 5px 15px rgba(0, 0, 0, 0.1)",
+                                  }}
+                                >
+                                  <TwitterCompartir />
+                                  Compartir por
+                                </Link>
+                              </Menu.Item>
+                            </Menu.Content>
+                          </Menu.Positioner>
+                        </Portal>
+                      </Menu.Root>
+                      </Flex>
                     </Flex>
                   </Box>
                 </Box>
@@ -194,6 +231,7 @@ const TwitterCardMobile = ({ twitter, twitterSectionRef, handleCardClick }) => {
                   height="100%"
                 >
                   <Box maxWidth="80%" display="revert">
+                    {crossLabel && <CrossPlatformBadge label={crossLabel} />}
                     {trend.amount && !trend.amount.includes("trending") && (
                       <Badge
                         className="one-max-line"
@@ -201,7 +239,9 @@ const TwitterCardMobile = ({ twitter, twitterSectionRef, handleCardClick }) => {
                         fontSize="xs"
                         textTransform="uppercase"
                         variant="outline"
-                        colorScheme="#fff"
+                        paddingX="8px"
+                        paddingY="2px"
+                        color="#fff"
                         border="1px solid #fff"
                       >
                         {trend.amount.replace(",", ".")} tweets

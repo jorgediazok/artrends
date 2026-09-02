@@ -6,31 +6,42 @@ export const getGoogleTrends = async (baseUrl: string, itemLimit: number) => {
 		headless: true,
 		chromiumSandbox: true,
 	});
-	const page = await browser.newPage();
-	await page.goto(`${baseUrl}/trends/trendingsearches/daily?geo=AR`);
+	const page = await browser.newPage({ locale: "es-AR" });
+	await page.goto(`${baseUrl}/trending?geo=AR`, { waitUntil: "domcontentloaded" });
 
-	await page.waitForTimeout(3000);
+	await page.waitForSelector(".mZ3RIc", { timeout: 15000 });
+	await page.waitForTimeout(2000);
 
-	/* Titles */
-	const trendsTitles = await (
-		await page.locator(".title").allInnerTexts()
-	).slice(0, itemLimit);
+	const rowLocator = page.locator("table tbody tr");
+	const rowCount = await rowLocator.count();
 
-	/* Links */
-	const linkLocator = await page.locator(".title a");
-	const trendsLinks = await linkLocator.evaluateAll(
-		(list, { itemLimit, baseUrl }) => {
-			return list
-				.map(linkElement => `${baseUrl}${linkElement.getAttribute("href")}`)
-				.slice(0, itemLimit);
-		},
-		{ baseUrl, itemLimit }
+	/* Titles + search volume (rows render empty/loading placeholders first, so skip those) */
+	const trendsTitles: string[] = [];
+	const amount: string[] = [];
+
+	for (let i = 0; i < rowCount && trendsTitles.length < itemLimit; i++) {
+		const row = rowLocator.nth(i);
+		const title = await row
+			.locator(".mZ3RIc")
+			.innerText()
+			.catch(() => "");
+		if (!title) continue;
+
+		const volume = await row
+			.locator(".qNpYPd")
+			.innerText()
+			.catch(() => "");
+
+		trendsTitles.push(title);
+		amount.push(volume);
+	}
+
+	/* Links: the new Google Trends UI has no per-trend URL anymore (row clicks
+	 * open a client-side panel, not a page), so we synthesize a Google Search
+	 * link for each term instead of leaving it empty. */
+	const trendsLinks = trendsTitles.map(
+		title => `https://www.google.com/search?q=${encodeURIComponent(title)}`
 	);
-
-	/* Searches */
-	const amount = await (
-		await page.locator(".search-count-title").allInnerTexts()
-	).slice(0, itemLimit);
 
 	await page.close();
 	await browser.close();

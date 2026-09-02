@@ -52,15 +52,13 @@ const Navbar = ({
           as="header"
         >
           <NextLink href="/">
-            <a>
-              <Image
-                src="/images/logo-mobile.png"
-                alt="Volver al Inicio"
-                height={27}
-                width={120}
-                priority
-              />
-            </a>
+            <Image
+              src="/images/logo-mobile.png"
+              alt="Volver al Inicio"
+              height={27}
+              width={120}
+              priority
+            />
           </NextLink>
         </Flex>
 
@@ -101,16 +99,14 @@ const Navbar = ({
             marginRight={hasNavItems ? "none" : "none"}
           >
             <NextLink href="/">
-              <a>
-                <Image
-                  src="/images/logo-desktop.png"
-                  alt="Volver al Inicio"
-                  height={40}
-                  width={174}
-                  quality={100}
-                  priority
-                />
-              </a>
+              <Image
+                src="/images/logo-desktop.png"
+                alt="Volver al Inicio"
+                height={40}
+                width={174}
+                quality={100}
+                priority
+              />
             </NextLink>
           </Box>
           <Box

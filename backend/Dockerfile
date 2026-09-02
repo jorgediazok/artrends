@@ -1,4 +1,4 @@
-FROM node:16.14.0-alpine
+FROM node:24-alpine
 
 WORKDIR /app
 
@@ -8,6 +8,8 @@ RUN npm install && npm cache clean --force
 
 COPY . ./
 
+RUN npm run build
+
 EXPOSE 3500
 
-CMD ["npm", "run", "start"]
+CMD ["node", "build/index.js"]

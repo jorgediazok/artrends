@@ -1,7 +1,7 @@
 import NextHead from "next/head";
 
 // Chakra
-import { Box, Breadcrumb, BreadcrumbItem, Link, Text } from "@chakra-ui/react";
+import { Box, Breadcrumb, Link, Text } from "@chakra-ui/react";
 import NextLink from "next/link";
 
 // Components
@@ -19,20 +19,26 @@ const PoliticasDePrivacidad = () => {
         <title>Artrends | Políticas de privacidad</title>
         <meta
           name="description"
-          content="Enterate rápido y en un sólo lugar qué les interesa ahora a los argentinos. Tendencias de Twitter, lo más buscado en Google, lo más visto en Youtube, lo más escuchado en Spotify, lo más leído en portales de noticias y más."
+          content="Políticas de privacidad de Artrends: cómo tratamos los datos de quienes visitan el sitio."
         />
         <meta
           name="keywords"
-          content="trends, tendencias, argentina, tt, trending topics, google, qué buscan argentinos en google, ranking de canciones, ranking de artistas, ranking de podcasts, intereses de los argentinos, portales de noticias, twitter argentina, noticias de Argentina, intereses de argentinos, spotify argentina, youtubers argentinos, youtube argentina, lo más leído, lo más buscado, lo más escuchado, lo más visto."
+          content="políticas de privacidad artrends, privacidad, datos personales"
         />
-        <meta name="canonical" content="https://artrends.ar" />
-        <meta name="robots" content="index follow" />
-        <meta property="og:title" content="Artrends | Sobre las tendencias" />
+        <link
+          rel="canonical"
+          href="https://artrends.ar/politicas-de-privacidad"
+        />
+        <meta name="robots" content="index, follow" />
+        <meta property="og:title" content="Artrends | Políticas de privacidad" />
         <meta
           property="og:description"
-          content="Enterate rápido y en un sólo lugar qué les interesa ahora a los argentinos. Tendencias de Twitter, lo más buscado en Google, lo más visto en Youtube, lo más escuchado en Spotify, lo más leído en portales de noticias y más."
+          content="Políticas de privacidad de Artrends: cómo tratamos los datos de quienes visitan el sitio."
         />
-        <meta property="og:url" content="https://artrends.ar" />
+        <meta
+          property="og:url"
+          content="https://artrends.ar/politicas-de-privacidad"
+        />
         <meta property="og:site_name" content="Artrends" />
         <meta property="og:image" content="https://artrends.ar/og_image.png" />
         <link rel="icon" href="/favicon.ico" />
@@ -41,27 +47,31 @@ const PoliticasDePrivacidad = () => {
       <Navbar hasCarrousel={false} hasNavItems={false} />
       <Box background="#241154">
         <Container isContentCentered={false}>
-          <Breadcrumb
+          <Breadcrumb.Root
             marginTop={{ base: "82px", lg: "152px" }}
             fontSize="text-sm"
             color="#FFFFFF"
-            spacing="16px"
-            separator={<ArrowRight color="#FFFFFF" />}
             marginRight="auto"
             marginLeft="0"
           >
-            <BreadcrumbItem>
-              <NextLink href="/">
-                <Text as="button" fontSize="text-sm">
-                  Home
-                </Text>
-              </NextLink>
-            </BreadcrumbItem>
+            <Breadcrumb.List gap="16px">
+              <Breadcrumb.Item>
+                <NextLink href="/">
+                  <Text as="button" fontSize="text-sm">
+                    Home
+                  </Text>
+                </NextLink>
+              </Breadcrumb.Item>
 
-            <BreadcrumbItem>
-              <Text fontWeight="600">Políticas de privacidad</Text>
-            </BreadcrumbItem>
-          </Breadcrumb>
+              <Breadcrumb.Separator>
+                <ArrowRight color="#FFFFFF" />
+              </Breadcrumb.Separator>
+
+              <Breadcrumb.Item>
+                <Text fontWeight="600">Políticas de privacidad</Text>
+              </Breadcrumb.Item>
+            </Breadcrumb.List>
+          </Breadcrumb.Root>
         </Container>
 
         <Container isContentCentered={false}>

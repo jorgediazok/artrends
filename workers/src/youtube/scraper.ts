@@ -1,85 +1,63 @@
-import { chromium } from "playwright";
+import axios from "axios";
 
+interface YoutubeApiItem {
+	id: string;
+	snippet: {
+		title: string;
+		channelId: string;
+		channelTitle: string;
+	};
+	statistics?: {
+		viewCount?: string;
+	};
+}
+
+interface YoutubeApiResponse {
+	items: YoutubeApiItem[];
+}
+
+/* YouTube's own public "Trending" page was discontinued (it now redirects
+ * to the homepage) and YouTube Charts (charts.youtube.com, what this used
+ * to scrape) is a YouTube Music product - it only ever covers music
+ * videos, there's no general-video category on it. The only source left
+ * for real general trending videos per country is the official YouTube
+ * Data API v3's `mostPopular` chart, which is what actually powered the
+ * old public Trending tab. */
 export const getYoutubeTrendingVideos = async (
-	url: string,
+	apiKey: string,
 	itemLimit: number
 ) => {
-	/* Scraping start */
-	const browser = await chromium.launch({
-		headless: true,
-		chromiumSandbox: true,
-	});
-	const page = await browser.newPage({ locale: "es-AR" });
-	await page.goto(url);
-
-	await page.waitForTimeout(3000);
-
-	/* Titles */
-	const trendsTitles = await (
-		await page.locator("#grid-container #video-title").allInnerTexts()
-	).slice(0, itemLimit);
-
-	/* Views */
-	const views = await (
-		await page
-			.locator("#grid-container #metadata-line > span:nth-child(odd)")
-			.allInnerTexts()
-	)
-		.slice(0, itemLimit)
-		.map(e => e.replace("de vistas", "").replace("vistas", "").trimEnd())
-		.map(e => {
-			if (e.includes(".")) {
-				return e;
-			} else {
-				return `${e} K`.replace(",", ".");
-			}
-		});
-
-	/* Video Links */
-	const linkLocator = await page.locator("#grid-container #video-title");
-	const trendsLinks = await linkLocator.evaluateAll(
-		(list, { itemLimit }) => {
-			return list
-				.map(
-					linkElement =>
-						`https://www.youtube.com${linkElement.getAttribute("href")}`
-				)
-				.slice(0, itemLimit);
-		},
-		{ url, itemLimit }
+	const { data } = await axios.get<YoutubeApiResponse>(
+		"https://www.googleapis.com/youtube/v3/videos",
+		{
+			params: {
+				part: "snippet,statistics",
+				chart: "mostPopular",
+				regionCode: "AR",
+				maxResults: itemLimit,
+				key: apiKey,
+			},
+		}
 	);
 
-	/* Channel */
-	const channels = await (
-		await page
-			.locator("#grid-container #metadata #channel-name")
-			.allInnerTexts()
-	).slice(0, itemLimit);
+	const items = (data.items || []).slice(0, itemLimit);
 
-	/* Channel Link */
-	const channelsLinkLocator = await page.locator(
-		"#grid-container #metadata #channel-name a"
+	const trendsTitles = items.map(item => item.snippet.title);
+	const trendsLinks = items.map(
+		item => `https://www.youtube.com/watch?v=${item.id}`
 	);
-	const channelsLinks = await channelsLinkLocator.evaluateAll(
-		(list, { itemLimit }) => {
-			return list
-				.map(
-					linkElement =>
-						`https://www.youtube.com${linkElement.getAttribute("href")}`
-				)
-				.slice(0, itemLimit);
-		},
-		{ url, itemLimit }
+	const channels = items.map(item => item.snippet.channelTitle);
+	const channelsLinks = items.map(
+		item => `https://www.youtube.com/channel/${item.snippet.channelId}`
+	);
+	/* The API returns a lifetime cumulative view count (unlike the old
+	 * music chart's weekly figure) - comma-format it for display, but
+	 * don't relabel it as "weekly" anywhere downstream. */
+	const amount = items.map(item =>
+		item.statistics?.viewCount
+			? Number(item.statistics.viewCount).toLocaleString("es-AR")
+			: ""
 	);
 
-	await page.close();
-	await browser.close();
-
-	return {
-		trendsTitles,
-		trendsLinks,
-		channels,
-		channelsLinks,
-		amount: views,
-	};
+	return { trendsTitles, trendsLinks, channels, channelsLinks, amount };
 };

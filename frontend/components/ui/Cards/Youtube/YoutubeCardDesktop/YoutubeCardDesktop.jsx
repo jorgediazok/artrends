@@ -1,10 +1,9 @@
 import {
   Badge,
   Box,
+  Link,
   Menu,
-  MenuButton,
-  MenuItem,
-  MenuList,
+  Portal,
   Text,
 } from "@chakra-ui/react";
 
@@ -18,6 +17,7 @@ import {
   getTwitterShareText,
   getWhatsappShareText,
 } from "../../../../../utils/shareText";
+import { getCrossPlatformLabel } from "../../../../../utils/crossPlatform";
 
 // Icons
 import ArrowDown from "../../../icons/ArrowDown";
@@ -29,13 +29,15 @@ import Whatsapp from "../../../icons/Whatsapp";
 
 // Components
 import ErrorCardDesktop from "../../ErrorCard/ErrorCardDesktop/ErrorCardDesktop";
+import CrossPlatformBadge from "../../../CrossPlatformBadge/CrossPlatformBadge";
+import TrendHistoryPopover from "../../../TrendHistoryPopover/TrendHistoryPopover";
 
 // Styles
 import styles from "./YoutubeCardDesktop.module.css";
 
-const YoutubeCardDesktop = ({ youtube }) => {
+const YoutubeCardDesktop = ({ youtube, crossMatches }) => {
   const handleCardClick = (e, link) => {
-    if (e.target.tagName === "BUTTON" || e.target.tagName === "A") {
+    if (e.target.closest("a, button")) {
       return;
     }
 
@@ -70,6 +72,11 @@ const YoutubeCardDesktop = ({ youtube }) => {
           const prevIndex = youtube?.previous?.record?.trends?.findIndex(
             element => element.title === elementInPrevious?.title
           );
+          const crossLabel = getCrossPlatformLabel(
+            crossMatches,
+            trend.title,
+            "YouTube"
+          );
           return (
             <Box
               as="article"
@@ -82,7 +89,7 @@ const YoutubeCardDesktop = ({ youtube }) => {
               paddingX="48px"
               paddingY="12px"
               width="100%"
-              height="161px"
+              minHeight="161px"
               mb={2}
               display="flex"
               alignItems="center"
@@ -143,85 +150,111 @@ const YoutubeCardDesktop = ({ youtube }) => {
                       {trend.channel}
                     </Text>
 
+                    {crossLabel && <CrossPlatformBadge label={crossLabel} />}
+
                     <Badge
                       className="one-max-line"
                       width="fit-content"
                       fontSize="xs"
                       textTransform="uppercase"
                       variant="outline"
-                      colorScheme="#fff"
+                      paddingX="8px"
+                      paddingY="2px"
+                      color="#fff"
                       border="1px solid #fff"
                     >
-                      {!trend.amount.includes("hace") &&
-                        trend.amount.replace("K", "") + " reproducciones"}
+                      {trend.amount && `${trend.amount} reproducciones`}
                     </Badge>
                   </Box>
                 </Box>
                 <Box display="flex" gap={8} alignItems="center">
-                  <Menu maxW="162px">
-                    <MenuButton minW="40px" isolation="isolate">
+                  <TrendHistoryPopover
+                    historyPath="/api/youtube-trends/history"
+                    matchValue={trend.title}
+                    field="title"
+                  />
+                  <Menu.Root maxW="162px">
+                    <Menu.Trigger minW="40px" isolation="isolate">
                       <Share />
-                    </MenuButton>
-                    <MenuList
-                      maxWidth="162px"
-                      minWidth="162px"
-                      backgroundColor="indigo.600"
-                      borderRadius="6px"
-                      padding="6px 0px"
-                      zIndex="10"
-                      boxShadow="75px 75px 43px rgba(0, 0, 0, 0.01), 42px 42px 36px rgba(0, 0, 0, 0.05), 19px 19px 27px rgba(0, 0, 0, 0.09), 5px 5px 15px rgba(0, 0, 0, 0.1), 0px 0px 0px rgba(0, 0, 0, 0.1);"
-                      border="none"
-                    >
-                      <MenuItem
-                        backgroundColor="indigo.600"
-                        color="#FFFFFF"
-                        as="a"
-                        fontSize="md"
-                        href={getWhatsappShareText(
-                          "youtube",
-                          currentIndex,
-                          trend.title
-                        )}
-                        data-action="share/whatsapp/share"
-                        target="_blank"
-                        icon={<Whatsapp />}
-                        iconSpacing="10px"
-                        flexDirection="row-reverse"
-                        display="flex"
-                        alignItems="center"
-                        _active={{
-                          boxShadow:
-                            "inset 75px 75px 43px rgba(0, 0, 0, 0.01), inset 42px 42px 36px rgba(0, 0, 0, 0.05), inset 19px 19px 27px rgba(0, 0, 0, 0.09), inset 5px 5px 15px rgba(0, 0, 0, 0.1)",
-                        }}
-                      >
-                        Compartir por
-                      </MenuItem>
-                      <MenuItem
-                        backgroundColor="indigo.600"
-                        color="#FFFFFF"
-                        as="a"
-                        fontSize="md"
-                        href={getTwitterShareText(
-                          "youtube",
-                          currentIndex,
-                          trend.title
-                        )}
-                        target="_blank"
-                        rel="noreferrer"
-                        iconSpacing="10px"
-                        flexDirection="row-reverse"
-                        alignItems="center"
-                        display="flex"
-                        icon={<TwitterCompartir />}
-                        _active={{
-                          boxShadow:
-                            "inset 75px 75px 43px rgba(0, 0, 0, 0.01), inset 42px 42px 36px rgba(0, 0, 0, 0.05), inset 19px 19px 27px rgba(0, 0, 0, 0.09), inset 5px 5px 15px rgba(0, 0, 0, 0.1)",
-                        }}
-                      >
-                        Compartir por
-                      </MenuItem>
-                    </MenuList>
-                  </Menu>
+                    </Menu.Trigger>
+                    <Portal>
+                      <Menu.Positioner>
+                        <Menu.Content
+                          maxWidth="190px"
+                          minWidth="190px"
+                          backgroundColor="indigo.600"
+                          borderRadius="6px"
+                          padding="6px"
+                          zIndex="10"
+                          boxShadow="75px 75px 43px rgba(0, 0, 0, 0.01), 42px 42px 36px rgba(0, 0, 0, 0.05), 19px 19px 27px rgba(0, 0, 0, 0.09), 5px 5px 15px rgba(0, 0, 0, 0.1), 0px 0px 0px rgba(0, 0, 0, 0.1);"
+                          border="none"
+                        >
+                          <Menu.Item value="whatsapp" asChild>
+                            <Link
+                              backgroundColor="indigo.600"
+                              color="#FFFFFF"
+                              fontSize="md"
+                              href={getWhatsappShareText(
+                                "youtube",
+                                currentIndex,
+                                trend.title
+                              )}
+                              data-action="share/whatsapp/share"
+                              target="_blank"
+                              aria-label="Compartir en WhatsApp"
+                              display="flex"
+                              flexDirection="row-reverse"
+                              alignItems="center"
+                              gap="10px"
+                              width="100%"
+                              paddingX="10px"
+                              paddingY="8px"
+                              borderRadius="4px"
+                              _hover={{ backgroundColor: "indigo.300" }}
+                              _active={{
+                                boxShadow:
+                                  "inset 75px 75px 43px rgba(0, 0, 0, 0.01), inset 42px 42px 36px rgba(0, 0, 0, 0.05), inset 19px 19px 27px rgba(0, 0, 0, 0.09), inset 5px 5px 15px rgba(0, 0, 0, 0.1)",
+                              }}
+                            >
+                              <Whatsapp />
+                              Compartir por
+                            </Link>
+                          </Menu.Item>
+                          <Menu.Item value="twitter" asChild>
+                            <Link
+                              backgroundColor="indigo.600"
+                              color="#FFFFFF"
+                              fontSize="md"
+                              href={getTwitterShareText(
+                                "youtube",
+                                currentIndex,
+                                trend.title
+                              )}
+                              target="_blank"
+                              rel="noreferrer"
+                              aria-label="Compartir en X"
+                              display="flex"
+                              flexDirection="row-reverse"
+                              alignItems="center"
+                              gap="10px"
+                              width="100%"
+                              paddingX="10px"
+                              paddingY="8px"
+                              borderRadius="4px"
+                              _hover={{ backgroundColor: "indigo.300" }}
+                              _active={{
+                                boxShadow:
+                                  "inset 75px 75px 43px rgba(0, 0, 0, 0.01), inset 42px 42px 36px rgba(0, 0, 0, 0.05), inset 19px 19px 27px rgba(0, 0, 0, 0.09), inset 5px 5px 15px rgba(0, 0, 0, 0.1)",
+                              }}
+                            >
+                              <TwitterCompartir />
+                              Compartir por
+                            </Link>
+                          </Menu.Item>
+                        </Menu.Content>
+                      </Menu.Positioner>
+                    </Portal>
+                  </Menu.Root>
                 </Box>
               </Box>
             </Box>

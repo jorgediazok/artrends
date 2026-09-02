@@ -6,9 +6,10 @@ import { PortalsData } from "../typings";
 // Config
 import {
 	PORTAL_EL_DESTAPE_URL,
-	PORTAL_TELAM_URL,
 	PORTAL_CLARIN_URL,
 	PORTAL_LA_NACION_URL,
+	PORTAL_INFOBAE_URL,
+	PORTAL_TN_URL,
 } from "../config";
 
 export const getPortalsMostRead = async (
@@ -48,98 +49,59 @@ export const getPortalsMostRead = async (
 
 		await elDestape.close();
 
-		/* Telam */
-		const telam = await browser.newPage();
-		await telam.goto(PORTAL_TELAM_URL);
+		/* Infobae — no longer has a "most read" widget, so we use their
+		 * "Tendencias" section feed instead (same article/link shape). */
+		const infobae = await browser.newPage();
+		await infobae.goto(PORTAL_INFOBAE_URL);
 
-		await telam.waitForTimeout(3000);
-		await telam.mouse.wheel(0, 6000);
-		await telam.waitForTimeout(3000);
+		await infobae.waitForSelector("a.story-card-ctn", { timeout: 15000 });
+		await infobae.waitForTimeout(1000);
 
-		const telamArticleTitles = await (
-			await telam.locator(".moreread .img-content > h5 > a").allInnerTexts()
+		const infobaeArticleTitles = await (
+			await infobae.locator("a.story-card-ctn h2.story-card-hl").allInnerTexts()
 		).slice(0, itemLimit);
 
-		/* Reordenar  artículos */
-		const itemMasLeido = telamArticleTitles.splice(3, 1)[0];
-		telamArticleTitles.unshift(itemMasLeido);
-
-		const telamLinkLocator = await telam.locator(
-			".moreread .img-content > h5 > a"
+		const infobaeLinkLocator = await infobae.locator(
+			"a.story-card-ctn[data-mrf-link]"
 		);
 
-		const telamArticleLinks = await telamLinkLocator.evaluateAll(
+		const infobaeArticleLinks = await infobaeLinkLocator.evaluateAll(
 			(list, { itemLimit }) => {
 				return list
-					.map(linkElement => linkElement.getAttribute("href"))
+					.map(linkElement => linkElement.getAttribute("data-mrf-link") ?? "")
 					.slice(0, itemLimit);
 			},
-			{ PORTAL_TELAM_URL, itemLimit }
+			{ itemLimit }
 		);
 
-		/* Reordenar links artículos */
-		const itemLinkMasLeido = telamArticleLinks.splice(3, 1)[0];
-		telamArticleLinks.unshift(itemLinkMasLeido);
-
-		await telam.close();
-
-		/* Infobae */
-		// const infobae = await browser.newPage();
-		// await infobae.goto(PORTAL_INFOBAE_URL);
-
-		// await infobae.waitForTimeout(3000);
-
-		// const infobaeArticleTitles = await (
-		// 	await infobae
-		// 		.locator(".most-read-container .most-read-item .most-read-headline")
-		// 		.allInnerTexts()
-		// ).slice(0, itemLimit);
-
-		// const infobaeLinkLocator = await infobae.locator(
-		// 	".most-read-container .most-read-item .headline-link"
-		// );
-
-		// const infobaeArticleLinks = await infobaeLinkLocator.evaluateAll(
-		// 	(list, { itemLimit, PORTAL_INFOBAE_URL }) => {
-		// 		return list
-		// 			.map(
-		// 				linkElement =>
-		// 					`${PORTAL_INFOBAE_URL.replace(
-		// 						"/tendencias",
-		// 						""
-		// 					)}${linkElement.getAttribute("href")}`
-		// 			)
-		// 			.slice(0, itemLimit);
-		// 	},
-		// 	{ PORTAL_INFOBAE_URL, itemLimit }
-		// );
-
-		// await infobae.close();
+		await infobae.close();
 
 		/* Clarín */
 		const clarin = await browser.newPage();
 		await clarin.goto(PORTAL_CLARIN_URL);
 
-		await clarin.waitForTimeout(3000);
+		await clarin.waitForSelector("#lo-mas-visto-por-suscriptores", {
+			timeout: 15000,
+		});
+		await clarin.waitForTimeout(1000);
 
-		const clarinArticleTitles = await (
-			await clarin.locator(".The__most__seen .box-container h2").allInnerTexts()
-		).slice(0, itemLimit);
-
-		const clarinLinkLocator = await clarin.locator(
-			".The__most__seen article a"
+		const clarinListLocator = clarin.locator(
+			'ul[data-mrf-recirculation^="ContainerLoMasVistoSus"] li.box-items'
 		);
 
+		const clarinArticleTitles = await (
+			await clarinListLocator.locator("h2").allInnerTexts()
+		).slice(0, itemLimit);
+
+		const clarinLinkLocator = clarinListLocator.locator("a[data-mrf-link]");
+
 		const clarinArticleLinks = await clarinLinkLocator.evaluateAll(
-			(list, { itemLimit, PORTAL_CLARIN_URL }) => {
+			(list, { itemLimit }) => {
 				return list
-					.map(
-						linkElement =>
-							`${PORTAL_CLARIN_URL}${linkElement.getAttribute("href")}`
-					)
+					.map(linkElement => linkElement.getAttribute("data-mrf-link") ?? "")
 					.slice(0, itemLimit);
 			},
-			{ PORTAL_CLARIN_URL, itemLimit }
+			{ itemLimit }
 		);
 
 		await clarin.close();
@@ -174,14 +136,56 @@ export const getPortalsMostRead = async (
 
 		await laNacion.close();
 
+		/* TN — doesn't have a "most read" widget either, but has a "Temas de
+		 * hoy" (topics of the day) widget on the homepage, which fits the
+		 * same article/link shape and is arguably closer to "trending". The
+		 * widget only shows short topic labels (e.g. "Lionel Messi"), not the
+		 * actual headline, so we visit each linked article to grab its real
+		 * title from the page's <h1>. */
+		const tn = await browser.newPage();
+		await tn.goto(PORTAL_TN_URL);
+
+		await tn.waitForSelector(".secondary-nav__ul li.dropdown a", {
+			timeout: 15000,
+		});
+		await tn.waitForTimeout(1000);
+
+		const tnLinkLocator = tn.locator(".secondary-nav__ul li.dropdown a");
+
+		const tnArticleLinks = await tnLinkLocator.evaluateAll(
+			(list, { itemLimit }) => {
+				return list
+					.map(linkElement => linkElement.getAttribute("href") ?? "")
+					.slice(0, itemLimit);
+			},
+			{ itemLimit }
+		);
+
+		await tn.close();
+
+		const tnArticleTitles: string[] = [];
+		for (const link of tnArticleLinks) {
+			const article = await browser.newPage();
+			try {
+				await article.goto(link, { waitUntil: "domcontentloaded", timeout: 15000 });
+				const headline = await article.locator("h1").first().innerText();
+				tnArticleTitles.push(headline.trim());
+			} catch (e) {
+				console.log(`[getPortalsMostRead][tn][${link}]:`, e);
+				tnArticleTitles.push("");
+			} finally {
+				await article.close();
+			}
+		}
+
 		return {
 			elDestape: {
 				articles: elDestapeArticleTitles,
 				links: elDestapeArticleLinks,
 			},
-			telam: {
-				articles: telamArticleTitles,
-				links: telamArticleLinks,
+			infobae: {
+				articles: infobaeArticleTitles,
+				links: infobaeArticleLinks,
 			},
 			clarin: {
 				articles: clarinArticleTitles,
@@ -190,6 +194,10 @@ export const getPortalsMostRead = async (
 			laNacion: {
 				articles: laNacionArticleTitles,
 				links: laNacionArticleLinks,
+			},
+			tn: {
+				articles: tnArticleTitles,
+				links: tnArticleLinks,
 			},
 		};
 	} catch (e) {

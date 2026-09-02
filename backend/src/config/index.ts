@@ -8,3 +8,5 @@ export const DATABASE_CONNECTION_URI =
 export const REDIS_HOST = process.env.REDISHOST || "";
 export const REDIS_PASSWORD = process.env.REDISPASSWORD || "";
 export const REDIS_PORT = parseInt(process.env.REDISPORT || "6379", 10);
+export const REDIS_TLS = process.env.REDISTLS === "true";
+export const DISCORD_BOT_TOKEN = process.env.DISCORD_BOT_TOKEN || "";

@@ -69,23 +69,6 @@ export async function getPortalTrends(db: Db) {
 			}
 		}
 
-		const telamTrends = await db
-			.collection<TrendRecord<PortalTrends>>("portal.telam")
-			.find()
-			.limit(2)
-			.sort({ "record.date": -1 })
-			.toArray();
-
-		if (telamTrends?.length > 0) {
-			if (telamTrends.length > 1) {
-				const [current, previous] = telamTrends;
-				trends.current.telam = current;
-				trends.previous.telam = previous;
-			} else {
-				trends.current.telam = telamTrends[0];
-			}
-		}
-
 		const laNacionTrends = await db
 			.collection<TrendRecord<PortalTrends>>("portal.laNacion")
 			.find()
@@ -103,7 +86,55 @@ export async function getPortalTrends(db: Db) {
 			}
 		}
 
+		const tnTrends = await db
+			.collection<TrendRecord<PortalTrends>>("portal.tn")
+			.find()
+			.limit(2)
+			.sort({ "record.date": -1 })
+			.toArray();
+
+		if (tnTrends?.length > 0) {
+			if (tnTrends.length > 1) {
+				const [current, previous] = tnTrends;
+				trends.current.tn = current;
+				trends.previous.tn = previous;
+			} else {
+				trends.current.tn = tnTrends[0];
+			}
+		}
+
 		return trends;
+	} catch (e) {
+		console.log({ e });
+		return { e };
+	}
+}
+
+export async function getPortalsHistory(db: Db, limit = 12) {
+	try {
+		const collections = {
+			elDestape: "portal.elDestape",
+			clarin: "portal.clarin",
+			infobae: "portal.infobae",
+			laNacion: "portal.laNacion",
+			tn: "portal.tn",
+		} as const;
+
+		const history: Record<
+			string,
+			WithId<TrendRecord<PortalTrends>>[]
+		> = {};
+
+		for (const [key, collectionName] of Object.entries(collections)) {
+			history[key] = await db
+				.collection<TrendRecord<PortalTrends>>(collectionName)
+				.find()
+				.limit(limit)
+				.sort({ "record.date": -1 })
+				.toArray();
+		}
+
+		return { history };
 	} catch (e) {
 		console.log({ e });
 		return { e };
