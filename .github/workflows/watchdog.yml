@@ -1,0 +1,49 @@
+name: Scraper watchdog
+
+# GitHub Actions' `schedule` trigger is best-effort and can silently skip
+# firings for hours under load, with no retry (see scrape.yml). This runs
+# more frequently and re-runs any job whose last persisted record is older
+# than its cron interval should allow, catching up on whatever schedule.yml
+# missed.
+
+on:
+  schedule:
+    - cron: "*/20 * * * *"
+  workflow_dispatch:
+
+jobs:
+  watchdog:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: workers
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+          cache: npm
+          cache-dependency-path: workers/package-lock.json
+
+      - run: npm ci
+
+      - run: npx playwright install --with-deps chromium
+
+      - run: npm run build
+
+      - run: node build/watchdog.js
+        env:
+          BACKEND_URL: https://artrends-backend.onrender.com
+          DATABASE_CONNECTION_URI: ${{ secrets.DATABASE_CONNECTION_URI }}
+          TRENDS_ITEM_LIMIT: 10
+          GOOGLE_TRENDS_BASE_URL: ${{ secrets.GOOGLE_TRENDS_BASE_URL }}
+          TWITTER_TRENDS_URL: ${{ secrets.TWITTER_TRENDS_URL }}
+          SPOTIFY_TRENDS_STARTING_URL: ${{ secrets.SPOTIFY_TRENDS_STARTING_URL }}
+          SPOTIFY_TOP_PODCASTS_URL: ${{ secrets.SPOTIFY_TOP_PODCASTS_URL }}
+          YOUTUBE_API_KEY: ${{ secrets.YOUTUBE_API_KEY }}
+          PORTAL_EL_DESTAPE_URL: ${{ secrets.PORTAL_EL_DESTAPE_URL }}
+          PORTAL_INFOBAE_URL: ${{ secrets.PORTAL_INFOBAE_URL }}
+          PORTAL_TN_URL: ${{ secrets.PORTAL_TN_URL }}
+          PORTAL_CLARIN_URL: ${{ secrets.PORTAL_CLARIN_URL }}
+          PORTAL_LA_NACION_URL: ${{ secrets.PORTAL_LA_NACION_URL }}
