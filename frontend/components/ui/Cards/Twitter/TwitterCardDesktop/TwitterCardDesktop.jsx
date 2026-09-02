@@ -75,6 +75,7 @@ const TwitterCardDesktop = ({ twitter, handleCardClick, crossMatches }) => {
               width="calc(50% - 14px)"
               height="100px"
               mb={2}
+              display="flex"
               alignItems="center"
               role="link"
               tabIndex={0}
