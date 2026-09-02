@@ -1,0 +1,73 @@
+name: Scheduled scrapers
+
+on:
+  schedule:
+    # Keep these in sync with workers/src/index.ts's node-cron schedules.
+    - cron: "11 * * * *" # google, hourly
+    - cron: "21 * * * *" # twitter, hourly
+    - cron: "33 */2 * * *" # youtube, every 2 hours
+    - cron: "44 * * * *" # portals, hourly
+    - cron: "40 20 * * 0" # spotify songs+artists, Sunday
+    - cron: "50 20 * * 0" # spotify podcasts, Sunday
+  workflow_dispatch:
+    inputs:
+      job:
+        description: "Job to run"
+        required: true
+        type: choice
+        options:
+          - google
+          - twitter
+          - youtube
+          - portals
+          - spotify-songs-artists
+          - spotify-podcasts
+
+jobs:
+  scrape:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: workers
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+          cache: npm
+          cache-dependency-path: workers/package-lock.json
+
+      - run: npm ci
+
+      - run: npx playwright install --with-deps chromium
+
+      - run: npm run build
+
+      - name: Determine which job this trigger maps to
+        id: job
+        run: |
+          case "${{ github.event.schedule }}" in
+            "11 * * * *") echo "name=google" >> "$GITHUB_OUTPUT" ;;
+            "21 * * * *") echo "name=twitter" >> "$GITHUB_OUTPUT" ;;
+            "33 */2 * * *") echo "name=youtube" >> "$GITHUB_OUTPUT" ;;
+            "44 * * * *") echo "name=portals" >> "$GITHUB_OUTPUT" ;;
+            "40 20 * * 0") echo "name=spotify-songs-artists" >> "$GITHUB_OUTPUT" ;;
+            "50 20 * * 0") echo "name=spotify-podcasts" >> "$GITHUB_OUTPUT" ;;
+            *) echo "name=${{ inputs.job }}" >> "$GITHUB_OUTPUT" ;;
+          esac
+
+      - run: node build/run-job.js ${{ steps.job.outputs.name }}
+        env:
+          DATABASE_CONNECTION_URI: ${{ secrets.DATABASE_CONNECTION_URI }}
+          TRENDS_ITEM_LIMIT: 10
+          GOOGLE_TRENDS_BASE_URL: ${{ secrets.GOOGLE_TRENDS_BASE_URL }}
+          TWITTER_TRENDS_URL: ${{ secrets.TWITTER_TRENDS_URL }}
+          SPOTIFY_TRENDS_STARTING_URL: ${{ secrets.SPOTIFY_TRENDS_STARTING_URL }}
+          SPOTIFY_TOP_PODCASTS_URL: ${{ secrets.SPOTIFY_TOP_PODCASTS_URL }}
+          YOUTUBE_API_KEY: ${{ secrets.YOUTUBE_API_KEY }}
+          PORTAL_EL_DESTAPE_URL: ${{ secrets.PORTAL_EL_DESTAPE_URL }}
+          PORTAL_INFOBAE_URL: ${{ secrets.PORTAL_INFOBAE_URL }}
+          PORTAL_TN_URL: ${{ secrets.PORTAL_TN_URL }}
+          PORTAL_CLARIN_URL: ${{ secrets.PORTAL_CLARIN_URL }}
+          PORTAL_LA_NACION_URL: ${{ secrets.PORTAL_LA_NACION_URL }}

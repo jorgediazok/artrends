@@ -6,7 +6,8 @@
   "scripts": {
     "dev": "NODE_ENV=development ../dev-infra/node20/bin/node node_modules/.bin/node-dev ./src/index.ts --respawn --notify=false",
     "build": "npx playwright install-deps && tsc",
-    "start": "node build/index.js"
+    "start": "node build/index.js",
+    "run-job": "node build/run-job.js"
   },
   "repository": {
     "type": "git",
