@@ -41,6 +41,9 @@ async function bootstrap() {
 	await app.register(cache);
 	await app.register(cors);
 
+	/* Health check (no DB/cache dependency, used to keep the free-tier instance awake) */
+	app.get("/health", async () => ({ status: "ok" }));
+
 	/* Start DB connection */
 	const db = await connection();
 
